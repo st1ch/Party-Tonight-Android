@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Party Tonight</string>
+    <string name="getStarted">Get Started</string>
+    <string name="promoter">Promoter</string>
+    <string name="partyGoer">Party Goer</string>
+    <string name="eMail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="logIn">Log In</string>
+    <string name="signUp">Sign Up</string>
 </resources>

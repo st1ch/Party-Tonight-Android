@@ -15,6 +15,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".WelcomeScreenActivity" />
+        <activity android:name=".PromoterSignInActivity" />
+        <activity android:name=".PromoterSignUpActivity"></activity>
     </application>
 
 </manifest>
