@@ -1,9 +1,11 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.presentation.activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import app.media.opp.partytonight.R;
 
 public class LaunchScreenActivity extends AppCompatActivity implements View.OnClickListener {
 

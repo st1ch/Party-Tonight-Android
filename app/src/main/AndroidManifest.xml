@@ -8,16 +8,16 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LaunchScreenActivity">
+        <activity android:name=".presentation.activities.LaunchScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".WelcomeScreenActivity" />
-        <activity android:name=".PromoterSignInActivity" />
-        <activity android:name=".PromoterSignUpActivity"></activity>
+        <activity android:name=".presentation.activities.WelcomeScreenActivity" />
+        <activity android:name=".presentation.activities.PromoterSignInActivity" />
+        <activity android:name=".presentation.activities.PromoterSignUpActivity"></activity>
     </application>
 
 </manifest>

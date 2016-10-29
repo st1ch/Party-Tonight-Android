@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="app.media.opp.partytonight.LaunchScreenActivity">
+    tools:context="app.media.opp.partytonight.presentation.activities.LaunchScreenActivity">
 
     <Button
         android:id="@+id/bGetStarted"

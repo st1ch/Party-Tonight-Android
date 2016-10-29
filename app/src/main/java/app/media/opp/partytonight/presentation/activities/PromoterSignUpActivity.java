@@ -1,7 +1,9 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.presentation.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+
+import app.media.opp.partytonight.R;
 
 public class PromoterSignUpActivity extends Activity {
 

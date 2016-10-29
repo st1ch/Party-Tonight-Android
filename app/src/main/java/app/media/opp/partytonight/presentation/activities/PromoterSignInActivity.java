@@ -1,10 +1,12 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.presentation.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+
+import app.media.opp.partytonight.R;
 
 public class PromoterSignInActivity extends Activity implements View.OnClickListener {
 

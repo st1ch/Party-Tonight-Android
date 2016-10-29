@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="app.media.opp.partytonight.WelcomeScreenActivity">
+    tools:context="app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity">
 
     <Button
         android:id="@+id/bPartyGoer"

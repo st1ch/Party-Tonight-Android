@@ -1,9 +1,12 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.presentation.activities;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+
+import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 
 public class WelcomeScreenActivity extends Activity implements View.OnClickListener {
 
