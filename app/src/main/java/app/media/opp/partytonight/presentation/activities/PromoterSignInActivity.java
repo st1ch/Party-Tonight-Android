@@ -3,34 +3,53 @@ package app.media.opp.partytonight.presentation.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
+import javax.inject.Inject;
+
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.presenters.SignInPresenter;
+import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
+import app.media.opp.partytonight.presentation.views.ICredentialView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class PromoterSignInActivity extends Activity implements View.OnClickListener {
+public class PromoterSignInActivity extends ProgressActivity implements ICredentialView {
 
-    private EditText etEmail;
-    private EditText etPassword;
+    @BindView(R.id.etEmail)
+    EditText etEmail;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
+    @Inject
+    SignInPresenter presenter;
+    private ActivityNavigator activityNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_sign_in);
-        findViewById(R.id.bLogIn).setOnClickListener(this);
-        findViewById(R.id.bSignUp).setOnClickListener(this);
-        etEmail = (EditText) findViewById(R.id.etEmail);
-        etPassword = (EditText) findViewById(R.id.etPassword);
+        ButterKnife.bind(this);
+        PartyTonightApplication.getApp(this).getUserComponent().inject(this);
+        activityNavigator = new ActivityNavigator();
     }
 
-    @Override
+    @OnClick({R.id.bLogIn, R.id.bSignUp})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogIn:
                 break;
             case R.id.bSignUp:
-                startActivity(new Intent(this, PromoterSignUpActivity.class));
+                activityNavigator.startPromoterSignUpActivity(this);
                 break;
         }
+    }
+
+    @Override
+    public void navigateToProfile() {
+
     }
 }

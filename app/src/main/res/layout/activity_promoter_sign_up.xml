@@ -9,5 +9,38 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity">
-
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/name"/>
+    <EditText
+        android:id="@+id/etPhoneNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/phoneNumber"/>
+    <EditText
+        android:id="@+id/etEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/eMail"/>
+    <EditText
+        android:id="@+id/etBillingInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/billingInfo"/>
+    <EditText
+        android:id="@+id/etEmergencyContact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/emergencyContact"/>
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"/>
+    <Button
+        android:id="@+id/bSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>

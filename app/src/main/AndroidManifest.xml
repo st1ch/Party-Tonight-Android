@@ -18,7 +18,7 @@
         </activity>
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
-        <activity android:name=".presentation.activities.PromoterSignUpActivity"></activity>
+        <activity android:name=".presentation.activities.PromoterSignUpActivity"/>
     </application>
 
 </manifest>

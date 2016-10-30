@@ -7,4 +7,10 @@
     <string name="password">Password</string>
     <string name="logIn">Log In</string>
     <string name="signUp">Sign Up</string>
+    <string name="networkError">Please, check network connection</string>
+    <string name="name">Name</string>
+    <string name="phoneNumber">Phone number</string>
+    <string name="billingInfo">Billing info</string>
+    <string name="emergencyContact">Emergency contact</string>
+    <string name="pleaseWait">Please, wait...</string>
 </resources>

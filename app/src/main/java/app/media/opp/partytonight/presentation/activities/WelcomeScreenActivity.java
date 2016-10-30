@@ -7,8 +7,11 @@ import android.view.View;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
+import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 
 public class WelcomeScreenActivity extends Activity implements View.OnClickListener {
+
+    private ActivityNavigator activityNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,6 +20,7 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
 
         findViewById(R.id.bPromoter).setOnClickListener(this);
         findViewById(R.id.bPartyGoer).setOnClickListener(this);
+        activityNavigator = new ActivityNavigator();
     }
 
     @Override
@@ -25,7 +29,7 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
             case R.id.bPartyGoer:
                 break;
             case R.id.bPromoter:
-                startActivity(new Intent(this, PromoterSignInActivity.class));
+                activityNavigator.startPromoterSignInActivity(this);
                 break;
         }
 

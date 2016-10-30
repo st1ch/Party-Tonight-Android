@@ -43,7 +43,7 @@ public class PartyTonightApplication extends Application {
     }
 
     public void logout() {
-        //TODO логаут сдесь
+        //TODO логаут здесь
     }
 
     private void buildUserComponent() {

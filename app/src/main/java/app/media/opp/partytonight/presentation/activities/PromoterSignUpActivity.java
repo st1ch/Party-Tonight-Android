@@ -2,14 +2,59 @@ package app.media.opp.partytonight.presentation.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.widget.EditText;
+
+import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.presenters.SignUpPresenter;
+import app.media.opp.partytonight.presentation.views.ICredentialView;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
-public class PromoterSignUpActivity extends Activity {
+public class PromoterSignUpActivity extends ProgressActivity implements ICredentialView {
+
+    @BindView(R.id.etName)
+    EditText etName;
+    @BindView(R.id.etEmail)
+    EditText etEmail;
+    @BindView(R.id.etPhoneNumber)
+    EditText etPhoneNumber;
+    @BindView(R.id.etBillingInfo)
+    EditText etBillingInfo;
+    @BindView(R.id.etEmergencyContact)
+    EditText etEmergencyContact;
+    @BindView(R.id.etPassword)
+    EditText etPassword;
+    @Inject
+    SignUpPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_sign_up);
+        ButterKnife.bind(this);
+        PartyTonightApplication.getApp(this).getUserComponent().inject(this);
+        presenter.onCreate(this);
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onRelease();
+        super.onDestroy();
+    }
+
+    @OnClick(R.id.bSignUp)
+    public void onClick() {
+        presenter.onSignUpButtonClick();
+    }
+
+    @Override
+    public void navigateToProfile() {
+
     }
 }
