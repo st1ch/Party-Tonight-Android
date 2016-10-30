@@ -10,6 +10,7 @@ import javax.inject.Inject;
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.presenters.SignUpPresenter;
+import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -31,6 +32,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     EditText etPassword;
     @Inject
     SignUpPresenter presenter;
+    private ActivityNavigator activityNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         setContentView(R.layout.activity_promoter_sign_up);
         ButterKnife.bind(this);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
+        activityNavigator = new ActivityNavigator();
         presenter.onCreate(this);
 
     }
@@ -50,11 +53,15 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
 
     @OnClick(R.id.bSignUp)
     public void onClick() {
-        presenter.onSignUpButtonClick();
+        String name = etName.getText().toString();
+        String email = etEmail.getText().toString();
+        String phone = etPhoneNumber.getText().toString();
+        String password = etPassword.getText().toString();
+        presenter.onSignUpButtonClick(name, email, phone, password);
     }
 
     @Override
     public void navigateToProfile() {
-
+        activityNavigator.startMainActivity(this);
     }
 }

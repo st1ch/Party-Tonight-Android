@@ -3,11 +3,11 @@
     package="app.media.opp.partytonight">
 
     <application
+        android:name=".presentation.PartyTonightApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".presentation.PartyTonightApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".presentation.activities.LaunchScreenActivity">
             <intent-filter>
@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
-        <activity android:name=".presentation.activities.PromoterSignUpActivity"/>
+        <activity android:name=".presentation.activities.PromoterSignUpActivity" />
+        <activity android:name=".presentation.activities.MainActivity"></activity>
     </application>
 
 </manifest>

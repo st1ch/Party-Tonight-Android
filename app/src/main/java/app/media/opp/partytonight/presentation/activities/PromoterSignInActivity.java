@@ -35,12 +35,20 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         ButterKnife.bind(this);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         activityNavigator = new ActivityNavigator();
+        presenter.onCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onRelease();
+        super.onDestroy();
     }
 
     @OnClick({R.id.bLogIn, R.id.bSignUp})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogIn:
+                presenter.onSignInButtonClick(etEmail.getText().toString(), etPassword.getText().toString());
                 break;
             case R.id.bSignUp:
                 activityNavigator.startPromoterSignUpActivity(this);
@@ -50,6 +58,6 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
 
     @Override
     public void navigateToProfile() {
-
+        activityNavigator.startMainActivity(this);
     }
 }
