@@ -3,4 +3,7 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_dialog">20dp</dimen>
+
+    <dimen name="button_curved_transparent_stroke_width">2dp</dimen>
+    <dimen name="button_curved_transparent_stroke_radius">4dp</dimen>
 </resources>
