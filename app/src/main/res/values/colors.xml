@@ -4,10 +4,23 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
+    <!-- Animation of background -->
+    <color name="colorAnimationGradientBase">#3b3131</color>
+    <color name="colorAnimationGradientFrame_1">#c44e4e</color>
+    <color name="colorAnimationGradientFrame_2">#680b0b</color>
+    <color name="colorAnimationGradientFrame_3">#d46cb3</color>
+    <color name="colorAnimationGradientFrame_4">#7141e2</color>
+
+
+    <!-- TextView with app title -->
+    <color name="colorTextViewTitle">#ffffff</color>
+
+    <!-- Button in signing part -->
     <color name="colorButtonTransparent">#1effffff</color>
     <color name="colorButtonTransparentPressed">#64ffffff</color>
     <color name="colorButtonTransparentStroke">#ffffff</color>
     <color name="colorButtonTransparentText">#ffffff</color>
 
+    <!-- TextView with "Made by" -->
     <color name="colorTextViewMadeBy">#c6ffffff</color>
 </resources>

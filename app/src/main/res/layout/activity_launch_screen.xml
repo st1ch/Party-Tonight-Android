@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#3b3131">
+    android:background="@color/colorAnimationGradientBase">
 
     <RelativeLayout
         android:id="@+id/activity_launch_screen"
@@ -18,14 +18,13 @@
 
         <app.media.opp.partytonight.presentation.app.view.TextViewTitle
             android:layout_width="match_parent"
-            android:layout_height="64dp"
+            android:layout_height="@dimen/textview_app_title_height"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
-            android:fontFamily="fonts/title_font.ttf"
+            android:layout_marginTop="@dimen/textview_app_title_margin_top"
             android:gravity="center"
             android:text="@string/app_name"
-            android:textColor="#FFFFFF"
-            android:textSize="48sp" />
+            android:textColor="@color/colorTextViewTitle"
+            android:textSize="@dimen/textview_app_title_text_size" />
 
         <TextView
             android:id="@+id/tvMadeBy"
@@ -33,8 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:paddingBottom="4dp"
-            android:text="Made by Media Opp."
+            android:paddingBottom="@dimen/textview_made_by_padding_bottom"
+            android:text="@string/textview_made_by"
             android:textColor="@color/colorTextViewMadeBy" />
 
         <LinearLayout
@@ -53,11 +52,11 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="50"
-                android:paddingBottom="13dp"
-                android:paddingTop="13dp"
+                android:paddingBottom="@dimen/button_curved_transparent_padding_vertical"
+                android:paddingTop="@dimen/button_curved_transparent_padding_vertical"
                 android:text="@string/getStarted"
                 android:textColor="@color/colorButtonTransparentText"
-                android:textSize="20sp" />
+                android:textSize="@dimen/button_curved_transparent_text_size" />
 
             <View
                 android:layout_width="0dp"

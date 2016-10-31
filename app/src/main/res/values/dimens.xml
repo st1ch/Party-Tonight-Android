@@ -4,6 +4,18 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="padding_dialog">20dp</dimen>
 
+    <!-- TextView with app title -->
+    <dimen name="textview_app_title_height">64dp</dimen>
+    <dimen name="textview_app_title_margin_top">48dp</dimen>
+    <dimen name="textview_app_title_text_size">48sp</dimen>
+
+    <!-- TextView with Made By text -->
+    <dimen name="textview_made_by_padding_bottom">4dp</dimen>
+
+    <!-- Buttons in signing screens -->
     <dimen name="button_curved_transparent_stroke_width">2dp</dimen>
     <dimen name="button_curved_transparent_stroke_radius">4dp</dimen>
+    <dimen name="button_curved_transparent_text_size">22sp</dimen>
+    <dimen name="button_curved_transparent_padding_vertical">13dp</dimen>
+
 </resources>

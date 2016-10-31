@@ -3,7 +3,7 @@
 
     <gradient
         android:angle="90"
-        android:endColor="#3b3131"
-        android:startColor="#c44e4e" />
+        android:endColor="@color/colorAnimationGradientBase"
+        android:startColor="@color/colorAnimationGradientFrame_1" />
 
 </shape>
