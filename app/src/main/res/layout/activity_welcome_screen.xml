@@ -1,25 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_welcome_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:orientation="vertical"
-    tools:context="app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity">
+    android:background="#3b3131">
 
-    <Button
-        android:id="@+id/bPartyGoer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/partyGoer"/>
+    <RelativeLayout
+        android:id="@+id/activity_welcome_screen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/anim_transition_color"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:paddingTop="0dp"
+        tools:context="app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity">
 
-    <Button
-        android:id="@+id/bPromoter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/promoter"/>
-</LinearLayout>
+        <app.media.opp.partytonight.presentation.app.view.TextViewTitle
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="48dp"
+            android:fontFamily="fonts/title_font.ttf"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="#FFFFFF"
+            android:textSize="48sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="12" />
+
+                <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTransparent
+                    android:id="@+id/bPartyGoer"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:paddingBottom="13dp"
+                    android:paddingTop="13dp"
+                    android:text="@string/partyGoer"
+                    android:textColor="@color/colorButtonTransparentText"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="12" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="22dp"
+                android:orientation="horizontal">
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="12" />
+
+                <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTransparent
+                    android:id="@+id/bPromoter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="50"
+                    android:paddingBottom="13dp"
+                    android:paddingTop="13dp"
+                    android:text="@string/promoter"
+                    android:textColor="@color/colorButtonTransparentText"
+                    android:textSize="20sp" />
+
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="12" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</RelativeLayout>

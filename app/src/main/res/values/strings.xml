@@ -13,4 +13,5 @@
     <string name="billingInfo">Billing info</string>
     <string name="emergencyContact">Emergency contact</string>
     <string name="pleaseWait">Please, wait...</string>
+    <string name="animation_frame">animation_frame</string>
 </resources>

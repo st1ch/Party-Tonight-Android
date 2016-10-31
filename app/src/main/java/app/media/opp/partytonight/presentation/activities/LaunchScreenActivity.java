@@ -22,33 +22,61 @@ public class LaunchScreenActivity extends AppCompatActivity implements View.OnCl
         findViewById(R.id.bGetStarted).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();
 
-        RelativeLayout container = (RelativeLayout) findViewById(R.id.activity_launch_screen);
-
-        animationDrawable = (AnimationDrawable) container.getBackground();
-        animationDrawable.setEnterFadeDuration(6000);
-        animationDrawable.setExitFadeDuration(2000);
+        configureAnimation(R.id.activity_launch_screen);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        if (animationDrawable != null && !animationDrawable.isRunning()) {
-            animationDrawable.start();
-        }
+        startGradientAnimation();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
 
-        if (animationDrawable != null && animationDrawable.isRunning()) {
-            animationDrawable.stop();
-        }
+        stopGradientAnimation();
     }
 
     @Override
     public void onClick(View v) {
         activityNavigator.startWelcomeScreenActivity(this);
+    }
+
+
+    /**
+     * Setting up the animation
+     *
+     * @param rootViewId res.id of root view with animation drawable as background
+     */
+    private void configureAnimation(int rootViewId) {
+        RelativeLayout container = (RelativeLayout) findViewById(rootViewId);
+
+        if (container != null) {
+            animationDrawable = (AnimationDrawable) container.getBackground();
+            animationDrawable.setEnterFadeDuration(6000);
+            animationDrawable.setExitFadeDuration(2000);
+        }
+    }
+
+    /**
+     * Starts background animation
+     * Need to be called in onResume
+     */
+    private void startGradientAnimation() {
+        if (animationDrawable != null && !animationDrawable.isRunning()) {
+            animationDrawable.start();
+        }
+    }
+
+    /**
+     * Stops background animation
+     * Need to be called in onPause
+     */
+    private void stopGradientAnimation() {
+        if (animationDrawable != null && animationDrawable.isRunning()) {
+            animationDrawable.stop();
+        }
     }
 }

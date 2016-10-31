@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import javax.inject.Inject;
-
 import app.media.opp.partytonight.presentation.activities.MainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
@@ -20,7 +18,7 @@ public class ActivityNavigator {
     public ActivityNavigator() {
     }
 
-    public void startWelcomeScreenActivity(Activity mActivityContext){
+    public void startWelcomeScreenActivity(Activity mActivityContext) {
         Intent intent = new Intent(mActivityContext, WelcomeScreenActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         mActivityContext.startActivity(intent);
