@@ -12,6 +12,11 @@
     <!-- TextView with Made By text -->
     <dimen name="textview_made_by_padding_bottom">4dp</dimen>
 
+    <!-- EditTexts in signing part -->
+    <dimen name="edittext_curved_radius">5dp</dimen>
+    <dimen name="edittext_curved_translucent_padding">8dp</dimen>
+    <dimen name="edittext_curved_translucent_height">48dp</dimen>
+
     <!-- Buttons in signing screens -->
     <dimen name="button_curved_transparent_stroke_width">2dp</dimen>
     <dimen name="button_curved_transparent_stroke_radius">4dp</dimen>

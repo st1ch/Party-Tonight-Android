@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/drawableBlock">
+
+        <shape>
+            <solid android:color="#af000000" />
+            <corners android:radius="6dp" />
+            <size
+                android:width="48dp"
+                android:height="48dp" />
+        </shape>
+    </item>
+
+    <item android:left="48dp">
+
+        <shape>
+            <solid android:color="@color/colorEditTextSignBackground" />
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="6dp"
+                android:radius="6dp"
+                android:topLeftRadius="0dp"
+                android:topRightRadius="6dp" />
+        </shape>
+    </item>
+
+</layer-list>

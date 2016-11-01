@@ -13,24 +13,24 @@ import app.media.opp.partytonight.R;
  * on 10/31/16
  */
 
-public class ButtonCurvedTransparent extends Button {
+public class ButtonCurvedTranslucent extends Button {
 
     private static final int RID_BACKGROUND_DRAWABLE = R.drawable.button_curved_transparent;
-    private static final String TYPEFACE_LOCATION = "fonts/button_curved_transparent_font.ttf";
+    private static final String TYPEFACE_LOCATION = "fonts/aguda.ttf";
 
-    public ButtonCurvedTransparent(Context context) {
+    public ButtonCurvedTranslucent(Context context) {
         super(context);
 
         configureView(context);
     }
 
-    public ButtonCurvedTransparent(Context context, AttributeSet attrs) {
+    public ButtonCurvedTranslucent(Context context, AttributeSet attrs) {
         super(context, attrs);
 
         configureView(context);
     }
 
-    public ButtonCurvedTransparent(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ButtonCurvedTranslucent(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
         configureView(context);

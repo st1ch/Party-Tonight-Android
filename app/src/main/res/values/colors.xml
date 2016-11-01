@@ -23,4 +23,12 @@
 
     <!-- TextView with "Made by" -->
     <color name="colorTextViewMadeBy">#c6ffffff</color>
+
+    <!-- EditTexts in signing part -->
+    <color name="colorEditTextSignBackground">#734e4e4e</color>
+
+
+    <color name="colorTextSignIn">#c0c0c0</color>
+    <color name="colorTextHeader2">#ffffff</color>
+
 </resources>

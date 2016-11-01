@@ -47,7 +47,7 @@
                 android:layout_height="1dp"
                 android:layout_weight="12" />
 
-            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTransparent
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTranslucent
                 android:id="@+id/bGetStarted"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
