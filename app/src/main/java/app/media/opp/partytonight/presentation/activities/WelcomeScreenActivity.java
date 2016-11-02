@@ -4,10 +4,11 @@ import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.RelativeLayout;
+import android.view.ViewGroup;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
+import app.media.opp.partytonight.presentation.utils.AnimationDrawableUtil;
 
 public class WelcomeScreenActivity extends Activity implements View.OnClickListener {
 
@@ -32,7 +33,7 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
             case R.id.bPartyGoer:
                 break;
             case R.id.bPromoter:
-                activityNavigator.startPromoterSignInActivity(this);
+                activityNavigator.startPromoterSignInActivity(this, AnimationDrawableUtil.getCurrentFrame(animationDrawable));
                 break;
         }
     }
@@ -41,48 +42,24 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
     protected void onPause() {
         super.onPause();
 
-        stopGradientAnimation();
+        AnimationDrawableUtil.stopGradientAnimation(animationDrawable);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
 
-        startGradientAnimation();
+        AnimationDrawableUtil.startGradientAnimation(animationDrawable);
     }
 
-    /**
-     * Setting up the animation
-     *
-     * @param rootViewId res.id of root view with animation drawable as background
-     */
     private void configureAnimation(int rootViewId) {
-        RelativeLayout container = (RelativeLayout) findViewById(rootViewId);
+        final String extraTag = "AnimationFrame";
 
-        if (container != null) {
-            animationDrawable = (AnimationDrawable) container.getBackground();
-            animationDrawable.setEnterFadeDuration(6000);
-            animationDrawable.setExitFadeDuration(2000);
-        }
-    }
+        animationDrawable = AnimationDrawableUtil.configureAnimation((ViewGroup) findViewById(rootViewId),
+                6000, 2000);
 
-    /**
-     * Starts background animation
-     * Need to be called in onResume
-     */
-    private void startGradientAnimation() {
-        if (animationDrawable != null && !animationDrawable.isRunning()) {
-            animationDrawable.start();
-        }
-    }
+        int frame = getIntent().getIntExtra(extraTag, 0);
 
-    /**
-     * Stops background animation
-     * Need to be called in onPause
-     */
-    private void stopGradientAnimation() {
-        if (animationDrawable != null && animationDrawable.isRunning()) {
-            animationDrawable.stop();
-        }
+        AnimationDrawableUtil.setAnimationFrame(animationDrawable, frame);
     }
 }
