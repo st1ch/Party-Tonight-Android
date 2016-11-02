@@ -32,4 +32,8 @@
     <color name="colorTextSignIn">#c0c0c0</color>
     <color name="colorTextHeader2">#ffffff</color>
 
+    <color name="colorButtonGrayTransparent">#3cc4c4c4</color>
+    <color name="colorButtonGrayTransparentLight">#3cffffff</color>
+
+
 </resources>
