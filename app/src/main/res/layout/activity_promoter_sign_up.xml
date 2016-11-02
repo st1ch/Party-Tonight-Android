@@ -12,17 +12,17 @@
         android:layout_height="match_parent"
         android:background="@drawable/anim_transition_color"
         android:orientation="vertical"
-        android:paddingLeft="36dp"
-        android:paddingRight="36dp"
+        android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+        android:paddingRight="@dimen/activity_sign_padding_horizontal"
         tools:context="app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity">
 
         <app.media.opp.partytonight.presentation.app.view.TextViewHeader2
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:padding="18dp"
-            android:text="Promoter"
-            android:textSize="64dp" />
+            android:padding="@dimen/textview_sign_title_padding"
+            android:text="@string/promoter"
+            android:textSize="@dimen/text_size_sign_part" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +35,8 @@
                 android:id="@+id/etName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/name"
                 android:textCursorDrawable="@null" />
 
@@ -44,8 +44,8 @@
                 android:id="@+id/etPhoneNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/phoneNumber"
                 android:textCursorDrawable="@null" />
 
@@ -53,8 +53,8 @@
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/eMail"
                 android:textCursorDrawable="@null" />
 
@@ -62,8 +62,8 @@
                 android:id="@+id/etBillingInfo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/billingInfo"
                 android:textCursorDrawable="@null" />
 
@@ -71,8 +71,8 @@
                 android:id="@+id/etEmergencyContact"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/emergencyContact"
                 android:textCursorDrawable="@null" />
 
@@ -80,8 +80,8 @@
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="6dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/password"
                 android:textCursorDrawable="@null" />
 
@@ -113,7 +113,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
                 android:gravity="center"
-                android:text="Already have an account?"
+                android:text="@string/already_have_an_account"
                 android:textColor="@color/colorTextSignIn" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonTransparent

@@ -3,18 +3,15 @@
 
     <item>
         <shape>
-            <solid android:color="#64000000" />
-            <corners android:radius="6dp" />
-            <size
-                android:width="48dp"
-                android:height="48dp" />
+            <solid android:color="@color/colorEditTextSignBackground" />
+            <corners android:radius="@dimen/edittext_curved_radius" />
         </shape>
     </item>
 
     <item>
         <shape>
-            <solid android:color="@color/colorEditTextSignBackground" />
-            <corners android:radius="6dp" />
+            <solid android:color="@color/colorEditTextSign" />
+            <corners android:radius="@dimen/edittext_curved_radius" />
         </shape>
     </item>
 
