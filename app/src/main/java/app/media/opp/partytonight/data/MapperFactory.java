@@ -11,7 +11,6 @@ import app.media.opp.partytonight.domain.User;
  * Created by sebastian on 10.06.16.
  */
 public class MapperFactory implements AbstractMapperFactory {
-    private Gson gson = new Gson();
 
     @Override
     public Mapper<User, UserEntity> getUserEntityMapper() {
@@ -19,7 +18,7 @@ public class MapperFactory implements AbstractMapperFactory {
                 obj.getUserName(),
                 obj.getEmail(),
                 obj.getPhoneNumber(),
-                obj.getBillingInfo(),
+                obj.getBillingInfo() != null ? new BillingEntity(obj.getBillingInfo().getCardNumber()) : null,
                 obj.getEmergencyContact(),
                 obj.getPassword()
         );

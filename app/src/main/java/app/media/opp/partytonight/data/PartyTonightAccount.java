@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import app.media.opp.partytonight.domain.Account;
+import app.media.opp.partytonight.domain.Billing;
 import app.media.opp.partytonight.domain.User;
 
 /**
@@ -35,7 +36,7 @@ public class PartyTonightAccount implements Account {
             String billingInfo = prefs.getString(BILLING_INFO, null);
             String emergencyContact = prefs.getString(EMERGENCY_CONTACT, null);
 
-            user = new User(userName, email, phone, billingInfo, emergencyContact, null);
+            user = new User(userName, email, phone, new Billing(billingInfo), emergencyContact, null);
             user.setToken(token);
         }
         return user;
@@ -49,7 +50,7 @@ public class PartyTonightAccount implements Account {
                 .putString(TOKEN, user.getToken())
                 .putString(EMAIL, user.getEmail())
                 .putString(PHONE, user.getPhoneNumber())
-                .putString(BILLING_INFO, user.getBillingInfo())
+                .putString(BILLING_INFO, user.getBillingInfo().getCardNumber())
                 .putString(EMERGENCY_CONTACT, user.getEmergencyContact())
                 .apply();
     }
@@ -62,6 +63,7 @@ public class PartyTonightAccount implements Account {
 
     @Override
     public void logout() {
+        user = null;
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
                 .clear()
                 .apply();

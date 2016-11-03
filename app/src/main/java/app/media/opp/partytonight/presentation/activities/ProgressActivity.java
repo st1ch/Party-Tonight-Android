@@ -2,6 +2,7 @@ package app.media.opp.partytonight.presentation.activities;
 
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
 
 import app.media.opp.partytonight.R;
@@ -16,6 +17,7 @@ public class ProgressActivity extends AppCompatActivity implements IProgressView
 
     @Override
     public void showProgress() {
+        Log.e("ProgressActivity", "showProgress");
         if (dialog == null)
             dialog = new AlertDialog.Builder(this)
                     .setView(getLayoutInflater().inflate(R.layout.dialog_progress, null))
@@ -33,6 +35,7 @@ public class ProgressActivity extends AppCompatActivity implements IProgressView
 
     @Override
     public void hideProgress() {
+        Log.e("ProgressActivity", "hideProgress");
         if (dialog != null) {
             dialog.dismiss();
             dialog = null;

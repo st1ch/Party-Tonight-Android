@@ -8,7 +8,7 @@ import com.google.gson.annotations.SerializedName;
 public class User {
     String userName;
     String phoneNumber;
-    String billingInfo;
+    Billing billingInfo;
     String emergencyContact;
     String password;
     String email;
@@ -18,7 +18,7 @@ public class User {
         this(null, email, null, null, null, password);
     }
 
-    public User(String userName, String email, String phoneNumber, String billingInfo, String emergencyContact, String password) {
+    public User(String userName, String email, String phoneNumber, Billing billingInfo, String emergencyContact, String password) {
         this.userName = userName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -47,7 +47,7 @@ public class User {
         return phoneNumber;
     }
 
-    public String getBillingInfo() {
+    public Billing getBillingInfo() {
         return billingInfo;
     }
 

@@ -48,12 +48,12 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     @Override
     protected void onStart() {
         super.onStart();
-        etName.setText("a");
-        etEmail.setText("a");
-        etPhoneNumber.setText("a");
-        etPassword.setText("a");
-        etBillingInfo.setText("a");
-        etEmergencyContact.setText("a");
+        etName.setText("name");
+        etEmail.setText("email.com");
+        etPhoneNumber.setText("123321");
+        etPassword.setText("asdasd");
+        etBillingInfo.setText("aaa");
+        etEmergencyContact.setText("aaa");
     }
 
     @Override

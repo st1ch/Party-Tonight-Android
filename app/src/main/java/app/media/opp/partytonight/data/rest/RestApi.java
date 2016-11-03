@@ -5,6 +5,7 @@ import android.util.Base64;
 
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
+import okhttp3.Response;
 import rx.Observable;
 
 /**
@@ -21,12 +22,7 @@ public class RestApi {
     }
 
     public Observable<TokenEntity> signUp(UserEntity userEntity) {
-        return api.signUp(userEntity).flatMap(response -> {
-            if (response.code() == 201) {
-                return logIn(userEntity);
-            }
-            throw new RuntimeException("Sign up is not successful");
-        });
+        return api.makerSignUp(userEntity).flatMap(response -> logIn(userEntity));
     }
 
     public Observable<TokenEntity> logIn(UserEntity userEntity) {

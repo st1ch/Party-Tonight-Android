@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 
 import app.media.opp.partytonight.R;
+import retrofit2.adapter.rxjava.HttpException;
 
 
 /**
@@ -25,6 +26,9 @@ public class Messages {
 
     public String getError(Throwable e) {
         String message = e.getMessage();
+        if (e instanceof HttpException  && ((HttpException) e).code() == 401) {
+            return c.getString(R.string.wrongLoginOrPassword);
+        }
         if (e instanceof SocketTimeoutException) {
             return c.getString(R.string.networkError);
         }

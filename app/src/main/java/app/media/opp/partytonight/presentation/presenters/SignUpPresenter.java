@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
+import app.media.opp.partytonight.domain.Billing;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.SignUpUseCase;
@@ -43,7 +44,7 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
     @Override
     public void onSignUpButtonClick(String name, String email, String phone,
                                     String password, String billingInfo, String emergencyContact) {
-        useCase.setUser(new User(name, email, phone, password, billingInfo, emergencyContact));
+        useCase.setUser(new User(name, email, phone, new Billing(billingInfo), emergencyContact, password));
         useCase.execute(getSubscriber());
     }
 

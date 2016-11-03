@@ -18,7 +18,7 @@ public interface PartyTonightApi {
 
 
     @POST("maker/signup")
-    Observable<Response> signUp(@Body UserEntity userEntity);
+    Observable<ResponseBody> makerSignUp(@Body UserEntity userEntity);
 
     @GET("signin")
     Observable<TokenEntity> logIn(@Header("Authorization") String authorization);

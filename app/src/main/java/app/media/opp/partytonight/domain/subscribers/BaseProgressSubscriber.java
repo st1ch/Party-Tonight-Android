@@ -3,8 +3,6 @@ package app.media.opp.partytonight.domain.subscribers;
 
 import android.util.Log;
 
-import retrofit2.adapter.rxjava.HttpException;
-
 public class BaseProgressSubscriber<T> extends BaseUseCaseSubscriber<T> {
     private ProgressSubscriberListener listener;
 
@@ -29,10 +27,8 @@ public class BaseProgressSubscriber<T> extends BaseUseCaseSubscriber<T> {
     @Override
     public void onError(Throwable e) {
         Log.e("useCase", "onError " + e);
-        if (!(e instanceof HttpException && ((HttpException) e).code() == 401)) {
-            if (listener != null)
-                listener.onError(e);
-        }
+        if (listener != null)
+            listener.onError(e);
         listener = null;
     }
 

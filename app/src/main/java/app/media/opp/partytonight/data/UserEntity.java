@@ -6,21 +6,16 @@ import com.google.gson.annotations.SerializedName;
  * Created by arkadii on 10/29/16.
  */
 public class UserEntity {
-    @SerializedName("user_name")
     String userName;
-    @SerializedName("phone_number")
     String phoneNumber;
-    @SerializedName("billing_info")
-    String billingInfo;
-    @SerializedName("emergency_contact")
+    @SerializedName("billing")
+    BillingEntity billingInfo;
     String emergencyContact;
-    @SerializedName("email")
     String email;
-    @SerializedName("password")
     String password;
 
 
-    public UserEntity(String userName, String email, String phoneNumber, String billingInfo, String emergencyContact, String password) {
+    public UserEntity(String userName, String email, String phoneNumber, BillingEntity billingInfo, String emergencyContact, String password) {
         this.userName = userName;
         this.email = email;
         this.phoneNumber = phoneNumber;
@@ -41,7 +36,7 @@ public class UserEntity {
         return phoneNumber;
     }
 
-    public String getBillingInfo() {
+    public BillingEntity getBillingInfo() {
         return billingInfo;
     }
 

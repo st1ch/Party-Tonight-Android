@@ -48,7 +48,9 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogIn:
-                presenter.onSignInButtonClick(etEmail.getText().toString(), etPassword.getText().toString());
+                String email = etEmail.getText().toString();
+                String password = etPassword.getText().toString();
+                presenter.onSignInButtonClick(email, password);
                 break;
             case R.id.bSignUp:
                 activityNavigator.startPromoterSignUpActivity(this);
