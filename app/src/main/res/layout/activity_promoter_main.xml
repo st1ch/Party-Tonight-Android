@@ -17,7 +17,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_wine" />
 
-    <app.media.opp.partytonight.presentation.app.view.TextViewSignHint
+    <app.media.opp.partytonight.presentation.app.view.TextViewAguda
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -36,7 +36,7 @@
         android:scaleType="fitCenter"
         android:src="@drawable/ic_plus" />
 
-    <app.media.opp.partytonight.presentation.app.view.TextViewSignHint
+    <app.media.opp.partytonight.presentation.app.view.TextViewAguda
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
