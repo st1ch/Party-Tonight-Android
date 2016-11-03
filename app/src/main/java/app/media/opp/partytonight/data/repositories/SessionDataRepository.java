@@ -2,6 +2,9 @@ package app.media.opp.partytonight.data.repositories;
 
 
 import app.media.opp.partytonight.data.AbstractMapperFactory;
+import app.media.opp.partytonight.data.Mapper;
+import app.media.opp.partytonight.data.TokenEntity;
+import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.SessionRepository;
@@ -23,13 +26,22 @@ public class SessionDataRepository implements SessionRepository {
         this.account = account;
     }
 
+
     @Override
-    public Observable<User> logIn(String email, String password) {
-        return restApi.logIn(email, password);
+    public Observable<User> signUp(User user) {
+        Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
+        return restApi.signUp(userEntityMapper.transform(user)).map(tokenEntity -> saveUser(user, tokenEntity));
     }
 
     @Override
-    public Observable<User> signUp(String name, String email, String phone, String password) {
-        return restApi.signUp(name, email, phone, password);
+    public Observable<User> logIn(User user) {
+        Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
+        return restApi.logIn(userEntityMapper.transform(user)).map(tokenEntity -> saveUser(user, tokenEntity));
+    }
+
+    private User saveUser(User user, TokenEntity tokenEntity) {
+        user.setToken(tokenEntity.getToken());
+        account.saveUser(user);
+        return user;
     }
 }

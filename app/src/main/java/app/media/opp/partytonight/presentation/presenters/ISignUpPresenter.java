@@ -9,5 +9,5 @@ import app.media.opp.partytonight.presentation.views.IProgressView;
 
 public interface ISignUpPresenter extends IPresenter<ICredentialView> {
 
-    void onSignUpButtonClick(String name, String email, String phone, String password);
+    void onSignUpButtonClick(String name, String email, String phone, String password, String billingInfo, String emergencyContact);
 }

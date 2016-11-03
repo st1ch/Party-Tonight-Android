@@ -25,6 +25,7 @@ public class PartyTonightAccount implements Account {
 
     @Override
     public void saveUser(User user) {
+        
         //TODO записать в SharedPreferences
     }
 

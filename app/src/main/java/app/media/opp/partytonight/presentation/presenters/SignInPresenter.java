@@ -27,7 +27,7 @@ public class SignInPresenter extends ProgressPresenter<ICredentialView> implemen
 
     @Override
     public void onSignInButtonClick(String email, String password) {
-        useCase.setCredentials(email, password);
+        useCase.setCredentials(new User(email, password));
         useCase.execute(getSubscriber());
     }
 

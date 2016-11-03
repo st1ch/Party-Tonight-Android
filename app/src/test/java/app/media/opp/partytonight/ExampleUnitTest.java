@@ -1,5 +1,7 @@
 package app.media.opp.partytonight;
 
+import android.util.Base64;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -12,6 +14,6 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        assertEquals(Base64.encode("myemail.ru1".getBytes(), Base64.DEFAULT), "bXllbWFpbC5ydTox");
     }
 }

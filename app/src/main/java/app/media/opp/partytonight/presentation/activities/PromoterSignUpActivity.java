@@ -46,6 +46,17 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        etName.setText("a");
+        etEmail.setText("a");
+        etPhoneNumber.setText("a");
+        etPassword.setText("a");
+        etBillingInfo.setText("a");
+        etEmergencyContact.setText("a");
+    }
+
+    @Override
     protected void onDestroy() {
         presenter.onRelease();
         super.onDestroy();
@@ -57,7 +68,9 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         String email = etEmail.getText().toString();
         String phone = etPhoneNumber.getText().toString();
         String password = etPassword.getText().toString();
-        presenter.onSignUpButtonClick(name, email, phone, password);
+        String billingInfo = etBillingInfo.getText().toString();
+        String emergencyContact = etEmergencyContact.getText().toString();
+        presenter.onSignUpButtonClick(name, email, phone, password, billingInfo, emergencyContact);
     }
 
     @Override

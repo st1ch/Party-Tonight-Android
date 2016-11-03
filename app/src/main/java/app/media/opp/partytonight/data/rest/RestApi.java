@@ -1,8 +1,10 @@
 package app.media.opp.partytonight.data.rest;
 
 import android.content.Context;
+import android.util.Base64;
 
-import app.media.opp.partytonight.domain.User;
+import app.media.opp.partytonight.data.TokenEntity;
+import app.media.opp.partytonight.data.UserEntity;
 import rx.Observable;
 
 /**
@@ -18,11 +20,18 @@ public class RestApi {
         this.api = api;
     }
 
-    public Observable<User> logIn(String email, String password) {
-        return api.logIn(email, password);
+    public Observable<TokenEntity> signUp(UserEntity userEntity) {
+        return api.signUp(userEntity).flatMap(response -> {
+            if (response.code() == 201) {
+                return logIn(userEntity);
+            }
+            throw new RuntimeException("Sign up is not successful");
+        });
     }
 
-    public Observable<User> signUp(String name, String email, String phone, String password) {
-        return api.signUp(name, email, phone, password);
+    public Observable<TokenEntity> logIn(UserEntity userEntity) {
+        String credentials = userEntity.getEmail() + userEntity.getPassword();
+        String authorizationHeader = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+        return api.logIn(authorizationHeader);
     }
 }

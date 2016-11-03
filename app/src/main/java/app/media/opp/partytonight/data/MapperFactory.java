@@ -14,8 +14,14 @@ public class MapperFactory implements AbstractMapperFactory {
     private Gson gson = new Gson();
 
     @Override
-    public Mapper<UserEntity, User> getUserMapper() {
-        return null;
+    public Mapper<User, UserEntity> getUserEntityMapper() {
+        return obj -> new UserEntity(
+                obj.getUserName(),
+                obj.getEmail(),
+                obj.getPhoneNumber(),
+                obj.getBillingInfo(),
+                obj.getEmergencyContact(),
+                obj.getPassword()
+        );
     }
-
 }

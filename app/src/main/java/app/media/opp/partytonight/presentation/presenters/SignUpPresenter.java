@@ -1,5 +1,7 @@
 package app.media.opp.partytonight.presentation.presenters;
 
+import android.support.annotation.NonNull;
+
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
@@ -23,10 +25,31 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
         this.useCase = useCase;
     }
 
+
     @Override
-    public void onSignUpButtonClick(String name, String email, String phone, String password) {
-        useCase.setCredentials(name, email, phone, password);
-        useCase.execute(new BaseProgressSubscriber<User>(this) {
+    public void onCreate(ICredentialView view) {
+        super.onCreate(view);
+        if (useCase.isWorking()) {
+            useCase.execute(getSubscriber());
+        }
+    }
+
+    @Override
+    public void onRelease() {
+        useCase.unsubscribe();
+        super.onRelease();
+    }
+
+    @Override
+    public void onSignUpButtonClick(String name, String email, String phone,
+                                    String password, String billingInfo, String emergencyContact) {
+        useCase.setUser(new User(name, email, phone, password, billingInfo, emergencyContact));
+        useCase.execute(getSubscriber());
+    }
+
+    @NonNull
+    private BaseProgressSubscriber<User> getSubscriber() {
+        return new BaseProgressSubscriber<User>(this) {
             @Override
             public void onNext(User response) {
                 super.onNext(response);
@@ -35,7 +58,6 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
                     view.navigateToProfile();
                 }
             }
-        });
+        };
     }
-
 }

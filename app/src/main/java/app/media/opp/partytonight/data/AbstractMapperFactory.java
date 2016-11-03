@@ -7,7 +7,7 @@ import app.media.opp.partytonight.domain.User;
  * Created by sebastian on 10.06.16.
  */
 public interface AbstractMapperFactory {
-    Mapper<UserEntity, User> getUserMapper();
+    Mapper<User, UserEntity> getUserEntityMapper();
 
 
 }

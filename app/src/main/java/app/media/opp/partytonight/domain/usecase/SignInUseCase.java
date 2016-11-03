@@ -13,8 +13,7 @@ import rx.Observable;
  */
 public class SignInUseCase extends UseCase<User> {
     private SessionRepository repository;
-    private String email;
-    private String password;
+    private User user;
 
     @Inject
     public SignInUseCase(SubscribeOn subscribeOn, ObserveOn observeOn, SessionRepository repository) {
@@ -22,16 +21,12 @@ public class SignInUseCase extends UseCase<User> {
         this.repository = repository;
     }
 
-
-
     @Override
     protected Observable<User> getUseCaseObservable() {
-        return repository.logIn(email, password);
+        return repository.logIn(user);
     }
 
-    public void setCredentials(String email, String password) {
-
-        this.email = email;
-        this.password = password;
+    public void setCredentials(User user) {
+        this.user = user;
     }
 }
