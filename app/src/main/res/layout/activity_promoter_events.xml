@@ -4,6 +4,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+    <include layout="@layout/background_blur" />
+
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar_centered_sugar_plums" />
@@ -12,7 +14,8 @@
         android:id="@+id/rvEvents"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar" />
+        android:layout_below="@id/toolbar"
+        android:padding="4dp" />
 
 
 </RelativeLayout>

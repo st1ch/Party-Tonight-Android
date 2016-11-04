@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAnimationGradientBase">
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
 
     <LinearLayout
         android:id="@+id/activity_promoter_sign_in"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/anim_transition_color"
         android:orientation="vertical"
         android:paddingLeft="@dimen/activity_sign_padding_horizontal"
         android:paddingRight="@dimen/activity_sign_padding_horizontal"
@@ -22,7 +22,6 @@
             android:padding="@dimen/textview_sign_title_padding"
             android:text="@string/promoter"
             android:textSize="@dimen/text_size_sign_part" />
-
 
         <View
             android:layout_width="match_parent"
