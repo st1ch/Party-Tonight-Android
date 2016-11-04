@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/drawableBlock">
+
+        <shape>
+            <solid android:color="@color/colorEditTextSignBackground" />
+            <corners android:radius="@dimen/edittext_curved_radius" />
+        </shape>
+    </item>
+
+    <item android:left="48dp">
+
+        <shape>
+            <solid android:color="@color/colorEditTextSign" />
+            <corners
+                android:bottomLeftRadius="0dp"
+                android:bottomRightRadius="@dimen/edittext_curved_radius"
+                android:radius="@dimen/edittext_curved_radius"
+                android:topLeftRadius="0dp"
+                android:topRightRadius="@dimen/edittext_curved_radius" />
+        </shape>
+    </item>
+
+</layer-list>

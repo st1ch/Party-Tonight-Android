@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
-import javax.inject.Inject;
-
 import app.media.opp.partytonight.presentation.activities.MainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
@@ -20,7 +18,7 @@ public class ActivityNavigator {
     public ActivityNavigator() {
     }
 
-    public void startWelcomeScreenActivity(Activity mActivityContext){
+    public void startWelcomeScreenActivity(Activity mActivityContext) {
         Intent intent = new Intent(mActivityContext, WelcomeScreenActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         mActivityContext.startActivity(intent);
@@ -37,9 +35,46 @@ public class ActivityNavigator {
         mActivityContext.startActivity(intent);
     }
 
-    public void startMainActivity(Context mActivityContext) {
-        Intent intent = new Intent(mActivityContext, MainActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+    public void startPromoterSignUpActivity(Context mActivityContext, int animationFrame) {
+        final String extraTag = "AnimationFrame";
+
+        Intent intent = new Intent(mActivityContext, PromoterSignUpActivity.class);
+
+        intent.putExtra(extraTag, animationFrame);
+
         mActivityContext.startActivity(intent);
+    }
+
+    public void startMainActivity(Activity mActivityContext, boolean inNewTask) {
+        Intent intent = new Intent(mActivityContext, MainActivity.class);
+        if (inNewTask) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+        mActivityContext.startActivity(intent);
+        if (!inNewTask) {
+            mActivityContext.finish();
+        }
+    }
+
+
+    public void startPromoterSignInActivity(Context mActivityContext, int animationFrame) {
+        final String extraTag = "AnimationFrame";
+
+        Intent intent = new Intent(mActivityContext, PromoterSignInActivity.class);
+
+        intent.putExtra(extraTag, animationFrame);
+
+        mActivityContext.startActivity(intent);
+    }
+
+    public void startWelcomeScreenActivity(Activity mActivityContext, int animationFrame) {
+        final String extraTag = "AnimationFrame";
+
+        Intent intent = new Intent(mActivityContext, WelcomeScreenActivity.class);
+
+        intent.putExtra(extraTag, animationFrame);
+
+        mActivityContext.startActivity(intent);
+        mActivityContext.finish();
     }
 }

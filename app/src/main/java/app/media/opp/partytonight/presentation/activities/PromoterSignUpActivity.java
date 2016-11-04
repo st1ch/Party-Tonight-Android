@@ -1,8 +1,8 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.app.Activity;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.view.ViewGroup;
 import android.widget.EditText;
 
 import javax.inject.Inject;
@@ -11,6 +11,7 @@ import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.presenters.SignUpPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
+import app.media.opp.partytonight.presentation.utils.AnimationDrawableUtil;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,6 +33,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     EditText etPassword;
     @Inject
     SignUpPresenter presenter;
+    AnimationDrawable animationDrawable;
     private ActivityNavigator activityNavigator;
 
     @Override
@@ -43,6 +45,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         activityNavigator = new ActivityNavigator();
         presenter.onCreate(this);
 
+        configureAnimation(R.id.activity_promoter_sign_up);
     }
 
     @Override
@@ -74,7 +77,32 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        AnimationDrawableUtil.startGradientAnimation(animationDrawable);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+
+        AnimationDrawableUtil.stopGradientAnimation(animationDrawable);
+    }
+
+    @Override
     public void navigateToProfile() {
-        activityNavigator.startMainActivity(this);
+        activityNavigator.startMainActivity(this, true);
+    }
+
+    private void configureAnimation(int rootViewId) {
+        final String extraTag = "AnimationFrame";
+
+        animationDrawable = AnimationDrawableUtil.configureAnimation((ViewGroup) findViewById(rootViewId),
+                6000, 2000);
+
+        int frame = getIntent().getIntExtra(extraTag, 0);
+
+        AnimationDrawableUtil.setAnimationFrame(animationDrawable, frame);
     }
 }

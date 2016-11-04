@@ -2,6 +2,7 @@ package app.media.opp.partytonight.data.rest;
 
 import android.content.Context;
 import android.util.Base64;
+import android.util.Log;
 
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
@@ -26,8 +27,10 @@ public class RestApi {
     }
 
     public Observable<TokenEntity> logIn(UserEntity userEntity) {
-        String credentials = userEntity.getEmail() + userEntity.getPassword();
+        String credentials = userEntity.getEmail() + ":" + userEntity.getPassword();
+//        Base64Encoder
         String authorizationHeader = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
+        Log.e("Authorization", "lalala " + authorizationHeader);
         return api.logIn(authorizationHeader);
     }
 }

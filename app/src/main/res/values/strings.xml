@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Party Tonight</string>
-    <string name="getStarted">Get Started</string>
+    <string name="getStarted">Get started!</string>
     <string name="promoter">Promoter</string>
     <string name="partyGoer">Party Goer</string>
     <string name="eMail">E-mail</string>
     <string name="password">Password</string>
     <string name="logIn">Log In</string>
     <string name="signUp">Sign Up</string>
+    <string name="signIn">Sign In</string>
     <string name="networkError">Please, check network connection</string>
     <string name="name">Name</string>
     <string name="phoneNumber">Phone number</string>
@@ -14,4 +15,11 @@
     <string name="emergencyContact">Emergency contact</string>
     <string name="pleaseWait">Please, wait...</string>
     <string name="wrongLoginOrPassword">Wrong login or password</string>
+    <string name="animation_frame">animation_frame</string>
+    <string name="textview_made_by">Made by Media Opp.</string>
+    <string name="don_t_have_an_account_yet">Don\'t have an account yet?</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="suchEmailIsAlreadyUsed">Such email is already used</string>
+    <string name="thisBillingIsAlreadyUsed">This billing is already used</string>
+    <string name="suchNameIsAlreadyUsed">Such name is already used</string>
 </resources>

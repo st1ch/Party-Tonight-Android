@@ -1,55 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_promoter_sign_up"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity">
+    android:background="@color/colorAnimationGradientBase">
 
-    <EditText
-        android:id="@+id/etName"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_promoter_sign_up"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/name" />
+        android:layout_height="match_parent"
+        android:background="@drawable/anim_transition_color"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+        android:paddingRight="@dimen/activity_sign_padding_horizontal"
+        tools:context="app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity">
 
-    <EditText
-        android:id="@+id/etPhoneNumber"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/phoneNumber" />
+        <app.media.opp.partytonight.presentation.app.view.TextViewHeader2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/textview_sign_title_padding"
+            android:text="@string/promoter"
+            android:textSize="@dimen/text_size_sign_part" />
 
-    <EditText
-        android:id="@+id/etEmail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/eMail" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etBillingInfo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/billingInfo" />
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/name"
+                android:textCursorDrawable="@null" />
 
-    <EditText
-        android:id="@+id/etEmergencyContact"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/emergencyContact" />
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etPhoneNumber"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/phoneNumber"
+                android:textCursorDrawable="@null" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/password" />
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/eMail"
+                android:textCursorDrawable="@null" />
 
-    <Button
-        android:id="@+id/bSignUp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword" />
-</LinearLayout>
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etBillingInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/billingInfo"
+                android:textCursorDrawable="@null" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etEmergencyContact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/emergencyContact"
+                android:textCursorDrawable="@null" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
+                android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
+                android:hint="@string/password"
+                android:textCursorDrawable="@null" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTranslucent
+            android:id="@+id/bSignUp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/button_curved_transparent_padding_vertical"
+            android:paddingTop="@dimen/button_curved_transparent_padding_vertical"
+            android:text="@string/signUp"
+            android:textColor="@color/colorButtonTransparentText"
+            android:textSize="@dimen/button_curved_transparent_text_size" />
+
+        <LinearLayout
+            android:id="@+id/signInBlock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewSignHint
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/already_have_an_account"
+                android:textColor="@color/colorTextSignIn" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
+                android:id="@+id/bSignIn"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@null"
+                android:text="@string/signIn"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
