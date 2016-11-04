@@ -22,4 +22,8 @@
     <string name="suchEmailIsAlreadyUsed">Such email is already used</string>
     <string name="thisBillingIsAlreadyUsed">This billing is already used</string>
     <string name="suchNameIsAlreadyUsed">Such name is already used</string>
+    <string name="fieldShoudNotBeEmpty">Field should not be empty</string>
+    <string name="fieldContainsInvalidCharacters">Field contains invalid characters</string>
+    <string name="minimumLengthIs">Minimum length is </string>
+    <string name="passwordShouldContainOnlyLettersAndDigits">Password should contain only letters and digits</string>
 </resources>

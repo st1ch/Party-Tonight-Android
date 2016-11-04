@@ -48,16 +48,16 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         configureAnimation(R.id.activity_promoter_sign_up);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        etName.setText("name");
-        etEmail.setText("email.com");
-        etPhoneNumber.setText("123321");
-        etPassword.setText("asdasd");
-        etBillingInfo.setText("aaa");
-        etEmergencyContact.setText("aaa");
-    }
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        etName.setText("name");
+//        etEmail.setText("email.com");
+//        etPhoneNumber.setText("123321");
+//        etPassword.setText("asdasd");
+//        etBillingInfo.setText("aaa");
+//        etEmergencyContact.setText("aaa");
+//    }
 
     @Override
     protected void onDestroy() {
