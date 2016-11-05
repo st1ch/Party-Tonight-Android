@@ -38,6 +38,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/name"
+                android:inputType="textCapWords"
                 android:textCursorDrawable="@null" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -47,6 +48,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/phoneNumber"
+                android:inputType="phone"
                 android:textCursorDrawable="@null" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -56,6 +58,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/eMail"
+                android:inputType="textEmailAddress"
                 android:textCursorDrawable="@null" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -65,6 +68,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/billingInfo"
+                android:inputType="textCapWords"
                 android:textCursorDrawable="@null" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -74,6 +78,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/emergencyContact"
+                android:inputType="textCapSentences"
                 android:textCursorDrawable="@null" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -83,6 +88,7 @@
                 android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                 android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                 android:hint="@string/password"
+                android:inputType="textCapWords"
                 android:textCursorDrawable="@null" />
 
         </LinearLayout>

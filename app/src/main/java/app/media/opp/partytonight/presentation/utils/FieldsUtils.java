@@ -8,8 +8,12 @@ public class FieldsUtils {
     public static int MIN_LENGTH = 6;
     public static String LETTERS = "abcdefghigklmnopqrstuvwxyz";
     public static String DIGITS = "0123456789";
-    public static String EMAIL_VALID_SYMBOLS = LETTERS + DIGITS + "@.";
+    public static String EMAIL_VALID_SYMBOLS = LETTERS + DIGITS + "@._";
     public static String PASSWORD_VALID_SYMBOLS = LETTERS + DIGITS;
+    public static String NAME_VALID_SYMBOLS = LETTERS + DIGITS + " ";
+    public static String PHONE_VALID_SYMBOLS = DIGITS + "+";
+    public static String BILLING_VALID_SYMBOLS = DIGITS + LETTERS;
+    public static String CONTACT_VALID_SYMBOLS = DIGITS + LETTERS +" +";
 
 
     public static boolean hasProperLength(String field) {
