@@ -1,6 +1,5 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,33 +8,31 @@ import android.view.MenuItem;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by piekie (Artem Vasylenko)
- * on 11/4/16
+ * on 11/5/16
  */
 
-public class PromoterMainActivity extends AppCompatActivity {
+public class PromoterCreateEventActivity extends AppCompatActivity {
 
+    @BindView(R.id.toolbar)
     Toolbar toolbar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promoter_main);
+        setContentView(R.layout.activity_promoter_events_create);
 
-        findViewById(R.id.bPromoterMyEvents).setOnClickListener(v ->
-                startActivity(new Intent(this, PromoterEventsActivity.class)));
+        ButterKnife.bind(this);
 
-        findViewById(R.id.bPromoterAddEvent).setOnClickListener(v ->
-                startActivity(new Intent(this, PromoterCreateEventActivity.class)));
         configureViews();
     }
 
-    private void configureViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-
-        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, false);
+    public void configureViews() {
+        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true, R.mipmap.ic_back);
     }
 
     @Override

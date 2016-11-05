@@ -40,7 +40,7 @@
             android:textSize="20sp" />
 
         <ImageButton
-            android:id="@+id/bPromoterAddEvents"
+            android:id="@+id/bPromoterAddEvent"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_gravity="center_horizontal"
