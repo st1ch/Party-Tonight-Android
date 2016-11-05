@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import app.media.opp.partytonight.R;
-import app.media.opp.partytonight.presentation.utils.BitmapUtils;
 
 /**
  * Created by piekie (Artem Vasylenko)
@@ -39,11 +38,6 @@ public class PromoterEventsAdapter extends RecyclerView.Adapter<PromoterEventsAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.tvTitle.setText(mDataset[position]);
-        holder.tvTime.setText("10:00 PM 25.07.16");
-        holder.ivThumbnail.setImageBitmap(
-                BitmapUtils.decodeSampledBitmapFromResource(mContext.getResources(),
-                        R.drawable.image_background, 200, 100
-                ));
     }
 
     @Override
