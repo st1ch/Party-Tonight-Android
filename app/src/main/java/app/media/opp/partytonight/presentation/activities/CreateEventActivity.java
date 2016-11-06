@@ -1,7 +1,8 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.widget.Button;
@@ -12,6 +13,7 @@ import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class CreateEventActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
@@ -46,11 +48,17 @@ public class CreateEventActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_events_create);
         ButterKnife.bind(this);
+
         configureViews();
     }
 
+    @OnClick(R.id.bLocation)
+    public void getLocation() {
+        startActivity(new Intent(this, PromoterLocationActivity.class));
+    }
+
     public void configureViews() {
-        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true, R.mipmap.ic_back);
+        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
     }
 
     @Override

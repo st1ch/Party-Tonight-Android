@@ -11,9 +11,19 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_centered_sugar_plums" />
 
+    <app.media.opp.partytonight.presentation.app.view.ButtonGray
+        android:id="@+id/bCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Create event"
+        android:textSize="18sp" />
+
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@id/bCreate"
         android:layout_below="@+id/toolbar">
 
         <LinearLayout
@@ -121,13 +131,5 @@
         </LinearLayout>
 
     </ScrollView>
-
-    <app.media.opp.partytonight.presentation.app.view.ButtonGray
-        android:id="@+id/bCreate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Create event"
-        android:textSize="18sp" />
 
 </RelativeLayout>

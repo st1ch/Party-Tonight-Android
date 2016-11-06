@@ -3,6 +3,8 @@ package app.media.opp.partytonight.presentation.utils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import app.media.opp.partytonight.R;
@@ -28,10 +30,9 @@ public final class ToolbarUtils {
      * @param activity            target activity
      * @param toolbar             target toolbar
      * @param backButtonAvailable true if we need "back"/"home" button in toolbar
-     * @param backButtonResId     resource of image which we want to use as overriding of default back icon
      */
     public static void configureToolbarAsActionBar(AppCompatActivity activity, Toolbar toolbar,
-                                                   boolean backButtonAvailable, int backButtonResId) {
+                                                   boolean backButtonAvailable) {
         activity.setSupportActionBar(toolbar);
 
         // get action bar
@@ -40,18 +41,16 @@ public final class ToolbarUtils {
         if (actionBar == null)
             return;
 
-        if (backButtonAvailable) {
+        ImageButton btnBack = (ImageButton) toolbar.findViewById(R.id.button_back);
 
-            // make "back" button available
-            actionBar.setHomeButtonEnabled(true);
-            actionBar.setDisplayHomeAsUpEnabled(true);
-
-            if (backButtonResId != RID_STANDARD_BACK_BUTTON) {
-
-                // setting icon to "back" button
-                actionBar.setHomeAsUpIndicator(backButtonResId);
+        if (btnBack != null) {
+            if (!backButtonAvailable) {
+                btnBack.setVisibility(View.GONE);
+            } else {
+                btnBack.setOnClickListener(v -> {
+                    activity.onBackPressed();
+                });
             }
-
         }
 
         TextView title = (TextView) toolbar.findViewById(RID_STANDARD_TOOLBAR_TITLE);
@@ -64,21 +63,6 @@ public final class ToolbarUtils {
             actionBar.setDisplayShowTitleEnabled(false);
         }
 
-    }
-
-    /**
-     * Setting up the toolbar as a ActionBar of AppCompatActivity
-     * <p>
-     * Warning: If we use back button we still need to override onOptionsItemSelected method in activity
-     * and handle clicks of android.R.id.home
-     *
-     * @param activity            target activity
-     * @param toolbar             target toolbar
-     * @param backButtonAvailable true if we need "back"/"home" button in toolbar
-     */
-    public static void configureToolbarAsActionBar(AppCompatActivity activity, Toolbar toolbar,
-                                                   boolean backButtonAvailable) {
-        configureToolbarAsActionBar(activity, toolbar, backButtonAvailable, RID_STANDARD_BACK_BUTTON);
     }
 
 }

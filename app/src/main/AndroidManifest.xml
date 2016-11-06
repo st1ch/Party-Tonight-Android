@@ -11,27 +11,46 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBDKujpmEX2DWKTOZjeU66lI2EAEcEg1Ng" />
+
         <activity android:name=".presentation.activities.LaunchScreenActivity">
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
 
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
         <activity android:name=".presentation.activities.PromoterSignUpActivity" />
         <activity android:name=".presentation.activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.activities.PromoterEventsActivity" />
+        <activity android:name=".presentation.activities.CreateEventActivity">
             <!--<intent-filter>-->
             <!--<action android:name="android.intent.action.MAIN" />-->
+
 
             <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".presentation.activities.PromoterEventsActivity" />
-        <activity android:name=".presentation.activities.CreateEventActivity"></activity>
+
+        <activity
+            android:name=".presentation.activities.PromoterLocationActivity"
+            android:label="Location">
+
+        </activity>
+
     </application>
 
 </manifest>

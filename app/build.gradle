@@ -44,6 +44,9 @@ dependencies {
     // Picasso (https://github.com/square/picasso)
     compile 'com.squareup.picasso:picasso:2.5.2'
 
+    // Google Maps
+    compile 'com.google.android.gms:play-services-maps:9.0.0'
+
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     compile 'com.google.dagger:dagger:2.0.2'
 

@@ -1,14 +1,15 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
+import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 
-public class MainActivity extends Activity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityNavigator activityNavigator;
 
@@ -20,6 +21,8 @@ public class MainActivity extends Activity implements View.OnClickListener {
         findViewById(R.id.bPromoterMyEvents).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();
 
+        ToolbarUtils.configureToolbarAsActionBar(this,
+                (Toolbar) findViewById(R.id.toolbar), false);
     }
 
     @Override
