@@ -20,7 +20,8 @@
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
         <activity android:name=".presentation.activities.PromoterSignUpActivity" />
-        <activity android:name=".presentation.activities.MainActivity"></activity>
+        <activity android:name=".presentation.activities.MainActivity" />
+
     </application>
 
 </manifest>

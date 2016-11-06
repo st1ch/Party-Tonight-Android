@@ -4,7 +4,6 @@ import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.view.ViewGroup;
 
 import javax.inject.Inject;
 
@@ -28,7 +27,6 @@ public class LaunchScreenActivity extends AppCompatActivity implements View.OnCl
         setContentView(R.layout.activity_launch_screen);
         findViewById(R.id.bGetStarted).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();
-        configureAnimation(R.id.activity_launch_screen);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         if (account.isAuthorized()) {
             activityNavigator.startMainActivity(this, false);
@@ -51,11 +49,6 @@ public class LaunchScreenActivity extends AppCompatActivity implements View.OnCl
 
     @Override
     public void onClick(View v) {
-        activityNavigator.startWelcomeScreenActivity(this, AnimationDrawableUtil.getCurrentFrame(animationDrawable));
-    }
-
-    private void configureAnimation(int rootViewID) {
-        animationDrawable = AnimationDrawableUtil.configureAnimation((ViewGroup) findViewById(rootViewID),
-                6000, 2000);
+        activityNavigator.startWelcomeScreenActivity(this);
     }
 }

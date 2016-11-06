@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
-import app.media.opp.partytonight.presentation.utils.AnimationDrawableUtil;
 
 public class WelcomeScreenActivity extends Activity implements View.OnClickListener {
 
@@ -23,8 +21,6 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
         findViewById(R.id.bPromoter).setOnClickListener(this);
         findViewById(R.id.bPartyGoer).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();
-
-        configureAnimation(R.id.activity_welcome_screen);
     }
 
     @Override
@@ -33,33 +29,8 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
             case R.id.bPartyGoer:
                 break;
             case R.id.bPromoter:
-                activityNavigator.startPromoterSignInActivity(this, AnimationDrawableUtil.getCurrentFrame(animationDrawable));
+                activityNavigator.startPromoterSignInActivity(this);
                 break;
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-
-        AnimationDrawableUtil.stopGradientAnimation(animationDrawable);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        AnimationDrawableUtil.startGradientAnimation(animationDrawable);
-    }
-
-    private void configureAnimation(int rootViewId) {
-        final String extraTag = "AnimationFrame";
-
-        animationDrawable = AnimationDrawableUtil.configureAnimation((ViewGroup) findViewById(rootViewId),
-                6000, 2000);
-
-        int frame = getIntent().getIntExtra(extraTag, 0);
-
-        AnimationDrawableUtil.setAnimationFrame(animationDrawable, frame);
     }
 }

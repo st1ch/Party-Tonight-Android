@@ -1,10 +1,8 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 
 import javax.inject.Inject;
@@ -13,7 +11,6 @@ import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.presenters.SignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
-import app.media.opp.partytonight.presentation.utils.AnimationDrawableUtil;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
 import butterknife.BindView;
@@ -29,7 +26,6 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     @Inject
     SignInPresenter presenter;
     private ActivityNavigator activityNavigator;
-    private AnimationDrawable animationDrawable;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,8 +35,6 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         activityNavigator = new ActivityNavigator();
         presenter.onCreate(this);
-
-        configureAnimation(R.id.activity_promoter_sign_in);
     }
 
     @Override
@@ -60,7 +54,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
                 }
                 break;
             case R.id.bSignUp:
-                activityNavigator.startPromoterSignUpActivity(this, AnimationDrawableUtil.getCurrentFrame(animationDrawable));
+                activityNavigator.startPromoterSignUpActivity(this);
                 break;
         }
     }
@@ -70,7 +64,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         if (email.isEmpty()) {
             showFieldError(etEmail, getString(R.string.fieldShoudNotBeEmpty));
         } else if (!FieldsUtils.hasProperLength(email)) {
-            showFieldError(etEmail, getString(R.string.minimumLengthIs) + FieldsUtils.MIN_LENGTH);
+            showFieldError(etEmail, getString(R.string.minimumLengthIs) + " " + FieldsUtils.MIN_LENGTH);
         } else if (!FieldsUtils.isValidString(FieldsUtils.EMAIL_VALID_SYMBOLS, email)) {
             showFieldError(etEmail, getString(R.string.fieldContainsInvalidCharacters));
         } else {
@@ -80,7 +74,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         if (password.isEmpty()) {
             showFieldError(etPassword, getString(R.string.fieldShoudNotBeEmpty));
         } else if (!FieldsUtils.hasProperLength(password)) {
-            showFieldError(etPassword, getString(R.string.minimumLengthIs) + FieldsUtils.MIN_LENGTH);
+            showFieldError(etPassword, getString(R.string.minimumLengthIs) + " " + FieldsUtils.MIN_LENGTH);
         } else if (!FieldsUtils.isValidString(FieldsUtils.PASSWORD_VALID_SYMBOLS, password)) {
             showFieldError(etPassword, getString(R.string.passwordShouldContainOnlyLettersAndDigits));
         } else {
@@ -96,32 +90,8 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-
-        AnimationDrawableUtil.startGradientAnimation(animationDrawable);
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-
-        AnimationDrawableUtil.stopGradientAnimation(animationDrawable);
-    }
-
-    @Override
     public void navigateToProfile() {
         activityNavigator.startMainActivity(this, true);
     }
 
-    private void configureAnimation(int rootViewId) {
-        final String extraTag = "AnimationFrame";
-
-        animationDrawable = AnimationDrawableUtil.configureAnimation((ViewGroup) findViewById(rootViewId),
-                6000, 2000);
-
-        int frame = getIntent().getIntExtra(extraTag, 0);
-
-        AnimationDrawableUtil.setAnimationFrame(animationDrawable, frame);
-    }
 }

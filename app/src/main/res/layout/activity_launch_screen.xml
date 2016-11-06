@@ -2,14 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAnimationGradientBase">
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
 
     <RelativeLayout
         android:id="@+id/activity_launch_screen"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/anim_transition_color"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"

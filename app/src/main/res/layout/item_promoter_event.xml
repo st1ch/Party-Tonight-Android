@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="108dp"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/ivThumbnail"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_promoter_event"
+        app:riv_corner_radius="6dp"
+        app:riv_oval="false" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="0dp">
+
+        <app.media.opp.partytonight.presentation.app.view.TextViewAgudaBold
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:paddingLeft="12dp"
+            android:paddingTop="8dp"
+            android:text="Event title"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+            android:id="@+id/tvTime"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:paddingRight="12dp"
+            android:paddingTop="8dp"
+            android:text="10:00 PM 25.07.16"
+            android:textColor="#ffffff"
+            android:textSize="16sp" />
+
+        <app.media.opp.partytonight.presentation.app.view.ButtonAguda
+            android:id="@+id/bManage"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/tvTitle"
+            android:background="@drawable/button_manage_event_curved"
+            android:text="Manage"
+            android:textAllCaps="false"
+            android:textColor="#ffffff"
+            android:textSize="24sp" />
+    </RelativeLayout>
+
+</FrameLayout>

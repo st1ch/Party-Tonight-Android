@@ -2,15 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorAnimationGradientBase">
+    android:layout_height="match_parent">
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+    <include layout="@layout/background_blur" />
+
+    <LinearLayout
         android:id="@+id/activity_promoter_sign_up"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/anim_transition_color"
         android:orientation="vertical"
         android:paddingLeft="@dimen/activity_sign_padding_horizontal"
         android:paddingRight="@dimen/activity_sign_padding_horizontal"
@@ -114,7 +113,7 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <app.media.opp.partytonight.presentation.app.view.TextViewSignHint
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="7"
