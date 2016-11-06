@@ -22,11 +22,45 @@ public class MapperFactory implements AbstractMapperFactory {
 
     @Override
     public Mapper<Event, EventEntity> getEventEntityMapper() {
-        return null;
+        return new Mapper<Event, EventEntity>() {
+            @Override
+            public EventEntity transform(Event obj) throws RuntimeException {
+                EventEntity event = new EventEntity();
+
+                event.setBottles(obj.getBottles());
+                event.setClubCapacity(obj.getClubCapacity());
+                event.setClubName(obj.getClubName());
+                event.setLocation(obj.getLocation());
+                event.setPartyName(obj.getPartyName());
+                event.setTables(obj.getTables());
+                event.setTime(obj.getTime());
+                event.setTickets(obj.getTicketPrice());
+                event.setZipCode(obj.getZipCode());
+
+                return event;
+            }
+        };
     }
 
     @Override
     public Mapper<EventEntity, Event> getEventMapper() {
-        return null;
+        return new Mapper<EventEntity, Event>() {
+            @Override
+            public Event transform(EventEntity obj) throws RuntimeException {
+                Event event = new Event();
+
+                event.setBottles(obj.getBottles());
+                event.setClubCapacity(obj.getClubCapacity());
+                event.setClubName(obj.getClubName());
+                event.setLocation(obj.getLocation());
+                event.setPartyName(obj.getPartyName());
+                event.setTables(obj.getTables());
+                event.setTime(obj.getTime());
+                event.setTicketPrice(obj.getTickets());
+                event.setZipCode(obj.getZipCode());
+
+                return event;
+            }
+        };
     }
 }

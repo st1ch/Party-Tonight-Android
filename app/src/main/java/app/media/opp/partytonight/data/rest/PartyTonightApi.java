@@ -26,9 +26,9 @@ public interface PartyTonightApi {
     @GET("signin")
     Observable<TokenEntity> logIn(@Header("Authorization") String authorization);
 
+    @Headers({"Content-Type: application/json", "Content-Length: 0"})
     @POST("maker/event/create")
-    Observable<Object> createEvent(@Body EventEntity eventEntity);
-
+    Observable<ResponseBody> createEvent(@Header("x-auth-token") String token, @Body EventEntity eventEntity);
 
     Observable<List<EventEntity>> getEvents();
 }
