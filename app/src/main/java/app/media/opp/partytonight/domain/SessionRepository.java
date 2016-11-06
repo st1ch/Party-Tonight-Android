@@ -1,6 +1,8 @@
 package app.media.opp.partytonight.domain;
 
 
+import java.util.List;
+
 import rx.Observable;
 
 /**
@@ -12,4 +14,8 @@ public interface SessionRepository {
     Observable<User> signUp(User user);
 
     Observable<User> logIn(User user);
+
+    Observable<Event> createEvent(Event event);
+
+    Observable<List<Event>> getEvents();
 }

@@ -4,16 +4,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import javax.inject.Inject;
+
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
+import app.media.opp.partytonight.presentation.views.IAddEventView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class CreateEventActivity extends AppCompatActivity {
+public class CreateEventActivity extends ProgressActivity implements IAddEventView, View.OnClickListener {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.etClubName)
@@ -40,13 +47,24 @@ public class CreateEventActivity extends AppCompatActivity {
     Button bAddTable;
     @BindView(R.id.bCreate)
     Button bCreate;
+    @Inject
+    AddEventPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_events_create);
         ButterKnife.bind(this);
+        PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         configureViews();
+        bCreate.setOnClickListener(this);
+        presenter.onCreate(this);
+    }
+
+    @Override
+    protected void onDestroy() {
+        presenter.onRelease();
+        super.onDestroy();
     }
 
     public void configureViews() {
@@ -62,5 +80,22 @@ public class CreateEventActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void navigateBack() {
+        onBackPressed();
+    }
+
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.bCreate:
+                Event event = new Event();
+                //TODO set fields of event
+                presenter.onAddButtonClick(event);
+                break;
+        }
     }
 }

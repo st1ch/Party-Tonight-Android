@@ -1,5 +1,7 @@
 package app.media.opp.partytonight.data.rest;
 
+import java.util.List;
+
 import app.media.opp.partytonight.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
@@ -28,5 +30,8 @@ public interface PartyTonightApi {
 
     @POST("maker/event/create")
     Observable<Object> createEvent(@Body EventEntity eventEntity);
+
+
+    Observable<List<EventEntity>> getEvents();
 }
 

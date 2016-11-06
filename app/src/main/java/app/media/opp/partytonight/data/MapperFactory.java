@@ -5,6 +5,8 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 
+import app.media.opp.partytonight.EventEntity;
+import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.User;
 
 /**
@@ -22,5 +24,10 @@ public class MapperFactory implements AbstractMapperFactory {
                 obj.getEmergencyContact(),
                 obj.getPassword()
         );
+    }
+
+    @Override
+    public Mapper<Event, EventEntity> getEventEntityMapper() {
+        return null;
     }
 }
