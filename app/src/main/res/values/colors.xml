@@ -35,5 +35,7 @@
     <color name="colorButtonGrayTransparent">#46c4c4c4</color>
     <color name="colorButtonGrayTransparentLight">#3cffffff</color>
 
+    <color name="colorProgressDialog">#3b3b3b</color>
+
 
 </resources>

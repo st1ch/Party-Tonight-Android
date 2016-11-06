@@ -1,7 +1,6 @@
 package app.media.opp.partytonight.presentation.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
@@ -67,6 +66,10 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
             showFieldError(etEmail, getString(R.string.minimumLengthIs) + " " + FieldsUtils.MIN_LENGTH);
         } else if (!FieldsUtils.isValidString(FieldsUtils.EMAIL_VALID_SYMBOLS, email)) {
             showFieldError(etEmail, getString(R.string.fieldContainsInvalidCharacters));
+        } else if (!email.contains("@")) {
+            showFieldError(etEmail, getString(R.string.fieldDoesNotContainEt));
+        } else if (!email.contains(".")) {
+            showFieldError(etEmail, getString(R.string.fieldDoesNotContainDot));
         } else {
             isValidEmail = true;
         }
@@ -85,8 +88,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     }
 
     private void showFieldError(EditText editText, String error) {
-        //TODO display error for appropriate editText
-        Log.e("SignIn", "error " + error);
+        editText.setError(error);
     }
 
     @Override
