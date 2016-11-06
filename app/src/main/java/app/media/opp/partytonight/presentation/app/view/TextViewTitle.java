@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class TextViewTitle extends TextView {
 
-    private static final String FONT = "fonts/title_font.ttf";
+    private static final String FONT = "fonts/falkin.ttf";
 
     public TextViewTitle(Context context) {
         super(context);
