@@ -1,7 +1,6 @@
 package app.media.opp.partytonight.presentation.activities;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.EditText;
 
 import javax.inject.Inject;
@@ -62,6 +61,11 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         if (isValid(name, email, phone, password, billingInfo, emergencyContact)) {
             presenter.onSignUpButtonClick(name, email, phone, password, billingInfo, emergencyContact);
         }
+    }
+
+    @OnClick(R.id.bSignIn)
+    public void backToSignIn() {
+        onBackPressed();
     }
 
     private boolean isValid(String name, String email, String phone, String password, String billingInfo, String emergencyContact) {
@@ -132,8 +136,6 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
 
 
     private void showFieldError(EditText editText, String error) {
-        Log.e("SignIn", "error " + error);
-
         editText.setError(error);
     }
 

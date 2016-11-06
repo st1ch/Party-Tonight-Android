@@ -1,8 +1,10 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.graphics.PorterDuff;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import app.media.opp.partytonight.R;
@@ -25,6 +27,9 @@ public class ProgressActivity extends AppCompatActivity implements IProgressView
                     .create();
 
         dialog.show();
+
+        ((ProgressBar) dialog.findViewById(R.id.progressBar)).getIndeterminateDrawable()
+                .setColorFilter(getResources().getColor(R.color.colorAnimationGradientFrame_3), PorterDuff.Mode.MULTIPLY);
     }
 
     @Override
