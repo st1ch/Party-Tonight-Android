@@ -25,6 +25,7 @@
             android:paddingRight="8dp">
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etClubName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -32,6 +33,7 @@
                 android:hint="Club name" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
+                android:id="@+id/bDateAndTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -42,6 +44,7 @@
                 android:textSize="18sp" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
+                android:id="@+id/bLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -52,6 +55,7 @@
                 android:textSize="18sp" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -60,6 +64,7 @@
                 android:textSize="18sp" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etClubCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -67,6 +72,7 @@
                 android:hint="Club capacity" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etTicketPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -74,34 +80,22 @@
                 android:hint="Tickets price" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etPartyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
                 android:layout_marginTop="4dp"
                 android:hint="Party name" />
 
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+            <LinearLayout
+                android:id="@+id/llBottles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Bottle Type" />
+                android:orientation="vertical" />
 
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Bottle price" />
-
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Quantity" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddBottle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -109,28 +103,15 @@
                 android:text="Add more type"
                 android:textSize="18sp" />
 
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+            <LinearLayout
+                android:id="@+id/llTables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Table type" />
+                android:orientation="vertical" />
 
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Table Price" />
-
-            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Quantity" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
@@ -143,7 +124,7 @@
     </ScrollView>
 
     <app.media.opp.partytonight.presentation.app.view.ButtonGray
-        android:id="@+id/create"
+        android:id="@+id/bCreate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

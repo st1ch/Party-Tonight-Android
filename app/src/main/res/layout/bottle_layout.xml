@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:hint="Bottle Type" />
+
+    <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:hint="Bottle price" />
+
+    <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginTop="4dp"
+        android:hint="Quantity" />
+</LinearLayout>

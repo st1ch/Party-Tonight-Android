@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
+import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.MainActivity;
+import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity;
@@ -76,5 +78,15 @@ public class ActivityNavigator {
 
         mActivityContext.startActivity(intent);
         mActivityContext.finish();
+    }
+
+    public void startPromoterCreateEventActivity(Context context) {
+        Intent intent = new Intent(context, CreateEventActivity.class);
+        context.startActivity(intent);
+    }
+
+    public void startPromoterEventsActivity(Context context) {
+        Intent intent = new Intent(context, PromoterEventsActivity.class);
+        context.startActivity(intent);
     }
 }
