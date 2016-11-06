@@ -1,4 +1,4 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.data;
 
 import com.google.gson.annotations.SerializedName;
 

@@ -8,6 +8,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
+import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
@@ -17,7 +18,7 @@ import rx.Observable;
 /**
  * Created by arkadii on 10/30/16.
  */
-@Singleton
+@UserScope
 public class GetEventsUseCase extends UseCase<List<Event>> {
     private SessionRepository repository;
     @Nullable

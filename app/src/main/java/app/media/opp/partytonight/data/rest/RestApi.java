@@ -6,7 +6,7 @@ import android.util.Base64;
 import java.util.Collections;
 import java.util.List;
 
-import app.media.opp.partytonight.EventEntity;
+import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import rx.Observable;

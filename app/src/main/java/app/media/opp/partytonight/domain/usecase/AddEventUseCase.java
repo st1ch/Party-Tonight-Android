@@ -1,7 +1,9 @@
 package app.media.opp.partytonight.domain.usecase;
 
 import javax.inject.Inject;
+import javax.inject.Singleton;
 
+import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;

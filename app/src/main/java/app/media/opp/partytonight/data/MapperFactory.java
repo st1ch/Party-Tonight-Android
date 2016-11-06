@@ -1,11 +1,5 @@
 package app.media.opp.partytonight.data;
 
-import android.text.TextUtils;
-import android.util.Log;
-
-import com.google.gson.Gson;
-
-import app.media.opp.partytonight.EventEntity;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.User;
 
@@ -28,6 +22,11 @@ public class MapperFactory implements AbstractMapperFactory {
 
     @Override
     public Mapper<Event, EventEntity> getEventEntityMapper() {
+        return null;
+    }
+
+    @Override
+    public Mapper<EventEntity, Event> getEventMapper() {
         return null;
     }
 }

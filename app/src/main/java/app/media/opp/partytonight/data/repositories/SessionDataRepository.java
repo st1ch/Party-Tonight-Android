@@ -4,7 +4,7 @@ package app.media.opp.partytonight.data.repositories;
 import java.util.ArrayList;
 import java.util.List;
 
-import app.media.opp.partytonight.EventEntity;
+import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.AbstractMapperFactory;
 import app.media.opp.partytonight.data.Mapper;
 import app.media.opp.partytonight.data.TokenEntity;

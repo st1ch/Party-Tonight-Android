@@ -1,7 +1,6 @@
 package app.media.opp.partytonight.data;
 
 
-import app.media.opp.partytonight.EventEntity;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.User;
 

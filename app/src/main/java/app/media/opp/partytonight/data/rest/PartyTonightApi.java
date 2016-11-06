@@ -2,11 +2,9 @@ package app.media.opp.partytonight.data.rest;
 
 import java.util.List;
 
-import app.media.opp.partytonight.EventEntity;
+import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
-import app.media.opp.partytonight.domain.User;
-import okhttp3.Response;
 import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

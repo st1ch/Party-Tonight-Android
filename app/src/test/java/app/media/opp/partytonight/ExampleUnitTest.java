@@ -4,6 +4,9 @@ import android.util.Base64;
 
 import org.junit.Test;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import static org.junit.Assert.*;
 
 /**
@@ -14,6 +17,8 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(Base64.encode("myemail.ru1".getBytes(), Base64.DEFAULT), "bXllbWFpbC5ydTox");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("hh:mm a dd.MM.yy");
+        System.out.println(simpleDateFormat.format(new Date()));
+//        assertEquals(Base64.encode("myemail.ru1".getBytes(), Base64.DEFAULT), "bXllbWFpbC5ydTox");
     }
 }
