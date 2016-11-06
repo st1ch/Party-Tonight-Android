@@ -1,21 +1,25 @@
-package app.media.opp.partytonight.domain;
+package app.media.opp.partytonight;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
+
+import app.media.opp.partytonight.domain.Bottle;
+import app.media.opp.partytonight.domain.Table;
 
 /**
  * Created by arkadii on 11/6/16.
  */
 
-public class Event {
+public class EventEntity {
+    @SerializedName("club_name")
     private String clubName;
+    @SerializedName("party_name")
     private String partyName;
     private long time;
     private String location;
-    private List<String> photos;
+    @SerializedName("club_capacity")
     private int clubCapacity;
-    private float ticketPrice;
-    private List<Bottle> bottles;
-    private List<Table> tables;
 
     public String getClubName() {
         return clubName;
@@ -49,43 +53,11 @@ public class Event {
         this.location = location;
     }
 
-    public List<String> getPhotos() {
-        return photos;
-    }
-
-    public void setPhotos(List<String> photos) {
-        this.photos = photos;
-    }
-
     public int getClubCapacity() {
         return clubCapacity;
     }
 
     public void setClubCapacity(int clubCapacity) {
         this.clubCapacity = clubCapacity;
-    }
-
-    public float getTicketPrice() {
-        return ticketPrice;
-    }
-
-    public void setTicketPrice(float ticketPrice) {
-        this.ticketPrice = ticketPrice;
-    }
-
-    public List<Bottle> getBottles() {
-        return bottles;
-    }
-
-    public void setBottles(List<Bottle> bottles) {
-        this.bottles = bottles;
-    }
-
-    public List<Table> getTables() {
-        return tables;
-    }
-
-    public void setTables(List<Table> tables) {
-        this.tables = tables;
     }
 }

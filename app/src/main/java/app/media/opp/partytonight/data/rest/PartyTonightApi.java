@@ -1,5 +1,6 @@
 package app.media.opp.partytonight.data.rest;
 
+import app.media.opp.partytonight.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.User;
@@ -24,5 +25,8 @@ public interface PartyTonightApi {
 
     @GET("signin")
     Observable<TokenEntity> logIn(@Header("Authorization") String authorization);
+
+    @POST("maker/event/create")
+    Observable<Object> createEvent(@Body EventEntity eventEntity);
 }
 
