@@ -44,17 +44,6 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         presenter.onCreate(this);
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        etName.setText("name");
-//        etEmail.setText("email.com");
-//        etPhoneNumber.setText("123321");
-//        etPassword.setText("asdasd");
-//        etBillingInfo.setText("aaa");
-//        etEmergencyContact.setText("aaa");
-//    }
-
     @Override
     protected void onDestroy() {
         presenter.onRelease();
@@ -69,6 +58,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         String password = etPassword.getText().toString();
         String billingInfo = etBillingInfo.getText().toString();
         String emergencyContact = etEmergencyContact.getText().toString();
+
         if (isValid(name, email, phone, password, billingInfo, emergencyContact)) {
             presenter.onSignUpButtonClick(name, email, phone, password, billingInfo, emergencyContact);
         }
@@ -119,6 +109,10 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
             showFieldError(etEmail, getString(R.string.minimumLengthIs) + " " + FieldsUtils.MIN_LENGTH);
         } else if (!FieldsUtils.isValidString(FieldsUtils.EMAIL_VALID_SYMBOLS, email)) {
             showFieldError(etEmail, getString(R.string.fieldContainsInvalidCharacters));
+        } else if (!email.contains("@")) {
+            showFieldError(etEmail, getString(R.string.fieldDoesNotContainEt));
+        } else if (!email.contains(".")) {
+            showFieldError(etEmail, getString(R.string.fieldDoesNotContainDot));
         } else {
             isValidEmail = true;
         }
@@ -138,8 +132,9 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
 
 
     private void showFieldError(EditText editText, String error) {
-        //TODO display error for appropriate editText
         Log.e("SignIn", "error " + error);
+
+        editText.setError(error);
     }
 
     @Override

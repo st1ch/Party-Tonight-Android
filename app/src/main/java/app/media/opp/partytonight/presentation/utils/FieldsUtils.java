@@ -2,6 +2,7 @@ package app.media.opp.partytonight.presentation.utils;
 
 import android.util.Log;
 
+
 /**
  * Created by arkadii on 11/5/16.
  */
@@ -17,7 +18,6 @@ public class FieldsUtils {
     public static String BILLING_VALID_SYMBOLS = DIGITS + LETTERS;
     public static String CONTACT_VALID_SYMBOLS = DIGITS + LETTERS +" +";
 
-
     public static boolean hasProperLength(String field) {
         return field.length() >= MIN_LENGTH;
     }
@@ -26,6 +26,7 @@ public class FieldsUtils {
         source = source.toLowerCase();
         Log.e("FieldsUtils", source);
         boolean isValid = true;
+
         for (int i = 0; i < source.length(); i++) {
             if (!validSymbols.contains(String.valueOf(source.charAt(i)))) {
                 Log.e("FieldsUtils", "invalid symbol " + source.charAt(i));
