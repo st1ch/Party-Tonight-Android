@@ -9,27 +9,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".presentation.activities.LaunchScreenActivity"></activity>
-        <activity android:name=".presentation.activities.WelcomeScreenActivity" />
-        <activity android:name=".presentation.activities.PromoterSignInActivity" />
-        <activity android:name=".presentation.activities.PromoterSignUpActivity" />
-        <activity android:name=".presentation.activities.MainActivity" />
-
-        <activity
-            android:name=".presentation.activities.PromoterEventsActivity"
-            android:label="Events"></activity>
-
-        <activity android:name=".presentation.activities.PromoterMainActivity">
+        <activity android:name=".presentation.activities.LaunchScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".presentation.activities.PromoterCreateEventActivity"
-            android:label="Liquors"
-            android:windowSoftInputMode="stateVisible|adjustPan|stateAlwaysHidden" />
+        <activity android:name=".presentation.activities.WelcomeScreenActivity" />
+        <activity android:name=".presentation.activities.PromoterSignInActivity" />
+        <activity android:name=".presentation.activities.PromoterSignUpActivity" />
+        <activity android:name=".presentation.activities.MainActivity" />
+
     </application>
 
 </manifest>
