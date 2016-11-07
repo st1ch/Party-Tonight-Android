@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar_top"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="?attr/actionBarSize"
     android:background="@drawable/toolbar_background"
     android:minHeight="?attr/actionBarSize"
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp">
 
     <RelativeLayout
-        android:id="@+id/search_edit_frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -40,6 +39,26 @@
             android:layout_centerVertical="true"
             android:background="@null"
             android:src="@mipmap/ic_search" />
+
+        <EditText
+            android:id="@+id/editText_query"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:layout_centerInParent="true"
+
+            android:layout_toEndOf="@+id/button_back"
+            android:layout_toLeftOf="@id/button_back"
+            android:layout_toRightOf="@+id/button_search"
+            android:layout_toStartOf="@id/button_search"
+
+            android:hint="Location"
+            android:imeOptions="actionSearch"
+            android:singleLine="true"
+            android:textColor="#ffffff"
+
+            android:textColorHint="#ffffff"
+            android:visibility="gone" />
 
     </RelativeLayout>
 

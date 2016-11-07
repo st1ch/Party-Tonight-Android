@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -28,16 +27,5 @@ public class PromoterEventsActivity extends AppCompatActivity {
 
     public void configureViews() {
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 }
