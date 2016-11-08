@@ -1,5 +1,6 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,9 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class CreateEventActivity extends AppCompatActivity {
+
+    public static final String INTENT_DATA_ADDRESSLINE = "intent_address_line";
+    private static final int REQUEST_LOCATION = 1;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.etClubName)
@@ -53,7 +57,22 @@ public class CreateEventActivity extends AppCompatActivity {
 
     @OnClick(R.id.bLocation)
     public void getLocation() {
-        startActivity(new Intent(this, PromoterLocationActivity.class));
+        startActivityForResult(new Intent(this, PromoterLocationActivity.class), REQUEST_LOCATION);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case REQUEST_LOCATION:
+                if (resultCode == Activity.RESULT_OK) {
+                    bLocation.setText(data.getStringExtra(INTENT_DATA_ADDRESSLINE));
+                }
+                break;
+            default:
+                break;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     public void configureViews() {

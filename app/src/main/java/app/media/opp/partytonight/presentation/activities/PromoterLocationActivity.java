@@ -1,7 +1,9 @@
 package app.media.opp.partytonight.presentation.activities;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Criteria;
 import android.location.Location;
@@ -30,18 +32,18 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
-import com.google.android.gms.maps.model.MarkerOptions;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.app.view.TouchableMapFragment;
+import app.media.opp.partytonight.presentation.utils.MapUtils;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by piekie (Artem Vasylenko)
@@ -78,6 +80,8 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
     Marker mCurrLocationMarker;
     private GoogleMap map;
     private LocationRequest mLocationRequest;
+    private double latitude;
+    private double longitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +89,15 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
         setContentView(R.layout.activity_promoter_location);
 
         configureViews();
+    }
+
+    @OnClick(R.id.bConfirmLocation)
+    public void confirmLocation() {
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra(CreateEventActivity.INTENT_DATA_ADDRESSLINE, MapUtils.getAddressLine(this, latitude, longitude));
+        setResult(Activity.RESULT_OK, returnIntent);
+
+        finish();
     }
 
     public void configureViews() {
@@ -169,11 +182,11 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
         map.setMyLocationEnabled(true);
         map.getUiSettings().setMyLocationButtonEnabled(true);
         map.setOnCameraMoveListener(() -> {
-            double lat = map.getCameraPosition().target.latitude;
-            double lon = map.getCameraPosition().target.longitude;
+            latitude = map.getCameraPosition().target.latitude;
+            longitude = map.getCameraPosition().target.longitude;
 
-            tvCoordinates.setText(StringUtils.cutDouble(lat, 4) + " " +
-                    StringUtils.cutDouble(lon, 4));
+            tvCoordinates.setText(StringUtils.cutDouble(latitude, 5) + " " +
+                    StringUtils.cutDouble(longitude, 5));
         });
 
         centerMapOnMyLocation();
@@ -212,27 +225,27 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
 
     @Override
     public void onLocationChanged(Location location) {
-        mLastLocation = location;
-        if (mCurrLocationMarker != null) {
-            mCurrLocationMarker.remove();
-        }
-
-        //Place current location marker
-        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-        MarkerOptions markerOptions = new MarkerOptions();
-        markerOptions.position(latLng);
-        markerOptions.title("Current Position");
-        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
-        mCurrLocationMarker = map.addMarker(markerOptions);
-
-        //move map camera
-        map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
-        map.animateCamera(CameraUpdateFactory.zoomTo(11));
-
-        //stop location updates
-        if (mGoogleApiClient != null) {
-            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
-        }
+//        mLastLocation = location;
+//        if (mCurrLocationMarker != null) {
+//            mCurrLocationMarker.remove();
+//        }
+//
+//        //Place current location marker
+//        LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+//        MarkerOptions markerOptions = new MarkerOptions();
+//        markerOptions.position(latLng);
+//        markerOptions.title("Current Position");
+//        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_MAGENTA));
+//        mCurrLocationMarker = map.addMarker(markerOptions);
+//
+//        //move map camera
+//        map.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+//        map.animateCamera(CameraUpdateFactory.zoomTo(11));
+//
+//        //stop location updates
+//        if (mGoogleApiClient != null) {
+//            LocationServices.FusedLocationApi.removeLocationUpdates(mGoogleApiClient, this);
+//        }
     }
 
     public boolean checkLocationPermission() {

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="72dp"
         android:layout_alignParentBottom="true"
-        android:background="#000000">
+        android:background="#d2000000">
 
         <ImageView
             android:id="@+id/ivIcon"
@@ -21,7 +21,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@mipmap/ic_account" />
+            android:padding="6dp"
+            android:src="@drawable/ic_place_white" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,23 +30,25 @@
             android:layout_toRightOf="@+id/ivIcon"
             android:orientation="vertical">
 
-            <TextView
+            <app.media.opp.partytonight.presentation.app.view.TextViewAgudaBold
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:text="Send current location"
-                android:textColor="#ffffff" />
+                android:gravity="bottom"
+                android:text="Send your current location"
+                android:textColor="#ffffff"
+                android:textSize="18sp" />
 
-            <TextView
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                 android:id="@+id/tvCoordinates"
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_weight="1"
-                android:gravity="center"
+                android:gravity="top"
                 android:text="30, 60"
-                android:textColor="#ffffff" />
+                android:textColor="#ffffff"
+                android:textSize="16sp" />
 
         </LinearLayout>
 
@@ -85,7 +88,7 @@
                 android:layout_alignLeft="@+id/ivCross"
                 android:layout_alignStart="@+id/ivCross"
                 android:layout_marginBottom="24dp"
-                android:src="@drawable/ic_marker" />
+                android:src="@drawable/ic_place_black" />
 
         </RelativeLayout>
 
