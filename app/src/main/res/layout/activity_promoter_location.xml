@@ -8,13 +8,89 @@
         android:id="@+id/toolbar"
         layout="@layout/toolbar_centered_sugar_plums_searchable" />
 
-    <fragment
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    <RelativeLayout
+        android:id="@+id/bConfirmLocation"
+        android:layout_width="match_parent"
+        android:layout_height="72dp"
+        android:layout_alignParentBottom="true"
+        android:background="#000000">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_account" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@+id/ivIcon"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Send current location"
+                android:textColor="#ffffff" />
+
+            <TextView
+                android:id="@+id/tvCoordinates"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="30, 60"
+                android:textColor="#ffffff" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        tools:context=".presentation.activities.PromoterLocationActivity" />
+        android:layout_above="@+id/bConfirmLocation"
+        android:layout_below="@id/toolbar">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="app.media.opp.partytonight.presentation.app.view.TouchableMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".presentation.activities.PromoterLocationActivity" />
+
+        <RelativeLayout
+            android:id="@+id/mapRoot"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/ivCross"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:src="@drawable/ic_cross"
+                android:visibility="invisible" />
+
+            <ImageView
+                android:id="@+id/ivMarker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/ivCross"
+                android:layout_alignLeft="@+id/ivCross"
+                android:layout_alignStart="@+id/ivCross"
+                android:layout_marginBottom="24dp"
+                android:src="@drawable/ic_marker" />
+
+        </RelativeLayout>
+
+    </FrameLayout>
+
 
 </RelativeLayout>
 
