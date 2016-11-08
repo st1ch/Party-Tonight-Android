@@ -34,7 +34,6 @@ import com.google.android.gms.maps.LocationSource;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.Marker;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.app.view.TouchableMapFragment;
@@ -58,6 +57,7 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
 
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 99;
     protected GoogleApiClient mGoogleApiClient;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.title)
@@ -73,31 +73,39 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
     @BindView(R.id.tvCoordinates)
     TextView tvCoordinates;
 
-
-    Location mLastLocation;
-
-
-    Marker mCurrLocationMarker;
     private GoogleMap map;
     private LocationRequest mLocationRequest;
-    private double latitude;
-    private double longitude;
+
+    private double latitude = -1;
+    private double longitude = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_location);
 
+        configureData();
         configureViews();
     }
 
     @OnClick(R.id.bConfirmLocation)
     public void confirmLocation() {
         Intent returnIntent = new Intent();
-        returnIntent.putExtra(CreateEventActivity.INTENT_DATA_ADDRESSLINE, MapUtils.getAddressLine(this, latitude, longitude));
+
+        returnIntent.putExtra(CreateEventActivity.INTENT_ADDRESS_LINE, MapUtils.getAddressLine(this, latitude, longitude));
+        returnIntent.putExtra(CreateEventActivity.INTENT_LONGITUDE, longitude);
+        returnIntent.putExtra(CreateEventActivity.INTENT_LATITUDE, latitude);
+
         setResult(Activity.RESULT_OK, returnIntent);
 
         finish();
+    }
+
+    public void configureData() {
+        Intent intent = getIntent();
+
+        longitude = intent.getDoubleExtra(CreateEventActivity.INTENT_LONGITUDE, longitude);
+        latitude = intent.getDoubleExtra(CreateEventActivity.INTENT_LATITUDE, latitude);
     }
 
     public void configureViews() {
@@ -189,7 +197,17 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
                     StringUtils.cutDouble(longitude, 5));
         });
 
-        centerMapOnMyLocation();
+        if (longitude == -1 || latitude == -1) {
+            centerMapOnMyLocation();
+        } else {
+
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(new LatLng(latitude, longitude))
+                    .zoom(17)
+                    .tilt(40)
+                    .build();
+            map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+        }
     }
 
     protected synchronized void buildGoogleApiClient() {

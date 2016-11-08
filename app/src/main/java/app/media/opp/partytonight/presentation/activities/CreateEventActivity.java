@@ -17,7 +17,10 @@ import butterknife.OnClick;
 
 public class CreateEventActivity extends AppCompatActivity {
 
-    public static final String INTENT_DATA_ADDRESSLINE = "intent_address_line";
+    public static final String INTENT_LONGITUDE = "intent_longitude";
+    public static final String INTENT_LATITUDE = "intent_latitude";
+
+    public static final String INTENT_ADDRESS_LINE = "intent_address_line";
     private static final int REQUEST_LOCATION = 1;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -45,6 +48,8 @@ public class CreateEventActivity extends AppCompatActivity {
     Button bAddTable;
     @BindView(R.id.bCreate)
     Button bCreate;
+    private double locationLongitude = -1;
+    private double locationLatitude = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +62,12 @@ public class CreateEventActivity extends AppCompatActivity {
 
     @OnClick(R.id.bLocation)
     public void getLocation() {
-        startActivityForResult(new Intent(this, PromoterLocationActivity.class), REQUEST_LOCATION);
+        Intent intent = new Intent(this, PromoterLocationActivity.class);
+
+        intent.putExtra(INTENT_LATITUDE, locationLatitude);
+        intent.putExtra(INTENT_LONGITUDE, locationLongitude);
+
+        startActivityForResult(intent, REQUEST_LOCATION);
     }
 
     @Override
@@ -65,7 +75,11 @@ public class CreateEventActivity extends AppCompatActivity {
         switch (requestCode) {
             case REQUEST_LOCATION:
                 if (resultCode == Activity.RESULT_OK) {
-                    bLocation.setText(data.getStringExtra(INTENT_DATA_ADDRESSLINE));
+                    bLocation.setText(data.getStringExtra(INTENT_ADDRESS_LINE));
+
+
+                    locationLatitude = data.getDoubleExtra(INTENT_LATITUDE, locationLatitude);
+                    locationLongitude = data.getDoubleExtra(INTENT_LONGITUDE, locationLongitude);
                 }
                 break;
             default:
