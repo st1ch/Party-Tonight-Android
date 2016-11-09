@@ -165,6 +165,11 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
             }
             return false;
         });
+
+//        latitude = getIntent().getDoubleExtra(CreateEventActivity.INTENT_LATITUDE, 0);
+//        longitude = getIntent().getDoubleExtra(CreateEventActivity.INTENT_LONGITUDE, 0);
+//
+//        tvCoordinates.setText(StringUtils.cutDouble(latitude, 5) + " " + StringUtils.cutDouble(longitude, 5));
     }
 
     public void configureSearchButton() {
@@ -216,6 +221,9 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
                     .build();
             map.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
         }
+
+        editTextQuery.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.item_suggestion_item, latitude, longitude));
+
     }
 
     protected synchronized void buildGoogleApiClient() {
@@ -255,7 +263,7 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
             latitude = location.getLatitude();
             longitude = location.getLongitude();
 
-            editTextQuery.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.item_suggestion_item, latitude, longitude));
+//            editTextQuery.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.item_suggestion_item, latitude, longitude));
 
 
             map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 13));
