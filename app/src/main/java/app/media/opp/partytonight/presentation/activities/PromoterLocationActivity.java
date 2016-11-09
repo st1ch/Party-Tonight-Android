@@ -14,10 +14,11 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
-import android.widget.EditText;
+import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -28,6 +29,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.places.Places;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.LocationSource;
@@ -36,6 +38,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.presentation.adapters.PlacesAutoCompleteAdapter;
 import app.media.opp.partytonight.presentation.app.view.TouchableMapFragment;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
@@ -65,7 +68,7 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
     @BindView(R.id.button_search)
     ImageButton buttonSearch;
     @BindView(R.id.editText_query)
-    EditText editTextQuery;
+    AutoCompleteTextView editTextQuery;
     @BindView(R.id.ivCross)
     ImageView imageViewCross;
     @BindView(R.id.ivMarker)
@@ -83,6 +86,9 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_promoter_location);
+
+        checkLocationPermission();
+        buildGoogleApiClient();
 
         configureData();
         configureViews();
@@ -150,6 +156,8 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
             return false;
         });
 
+        editTextQuery.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.item_suggestion_item));
+
         editTextQuery.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
 //                onMapSearch();
@@ -215,8 +223,21 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
                 .addApi(LocationServices.API)
+                .addApi(Places.PLACE_DETECTION_API)
+                .addApi(Places.GEO_DATA_API)
                 .build();
         mGoogleApiClient.connect();
+
+        Log.e("client", mGoogleApiClient != null ? "not null" : "null");
+
+    }
+
+    @Override
+    protected void onStop() {
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            mGoogleApiClient.disconnect();
+        }
+        super.onStop();
     }
 
     private void centerMapOnMyLocation() {
@@ -230,7 +251,14 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
 
         Location location = locationManager.getLastKnownLocation(locationManager.getBestProvider(criteria, false));
         if (location != null) {
-            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 13));
+
+            latitude = location.getLatitude();
+            longitude = location.getLongitude();
+
+            editTextQuery.setAdapter(new PlacesAutoCompleteAdapter(this, R.layout.item_suggestion_item, latitude, longitude));
+
+
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(latitude, longitude), 13));
 
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(new LatLng(location.getLatitude(), location.getLongitude()))      // Sets the center of the map to location user
@@ -238,6 +266,7 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
                     .tilt(40)                   // Sets the tilt of the camera to 30 degrees
                     .build();                   // Creates a CameraPosition from the builder
             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
         }
     }
 
@@ -344,6 +373,5 @@ public class PromoterLocationActivity extends AppCompatActivity implements OnMap
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-
     }
 }
