@@ -3,8 +3,8 @@ package app.media.opp.partytonight.presentation.utils;
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+
+import app.media.opp.partytonight.presentation.adapters.PlacesAutoCompleteAdapter;
 
 /**
  * Created by piekie (Artem Vasylenko)
@@ -41,13 +41,20 @@ public final class StringUtils {
         return cons.contains(c + "");
     }
 
-    public static ArrayList<String> removeTheSameStrings(ArrayList<String> list) {
-        ArrayList<String> result = new ArrayList<>();
+    public static ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> removeTheSameEntries
+            (ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> list) {
+        ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> result = new ArrayList<>();
+        result.addAll(list);
 
-        Set<String> hs = new HashSet<>();
-        hs.addAll(list);
+        for (int i = 0; i < result.size(); i++) {
 
-        result.addAll(hs);
+            for (int j = i + 1; j < result.size(); j++) {
+
+                if (result.get(i).secondaryText.equals(result.get(j).secondaryText)) {
+                    result.remove(j);
+                }
+            }
+        }
 
         return result;
     }

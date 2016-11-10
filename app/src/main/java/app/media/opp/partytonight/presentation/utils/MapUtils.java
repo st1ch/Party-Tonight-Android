@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
+import app.media.opp.partytonight.presentation.adapters.PlacesAutoCompleteAdapter;
+
 /**
  * Created by piekie (Artem Vasylenko)
  * on 11/8/16
@@ -72,9 +74,9 @@ public final class MapUtils {
         return null;
     }
 
-    public static ArrayList<String> autocomplete(String input) {
+    public static ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> autocomplete(String input) {
 
-        ArrayList<String> resultList = null;
+        ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> resultList = null;
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -113,10 +115,16 @@ public final class MapUtils {
             JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
 
             // Extract the Place descriptions from the results
-            resultList = new ArrayList<String>(predsJsonArray.length());
+            resultList = new ArrayList<>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(predsJsonArray.getJSONObject(i).getString(
-                        "description"));
+                resultList.add(new PlacesAutoCompleteAdapter.AutoCompleteTemplate(
+                        predsJsonArray.getJSONObject(i)
+                                .getJSONObject("structured_formatting")
+                                .getString("main_text"),
+
+                        predsJsonArray.getJSONObject(i)
+                                .getJSONObject("structured_formatting")
+                                .getString("secondary_text")));
             }
 
         } catch (JSONException e) {
@@ -126,9 +134,12 @@ public final class MapUtils {
         return resultList;
     }
 
-    public static ArrayList<String> autocomplete(String input, final String latitude, final String longitude, final String countryCode) {
+    public static ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> autocomplete(String input,
+                                                                                         final String latitude,
+                                                                                         final String longitude,
+                                                                                         final String countryCode) {
 
-        ArrayList<String> resultList = null;
+        ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> resultList = null;
 
         HttpURLConnection conn = null;
         StringBuilder jsonResults = new StringBuilder();
@@ -171,8 +182,13 @@ public final class MapUtils {
             // Extract the Place descriptions from the results
             resultList = new ArrayList<>(predsJsonArray.length());
             for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(predsJsonArray.getJSONObject(i).getString(
-                        "description"));
+                resultList.add(new PlacesAutoCompleteAdapter.AutoCompleteTemplate(
+                        predsJsonArray.getJSONObject(i)
+                                .getJSONObject("structured_formatting")
+                                .getString("main_text"),
+                        predsJsonArray.getJSONObject(i)
+                                .getJSONObject("structured_formatting")
+                                .getString("secondary_text")));
             }
 
         } catch (JSONException e) {

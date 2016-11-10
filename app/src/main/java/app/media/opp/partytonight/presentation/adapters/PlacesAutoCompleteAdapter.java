@@ -6,22 +6,28 @@ package app.media.opp.partytonight.presentation.adapters;
  */
 
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 
 public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements
         Filterable {
 
-    private ArrayList<String> resultList;
+    private ArrayList<AutoCompleteTemplate> resultList;
     private double longitude = -1, latitude = -1;
     private Context mContext;
-
     public PlacesAutoCompleteAdapter(Context context, int textViewResourceId) {
         super(context, textViewResourceId);
 
@@ -44,7 +50,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements
 
     @Override
     public String getItem(int index) {
-        return resultList.get(index);
+        return resultList.get(index).mainText;
     }
 
     @Override
@@ -89,7 +95,7 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements
                                     MapUtils.getCountryCode(mContext, latitude, longitude)));
                         }
 
-                        resultList = StringUtils.removeTheSameStrings(resultList);
+                        resultList = StringUtils.removeTheSameEntries(resultList);
 
                     } else {
                         resultList = MapUtils.autocomplete(constraint
@@ -113,5 +119,41 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<String> implements
             }
         };
         return filter;
+    }
+
+    @NonNull
+    @Override
+    public View getView(int position, View convertView, ViewGroup parent) {
+        // Get the data item for this position
+        String item = getItem(position);
+        // Check if an existing view is being reused, otherwise inflate the view
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_suggestion_item, parent, false);
+        }
+
+        convertView.setOnClickListener(v -> {
+            Log.e("SSSSS", "SSSSS");
+        });
+
+        TextView title = (TextView) convertView.findViewById(R.id.tvSuggestionName);
+        TextView secondary = (TextView) convertView.findViewById(R.id.tvSuggestionInfo);
+
+
+        title.setText(resultList.get(position).mainText);
+        secondary.setText(resultList.get(position).secondaryText);
+
+
+        return convertView;
+    }
+
+    public static class AutoCompleteTemplate {
+
+        public String mainText;
+        public String secondaryText;
+
+        public AutoCompleteTemplate(String mainText, String secondaryText) {
+            this.mainText = mainText;
+            this.secondaryText = secondaryText;
+        }
     }
 }
