@@ -47,12 +47,6 @@
             <!--</intent-filter>-->
         </activity>
 
-        <activity
-            android:name=".presentation.activities.PromoterLocationActivity"
-            android:label="Location">
-
-        </activity>
-
     </application>
 
 </manifest>

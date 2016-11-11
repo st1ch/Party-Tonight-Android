@@ -9,6 +9,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
@@ -17,11 +22,8 @@ import butterknife.OnClick;
 
 public class CreateEventActivity extends AppCompatActivity {
 
-    public static final String INTENT_LONGITUDE = "intent_longitude";
-    public static final String INTENT_LATITUDE = "intent_latitude";
+    public static final int PLACE_PICKER = 129;
 
-    public static final String INTENT_ADDRESS_LINE = "intent_address_line";
-    private static final int REQUEST_LOCATION = 1;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.etClubName)
@@ -48,8 +50,6 @@ public class CreateEventActivity extends AppCompatActivity {
     Button bAddTable;
     @BindView(R.id.bCreate)
     Button bCreate;
-    private double locationLongitude = -1;
-    private double locationLatitude = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,24 +62,25 @@ public class CreateEventActivity extends AppCompatActivity {
 
     @OnClick(R.id.bLocation)
     public void getLocation() {
-        Intent intent = new Intent(this, PromoterLocationActivity.class);
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
-        intent.putExtra(INTENT_LATITUDE, locationLatitude);
-        intent.putExtra(INTENT_LONGITUDE, locationLongitude);
+        try {
+            Intent i = builder.build(this);
 
-        startActivityForResult(intent, REQUEST_LOCATION);
+            startActivityForResult(i, PLACE_PICKER);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
-            case REQUEST_LOCATION:
+            case PLACE_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
-                    bLocation.setText(data.getStringExtra(INTENT_ADDRESS_LINE));
+                    Place place = PlacePicker.getPlace(this, data);
 
-
-                    locationLatitude = data.getDoubleExtra(INTENT_LATITUDE, locationLatitude);
-                    locationLongitude = data.getDoubleExtra(INTENT_LONGITUDE, locationLongitude);
+                    bLocation.setText(place.getAddress());
                 }
                 break;
             default:

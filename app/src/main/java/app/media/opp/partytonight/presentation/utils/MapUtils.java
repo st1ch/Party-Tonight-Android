@@ -4,23 +4,11 @@ import android.content.Context;
 import android.location.Address;
 import android.location.Geocoder;
 import android.support.annotation.Nullable;
-import android.util.Log;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
-
-import app.media.opp.partytonight.presentation.adapters.PlacesAutoCompleteAdapter;
 
 /**
  * Created by piekie (Artem Vasylenko)
@@ -29,18 +17,82 @@ import app.media.opp.partytonight.presentation.adapters.PlacesAutoCompleteAdapte
 
 public final class MapUtils {
 
-    private static final String PLACES_API_BASE = "https://maps.googleapis.com/maps/api/place";
-    private static final String TYPE_AUTOCOMPLETE = "/autocomplete";
-    private static final String OUT_JSON = "/json";
-    private static final String API_KEY = "AIzaSyBDKujpmEX2DWKTOZjeU66lI2EAEcEg1Ng";
-    private static final String TAG = "MapUtils";
     private static int MAX_LOCATION_RESULT = 1;
     private static Locale LOCALE = Locale.ENGLISH;
+
+    private static HashMap<String, Double> latitudeCache;
+    private static HashMap<String, Double> longitudeCache;
 
     public static String getAddressLine(Context context, double latitude, double longitude) {
         Address address = getAddress(context, latitude, longitude);
 
         return address != null ? address.getAddressLine(0) : "";
+    }
+
+    public static double getLatitude(Context context, String address) {
+        if (latitudeCache != null && latitudeCache.containsKey(address)) {
+            return latitudeCache.get(address);
+        }
+
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> addresses;
+
+        double longitude = 0;
+        double latitude = 0;
+
+        try {
+            addresses = geocoder.getFromLocationName(address, 1);
+
+            if (addresses.size() > 0) {
+
+                latitude = addresses.get(0).getLatitude();
+                longitude = addresses.get(0).getLongitude();
+
+                cache(latitudeCache, address, latitude);
+                cache(longitudeCache, address, longitude);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return latitude;
+    }
+
+    public static double getLongitude(Context context, String address) {
+        if (longitudeCache != null && longitudeCache.containsKey(address)) {
+            return longitudeCache.get(address);
+        }
+
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> addresses;
+
+        double longitude = 0;
+        double latitude = 0;
+
+        try {
+            addresses = geocoder.getFromLocationName(address, 1);
+
+            if (addresses.size() > 0) {
+
+                latitude = addresses.get(0).getLatitude();
+                longitude = addresses.get(0).getLongitude();
+
+                cache(latitudeCache, address, latitude);
+                cache(longitudeCache, address, longitude);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return longitude;
+    }
+
+    private static void cache(@Nullable HashMap<String, Double> cache, String key, Double value) {
+        if (cache == null) {
+            cache = new HashMap<>();
+        }
+
+        cache.put(key, value);
     }
 
     public static String getPostalCode(Context context, double latitude, double longitude) {
@@ -72,129 +124,5 @@ public final class MapUtils {
         }
 
         return null;
-    }
-
-    public static ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> autocomplete(String input) {
-
-        ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> resultList = null;
-
-        HttpURLConnection conn = null;
-        StringBuilder jsonResults = new StringBuilder();
-        try {
-            StringBuilder sb = new StringBuilder(PLACES_API_BASE
-                    + TYPE_AUTOCOMPLETE + OUT_JSON);
-            sb.append("?sensor=false&key=" + API_KEY);
-            // sb.append("&components=country:uk");
-            sb.append("&input=" + URLEncoder.encode(input, "utf8"));
-
-            URL url = new URL(sb.toString());
-            conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
-            int read;
-            char[] buff = new char[1024];
-            while ((read = in.read(buff)) != -1) {
-                jsonResults.append(buff, 0, read);
-            }
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "Error processing Places API URL", e);
-            return resultList;
-        } catch (IOException e) {
-            Log.e(TAG, "Error connecting to Places API", e);
-            return resultList;
-        } finally {
-            if (conn != null) {
-                conn.disconnect();
-            }
-        }
-
-        try {
-            // Create a JSON object hierarchy from the results
-            JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
-
-            // Extract the Place descriptions from the results
-            resultList = new ArrayList<>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(new PlacesAutoCompleteAdapter.AutoCompleteTemplate(
-                        predsJsonArray.getJSONObject(i)
-                                .getJSONObject("structured_formatting")
-                                .getString("main_text"),
-
-                        predsJsonArray.getJSONObject(i)
-                                .getJSONObject("structured_formatting")
-                                .getString("secondary_text")));
-            }
-
-        } catch (JSONException e) {
-            Log.e(TAG, "Cannot process JSON results", e);
-        }
-
-        return resultList;
-    }
-
-    public static ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> autocomplete(String input,
-                                                                                         final String latitude,
-                                                                                         final String longitude,
-                                                                                         final String countryCode) {
-
-        ArrayList<PlacesAutoCompleteAdapter.AutoCompleteTemplate> resultList = null;
-
-        HttpURLConnection conn = null;
-        StringBuilder jsonResults = new StringBuilder();
-        try {
-            StringBuilder sb = new StringBuilder(PLACES_API_BASE
-                    + TYPE_AUTOCOMPLETE + OUT_JSON);
-            sb.append("?key=" + API_KEY);
-            sb.append("&input=" + URLEncoder.encode(input, "utf8"));
-            sb.append("&location=" + latitude + "," + longitude);
-            sb.append("&radius=" + 1000);
-            sb.append("&components=country:" + countryCode);
-
-            URL url = new URL(sb.toString());
-            conn = (HttpURLConnection) url.openConnection();
-            InputStreamReader in = new InputStreamReader(conn.getInputStream());
-
-            // Load the results into a StringBuilder
-            int read;
-            char[] buff = new char[1024];
-            while ((read = in.read(buff)) != -1) {
-                jsonResults.append(buff, 0, read);
-            }
-        } catch (MalformedURLException e) {
-            Log.e(TAG, "Error processing Places API URL", e);
-            return resultList;
-        } catch (IOException e) {
-            Log.e(TAG, "Error connecting to Places API", e);
-            return resultList;
-        } finally {
-            if (conn != null) {
-                conn.disconnect();
-            }
-        }
-
-        try {
-            // Create a JSON object hierarchy from the results
-            JSONObject jsonObj = new JSONObject(jsonResults.toString());
-            JSONArray predsJsonArray = jsonObj.getJSONArray("predictions");
-
-            // Extract the Place descriptions from the results
-            resultList = new ArrayList<>(predsJsonArray.length());
-            for (int i = 0; i < predsJsonArray.length(); i++) {
-                resultList.add(new PlacesAutoCompleteAdapter.AutoCompleteTemplate(
-                        predsJsonArray.getJSONObject(i)
-                                .getJSONObject("structured_formatting")
-                                .getString("main_text"),
-                        predsJsonArray.getJSONObject(i)
-                                .getJSONObject("structured_formatting")
-                                .getString("secondary_text")));
-            }
-
-        } catch (JSONException e) {
-            Log.e(TAG, "Cannot process JSON results", e);
-        }
-
-        return resultList;
     }
 }
