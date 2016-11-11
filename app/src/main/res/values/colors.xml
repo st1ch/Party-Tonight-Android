@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorPrimary">#d2000000</color>
+    <color name="colorPrimaryDark">#d2000000</color>
     <color name="colorAccent">#FF4081</color>
 
     <!-- Animation of background -->
@@ -36,6 +36,8 @@
     <color name="colorButtonGrayTransparentLight">#3cffffff</color>
 
     <color name="colorProgressDialog">#3b3b3b</color>
+
+    <color name="colorToolbarBackground">#d2000000</color>
 
 
 </resources>
