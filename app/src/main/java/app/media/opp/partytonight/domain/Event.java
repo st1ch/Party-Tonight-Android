@@ -1,5 +1,7 @@
 package app.media.opp.partytonight.domain;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import app.media.opp.partytonight.data.Ticket;
@@ -8,17 +10,17 @@ import app.media.opp.partytonight.data.Ticket;
  * Created by arkadii on 11/6/16.
  */
 
-public class Event {
+public class Event implements Serializable {
     private String clubName;
     private String partyName;
     private long time;
     private String location;
-    private List<String> photos;
+    private List<String> photos = new ArrayList<>();
     private String zipCode;
     private int clubCapacity;
-    private List<Ticket> ticketPrice;
-    private List<Bottle> bottles;
-    private List<Table> tables;
+    private List<Ticket> ticketPrice = new ArrayList<>();
+    private List<Bottle> bottles = new ArrayList<>();
+    private List<Table> tables = new ArrayList<>();
 
     public String getZipCode() {
         return zipCode;

@@ -31,5 +31,6 @@
     <dimen name="activity_sign_list_margin_vertical">6dp</dimen>
     <dimen name="promoter_main_circle_button_width">180dp</dimen>
     <dimen name="promoter_main_circle_button_height">180dp</dimen>
+    <dimen name="bottle_section_margin_vertical">8dp</dimen>
 
 </resources>

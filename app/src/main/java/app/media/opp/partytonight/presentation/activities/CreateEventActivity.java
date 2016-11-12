@@ -3,9 +3,11 @@ package app.media.opp.partytonight.presentation.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -21,12 +23,15 @@ import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Calendar;
+import java.util.List;
 import java.util.Locale;
 
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
@@ -43,6 +48,7 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         View.OnClickListener {
 
     public static final int PLACE_PICKER = 1;
+    public static final String EVENT = "event";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -72,6 +78,7 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
     Button bCreate;
     @Inject
     AddEventPresenter presenter;
+    Event event;
 
     private long eventTime = 0;
     private String eventLocation = "";
@@ -85,7 +92,89 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         configureViews();
         bCreate.setOnClickListener(this);
+        restoreEventState(savedInstanceState);
         presenter.onCreate(this);
+    }
+
+    private void restoreEventState(@Nullable Bundle savedInstanceState) {
+        if (savedInstanceState == null) {
+            event = new Event();
+            addMoreBottles();
+            addMoreTables();
+        } else {
+            event = (Event) savedInstanceState.getSerializable(EVENT);
+            for (int i = 0; i < event.getBottles().size(); i++) {
+                ViewGroup viewGroup = addBottle(i);
+//                Log.e("children", "" + (viewGroup == llBottles) + " " + viewGroup.getClass() + " " + viewGroup.getChildAt(0).getClass());
+                Bottle bottle = event.getBottles().get(i);
+                bindBottle(viewGroup, bottle);
+            }
+            for (int i = 0; i < event.getTables().size(); i++) {
+                ViewGroup viewGroup = addTable(i);
+                Table table = event.getTables().get(i);
+                bindTable(viewGroup, table);
+            }
+//                llBottles.findViewWithTag()
+
+        }
+    }
+
+    private void bindTable(ViewGroup viewGroup, Table table) {
+        ((EditText) viewGroup.getChildAt(0)).setText(table.getType());
+        float price = table.getPrice();
+        if (price != 0)
+            ((EditText) viewGroup.getChildAt(1)).setText(String.valueOf(price));
+        int quantity = table.getQuantity();
+        if (quantity != 0)
+            ((EditText) viewGroup.getChildAt(2)).setText(String.valueOf(quantity));
+    }
+
+    private void bindBottle(ViewGroup viewGroup, Bottle bottle) {
+        ((EditText) viewGroup.getChildAt(0)).setText(bottle.getType());
+        float price = bottle.getPrice();
+        if (price != 0)
+            ((EditText) viewGroup.getChildAt(1)).setText(String.valueOf(bottle.getPrice()));
+        int quantity = bottle.getQuantity();
+        if (quantity != 0)
+            ((EditText) viewGroup.getChildAt(2)).setText(String.valueOf(bottle.getQuantity()));
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        List<Bottle> bottles = event.getBottles();
+        for (int i = 0; i < llBottles.getChildCount(); i++) {
+            ViewGroup bottleView = (ViewGroup) llBottles.getChildAt(i);
+            String type = ((EditText) bottleView.getChildAt(0)).getText().toString();
+            String priceString = ((EditText) bottleView.getChildAt(1)).getText().toString();
+            float price = 0;
+            if (!priceString.isEmpty()) price = Float.valueOf(priceString);
+            String quantityString = ((EditText) bottleView.getChildAt(2)).getText().toString();
+            int quantity = 0;
+            if (!quantityString.isEmpty()) quantity = Integer.valueOf(quantityString);
+            Bottle bottle = bottles.get(i);
+            bottle.setType(type);
+            bottle.setPrice(price);
+            bottle.setQuantity(quantity);
+        }
+
+        List<Table> tables = event.getTables();
+        for (int i = 0; i < llTables.getChildCount(); i++) {
+            ViewGroup tableView = (ViewGroup) llTables.getChildAt(i);
+            String type = ((EditText) tableView.getChildAt(0)).getText().toString();
+            String priceString = ((EditText) tableView.getChildAt(1)).getText().toString();
+            float price = 0;
+            if (!priceString.isEmpty()) price = Float.valueOf(priceString);
+            String quantityString = ((EditText) tableView.getChildAt(2)).getText().toString();
+            int quantity = 0;
+            if (!quantityString.isEmpty()) quantity = Integer.valueOf(quantityString);
+            Table table = tables.get(i);
+            table.setType(type);
+            table.setPrice(price);
+            table.setQuantity(quantity);
+        }
+
+        outState.putSerializable(EVENT, event);
+        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -132,9 +221,33 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
 
     @OnClick(R.id.bAddBottle)
     public void addMoreBottles() {
-        View v = new View(this);
+        addBottle(event.getBottles().size());
+        event.getBottles().add(new Bottle());
 
     }
+
+    private ViewGroup addBottle(int bottleNumber) {
+        ViewGroup inflate = (ViewGroup) getLayoutInflater().inflate(R.layout.bottle_layout, llBottles);
+        String tag = "b" + bottleNumber;
+        ViewGroup viewGroup = (ViewGroup) inflate.getChildAt(bottleNumber);
+        viewGroup.setTag(tag);
+        return viewGroup;
+    }
+
+    @OnClick(R.id.bAddTable)
+    public void addMoreTables() {
+        addTable(event.getTables().size());
+        event.getTables().add(new Table());
+    }
+
+    private ViewGroup addTable(int tableNumber) {
+        ViewGroup inflate = (ViewGroup) getLayoutInflater().inflate(R.layout.table_layout, llTables);
+        String tag = "t" + tableNumber;
+        ViewGroup viewGroup = (ViewGroup) inflate.getChildAt(tableNumber);
+        viewGroup.setTag(tag);
+        return viewGroup;
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -194,7 +307,6 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bCreate:
-                Event event = new Event();
                 //TODO set fields of event
                 presenter.onAddButtonClick(event);
                 break;

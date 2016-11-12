@@ -68,7 +68,7 @@ public class EditTextCurvedTranslucent extends EditText {
 
         setPadding(padding, padding, padding, padding);
 
-        setInputType(InputType.TYPE_CLASS_TEXT);
+//        setInputType(InputType.TYPE_CLASS_TEXT);
 
         setMaxLines(1);
     }
