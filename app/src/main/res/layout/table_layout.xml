@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
+    android:layout_marginTop="@dimen/bottle_section_margin_vertical"
+    android:orientation="vertical">
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:inputType="text"
         android:hint="Table type" />
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -15,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:inputType="numberDecimal"
         android:hint="Table Price" />
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
@@ -22,5 +27,6 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:inputType="number"
         android:hint="Quantity" />
 </LinearLayout>

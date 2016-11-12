@@ -103,6 +103,8 @@
                 android:id="@+id/llBottles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
+                android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
                 android:orientation="vertical" />
 
 
@@ -119,6 +121,8 @@
                 android:id="@+id/llTables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
+                android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
                 android:orientation="vertical" />
 
 
