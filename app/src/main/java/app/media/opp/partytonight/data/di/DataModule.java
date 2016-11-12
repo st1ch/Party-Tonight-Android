@@ -34,21 +34,14 @@ public class DataModule {
         return new OkHttpClient.Builder()
                 .readTimeout(10, TimeUnit.SECONDS)
                 .addInterceptor(interceptor)
-                .addInterceptor(new Interceptor() {
-                    @Override
-                    public Response intercept(Chain chain) throws IOException {
-                        Request request = chain.request();
-//                        request.header()
-//
-                        String contentLength = "Content-Length";
-                        String header = request.header(contentLength);
-                        Log.e("Interceptor", "" + header + " " + request.headers().names());
-                        if (header != null) {
-                            request = request.newBuilder().removeHeader(contentLength).build();
-                            Log.e("Interceptor", "" + request.headers().names());
-                        }
-                        return chain.proceed(request);
+                .addInterceptor(chain -> {
+                    Request request = chain.request();
+                    String contentLength = "Content-Length";
+                    String header = request.header(contentLength);
+                    if (header != null) {
+                        request = request.newBuilder().removeHeader(contentLength).build();
                     }
+                    return chain.proceed(request);
                 })
                 .build();
     }

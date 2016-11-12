@@ -1,4 +1,4 @@
-package app.media.opp.partytonight;
+package app.media.opp.partytonight.data;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -18,8 +18,46 @@ public class EventEntity {
     private String partyName;
     private long time;
     private String location;
+    @SerializedName("zip_code")
+    private String zipCode;
     @SerializedName("club_capacity")
     private int clubCapacity;
+    private List<Bottle> bottles;
+    private List<Table> tables;
+    private List<Ticket> tickets;
+
+
+    public List<Bottle> getBottles() {
+        return bottles;
+    }
+
+    public void setBottles(List<Bottle> bottles) {
+        this.bottles = bottles;
+    }
+
+    public List<Table> getTables() {
+        return tables;
+    }
+
+    public void setTables(List<Table> tables) {
+        this.tables = tables;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
     public String getClubName() {
         return clubName;

@@ -2,6 +2,8 @@ package app.media.opp.partytonight.domain;
 
 import java.util.List;
 
+import app.media.opp.partytonight.data.Ticket;
+
 /**
  * Created by arkadii on 11/6/16.
  */
@@ -12,10 +14,19 @@ public class Event {
     private long time;
     private String location;
     private List<String> photos;
+    private String zipCode;
     private int clubCapacity;
-    private float ticketPrice;
+    private List<Ticket> ticketPrice;
     private List<Bottle> bottles;
     private List<Table> tables;
+
+    public String getZipCode() {
+        return zipCode;
+    }
+
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
     public String getClubName() {
         return clubName;
@@ -65,11 +76,11 @@ public class Event {
         this.clubCapacity = clubCapacity;
     }
 
-    public float getTicketPrice() {
+    public List<Ticket> getTicketPrice() {
         return ticketPrice;
     }
 
-    public void setTicketPrice(float ticketPrice) {
+    public void setTicketPrice(List<Ticket> ticketPrice) {
         this.ticketPrice = ticketPrice;
     }
 

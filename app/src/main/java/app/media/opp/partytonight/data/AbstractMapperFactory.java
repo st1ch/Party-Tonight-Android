@@ -1,6 +1,7 @@
 package app.media.opp.partytonight.data;
 
 
+import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.User;
 
 /**
@@ -10,4 +11,7 @@ public interface AbstractMapperFactory {
     Mapper<User, UserEntity> getUserEntityMapper();
 
 
+    Mapper<Event, EventEntity> getEventEntityMapper();
+
+    Mapper<EventEntity, Event> getEventMapper();
 }

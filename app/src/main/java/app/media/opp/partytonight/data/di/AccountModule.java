@@ -42,7 +42,7 @@ public class AccountModule {
     @Provides
     @UserScope
     public SessionRepository provideRepository(Context c, Retrofit retrofit, Account account, AbstractMapperFactory abstractMapperFactory) {
-        return new SessionDataRepository(new RestApi(c, retrofit.create(PartyTonightApi.class)), account, abstractMapperFactory);
+        return new SessionDataRepository(new RestApi(c, retrofit.create(PartyTonightApi.class), account), account, abstractMapperFactory);
     }
 
 }

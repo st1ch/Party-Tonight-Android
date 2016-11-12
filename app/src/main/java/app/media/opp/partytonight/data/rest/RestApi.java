@@ -2,11 +2,15 @@ package app.media.opp.partytonight.data.rest;
 
 import android.content.Context;
 import android.util.Base64;
-import android.util.Log;
 
+import java.util.Collections;
+import java.util.List;
+
+import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
-import okhttp3.Response;
+import app.media.opp.partytonight.domain.Account;
+import app.media.opp.partytonight.domain.Event;
 import rx.Observable;
 
 /**
@@ -15,11 +19,14 @@ import rx.Observable;
 public class RestApi {
 
     private final PartyTonightApi api;
+    private Account account;
     private Context c;
 
-    public RestApi(Context c, PartyTonightApi api) {
+
+    public RestApi(Context c, PartyTonightApi api, Account account) {
         this.c = c;
         this.api = api;
+        this.account = account;
     }
 
     public Observable<TokenEntity> signUp(UserEntity userEntity) {
@@ -28,9 +35,19 @@ public class RestApi {
 
     public Observable<TokenEntity> logIn(UserEntity userEntity) {
         String credentials = userEntity.getEmail() + ":" + userEntity.getPassword();
-//        Base64Encoder
         String authorizationHeader = "Basic " + Base64.encodeToString(credentials.getBytes(), Base64.NO_WRAP);
-        Log.e("Authorization", "lalala " + authorizationHeader);
         return api.logIn(authorizationHeader);
+    }
+
+
+    public Observable<EventEntity> createEvent(EventEntity event) {
+        return api.createEvent(account.user().getToken(), event).map(responseBody -> event);
+    }
+
+    public Observable<List<EventEntity>> getEvents() {
+        return api.getEvents().map(eventEntities -> {
+            Collections.sort(eventEntities, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
+            return eventEntities;
+        });
     }
 }
