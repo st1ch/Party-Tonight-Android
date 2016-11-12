@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
-import android.view.View;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +18,7 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Calendar;
 import java.util.Locale;
@@ -27,6 +26,9 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import app.media.opp.partytonight.presentation.views.IAddEventView;
@@ -34,8 +36,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class CreateEventActivity extends ProgressActivity implements IAddEventView, View.OnClickListener {
-public class CreateEventActivity extends AppCompatActivity implements DatePickerCallback, TimePickerCallback {
+//public class CreateEventActivity extends ProgressActivity implements IAddEventView, View.OnClickListener {
+public class CreateEventActivity extends AppCompatActivity implements DatePickerCallback,
+        TimePickerCallback,
+        IAddEventView,
+        View.OnClickListener {
 
     public static final int PLACE_PICKER = 1;
 
@@ -67,6 +72,9 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
     Button bCreate;
     @Inject
     AddEventPresenter presenter;
+
+    private long eventTime = 0;
+    private String eventLocation = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -134,8 +142,10 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
             case PLACE_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
                     Place place = PlacePicker.getPlace(this, data);
+                    LatLng latLng = place.getLatLng();
 
                     bLocation.setText(place.getAddress());
+                    eventLocation = latLng.latitude + " " + latLng.longitude;
                 }
                 break;
             default:
@@ -170,6 +180,8 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         dateAsString += String.format(Locale.getDefault(), "%02d:%02d", cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         bDateAndTime.setText(dateAsString);
+
+        eventTime = dateWithTime;
     }
 
     @Override
@@ -187,5 +199,20 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
                 presenter.onAddButtonClick(event);
                 break;
         }
+    }
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
     }
 }
