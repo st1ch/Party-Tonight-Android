@@ -22,8 +22,8 @@
 
         <ImageButton
             android:id="@+id/bPromoterMyEvents"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="@dimen/promoter_main_circle_button_width"
+            android:layout_height="@dimen/promoter_main_circle_button_height"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_circular_transparent"
             android:padding="36dp"
@@ -41,8 +41,8 @@
 
         <ImageButton
             android:id="@+id/bPromoterAddEvent"
-            android:layout_width="180dp"
-            android:layout_height="180dp"
+            android:layout_width="@dimen/promoter_main_circle_button_width"
+            android:layout_height="@dimen/promoter_main_circle_button_height"
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
             android:background="@drawable/button_circular_transparent"

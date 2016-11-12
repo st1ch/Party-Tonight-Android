@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <app.media.opp.partytonight.presentation.app.view.ButtonGray
+        android:id="@+id/bCreate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Create event"
+        android:textSize="18sp" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/bCreate"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp">
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etClubName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:hint="Club name" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
+                android:id="@+id/bDateAndTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:drawableEnd="@mipmap/ic_forward"
+                android:drawableRight="@mipmap/ic_forward"
+                android:text="Date and Time"
+                android:textSize="18sp" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
+                android:id="@+id/bLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:drawableEnd="@mipmap/ic_forward"
+                android:drawableRight="@mipmap/ic_forward"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
+                android:text="Location"
+                android:textSize="18sp" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddPhoto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="Upload photos"
+                android:textSize="18sp" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etClubCapacity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:hint="Club capacity" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etTicketPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:hint="Tickets price" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
+                android:id="@+id/etPartyName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:hint="Party name" />
+
+            <LinearLayout
+                android:id="@+id/llBottles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddBottle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="Add more type"
+                android:textSize="18sp" />
+
+            <LinearLayout
+                android:id="@+id/llTables"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+                android:id="@+id/bAddTable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp"
+                android:text="Add more type"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
