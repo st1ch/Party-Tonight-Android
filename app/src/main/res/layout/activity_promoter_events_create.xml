@@ -60,6 +60,9 @@
                 android:layout_marginTop="4dp"
                 android:drawableEnd="@mipmap/ic_forward"
                 android:drawableRight="@mipmap/ic_forward"
+                android:ellipsize="marquee"
+                android:scrollHorizontally="true"
+                android:singleLine="true"
                 android:text="Location"
                 android:textSize="18sp" />
 

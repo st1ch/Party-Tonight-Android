@@ -29,7 +29,9 @@
         </activity>
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
-        <activity android:name=".presentation.activities.PromoterSignUpActivity" />
+        <activity
+            android:name=".presentation.activities.PromoterSignUpActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity android:name=".presentation.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,14 +40,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".presentation.activities.PromoterEventsActivity" />
-        <activity android:name=".presentation.activities.CreateEventActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
 
-
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        </activity>
+        <activity
+            android:name=".presentation.activities.CreateEventActivity"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 

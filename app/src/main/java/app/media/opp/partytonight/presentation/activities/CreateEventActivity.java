@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -104,6 +105,12 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         dg.show(getSupportFragmentManager(), "DatePickerFragmentDialog");
     }
 
+    @OnClick(R.id.bAddBottle)
+    public void addMoreBottles() {
+        View v = new View(this);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch (requestCode) {
@@ -122,6 +129,8 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
     }
 
     public void configureViews() {
+        bLocation.setSelected(true);
+
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
     }
 
