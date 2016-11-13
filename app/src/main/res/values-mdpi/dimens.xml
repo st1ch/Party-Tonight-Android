@@ -30,7 +30,19 @@
     <dimen name="textview_sign_title_padding">18dp</dimen>
     <dimen name="activity_sign_list_margin_vertical">6dp</dimen>
 
-    <dimen name="promoter_main_circle_button_width">150dp</dimen>
-    <dimen name="promoter_main_circle_button_height">150dp</dimen>
+    <dimen name="promoter_main_circle_button_width">108dp</dimen>
+    <dimen name="promoter_main_circle_button_height">108dp</dimen>
+    <dimen name="textview_sign_message_size">12sp</dimen>
+    <dimen name="textview_madeby_size">14sp</dimen>
+    <dimen name="edittext_curved_drawable_size">48dp</dimen>
+    <dimen name="edittext_curved_icon_drawable_padding">12dp</dimen>
+    <dimen name="edittext_curved_text_size">16sp</dimen>
+    <dimen name="edittext_curved_padding">6dp</dimen>
+    <dimen name="button_curved_black_text_size">18sp</dimen>
+    <dimen name="button_curved_gray_text_size">18sp</dimen>
+    <dimen name="activity_create_event_horizontal_padding">8dp</dimen>
+    <dimen name="activity_create_event_vertical_margin">4dp</dimen>
+    <dimen name="textview_promoter_main_text_size">20sp</dimen>
+    <dimen name="promoter_main_circle_button_padding">24dp</dimen>
 
 </resources>

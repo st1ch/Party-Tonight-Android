@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Create event"
-        android:textSize="18sp" />
+        android:textSize="@dimen/button_curved_gray_text_size" />
 
 
     <ScrollView
@@ -30,81 +30,85 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp">
+            android:paddingLeft="@dimen/activity_create_event_horizontal_padding"
+            android:paddingRight="@dimen/activity_create_event_horizontal_padding">
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                 android:id="@+id/etClubName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Club name" />
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                android:hint="Club name"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
                 android:id="@+id/bDateAndTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:drawableEnd="@mipmap/ic_forward"
                 android:drawableRight="@mipmap/ic_forward"
                 android:text="Date and Time"
-                android:textSize="18sp" />
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
                 android:id="@+id/bLocation"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:drawableEnd="@mipmap/ic_forward"
                 android:drawableRight="@mipmap/ic_forward"
                 android:ellipsize="marquee"
                 android:scrollHorizontally="true"
                 android:singleLine="true"
                 android:text="Location"
-                android:textSize="18sp" />
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
                 android:id="@+id/bAddPhoto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:text="Upload photos"
-                android:textSize="18sp" />
+                android:textSize="@dimen/button_curved_gray_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                 android:id="@+id/etClubCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Club capacity" />
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                android:hint="Club capacity"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                 android:id="@+id/etTicketPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Tickets price" />
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                android:hint="Tickets price"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                 android:id="@+id/etPartyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
-                android:hint="Party name" />
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                android:hint="Party name"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <LinearLayout
                 android:id="@+id/llBottles"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
                 android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
+                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
                 android:orientation="vertical" />
 
 
@@ -112,17 +116,17 @@
                 android:id="@+id/bAddBottle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:text="Add more type"
-                android:textSize="18sp" />
+                android:textSize="@dimen/button_curved_gray_text_size" />
 
             <LinearLayout
                 android:id="@+id/llTables"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
                 android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
+                android:layout_marginTop="@dimen/bottle_section_margin_vertical"
                 android:orientation="vertical" />
 
 
@@ -130,10 +134,10 @@
                 android:id="@+id/bAddTable"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="4dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:text="Add more type"
-                android:textSize="18sp" />
+                android:textSize="@dimen/button_curved_gray_text_size" />
 
         </LinearLayout>
 

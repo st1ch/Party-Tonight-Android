@@ -6,7 +6,7 @@
     <dimen name="padding_dialog">20dp</dimen>
 
     <!-- TextView with app title -->
-    <dimen name="textview_app_title_height">64dp</dimen>
+    <dimen name="textview_app_title_height">108dp</dimen>
     <dimen name="textview_app_title_margin_top">48dp</dimen>
     <dimen name="textview_app_title_text_size">48sp</dimen>
 
@@ -29,9 +29,9 @@
     <dimen name="text_size_sign_part">64sp</dimen>
     <dimen name="textview_sign_title_padding">18dp</dimen>
     <dimen name="activity_sign_list_margin_vertical">6dp</dimen>
-    <dimen name="promoter_main_circle_button_width">180dp</dimen>
-    <dimen name="promoter_main_circle_button_height">180dp</dimen>
-    <dimen name="bottle_section_margin_vertical">8dp</dimen>
+
+    <dimen name="promoter_main_circle_button_width">150dp</dimen>
+    <dimen name="promoter_main_circle_button_height">150dp</dimen>
     <dimen name="textview_sign_message_size">14sp</dimen>
     <dimen name="textview_madeby_size">14sp</dimen>
     <dimen name="edittext_curved_drawable_size">48dp</dimen>

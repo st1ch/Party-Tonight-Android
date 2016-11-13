@@ -26,7 +26,7 @@
             android:layout_height="@dimen/promoter_main_circle_button_height"
             android:layout_gravity="center_horizontal"
             android:background="@drawable/button_circular_transparent"
-            android:padding="36dp"
+            android:padding="@dimen/promoter_main_circle_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_wine" />
 
@@ -37,7 +37,7 @@
             android:padding="16dp"
             android:text="My events"
             android:textColor="@color/colorTextViewTitle"
-            android:textSize="20sp" />
+            android:textSize="@dimen/textview_promoter_main_text_size" />
 
         <ImageButton
             android:id="@+id/bPromoterAddEvent"
@@ -46,7 +46,7 @@
             android:layout_gravity="center_horizontal"
             android:adjustViewBounds="true"
             android:background="@drawable/button_circular_transparent"
-            android:padding="36dp"
+            android:padding="@dimen/promoter_main_circle_button_padding"
             android:scaleType="fitCenter"
             android:src="@drawable/ic_plus" />
 
@@ -57,7 +57,7 @@
             android:padding="16dp"
             android:text="New event"
             android:textColor="@color/colorTextViewTitle"
-            android:textSize="20sp" />
+            android:textSize="@dimen/textview_promoter_main_text_size" />
 
     </LinearLayout>
 

@@ -38,11 +38,11 @@
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucentWithIcon
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
                 android:layout_marginBottom="@dimen/activity_vertical_margin_less"
                 android:layout_marginTop="@dimen/activity_vertical_margin_less"
                 android:drawableLeft="@mipmap/ic_account"
-                android:drawablePadding="12dp"
+                android:drawablePadding="@dimen/edittext_curved_icon_drawable_padding"
                 android:drawableStart="@mipmap/ic_account"
                 android:hint="@string/eMail"
                 android:inputType="textEmailAddress"
@@ -50,12 +50,13 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/colorTextSignIn"
                 android:textColorHint="@color/colorTextSignIn"
-                android:textCursorDrawable="@null" />
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucentWithIcon
                 android:id="@+id/etPassword"
                 android:layout_width="match_parent"
-                android:layout_height="48dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
                 android:layout_marginBottom="@dimen/activity_vertical_margin_less"
                 android:layout_marginTop="@dimen/activity_vertical_margin_less"
                 android:drawableLeft="@mipmap/ic_password"
@@ -67,7 +68,8 @@
                 android:paddingTop="8dp"
                 android:textColor="@color/colorTextSignIn"
                 android:textColorHint="@color/colorTextSignIn"
-                android:textCursorDrawable="@null" />
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/edittext_curved_text_size" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTranslucent
                 android:id="@+id/bLogIn"
@@ -99,7 +101,8 @@
                 android:layout_weight="7"
                 android:gravity="center"
                 android:text="@string/don_t_have_an_account_yet"
-                android:textColor="@color/colorTextSignIn" />
+                android:textColor="@color/colorTextSignIn"
+                android:textSize="@dimen/textview_sign_message_size" />
 
             <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
                 android:id="@+id/bSignUp"

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="DateAndTimePickers">
+
+        <item name="android:colorAccent">@android:color/holo_purple</item>
+
+        <item name="android:background">@null</item>
+
+    </style>
+</resources>

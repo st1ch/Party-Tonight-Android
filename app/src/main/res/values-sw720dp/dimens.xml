@@ -1,0 +1,49 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin_less">6dp</dimen>
+    <dimen name="padding_dialog">20dp</dimen>
+
+    <!-- TextView with app title -->
+    <dimen name="textview_app_title_height">108dp</dimen>
+    <dimen name="textview_app_title_margin_top">48dp</dimen>
+    <dimen name="textview_app_title_text_size">108sp</dimen>
+
+    <!-- TextView with Made By text -->
+    <dimen name="textview_made_by_padding_bottom">4dp</dimen>
+
+    <!-- EditTexts in signing part -->
+    <dimen name="edittext_curved_radius">8dp</dimen>
+    <dimen name="edittext_curved_translucent_padding">8dp</dimen>
+    <dimen name="edittext_curved_translucent_height">72dp</dimen>
+
+    <!-- Buttons in signing screens -->
+    <dimen name="button_curved_transparent_stroke_width">4dp</dimen>
+    <dimen name="button_curved_transparent_stroke_radius">8dp</dimen>
+    <dimen name="button_curved_transparent_text_size">48sp</dimen>
+    <dimen name="button_curved_transparent_padding_vertical">24dp</dimen>
+
+
+    <dimen name="activity_sign_padding_horizontal">124dp</dimen>
+    <dimen name="text_size_sign_part">108sp</dimen>
+    <dimen name="textview_sign_title_padding">18dp</dimen>
+    <dimen name="activity_sign_list_margin_vertical">12dp</dimen>
+
+    <dimen name="promoter_main_circle_button_width">300dp</dimen>
+    <dimen name="promoter_main_circle_button_height">300dp</dimen>
+    <dimen name="textview_sign_message_size">24sp</dimen>
+
+    <dimen name="textview_madeby_size">24sp</dimen>
+    <dimen name="edittext_curved_drawable_size">48dp</dimen>
+    <dimen name="edittext_curved_icon_drawable_padding">12dp</dimen>
+    <dimen name="edittext_curved_text_size">24sp</dimen>
+    <dimen name="edittext_curved_padding">12dp</dimen>
+    <dimen name="button_curved_black_text_size">18sp</dimen>
+    <dimen name="button_curved_gray_text_size">24sp</dimen>
+    <dimen name="activity_create_event_horizontal_padding">108dp</dimen>
+    <dimen name="activity_create_event_vertical_margin">8dp</dimen>
+    <dimen name="textview_promoter_main_text_size">48sp</dimen>
+    <dimen name="promoter_main_circle_button_padding">36dp</dimen>
+
+</resources>

@@ -208,6 +208,7 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
 
         DatePickerFragmentDialog dg = DatePickerFragmentDialog.newInstance(
                 DateTimeBuilder.get()
+//                        .withTheme(R.style.DateAndTimePickers)
                         .withTime(true)
                         .with24Hours(true)
                         .withSelectedDate(todayInMillis)

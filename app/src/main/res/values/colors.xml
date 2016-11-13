@@ -37,7 +37,9 @@
 
     <color name="colorProgressDialog">#3b3b3b</color>
 
-    <color name="colorToolbarBackground">#d2000000</color>
+    <color name="colorToolbarBackground">#212121</color>
 
+    <color name="colorButtonCurvedGray">#64ffffff</color>
+    <color name="colorButtonCurvedGrayPressed">#78ffffff</color>
 
 </resources>
