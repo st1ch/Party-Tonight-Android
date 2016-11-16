@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EventDetailsItem">
+        <attr name="src" format="reference" />
+        <attr name="label" format="string" />
+        <attr name="additionalLabel" format="string" />
+        <attr name="textColor" format="color" />
+        <attr name="textSize" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -42,4 +42,7 @@
     <color name="colorButtonCurvedGray">#64ffffff</color>
     <color name="colorButtonCurvedGrayPressed">#78ffffff</color>
 
+    <color name="colorButtonGraySemiTransparent">#646e6e6e</color>
+    <color name="colorButtonGraySemiTransparentPressed">#64cecece</color>
+
 </resources>

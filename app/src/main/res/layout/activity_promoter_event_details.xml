@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/toolbar"
+        android:orientation="vertical">
+
+        <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonGraySemiTransparent"
+            android:clickable="false"
+            app:label="Door revenue: "
+            app:src="@mipmap/ic_tickets"
+            app:textSize="22sp" />
+
+        <include layout="@layout/divider_horizontal" />
+
+        <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonGraySemiTransparent"
+            android:clickable="true"
+            app:label="Bottles"
+            app:src="@mipmap/ic_bottles"
+            app:textSize="22sp" />
+
+        <include layout="@layout/divider_horizontal" />
+
+        <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonGraySemiTransparent"
+            android:clickable="true"
+            app:label="Tables"
+            app:src="@mipmap/ic_table"
+            app:textSize="22sp" />
+
+        <include layout="@layout/divider_horizontal" />
+
+        <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/colorButtonGraySemiTransparent"
+            android:clickable="true"
+            app:label="Statement total"
+            app:src="@mipmap/ic_money"
+            app:textSize="22sp" />
+
+        <include layout="@layout/divider_horizontal" />
+
+    </LinearLayout>
+
+</RelativeLayout>

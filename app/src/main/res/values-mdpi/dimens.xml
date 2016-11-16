@@ -44,5 +44,6 @@
     <dimen name="activity_create_event_vertical_margin">4dp</dimen>
     <dimen name="textview_promoter_main_text_size">20sp</dimen>
     <dimen name="promoter_main_circle_button_padding">24dp</dimen>
+    <dimen name="textview_default_text_size">14sp</dimen>
 
 </resources>
