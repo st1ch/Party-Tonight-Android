@@ -23,7 +23,6 @@ import butterknife.ButterKnife;
 
 public class EventDetailsItem extends LinearLayout {
 
-    private final static int DEFAULT_SRC = R.mipmap.ic_launcher;
     private final static String DEFAULT_TITLE = "Hello World";
 
     @BindView(R.id.src)
@@ -76,6 +75,25 @@ public class EventDetailsItem extends LinearLayout {
         }
     }
 
+    public void setLabel(String label) {
+        mLabel = label;
+        tvTitle.setText(label);
+    }
+
+    public void setAdditionalLabel(String label) {
+        mAdditionalLabel = label;
+        tvAdditional.setText(label);
+        tvAdditional.setVisibility(View.VISIBLE);
+    }
+
+    public void setVisibilityToIcon(int visibility) {
+        ivSrc.setVisibility(visibility);
+    }
+
+    public void setVisibilityToAdditionalLabel(int visibility) {
+        tvAdditional.setVisibility(visibility);
+    }
+
     private void configureView(Context context) {
         inflate(context, R.layout.item_event_details, this);
         ButterKnife.bind(this);
@@ -89,7 +107,7 @@ public class EventDetailsItem extends LinearLayout {
         if (mImage != null) {
             ivSrc.setImageDrawable(mImage);
         } else {
-            ivSrc.setImageResource(DEFAULT_SRC);
+            ivSrc.setVisibility(View.GONE);
         }
         if (isClickable()) {
             ivForwardIcon.setVisibility(View.VISIBLE);

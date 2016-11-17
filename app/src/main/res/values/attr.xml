@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <declare-styleable name="EventDetailsItem">
         <attr name="src" format="reference" />
         <attr name="label" format="string" />
@@ -7,4 +8,11 @@
         <attr name="textColor" format="color" />
         <attr name="textSize" format="dimension" />
     </declare-styleable>
+
+    <declare-styleable name="BottlesTablesInfoView">
+        <attr name="itemLabel" format="string" />
+        <attr name="purchased" format="integer" />
+        <attr name="available" format="integer" />
+    </declare-styleable>
+
 </resources>

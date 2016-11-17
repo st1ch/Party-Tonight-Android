@@ -18,7 +18,7 @@
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="false"
             app:label="Door revenue: "
@@ -29,7 +29,7 @@
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Bottles"
@@ -40,7 +40,7 @@
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Tables"
@@ -51,7 +51,7 @@
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Statement total"

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/toolbar">
+
+        <LinearLayout
+            android:id="@+id/llContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <app.media.opp.partytonight.presentation.app.view.BottlesTablesInfoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:itemLabel="hehehhehehehehhehehehhehehehehhehhehehhehehehehhehhehehhehehehehhehhehehhehehehehhehh"
+                app:purchased="23" />
+
+            <app.media.opp.partytonight.presentation.app.view.BottlesTablesInfoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <app.media.opp.partytonight.presentation.app.view.BottlesTablesInfoView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</RelativeLayout>
