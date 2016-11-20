@@ -38,6 +38,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:inputType="textCapSentences"
                 android:layout_marginTop="4dp"
                 android:hint="Club name" />
 
@@ -80,6 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:inputType="number"
                 android:layout_marginTop="4dp"
                 android:hint="Club capacity" />
 
@@ -88,6 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:inputType="numberDecimal"
                 android:layout_marginTop="4dp"
                 android:hint="Tickets price" />
 
@@ -96,6 +99,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="4dp"
+                android:inputType="textCapSentences"
                 android:layout_marginTop="4dp"
                 android:hint="Party name" />
 

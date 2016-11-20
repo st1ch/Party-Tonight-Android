@@ -28,4 +28,6 @@
     <string name="fieldDoesNotContainDot">Email address should contain \'.\' symbol</string>
     <string name="minimumLengthIs">Minimum length is</string>
     <string name="passwordShouldContainOnlyLettersAndDigits">Password should contain only letters and digits</string>
+    <string name="chooseDateAndTime">Choose date and time</string>
+    <string name="chooseLocation">Choose location</string>
 </resources>

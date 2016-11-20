@@ -8,38 +8,47 @@ import java.io.Serializable;
 
 public class Table implements Serializable {
     private String type;
-    private float price;
-    private int quantity;
+    private String price;
+    private String available;
 
     public Table() {}
 
-    public Table(String type, float price, int quantity) {
+    public Table(String type, String price, String available) {
         this.type = type;
         this.price = price;
-        this.quantity = quantity;
+        this.available = available;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getType() {
         return type;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getAvailable() {
+        return available;
+    }
+
+    @Override
+    public String toString() {
+        return "Table{" +
+                "type='" + type + '\'' +
+                ", price=" + price +
+                ", available=" + available +
+                '}';
     }
 }

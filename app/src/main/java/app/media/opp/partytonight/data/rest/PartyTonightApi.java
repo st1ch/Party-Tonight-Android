@@ -30,6 +30,8 @@ public interface PartyTonightApi {
     @POST("maker/event/create")
     Observable<ResponseBody> createEvent(@Header("x-auth-token") String token, @Body EventEntity eventEntity);
 
-    Observable<List<EventEntity>> getEvents();
+    @Headers({"Content-Type: application/json", "Content-Length: 0"})
+    @GET("maker/event/get")
+    Observable<List<EventEntity>> getEvents(@Header("x-auth-token") String token);
 }
 

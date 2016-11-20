@@ -5,4 +5,6 @@ package app.media.opp.partytonight.presentation.views;
  */
 public interface IAddEventView extends IProgressView {
     void navigateBack();
+
+    void saveZipCode(String response);
 }

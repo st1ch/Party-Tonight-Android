@@ -4,13 +4,17 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.fastaccess.datetimepicker.DatePickerFragmentDialog;
 import com.fastaccess.datetimepicker.DateTimeBuilder;
@@ -20,8 +24,10 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-import com.google.android.gms.maps.model.LatLng;
 
+import org.w3c.dom.Text;
+
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -29,10 +35,12 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.data.Ticket;
 import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.dialogs.ProgressDialogFragment;
 import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -42,7 +50,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //public class CreateEventActivity extends ProgressActivity implements IAddEventView, View.OnClickListener {
-public class CreateEventActivity extends AppCompatActivity implements DatePickerCallback,
+public class CreateEventActivity extends ProgressActivity implements DatePickerCallback,
         TimePickerCallback,
         IAddEventView,
         View.OnClickListener {
@@ -80,9 +88,6 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
     AddEventPresenter presenter;
     Event event;
 
-    private long eventTime = 0;
-    private String eventLocation = "";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -103,9 +108,14 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
             addMoreTables();
         } else {
             event = (Event) savedInstanceState.getSerializable(EVENT);
+            if (event.getTime() > 0) {
+                renderFormattedDate(event.getTime());
+            }
+            if (event.getLocation() != null) {
+                bLocation.setText(event.getLocation());
+            }
             for (int i = 0; i < event.getBottles().size(); i++) {
                 ViewGroup viewGroup = addBottle(i);
-//                Log.e("children", "" + (viewGroup == llBottles) + " " + viewGroup.getClass() + " " + viewGroup.getChildAt(0).getClass());
                 Bottle bottle = event.getBottles().get(i);
                 bindBottle(viewGroup, bottle);
             }
@@ -114,47 +124,40 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
                 Table table = event.getTables().get(i);
                 bindTable(viewGroup, table);
             }
-//                llBottles.findViewWithTag()
-
         }
     }
 
     private void bindTable(ViewGroup viewGroup, Table table) {
         ((EditText) viewGroup.getChildAt(0)).setText(table.getType());
-        float price = table.getPrice();
-        if (price != 0)
-            ((EditText) viewGroup.getChildAt(1)).setText(String.valueOf(price));
-        int quantity = table.getQuantity();
-        if (quantity != 0)
-            ((EditText) viewGroup.getChildAt(2)).setText(String.valueOf(quantity));
+        ((EditText) viewGroup.getChildAt(1)).setText(table.getPrice());
+        ((EditText) viewGroup.getChildAt(2)).setText(table.getAvailable());
     }
 
     private void bindBottle(ViewGroup viewGroup, Bottle bottle) {
         ((EditText) viewGroup.getChildAt(0)).setText(bottle.getType());
-        float price = bottle.getPrice();
-        if (price != 0)
-            ((EditText) viewGroup.getChildAt(1)).setText(String.valueOf(bottle.getPrice()));
-        int quantity = bottle.getQuantity();
-        if (quantity != 0)
-            ((EditText) viewGroup.getChildAt(2)).setText(String.valueOf(bottle.getQuantity()));
+        ((EditText) viewGroup.getChildAt(1)).setText(bottle.getPrice());
+        ((EditText) viewGroup.getChildAt(2)).setText(bottle.getAvailable());
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        updateEventBottlesAndTables();
+
+        outState.putSerializable(EVENT, event);
+        super.onSaveInstanceState(outState);
+    }
+
+    private void updateEventBottlesAndTables() {
         List<Bottle> bottles = event.getBottles();
         for (int i = 0; i < llBottles.getChildCount(); i++) {
             ViewGroup bottleView = (ViewGroup) llBottles.getChildAt(i);
             String type = ((EditText) bottleView.getChildAt(0)).getText().toString();
             String priceString = ((EditText) bottleView.getChildAt(1)).getText().toString();
-            float price = 0;
-            if (!priceString.isEmpty()) price = Float.valueOf(priceString);
             String quantityString = ((EditText) bottleView.getChildAt(2)).getText().toString();
-            int quantity = 0;
-            if (!quantityString.isEmpty()) quantity = Integer.valueOf(quantityString);
             Bottle bottle = bottles.get(i);
             bottle.setType(type);
-            bottle.setPrice(price);
-            bottle.setQuantity(quantity);
+            bottle.setPrice(priceString);
+            bottle.setAvailable(quantityString);
         }
 
         List<Table> tables = event.getTables();
@@ -162,19 +165,12 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
             ViewGroup tableView = (ViewGroup) llTables.getChildAt(i);
             String type = ((EditText) tableView.getChildAt(0)).getText().toString();
             String priceString = ((EditText) tableView.getChildAt(1)).getText().toString();
-            float price = 0;
-            if (!priceString.isEmpty()) price = Float.valueOf(priceString);
             String quantityString = ((EditText) tableView.getChildAt(2)).getText().toString();
-            int quantity = 0;
-            if (!quantityString.isEmpty()) quantity = Integer.valueOf(quantityString);
             Table table = tables.get(i);
             table.setType(type);
-            table.setPrice(price);
-            table.setQuantity(quantity);
+            table.setPrice(priceString);
+            table.setAvailable(quantityString);
         }
-
-        outState.putSerializable(EVENT, event);
-        super.onSaveInstanceState(outState);
     }
 
     @Override
@@ -255,10 +251,9 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
             case PLACE_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
                     Place place = PlacePicker.getPlace(this, data);
-                    LatLng latLng = place.getLatLng();
-
-                    bLocation.setText(place.getAddress());
-                    eventLocation = latLng.latitude + " " + latLng.longitude;
+                    event.setLocation(place.getAddress().toString());
+                    presenter.onLocationDefined(place.getLatLng());
+                    bLocation.setText(event.getLocation());
                 }
                 break;
             default:
@@ -280,6 +275,12 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
 
     @Override
     public void onTimeSet(long timeOnly, long dateWithTime) {
+        event.setTime(dateWithTime / 1000);
+        renderFormattedDate(event.getTime());
+    }
+
+    private void renderFormattedDate(long dateWithTimeSeconds) {
+        long dateWithTime = dateWithTimeSeconds * 1000;
         String dateAsString = "";
 
         Calendar cal = Calendar.getInstance();
@@ -293,13 +294,16 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         dateAsString += String.format(Locale.getDefault(), "%02d:%02d", cal.get(Calendar.HOUR_OF_DAY), cal.get(Calendar.MINUTE));
 
         bDateAndTime.setText(dateAsString);
-
-        eventTime = dateWithTime;
     }
 
     @Override
     public void navigateBack() {
         onBackPressed();
+    }
+
+    @Override
+    public void saveZipCode(String response) {
+        event.setZipCode(response);
     }
 
 
@@ -308,23 +312,111 @@ public class CreateEventActivity extends AppCompatActivity implements DatePicker
         switch (v.getId()) {
             case R.id.bCreate:
                 //TODO set fields of event
+                setFields();
+                if (isValid(event))
                 presenter.onAddButtonClick(event);
                 break;
         }
     }
 
-    @Override
-    public void showProgress() {
+    private boolean isValid(Event event) {
+        if (TextUtils.isEmpty(event.getClubName())) {
+            showFieldError(etClubName, getString(R.string.fieldShoudNotBeEmpty));
+            return false;
+        }
+        if (event.getTime() <= 0) {
+            showMessage(getString(R.string.chooseDateAndTime));
+            return false;
+        }
+        if (TextUtils.isEmpty(event.getLocation())) {
+            showMessage(getString(R.string.chooseLocation));
+            return false;
+        }
+        if (TextUtils.isEmpty(event.getClubCapacity())) {
+            showFieldError(etClubCapacity, getString(R.string.fieldShoudNotBeEmpty));
+            return false;
+        }
+        if (TextUtils.isEmpty(event.getClubCapacity())) {
+            showFieldError(etClubCapacity, getString(R.string.fieldShoudNotBeEmpty));
+            return false;
+        }
+        List<Ticket> ticketPrice = event.getTicketPrice();
+        if (ticketPrice.isEmpty() || TextUtils.isEmpty(ticketPrice.get(0).getPrice())) {
+            showFieldError(etTicketPrice, getString(R.string.fieldShoudNotBeEmpty));
+            return false;
+        }
+        if (TextUtils.isEmpty(event.getPartyName())) {
+            showFieldError(etPartyName, getString(R.string.fieldShoudNotBeEmpty));
+            return false;
+        }
 
+        List<Bottle> bottles = event.getBottles();
+        for (int i = 0; i < llBottles.getChildCount(); i++) {
+            ViewGroup bottleView = (ViewGroup) llBottles.getChildAt(i);
+            Bottle bottle = bottles.get(i);
+            EditText typeView = (EditText) bottleView.getChildAt(0);
+            EditText priceView = (EditText) bottleView.getChildAt(1);
+            EditText availableView = (EditText) bottleView.getChildAt(2);
+
+            if (TextUtils.isEmpty(bottle.getType())){
+                showFieldError(typeView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+            if (TextUtils.isEmpty(bottle.getPrice())){
+                showFieldError(priceView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+            if (TextUtils.isEmpty(bottle.getAvailable())){
+                showFieldError(availableView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+        }
+
+        List<Table> tables = event.getTables();
+        for (int i = 0; i < llTables.getChildCount(); i++) {
+            ViewGroup tableView = (ViewGroup) llTables.getChildAt(i);
+            Table table = tables.get(i);
+            EditText typeView = (EditText) tableView.getChildAt(0);
+            EditText priceView = (EditText) tableView.getChildAt(1);
+            EditText availableView = (EditText) tableView.getChildAt(2);
+
+            if (TextUtils.isEmpty(table.getType())){
+                showFieldError(typeView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+            if (TextUtils.isEmpty(table.getPrice())){
+                showFieldError(priceView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+            if (TextUtils.isEmpty(table.getAvailable())){
+                showFieldError(availableView, getString(R.string.fieldShoudNotBeEmpty));
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    @Override
-    public void hideProgress() {
 
+
+    private void setFields() {
+        String clubName = etClubName.getText().toString();
+        String clubCapacity = etClubCapacity.getText().toString();
+        String partyName = etPartyName.getText().toString();
+        List<Ticket> tickets = new ArrayList<>();
+        String ticketPrice = (etTicketPrice.getText().toString());
+        tickets.add(new Ticket(ticketPrice));
+        event.setClubName(clubName);
+        event.setClubCapacity(clubCapacity);
+        event.setTicketPrice(tickets);
+        event.setPartyName(partyName);
+        updateEventBottlesAndTables();
+
+        Log.e("Event", event.toString());
     }
 
-    @Override
-    public void showMessage(String message) {
 
+    private void showFieldError(EditText editText, String error) {
+        editText.setError(error);
     }
 }

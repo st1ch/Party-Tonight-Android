@@ -1,7 +1,14 @@
 package app.media.opp.partytonight.data.repositories;
 
 
+import android.util.Log;
+
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
@@ -14,7 +21,9 @@ import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;
+import app.media.opp.partytonight.presentation.utils.MapUtils;
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by Arkadiy on 05.06.2016.
@@ -23,12 +32,14 @@ public class SessionDataRepository implements SessionRepository {
 
     private final AbstractMapperFactory abstractMapperFactory;
     private final Account account;
+    private MapUtils mapUtils;
     private RestApi restApi;
 
-    public SessionDataRepository(RestApi restApi, Account account, AbstractMapperFactory abstractMapperFactory) {
+    public SessionDataRepository(RestApi restApi, Account account, AbstractMapperFactory abstractMapperFactory, MapUtils mapUtils) {
         this.restApi = restApi;
         this.abstractMapperFactory = abstractMapperFactory;
         this.account = account;
+        this.mapUtils = mapUtils;
     }
 
 
@@ -59,7 +70,32 @@ public class SessionDataRepository implements SessionRepository {
             for (EventEntity eventEntity : eventEntities) {
                 events.add(eventMapper.transform(eventEntity));
             }
+            Collections.sort(events, new Comparator<Event>() {
+                @Override
+                public int compare(Event o1, Event o2) {
+                    return (int) (o1.getTime() - o2.getTime());
+                }
+            });
             return events;
+        });
+    }
+
+    @Override
+    public Observable<String> getPostalAddress(LatLng latLng) {
+        return Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                try {
+                    if (!subscriber.isUnsubscribed()) {
+                        String postalCode = mapUtils.getPostalCode(latLng.latitude, latLng.longitude);
+                        Log.e("repository", "postal code : " + postalCode);
+                        subscriber.onNext(postalCode);
+                        subscriber.onCompleted();
+                    }
+                } catch (Exception e) {
+                    subscriber.onError(e);
+                }
+            }
         });
     }
 

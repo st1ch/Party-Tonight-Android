@@ -17,7 +17,7 @@ public class Event implements Serializable {
     private String location;
     private List<String> photos = new ArrayList<>();
     private String zipCode;
-    private int clubCapacity;
+    private String clubCapacity;
     private List<Ticket> ticketPrice = new ArrayList<>();
     private List<Bottle> bottles = new ArrayList<>();
     private List<Table> tables = new ArrayList<>();
@@ -70,11 +70,11 @@ public class Event implements Serializable {
         this.photos = photos;
     }
 
-    public int getClubCapacity() {
+    public String getClubCapacity() {
         return clubCapacity;
     }
 
-    public void setClubCapacity(int clubCapacity) {
+    public void setClubCapacity(String clubCapacity) {
         this.clubCapacity = clubCapacity;
     }
 
@@ -100,5 +100,21 @@ public class Event implements Serializable {
 
     public void setTables(List<Table> tables) {
         this.tables = tables;
+    }
+
+    @Override
+    public String toString() {
+        return "Event{" +
+                "clubName='" + clubName + '\'' +
+                ", partyName='" + partyName + '\'' +
+                ", time=" + time +
+                ", location='" + location + '\'' +
+                ", photos=" + photos +
+                ", zipCode='" + zipCode + '\'' +
+                ", clubCapacity='" + clubCapacity + '\'' +
+                ", ticketPrice=" + ticketPrice +
+                ", bottles=" + bottles +
+                ", tables=" + tables +
+                '}';
     }
 }
