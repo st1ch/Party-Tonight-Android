@@ -34,7 +34,8 @@
             android:layout_centerHorizontal="true"
             android:paddingBottom="@dimen/textview_made_by_padding_bottom"
             android:text="@string/textview_made_by"
-            android:textColor="@color/colorTextViewMadeBy" />
+            android:textColor="@color/colorTextViewMadeBy"
+            android:textSize="@dimen/textview_madeby_size" />
 
         <LinearLayout
             android:layout_width="match_parent"

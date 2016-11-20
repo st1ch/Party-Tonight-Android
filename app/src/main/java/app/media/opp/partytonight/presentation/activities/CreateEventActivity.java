@@ -204,6 +204,7 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
 
         DatePickerFragmentDialog dg = DatePickerFragmentDialog.newInstance(
                 DateTimeBuilder.get()
+//                        .withTheme(R.style.DateAndTimePickers)
                         .withTime(true)
                         .with24Hours(true)
                         .withSelectedDate(todayInMillis)

@@ -12,21 +12,24 @@
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
         android:inputType="textCapSentences"
-        android:hint="Table type" />
+        android:hint="Table type"
+        android:textSize="@dimen/edittext_curved_text_size" />
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:hint="Table Price"
         android:inputType="numberDecimal"
-        android:hint="Table Price" />
+        android:textSize="@dimen/edittext_curved_text_size" />
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:hint="Quantity"
         android:inputType="number"
-        android:hint="Quantity" />
+        android:textSize="@dimen/edittext_curved_text_size" />
 </LinearLayout>

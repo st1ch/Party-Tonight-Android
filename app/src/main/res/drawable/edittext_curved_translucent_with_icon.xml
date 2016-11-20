@@ -9,7 +9,7 @@
         </shape>
     </item>
 
-    <item android:left="48dp">
+    <item android:left="@dimen/edittext_curved_drawable_size">
 
         <shape>
             <solid android:color="@color/colorEditTextSign" />

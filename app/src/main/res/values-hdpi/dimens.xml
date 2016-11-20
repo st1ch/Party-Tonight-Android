@@ -25,14 +25,15 @@
     <dimen name="button_curved_transparent_padding_vertical">13dp</dimen>
 
 
-    <dimen name="activity_sign_padding_horizontal">36dp</dimen>
+    <dimen name="activity_sign_padding_horizontal">22dp</dimen>
     <dimen name="text_size_sign_part">64sp</dimen>
     <dimen name="textview_sign_title_padding">18dp</dimen>
     <dimen name="activity_sign_list_margin_vertical">6dp</dimen>
-    <dimen name="promoter_main_circle_button_width">180dp</dimen>
-    <dimen name="promoter_main_circle_button_height">180dp</dimen>
-    <dimen name="bottle_section_margin_vertical">8dp</dimen>
-    <dimen name="textview_sign_message_size">14sp</dimen>
+
+    <dimen name="promoter_main_circle_button_width">150dp</dimen>
+    <dimen name="promoter_main_circle_button_height">150dp</dimen>
+
+    <dimen name="textview_sign_message_size">12sp</dimen>
     <dimen name="textview_madeby_size">14sp</dimen>
     <dimen name="edittext_curved_drawable_size">48dp</dimen>
     <dimen name="edittext_curved_icon_drawable_padding">12dp</dimen>
