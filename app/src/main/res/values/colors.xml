@@ -45,4 +45,8 @@
     <color name="colorButtonGraySemiTransparent">#646e6e6e</color>
     <color name="colorButtonGraySemiTransparentPressed">#64cecece</color>
 
+
+    <color name="colorButtonCurvedBlackNotPressed">#3c4e4e4e</color>
+    <color name="colorButtonCurvedBlackPressed">#3c797979</color>
+
 </resources>
