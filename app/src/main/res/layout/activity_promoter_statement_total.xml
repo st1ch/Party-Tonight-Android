@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical">
+
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediStatement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="6dp"
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                app:label="Statement total:"
+                app:textSize="19sp" />
+
+            <LinearLayout
+                android:id="@id/llContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediWithdraw"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:paddingRight="12dp"
+                android:textColor="#ffffff"
+                app:additionalLabel="1234"
+                app:label="Withdraw"
+                app:label_gravity="right"
+                app:textSize="19sp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

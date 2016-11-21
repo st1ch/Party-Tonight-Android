@@ -3,7 +3,6 @@ package app.media.opp.partytonight.presentation.app.view;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.widget.LinearLayout;
 
 import app.media.opp.partytonight.R;
@@ -50,13 +49,10 @@ public class BottlesTablesInfoView extends LinearLayout {
     }
 
     private void handleAttributes(Context context, AttributeSet attrs) {
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.EventDetailsItem, 0, 0);
+        TypedArray array = context.getTheme().obtainStyledAttributes(attrs, R.styleable.BottlesTablesInfoView, 0, 0);
 
         try {
             mLabel = array.getString(R.styleable.BottlesTablesInfoView_itemLabel);
-
-            Log.e("mLabel", mLabel == null ? "null" : mLabel);
-
             mCounterAvailable = array.getInt(R.styleable.BottlesTablesInfoView_available, 0);
             mCounterPurchased = array.getInt(R.styleable.BottlesTablesInfoView_purchased, 0);
         } finally {

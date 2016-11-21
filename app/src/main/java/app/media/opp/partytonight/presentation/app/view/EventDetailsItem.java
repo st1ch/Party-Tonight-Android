@@ -7,6 +7,7 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,6 +25,8 @@ import butterknife.ButterKnife;
 public class EventDetailsItem extends LinearLayout {
 
     private final static String DEFAULT_TITLE = "Hello World";
+    private final static int DEFAULT_GRAVITY = Gravity.START;
+
 
     @BindView(R.id.src)
     ImageView ivSrc;
@@ -37,6 +40,7 @@ public class EventDetailsItem extends LinearLayout {
     private Drawable mImage = null;
     private String mLabel = DEFAULT_TITLE;
     private String mAdditionalLabel = "";
+    private int mLabelGravity;
     private int mTextColor;
     private float mTextSize;
 
@@ -69,6 +73,7 @@ public class EventDetailsItem extends LinearLayout {
             mTextColor = array.getColor(R.styleable.EventDetailsItem_textColor, Color.WHITE);
             mTextSize = array.getDimension(R.styleable.EventDetailsItem_textSize,
                     getResources().getDimension(R.dimen.textview_default_text_size));
+            mLabelGravity = array.getInt(R.styleable.EventDetailsItem_label_gravity, DEFAULT_GRAVITY);
 
         } finally {
             array.recycle();
@@ -103,6 +108,8 @@ public class EventDetailsItem extends LinearLayout {
 
         tvTitle.setTextColor(mTextColor);
         tvAdditional.setTextColor(mTextColor);
+
+        tvTitle.setGravity(mLabelGravity);
 
         if (mImage != null) {
             ivSrc.setImageDrawable(mImage);

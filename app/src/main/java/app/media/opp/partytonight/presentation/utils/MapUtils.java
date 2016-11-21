@@ -29,6 +29,7 @@ public final class MapUtils {
         return address != null ? address.getAddressLine(0) : "";
     }
 
+
     public static double getLatitude(Context context, String address) {
         if (latitudeCache != null && latitudeCache.containsKey(address)) {
             return latitudeCache.get(address);

@@ -18,6 +18,7 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_vertical"
+        android:paddingRight="4dp"
         android:textColor="#ffffff" />
 
     <app.media.opp.partytonight.presentation.app.view.TextViewAguda
