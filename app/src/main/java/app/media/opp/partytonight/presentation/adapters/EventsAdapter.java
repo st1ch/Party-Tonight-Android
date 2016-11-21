@@ -45,7 +45,7 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
     public void onBindViewHolder(EventViewHolder holder, int position) {
         Event event = events.get(position);
         holder.tvTitle.setText(event.getPartyName());
-        holder.tvTime.setText(dateFormat.format(new Date(event.getTime())));
+        holder.tvTime.setText(dateFormat.format(new Date(event.getTime() * 1000)));
         List<String> photos = event.getPhotos();
         if (photos != null && !photos.isEmpty()) {
             Picasso.with(context).load(photos.get(0)).into(holder.ivThumbnail);

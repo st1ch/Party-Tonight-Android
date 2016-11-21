@@ -1,35 +1,41 @@
 package app.media.opp.partytonight.domain.usecase;
 
-import android.support.annotation.Nullable;
+import com.google.android.gms.maps.model.LatLng;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
+import app.media.opp.partytonight.presentation.utils.MapUtils;
 import rx.Observable;
+import rx.Subscriber;
 
 /**
  * Created by arkadii on 10/30/16.
  */
 @UserScope
-public class GetEventsUseCase extends UseCase<List<Event>> {
+public class GetZipCodeUseCase extends UseCase<String> {
+
     private SessionRepository repository;
+    private LatLng latLng;
 
     @Inject
-    public GetEventsUseCase(SubscribeOn subscribeOn, ObserveOn observeOn, SessionRepository repository) {
+    public GetZipCodeUseCase(SubscribeOn subscribeOn, ObserveOn observeOn, SessionRepository repository) {
         super(subscribeOn, observeOn);
         this.repository = repository;
     }
 
     @Override
-    protected Observable<List<Event>> getUseCaseObservable() {
-        return repository.getEvents();
+    protected Observable<String> getUseCaseObservable() {
+        return repository.getPostalAddress(latLng);
+    }
+
+    public void setLatLng(LatLng latLng) {
+        this.latLng = latLng;
     }
 }

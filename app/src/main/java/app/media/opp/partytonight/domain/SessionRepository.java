@@ -1,6 +1,8 @@
 package app.media.opp.partytonight.domain;
 
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 import rx.Observable;
@@ -18,4 +20,6 @@ public interface SessionRepository {
     Observable<Event> createEvent(Event event);
 
     Observable<List<Event>> getEvents();
+
+    Observable<String> getPostalAddress(LatLng latLng);
 }

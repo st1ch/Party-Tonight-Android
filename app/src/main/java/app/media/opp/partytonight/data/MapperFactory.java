@@ -33,7 +33,7 @@ public class MapperFactory implements AbstractMapperFactory {
                 event.setLocation(obj.getLocation());
                 event.setPartyName(obj.getPartyName());
                 event.setTables(obj.getTables());
-                event.setTime(obj.getTime());
+                event.setTime(String.valueOf(obj.getTime()));
                 event.setTickets(obj.getTicketPrice());
                 event.setZipCode(obj.getZipCode());
 
@@ -55,7 +55,11 @@ public class MapperFactory implements AbstractMapperFactory {
                 event.setLocation(obj.getLocation());
                 event.setPartyName(obj.getPartyName());
                 event.setTables(obj.getTables());
-                event.setTime(obj.getTime());
+                try {
+                    event.setTime(Long.parseLong(obj.getTime()));
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
                 event.setTicketPrice(obj.getTickets());
                 event.setZipCode(obj.getZipCode());
 

@@ -39,6 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
                 android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                android:inputType="textCapSentences"
                 android:hint="Club name"
                 android:textSize="@dimen/edittext_curved_text_size" />
 
@@ -80,6 +81,7 @@
                 android:id="@+id/etClubCapacity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="number"
                 android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
                 android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:hint="Club capacity"
@@ -89,6 +91,7 @@
                 android:id="@+id/etTicketPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
                 android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
                 android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:hint="Tickets price"
@@ -98,6 +101,7 @@
                 android:id="@+id/etPartyName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textCapSentences"
                 android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
                 android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
                 android:hint="Party name"

@@ -45,9 +45,6 @@ public class RestApi {
     }
 
     public Observable<List<EventEntity>> getEvents() {
-        return api.getEvents().map(eventEntities -> {
-            Collections.sort(eventEntities, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
-            return eventEntities;
-        });
+        return api.getEvents(account.user().getToken());
     }
 }

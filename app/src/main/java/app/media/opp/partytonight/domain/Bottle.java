@@ -8,24 +8,24 @@ import java.io.Serializable;
 
 public class Bottle implements Serializable {
     private String type;
-    private float price;
-    private int quantity;
+    private String price;
+    private String available;
 
     public Bottle() {
     }
 
-    public Bottle(String type, float price, int quantity) {
+    public Bottle(String type, String price, String available) {
         this.type = type;
         this.price = price;
-        this.quantity = quantity;
+        this.available = available;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public void setType(String type) {
@@ -36,11 +36,20 @@ public class Bottle implements Serializable {
         return type;
     }
 
-    public float getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getAvailable() {
+        return available;
+    }
+
+    @Override
+    public String toString() {
+        return "Bottle{" +
+                "type='" + type + '\'' +
+                ", price=" + price +
+                ", available=" + available +
+                '}';
     }
 }

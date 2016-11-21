@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
+import javax.inject.Inject;
+
 /**
  * Created by piekie (Artem Vasylenko)
  * on 11/8/16
@@ -22,6 +24,12 @@ public final class MapUtils {
 
     private static HashMap<String, Double> latitudeCache;
     private static HashMap<String, Double> longitudeCache;
+    private Context context;
+
+    @Inject
+    public MapUtils(Context context) {
+        this.context = context;
+    }
 
     public static String getAddressLine(Context context, double latitude, double longitude) {
         Address address = getAddress(context, latitude, longitude);
@@ -94,6 +102,10 @@ public final class MapUtils {
         }
 
         cache.put(key, value);
+    }
+
+    public String getPostalCode(double latitude, double longitude) {
+        return MapUtils.getPostalCode(context, latitude, longitude);
     }
 
     public static String getPostalCode(Context context, double latitude, double longitude) {

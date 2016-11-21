@@ -11,8 +11,8 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="4dp"
         android:layout_marginTop="4dp"
+        android:inputType="textCapSentences"
         android:hint="Bottle Type"
-        android:inputType="text"
         android:textSize="@dimen/edittext_curved_text_size" />
 
     <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent

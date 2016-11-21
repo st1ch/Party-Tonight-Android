@@ -10,6 +10,6 @@ import java.text.DateFormatSymbols;
 public final class StringUtils {
 
     public static String getMonth(int month) {
-        return new DateFormatSymbols().getMonths()[month - 1];
+        return new DateFormatSymbols().getMonths()[month];
     }
 }

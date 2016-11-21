@@ -16,12 +16,13 @@ public class EventEntity {
     private String clubName;
     @SerializedName("party_name")
     private String partyName;
-    private long time;
+    @SerializedName("date")
+    private String time;
     private String location;
     @SerializedName("zip_code")
     private String zipCode;
     @SerializedName("club_capacity")
-    private int clubCapacity;
+    private String clubCapacity;
     private List<Bottle> bottles;
     private List<Table> tables;
     private List<Ticket> tickets;
@@ -75,11 +76,11 @@ public class EventEntity {
         this.partyName = partyName;
     }
 
-    public long getTime() {
+    public String getTime() {
         return time;
     }
 
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
 
@@ -91,11 +92,11 @@ public class EventEntity {
         this.location = location;
     }
 
-    public int getClubCapacity() {
+    public String getClubCapacity() {
         return clubCapacity;
     }
 
-    public void setClubCapacity(int clubCapacity) {
+    public void setClubCapacity(String clubCapacity) {
         this.clubCapacity = clubCapacity;
     }
 }
