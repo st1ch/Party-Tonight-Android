@@ -30,4 +30,6 @@
     <string name="passwordShouldContainOnlyLettersAndDigits">Password should contain only letters and digits</string>
     <string name="chooseDateAndTime">Choose date and time</string>
     <string name="chooseLocation">Choose location</string>
+    <string name="call_a_cab">Call a cab</string>
+    <string name="my_events">My events</string>
 </resources>

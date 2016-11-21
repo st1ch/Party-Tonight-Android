@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <LinearLayout
+        android:id="@+id/activity_goer_sign_in"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+        android:paddingRight="@dimen/activity_sign_padding_horizontal"
+        tools:context="app.media.opp.partytonight.presentation.activities.PromoterSignInActivity">
+
+        <app.media.opp.partytonight.presentation.app.view.TextViewHeader2
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="@dimen/textview_sign_title_padding"
+            android:text="@string/partyGoer"
+            android:textSize="@dimen/text_size_sign_part" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical">
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucentWithIcon
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+                android:layout_marginTop="@dimen/activity_vertical_margin_less"
+                android:drawableLeft="@mipmap/ic_account"
+                android:drawablePadding="@dimen/edittext_curved_icon_drawable_padding"
+                android:drawableStart="@mipmap/ic_account"
+                android:hint="@string/eMail"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/colorTextSignIn"
+                android:textColorHint="@color/colorTextSignIn"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/edittext_curved_text_size" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucentWithIcon
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+                android:layout_marginTop="@dimen/activity_vertical_margin_less"
+                android:drawableLeft="@mipmap/ic_password"
+                android:drawablePadding="12dp"
+                android:drawableStart="@mipmap/ic_password"
+                android:hint="@string/password"
+                android:inputType="textPassword"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:textColor="@color/colorTextSignIn"
+                android:textColorHint="@color/colorTextSignIn"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/edittext_curved_text_size" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTranslucent
+                android:id="@+id/bLogIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+                android:layout_marginTop="@dimen/activity_vertical_margin_less"
+                android:paddingBottom="@dimen/button_curved_transparent_padding_vertical"
+                android:paddingTop="@dimen/button_curved_transparent_padding_vertical"
+                android:text="@string/logIn"
+                android:textColor="@color/colorButtonTransparentText"
+                android:textSize="@dimen/button_curved_transparent_text_size" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="7"
+                android:gravity="center"
+                android:text="@string/don_t_have_an_account_yet"
+                android:textColor="@color/colorTextSignIn"
+                android:textSize="@dimen/textview_sign_message_size" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
+                android:id="@+id/bSignUp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:background="@null"
+                android:text="@string/signUp"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

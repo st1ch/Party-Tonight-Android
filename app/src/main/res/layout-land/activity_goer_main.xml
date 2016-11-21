@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+        android:paddingRight="@dimen/activity_sign_padding_horizontal"
+        android:paddingTop="16dp">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/bGoerMyEvents"
+                android:layout_width="@dimen/promoter_main_circle_button_width"
+                android:layout_height="@dimen/promoter_main_circle_button_height"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/button_circular_transparent"
+                android:padding="@dimen/promoter_main_circle_button_padding"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_wine" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bGoerMyEvents"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/my_events"
+                android:textColor="@color/colorTextViewTitle"
+                android:textSize="@dimen/textview_promoter_main_text_size" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/bGoerCallACab"
+                android:layout_width="@dimen/promoter_main_circle_button_width"
+                android:layout_height="@dimen/promoter_main_circle_button_height"
+                android:layout_centerHorizontal="true"
+                android:adjustViewBounds="true"
+                android:background="@drawable/button_circular_transparent"
+                android:padding="@dimen/promoter_main_circle_button_padding"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ic_cab" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/bGoerCallACab"
+                android:gravity="center"
+                android:padding="8dp"
+                android:text="@string/call_a_cab"
+                android:textColor="@color/colorTextViewTitle"
+                android:textSize="@dimen/textview_promoter_main_text_size" />
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>
