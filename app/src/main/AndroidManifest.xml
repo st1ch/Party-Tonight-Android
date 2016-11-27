@@ -41,6 +41,13 @@
         <activity
             android:name=".presentation.activities.CreateEventActivity"
             android:windowSoftInputMode="adjustPan" />
+        <!--<activity android:name=".presentation.activities.TempActivity">-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.MAIN" />-->
+
+                <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+        <!--</activity>-->
 
     </application>
 
