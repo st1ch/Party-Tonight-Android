@@ -84,6 +84,8 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
     AddEventPresenter presenter;
     Event event;
 
+    String[] pickedImages;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -256,13 +258,7 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
                 break;
             case MEDIA_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
-                    String[] images = data.getStringArrayExtra(PickMediaActivity.RESULT_KEY);
-
-                    for (String s : images) {
-                        Log.e("ima", s);
-                    }
-                } else {
-//                    data.ge
+                    pickedImages = data.getStringArrayExtra(PickMediaActivity.MEDIA_KEY);
                 }
             default:
                 break;
@@ -275,7 +271,11 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
         bLocation.setSelected(true);
 
         bAddPhoto.setOnClickListener(v -> {
-            startActivityForResult(new Intent(this, PickMediaActivity.class), MEDIA_PICKER);
+            Intent intent = new Intent(this, PickMediaActivity.class);
+            intent.putExtra(PickMediaActivity.MEDIA_KEY, pickedImages);
+
+            startActivityForResult(intent, MEDIA_PICKER);
+
         });
 
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);

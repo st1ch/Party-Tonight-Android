@@ -1,13 +1,12 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.kbeanie.multipicker.api.CameraImagePicker;
 import com.kbeanie.multipicker.api.ImagePicker;
@@ -28,15 +27,13 @@ import butterknife.OnClick;
  * on 11/29/16
  */
 
-public class PickMediaActivity extends AppCompatActivity {
+public class PickMediaActivity extends Activity {
 
-    public static String RESULT_KEY = "media";
+    public static String MEDIA_KEY = "media";
     @BindView(R.id.btnPickGallery)
     Button btnPickGallery;
     @BindView(R.id.btnPickPhoto)
     Button btnPickPhoto;
-    @BindView(R.id.tvMessagePickMedia)
-    TextView tvMessagePickMedia;
     @BindView(R.id.rvMedia)
     RecyclerView rvMedia;
     PickMediaAdapter mediaAdapter;
@@ -64,6 +61,11 @@ public class PickMediaActivity extends AppCompatActivity {
     }
 
     public void configure() {
+        String[] loadedAlready = getIntent().getStringArrayExtra(MEDIA_KEY);
+        if (loadedAlready != null) {
+            mediaAdapter = new PickMediaAdapter(loadedAlready);
+        }
+
         imagePicker = new ImagePicker(PickMediaActivity.this);
         imagePicker.setImagePickerCallback(imagePickerCallback);
 
@@ -82,7 +84,9 @@ public class PickMediaActivity extends AppCompatActivity {
     public void configureViews() {
         ButterKnife.bind(this);
 
-        mediaAdapter = new PickMediaAdapter();
+        if (mediaAdapter == null) {
+            mediaAdapter = new PickMediaAdapter();
+        }
 
         rvMedia.setLayoutManager(new GridLayoutManager(this, 3));
         rvMedia.setAdapter(mediaAdapter);
@@ -116,7 +120,7 @@ public class PickMediaActivity extends AppCompatActivity {
 
         Intent returnIntent = new Intent();
 
-        returnIntent.putExtra(RESULT_KEY, data);
+        returnIntent.putExtra(MEDIA_KEY, data);
 
         setResult(RESULT_OK, returnIntent);
 

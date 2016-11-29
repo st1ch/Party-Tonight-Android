@@ -25,9 +25,26 @@ import butterknife.ButterKnife;
 public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.ViewHolder> {
 
     private ArrayList<ChosenImage> data;
+    private ArrayList<String> dataAsStringArray;
 
     public PickMediaAdapter(ArrayList<ChosenImage> data) {
         this.data = data;
+    }
+
+    public PickMediaAdapter(String[] paths) {
+        data = new ArrayList<>();
+//        for (int i = 0; i < paths.length; i++) {
+//            data.add(null);
+//        }
+//
+//        dataAsStringArray.addAll(new ArrayList<>(Arrays.asList(paths)));
+
+        for (String path : paths) {
+            ChosenImage loaded = new ChosenImage();
+            loaded.setOriginalPath(path);
+
+            data.add(loaded);
+        }
     }
 
     public PickMediaAdapter() {
@@ -46,8 +63,19 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ChosenImage image = data.get(position);
+        String loadedPath;
+        if (dataAsStringArray != null) {
+            loadedPath = dataAsStringArray.get(position);
+        }
 
-        holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getThumbnailPath()));
+        if (image.getThumbnailPath() != null) {
+            holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getThumbnailPath()));
+        } else {
+            holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getOriginalPath()));
+        }
+//        } else {
+//            holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(FileUtils.getBitmapFromFile()
+//        }
 
         holder.btnRemove.setOnClickListener(v -> {
             data.remove(position);

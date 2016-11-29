@@ -11,4 +11,6 @@
         <item name="android:background">@null</item>
     </style>
 
+    <color name="colorSemiTransparent">#299f9f9f</color>
+
 </resources>
