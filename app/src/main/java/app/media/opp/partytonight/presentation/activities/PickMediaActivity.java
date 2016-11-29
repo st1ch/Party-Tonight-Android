@@ -1,9 +1,13 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -29,9 +33,14 @@ import butterknife.OnClick;
 public class PickMediaActivity extends Activity {
 
     public static String MEDIA_KEY = "media";
+    private final int PERMISSION_READ_EXTERNAL_STORAGE = 0;
+    private final int PERMISSION_WRITE_EXTERNAL_STORAGE = 1;
+    private final int PERMISSION_CAMERA = 2;
     @BindView(R.id.rvMedia)
     RecyclerView rvMedia;
     PickMediaAdapter mediaAdapter;
+    boolean canPickCamera = false;
+    boolean canPickGallery = false;
     private ImagePicker imagePicker;
     private CameraImagePicker cameraImagePicker;
     private ImagePickerCallback imagePickerCallback = new ImagePickerCallback() {
@@ -90,14 +99,96 @@ public class PickMediaActivity extends Activity {
 
     @OnClick(R.id.btnPickPhoto)
     public void onClickPickPhoto() {
-        mediaAdapter.forbidRemoving();
-        cameraImagePicker.pickImage();
+        if (canPickCamera) {
+            mediaAdapter.forbidRemoving();
+            cameraImagePicker.pickImage();
+        } else {
+            checkPermission(true);
+        }
     }
 
     @OnClick(R.id.btnPickGallery)
     public void onClickPickGallery() {
-        mediaAdapter.forbidRemoving();
-        imagePicker.pickImage();
+        if (canPickGallery) {
+            mediaAdapter.forbidRemoving();
+            imagePicker.pickImage();
+        } else {
+            checkPermission(false);
+        }
+    }
+
+    public void checkPermission(boolean toCamera) {
+        if (toCamera) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.CAMERA)) {
+
+                    // TODO: 11/30/16 need to add another asking to grant permissions
+
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.CAMERA},
+                            PERMISSION_CAMERA);
+                }
+            }
+        } else {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.READ_EXTERNAL_STORAGE)) {
+
+                    // TODO: 11/30/16 need to add another asking to grant permissions
+
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                            PERMISSION_READ_EXTERNAL_STORAGE);
+                }
+            }
+
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+
+                    // TODO: 11/30/16 need to add another asking to grant permissions
+
+                } else {
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            PERMISSION_WRITE_EXTERNAL_STORAGE);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_READ_EXTERNAL_STORAGE:
+            case PERMISSION_WRITE_EXTERNAL_STORAGE:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    canPickGallery = true;
+                } else {
+
+                }
+                break;
+            case PERMISSION_CAMERA:
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    canPickCamera = true;
+                } else {
+
+                }
+                break;
+            default:
+                break;
+        }
     }
 
     @OnClick(R.id.rvRoot)
