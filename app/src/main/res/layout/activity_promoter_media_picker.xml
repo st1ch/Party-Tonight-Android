@@ -2,14 +2,15 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorSemiTransparent">
+    android:background="@color/colorSemiTransparentBlack"
+    android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+    android:paddingRight="@dimen/activity_sign_padding_horizontal">
 
     <RelativeLayout
+        android:id="@+id/rlPickContainer"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="350dp"
         android:layout_centerInParent="true"
-        android:layout_marginLeft="@dimen/activity_sign_padding_horizontal"
-        android:layout_marginRight="@dimen/activity_sign_padding_horizontal"
         android:padding="0dp">
 
         <View
@@ -24,22 +25,20 @@
             android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
-            <Button
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBottomLeft
                 android:id="@+id/btnPickGallery"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edittext_curved_translucent_height"
                 android:layout_weight="1"
-                android:background="@drawable/bg_dialog_left_button"
                 android:text="Gallery" />
 
 
-            <Button
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBottomRight
                 android:id="@+id/btnPickPhoto"
                 android:layout_width="0dp"
                 android:layout_height="@dimen/edittext_curved_translucent_height"
                 android:layout_weight="1"
-                android:background="@drawable/bg_dialog_right_button"
-                android:text="Photo" />
+                android:text="Camera" />
 
         </LinearLayout>
 
@@ -51,5 +50,13 @@
             android:layout_alignParentTop="true" />
 
     </RelativeLayout>
+
+    <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+        android:id="@+id/btnSubmitPick"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:layout_below="@id/rlPickContainer"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="Okay" />
 
 </RelativeLayout>

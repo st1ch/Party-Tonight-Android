@@ -1,9 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item>
-        <shape>
+    <item android:state_pressed="false">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
             <solid android:color="@color/colorButtonCurvedGray" />
+
+            <corners android:bottomRightRadius="@dimen/edittext_curved_radius" />
+        </shape>
+    </item>
+
+    <item android:state_pressed="true">
+        <shape xmlns:android="http://schemas.android.com/apk/res/android">
+            <solid android:color="@color/colorButtonCurvedGrayPressed" />
 
             <corners android:bottomRightRadius="@dimen/edittext_curved_radius" />
         </shape>
