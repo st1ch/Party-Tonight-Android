@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.ViewHolder> {
 
     private ArrayList<ChosenImage> data;
-    private ArrayList<String> dataAsStringArray;
+    private RecyclerView parent;
 
     public PickMediaAdapter(ArrayList<ChosenImage> data) {
         this.data = data;
@@ -33,11 +33,6 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
 
     public PickMediaAdapter(String[] paths) {
         data = new ArrayList<>();
-//        for (int i = 0; i < paths.length; i++) {
-//            data.add(null);
-//        }
-//
-//        dataAsStringArray.addAll(new ArrayList<>(Arrays.asList(paths)));
 
         for (String path : paths) {
             ChosenImage loaded = new ChosenImage();
@@ -61,21 +56,51 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
     }
 
     @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+
+        parent = recyclerView;
+    }
+
+    public void allowRemoving() {
+        if (parent != null) {
+
+            for (int i = 0; i < parent.getLayoutManager().getChildCount(); i++) {
+                parent.getLayoutManager()
+                        .getChildAt(i)
+                        .findViewById(R.id.btnRemoveItem)
+                        .setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    public void forbidRemoving() {
+        if (parent != null) {
+
+            for (int i = 0; i < parent.getLayoutManager().getChildCount(); i++) {
+                parent.getLayoutManager()
+                        .getChildAt(i)
+                        .findViewById(R.id.btnRemoveItem)
+                        .setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         ChosenImage image = data.get(position);
-        String loadedPath;
-        if (dataAsStringArray != null) {
-            loadedPath = dataAsStringArray.get(position);
-        }
 
         if (image.getThumbnailPath() != null) {
             holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getThumbnailPath()));
         } else {
             holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getOriginalPath()));
         }
-//        } else {
-//            holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(FileUtils.getBitmapFromFile()
-//        }
+
+
+        holder.ivContent.setOnLongClickListener(v -> {
+            allowRemoving();
+            return false;
+        });
 
         holder.btnRemove.setOnClickListener(v -> {
             data.remove(position);
@@ -95,6 +120,8 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
     }
 
     public void addItems(List<ChosenImage> imageList) {
+        forbidRemoving();
+
         data.addAll(imageList);
 
         notifyDataSetChanged();
@@ -129,6 +156,5 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
 
             ButterKnife.bind(this, itemView);
         }
-
     }
 }

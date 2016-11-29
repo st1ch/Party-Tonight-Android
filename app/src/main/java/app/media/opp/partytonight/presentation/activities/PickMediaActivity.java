@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Button;
 
 import com.kbeanie.multipicker.api.CameraImagePicker;
 import com.kbeanie.multipicker.api.ImagePicker;
@@ -30,10 +29,6 @@ import butterknife.OnClick;
 public class PickMediaActivity extends Activity {
 
     public static String MEDIA_KEY = "media";
-    @BindView(R.id.btnPickGallery)
-    Button btnPickGallery;
-    @BindView(R.id.btnPickPhoto)
-    Button btnPickPhoto;
     @BindView(R.id.rvMedia)
     RecyclerView rvMedia;
     PickMediaAdapter mediaAdapter;
@@ -95,12 +90,24 @@ public class PickMediaActivity extends Activity {
 
     @OnClick(R.id.btnPickPhoto)
     public void onClickPickPhoto() {
+        mediaAdapter.forbidRemoving();
         cameraImagePicker.pickImage();
     }
 
     @OnClick(R.id.btnPickGallery)
     public void onClickPickGallery() {
+        mediaAdapter.forbidRemoving();
         imagePicker.pickImage();
+    }
+
+    @OnClick(R.id.rvRoot)
+    public void onClickOutsideContainer() {
+        mediaAdapter.forbidRemoving();
+    }
+
+    @OnClick(R.id.btnSubmitPick)
+    public void onClickSubmitPick() {
+        onBackPressed();
     }
 
     @Override

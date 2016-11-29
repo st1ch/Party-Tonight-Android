@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rvRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorSemiTransparentBlack"
+    android:clickable="true"
     android:paddingLeft="@dimen/activity_sign_padding_horizontal"
     android:paddingRight="@dimen/activity_sign_padding_horizontal">
 
