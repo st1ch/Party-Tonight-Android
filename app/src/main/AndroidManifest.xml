@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".presentation.PartyTonightApplication"
@@ -19,10 +22,10 @@
             android:value="AIzaSyBDKujpmEX2DWKTOZjeU66lI2EAEcEg1Ng" />
 
         <activity android:name=".presentation.activities.LaunchScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
@@ -36,11 +39,22 @@
             <!--<category android:name="android.intent.category.LAUNCHER" />-->
             <!--</intent-filter>-->
         </activity>
-        <activity android:name=".presentation.activities.PromoterEventsActivity" />
+        <activity
+            android:name=".presentation.activities.PromoterEventsActivity"
+            android:label="Events" />
 
         <activity
             android:name=".presentation.activities.CreateEventActivity"
-            android:windowSoftInputMode="adjustPan" />
+            android:label="Create Event"
+            android:windowSoftInputMode="adjustPan">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".presentation.activities.PickMediaActivity">
+
+        </activity>
 
     </application>
 

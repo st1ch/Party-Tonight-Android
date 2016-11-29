@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/activity_sign_padding_horizontal"
+        android:layout_marginRight="@dimen/activity_sign_padding_horizontal"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/bg_dialog" />
+
+        <LinearLayout
+            android:id="@+id/llDialogButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btnPickGallery"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_weight="1"
+                android:background="@drawable/bg_dialog_left_button"
+                android:text="Gallery" />
+
+
+            <Button
+                android:id="@+id/btnPickPhoto"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_weight="1"
+                android:background="@drawable/bg_dialog_right_button"
+                android:text="Photo" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMedia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@+id/llDialogButtons"
+            android:layout_alignParentTop="true" />
+
+        <TextView
+            android:id="@+id/tvMessagePickMedia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Pick media"
+            android:textColor="#ffffff" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

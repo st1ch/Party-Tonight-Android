@@ -4,8 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -14,7 +12,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.fastaccess.datetimepicker.DatePickerFragmentDialog;
 import com.fastaccess.datetimepicker.DateTimeBuilder;
@@ -24,8 +21,6 @@ import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesRepairableException;
 import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -40,7 +35,6 @@ import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
-import app.media.opp.partytonight.presentation.dialogs.ProgressDialogFragment;
 import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -56,6 +50,8 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
         View.OnClickListener {
 
     public static final int PLACE_PICKER = 1;
+    public static final int MEDIA_PICKER = 2;
+
     public static final String EVENT = "event";
 
     @BindView(R.id.toolbar)
@@ -252,11 +248,22 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
             case PLACE_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
                     Place place = PlacePicker.getPlace(this, data);
+
                     event.setLocation(place.getAddress().toString());
                     presenter.onLocationDefined(place.getLatLng());
                     bLocation.setText(event.getLocation());
                 }
                 break;
+            case MEDIA_PICKER:
+                if (resultCode == Activity.RESULT_OK) {
+                    String[] images = data.getStringArrayExtra(PickMediaActivity.RESULT_KEY);
+
+                    for (String s : images) {
+                        Log.e("ima", s);
+                    }
+                } else {
+//                    data.ge
+                }
             default:
                 break;
         }
@@ -266,6 +273,10 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
 
     public void configureViews() {
         bLocation.setSelected(true);
+
+        bAddPhoto.setOnClickListener(v -> {
+            startActivityForResult(new Intent(this, PickMediaActivity.class), MEDIA_PICKER);
+        });
 
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
     }

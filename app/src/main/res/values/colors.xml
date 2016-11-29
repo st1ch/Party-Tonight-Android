@@ -16,7 +16,7 @@
     <color name="colorTextViewTitle">#ffffff</color>
 
     <!-- Button in signing part -->
-    <color name="colorButtonTransparent">#1effffff</color>
+    <color name="colorButtonTransparent">#37ffffff</color>
     <color name="colorButtonTransparentPressed">#64ffffff</color>
     <color name="colorButtonTransparentStroke">#ffffff</color>
     <color name="colorButtonTransparentText">#ffffff</color>
