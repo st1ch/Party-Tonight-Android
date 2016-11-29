@@ -62,18 +62,6 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
         parent = recyclerView;
     }
 
-    public void allowRemoving() {
-        if (parent != null) {
-
-            for (int i = 0; i < parent.getLayoutManager().getChildCount(); i++) {
-                parent.getLayoutManager()
-                        .getChildAt(i)
-                        .findViewById(R.id.btnRemoveItem)
-                        .setVisibility(View.VISIBLE);
-            }
-        }
-    }
-
     public void forbidRemoving() {
         if (parent != null) {
 
@@ -98,13 +86,14 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
 
 
         holder.ivContent.setOnLongClickListener(v -> {
-            allowRemoving();
+            forbidRemoving();
+            holder.btnRemove.setVisibility(View.VISIBLE);
             return false;
         });
 
         holder.btnRemove.setOnClickListener(v -> {
-            data.remove(position);
-            notifyDataSetChanged();
+            removeItem(position);
+            holder.btnRemove.setVisibility(View.GONE);
         });
     }
 
@@ -114,14 +103,14 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
     }
 
     public void removeItem(int position) {
-        data.remove(position);
+        if (position >= data.size()) {
+            data.remove(data.size() - 1);
+        } else data.remove(position);
 
         notifyItemRemoved(position);
     }
 
     public void addItems(List<ChosenImage> imageList) {
-        forbidRemoving();
-
         data.addAll(imageList);
 
         notifyDataSetChanged();

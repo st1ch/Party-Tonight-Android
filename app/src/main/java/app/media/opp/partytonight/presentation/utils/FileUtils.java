@@ -21,4 +21,9 @@ public final class FileUtils {
         }
         return null;
     }
+
+    public static boolean removeFile(String path) {
+        File file = new File(path);
+        return file.delete();
+    }
 }
