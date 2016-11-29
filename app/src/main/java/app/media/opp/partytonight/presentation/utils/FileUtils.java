@@ -26,4 +26,10 @@ public final class FileUtils {
         File file = new File(path);
         return file.delete();
     }
+
+    public static void removeFiles(String paths[]) {
+        for (String path : paths) {
+            removeFile(path);
+        }
+    }
 }

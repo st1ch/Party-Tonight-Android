@@ -84,7 +84,6 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
             holder.ivContent.setImageBitmap(FileUtils.getBitmapFromFile(image.getOriginalPath()));
         }
 
-
         holder.ivContent.setOnLongClickListener(v -> {
             forbidRemoving();
             holder.btnRemove.setVisibility(View.VISIBLE);
@@ -97,6 +96,17 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
         });
     }
 
+    public void removeThumbnails() {
+        ArrayList<String> thumbnails = new ArrayList<>(data.size() * 2);
+
+        for (ChosenImage image : data) {
+            thumbnails.add(image.getThumbnailPath());
+            thumbnails.add(image.getThumbnailSmallPath());
+        }
+
+        FileUtils.removeFiles(thumbnails.toArray(new String[thumbnails.size()]));
+    }
+
     @Override
     public int getItemCount() {
         return data.size();
@@ -105,7 +115,13 @@ public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.View
     public void removeItem(int position) {
         if (position >= data.size()) {
             data.remove(data.size() - 1);
-        } else data.remove(position);
+        } else {
+            FileUtils.removeFile(data.get(position).getThumbnailPath());
+            FileUtils.removeFile(data.get(position).getThumbnailSmallPath());
+            FileUtils.removeFile(data.get(position).getOriginalPath());
+
+            data.remove(position);
+        }
 
         notifyItemRemoved(position);
     }

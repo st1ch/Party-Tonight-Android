@@ -124,6 +124,7 @@ public class PickMediaActivity extends Activity {
     @Override
     public void finish() {
         String[] data = mediaAdapter.getItemsAsArray();
+        mediaAdapter.removeThumbnails();
 
         Intent returnIntent = new Intent();
 

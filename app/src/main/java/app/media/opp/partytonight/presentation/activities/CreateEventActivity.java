@@ -275,7 +275,6 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
             intent.putExtra(PickMediaActivity.MEDIA_KEY, pickedImages);
 
             startActivityForResult(intent, MEDIA_PICKER);
-
         });
 
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
