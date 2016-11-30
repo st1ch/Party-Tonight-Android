@@ -16,6 +16,7 @@ import app.media.opp.partytonight.data.rest.PartyTonightApi;
 import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.SessionRepository;
+import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
 import dagger.Module;
 import dagger.Provides;
@@ -50,8 +51,8 @@ public class AccountModule {
     @UserScope
     public SessionRepository provideRepository(RestApi restApi, MapUtils mapUtils,
                                                Account account,
-                                               AbstractMapperFactory abstractMapperFactory) {
-        return new SessionDataRepository(restApi, account, abstractMapperFactory, mapUtils);
+                                               AbstractMapperFactory abstractMapperFactory, FileUtils fileUtils) {
+        return new SessionDataRepository(restApi, account, abstractMapperFactory, mapUtils, fileUtils);
     }
 
 }

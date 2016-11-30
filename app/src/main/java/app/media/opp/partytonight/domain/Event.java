@@ -16,6 +16,7 @@ public class Event implements Serializable {
     private long time;
     private String location;
     private List<String> photos = new ArrayList<>();
+    private List<String> localPhotos = new ArrayList<>();
     private String zipCode;
     private String clubCapacity;
     private List<Ticket> ticketPrice = new ArrayList<>();
@@ -28,6 +29,10 @@ public class Event implements Serializable {
 
     public void setZipCode(String zipCode) {
         this.zipCode = zipCode;
+    }
+
+    public List<String> getLocalPhotos() {
+        return localPhotos;
     }
 
     public String getClubName() {
@@ -110,6 +115,7 @@ public class Event implements Serializable {
                 ", time=" + time +
                 ", location='" + location + '\'' +
                 ", photos=" + photos +
+                ", localPhotos=" + localPhotos +
                 ", zipCode='" + zipCode + '\'' +
                 ", clubCapacity='" + clubCapacity + '\'' +
                 ", ticketPrice=" + ticketPrice +

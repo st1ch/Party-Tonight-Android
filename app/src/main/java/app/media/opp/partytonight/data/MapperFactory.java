@@ -1,5 +1,8 @@
 package app.media.opp.partytonight.data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.User;
 
@@ -10,6 +13,7 @@ public class MapperFactory implements AbstractMapperFactory {
 
     @Override
     public Mapper<User, UserEntity> getUserEntityMapper() {
+
         return obj -> new UserEntity(
                 obj.getUserName(),
                 obj.getEmail(),
@@ -36,7 +40,11 @@ public class MapperFactory implements AbstractMapperFactory {
                 event.setTime(String.valueOf(obj.getTime()));
                 event.setTickets(obj.getTicketPrice());
                 event.setZipCode(obj.getZipCode());
-
+                List<PhotoEntity> remotePhotos = new ArrayList<>();
+                for (String s : obj.getPhotos()) {
+                    remotePhotos.add(new PhotoEntity(s));
+                }
+                event.setPhotos(remotePhotos);
                 return event;
             }
         };
