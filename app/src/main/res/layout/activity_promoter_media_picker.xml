@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/rvRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorSemiTransparentBlack"
+    android:clickable="true"
+    android:paddingLeft="@dimen/activity_sign_padding_horizontal"
+    android:paddingRight="@dimen/activity_sign_padding_horizontal">
+
+    <RelativeLayout
+        android:id="@+id/rlPickContainer"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/promoter_pick_media_container_height"
+        android:layout_centerInParent="true"
+        android:padding="0dp">
+
+        <app.media.opp.partytonight.presentation.app.view.ButtonCurvedGray
+            android:id="@+id/btnSubmitPick"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/edittext_curved_translucent_height"
+            android:layout_alignParentBottom="true"
+            android:text="@string/promoter_pick_media_submit" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@id/btnSubmitPick"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:background="@drawable/bg_dialog" />
+
+        <LinearLayout
+            android:id="@+id/llDialogButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/btnSubmitPick"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
+            android:orientation="horizontal">
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBottomLeft
+                android:id="@+id/btnPickGallery"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_weight="1"
+                android:text="@string/promoter_pick_media_gallery" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBottomRight
+                android:id="@+id/btnPickPhoto"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edittext_curved_translucent_height"
+                android:layout_weight="1"
+                android:text="@string/promoter_pick_media_camera" />
+
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvMedia"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_above="@+id/llDialogButtons"
+            android:layout_alignParentTop="true" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

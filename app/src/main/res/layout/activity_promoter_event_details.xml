@@ -23,6 +23,7 @@
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="false"
             app:label="Door revenue: "
+            app:label_gravity="center_vertical"
             app:src="@mipmap/ic_tickets"
             app:textSize="22sp" />
 
@@ -35,6 +36,7 @@
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Bottles"
+            app:label_gravity="center_vertical"
             app:src="@mipmap/ic_bottles"
             app:textSize="22sp" />
 
@@ -47,6 +49,7 @@
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Tables"
+            app:label_gravity="center_vertical"
             app:src="@mipmap/ic_table"
             app:textSize="22sp" />
 
@@ -59,6 +62,7 @@
             android:background="@color/colorButtonGraySemiTransparent"
             android:clickable="true"
             app:label="Statement total"
+            app:label_gravity="center_vertical"
             app:src="@mipmap/ic_money"
             app:textSize="22sp" />
 

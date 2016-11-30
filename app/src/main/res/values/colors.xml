@@ -16,7 +16,7 @@
     <color name="colorTextViewTitle">#ffffff</color>
 
     <!-- Button in signing part -->
-    <color name="colorButtonTransparent">#1effffff</color>
+    <color name="colorButtonTransparent">#37ffffff</color>
     <color name="colorButtonTransparentPressed">#64ffffff</color>
     <color name="colorButtonTransparentStroke">#ffffff</color>
     <color name="colorButtonTransparentText">#ffffff</color>
@@ -39,10 +39,19 @@
 
     <color name="colorToolbarBackground">#212121</color>
 
-    <color name="colorButtonCurvedGray">#64ffffff</color>
-    <color name="colorButtonCurvedGrayPressed">#78ffffff</color>
+    <color name="colorButtonCurvedGray">#8d8e8e8e</color>
+    <color name="colorButtonCurvedGrayPressed">#78d4d4d4</color>
 
     <color name="colorButtonGraySemiTransparent">#646e6e6e</color>
     <color name="colorButtonGraySemiTransparentPressed">#64cecece</color>
+
+
+    <color name="colorButtonCurvedBlackNotPressed">#3c4e4e4e</color>
+    <color name="colorButtonCurvedBlackPressed">#3c797979</color>
+
+    <color name="colorSemiTransparentBlack">#9a000000</color>
+    <color name="colorSemiTransparentGray">#b7393939</color>
+    <color name="colorBackgroundGray">#a3212121</color>
+
 
 </resources>

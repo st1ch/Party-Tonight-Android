@@ -65,4 +65,17 @@ public final class ToolbarUtils {
 
     }
 
+    public static void configureToolbarAsActionBar(AppCompatActivity activity, Toolbar toolbar,
+                                                   boolean backButtonAvailable, boolean cartButtonAvailable) {
+
+        configureToolbarAsActionBar(activity, toolbar, backButtonAvailable);
+
+        if (cartButtonAvailable) {
+            ImageButton btnCart = (ImageButton) toolbar.findViewById(R.id.btnCart);
+
+            btnCart.setVisibility(View.VISIBLE);
+        }
+    }
+
+
 }

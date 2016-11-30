@@ -45,5 +45,12 @@
     <dimen name="textview_promoter_main_text_size">20sp</dimen>
     <dimen name="promoter_main_circle_button_padding">36dp</dimen>
     <dimen name="textview_default_text_size">14sp</dimen>
+    <dimen name="promoter_pick_media_container_height">350dp</dimen>
+    <dimen name="promoter_pick_media_container_height_landscape">160dp</dimen>
+    <dimen name="promoter_pick_media_image_width">96dp</dimen>
+    <dimen name="promoter_pick_media_image_corner_radius">6dp</dimen>
+    <dimen name="promoter_pick_media_remove_button">64dp</dimen>
+    <dimen name="promoter_pick_media_padding">8dp</dimen>
+    <dimen name="promoter_pick_media_container_width_landscape">300dp</dimen>
 
 </resources>
