@@ -13,7 +13,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBDKujpmEX2DWKTOZjeU66lI2EAEcEg1Ng" />
@@ -21,6 +20,7 @@
         <activity android:name=".presentation.activities.LaunchScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -29,26 +29,28 @@
         <activity
             android:name=".presentation.activities.PromoterSignUpActivity"
             android:windowSoftInputMode="adjustPan" />
-
         <activity android:name=".presentation.activities.MainActivity">
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
+
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity>
         <activity android:name=".presentation.activities.PromoterEventsActivity" />
-
         <activity
             android:name=".presentation.activities.CreateEventActivity"
             android:windowSoftInputMode="adjustPan" />
-        <!--<activity android:name=".presentation.activities.TempActivity">-->
-            <!--<intent-filter>-->
-                <!--<action android:name="android.intent.action.MAIN" />-->
+        <!-- <activity android:name=".presentation.activities.TempActivity"> -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.MAIN" /> -->
 
-                <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
-        <!--</activity>-->
 
+        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+        <!-- </intent-filter> -->
+        <!-- </activity> -->
+
+        <activity android:name=".presentation.activities.EventScreenActivity" />
+        <activity android:name=".presentation.activities.EventDetailsContainerActivity"></activity>
     </application>
 
 </manifest>

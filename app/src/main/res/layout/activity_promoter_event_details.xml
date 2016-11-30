@@ -17,6 +17,7 @@
         android:orientation="vertical">
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:id="@+id/ediDoorRevenue"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
@@ -28,6 +29,7 @@
         <include layout="@layout/divider_horizontal" />
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:id="@+id/ediBottles"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
@@ -39,6 +41,7 @@
         <include layout="@layout/divider_horizontal" />
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:id="@+id/ediTables"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
@@ -50,6 +53,7 @@
         <include layout="@layout/divider_horizontal" />
 
         <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+            android:id="@+id/ediStatementTotal"
             android:layout_width="match_parent"
             android:layout_height="72dp"
             android:background="@color/colorButtonGraySemiTransparent"
