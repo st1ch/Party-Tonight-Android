@@ -5,12 +5,16 @@ import java.util.List;
 import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import rx.Observable;
 
 /**
@@ -33,5 +37,9 @@ public interface PartyTonightApi {
     @Headers({"Content-Type: application/json", "Content-Length: 0"})
     @GET("maker/event/get")
     Observable<List<EventEntity>> getEvents(@Header("x-auth-token") String token);
+
+    @Multipart
+    @POST("maker/event/image")
+    Call<String> uploadFile(@Header("x-auth-token") String token, @Part MultipartBody.Part part);
 }
 

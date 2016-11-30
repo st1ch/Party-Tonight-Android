@@ -26,7 +26,16 @@ public class EventEntity {
     private List<Bottle> bottles;
     private List<Table> tables;
     private List<Ticket> tickets;
+    private List<PhotoEntity> photos;
 
+
+    public List<PhotoEntity> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<PhotoEntity> photos) {
+        this.photos = photos;
+    }
 
     public List<Bottle> getBottles() {
         return bottles;

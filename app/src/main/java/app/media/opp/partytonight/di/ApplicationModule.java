@@ -9,6 +9,7 @@ import app.media.opp.partytonight.data.di.DataModule;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.utils.FileUtils;
 import dagger.Module;
 import dagger.Provides;
 import rx.android.schedulers.AndroidSchedulers;
@@ -27,6 +28,12 @@ public class ApplicationModule {
     Context provideApplicationContext() {
         Log.e("module", "app");
         return application;
+    }
+
+    @Provides
+    @Singleton
+    FileUtils provideFileUtils(Context context) {
+        return new FileUtils(context);
     }
 
     @Provides

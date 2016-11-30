@@ -259,6 +259,11 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
             case MEDIA_PICKER:
                 if (resultCode == Activity.RESULT_OK) {
                     pickedImages = data.getStringArrayExtra(PickMediaActivity.MEDIA_KEY);
+                    List<String> localPhotos = event.getLocalPhotos();
+                    localPhotos.clear();
+                    for (String pickedImage : pickedImages) {
+                        localPhotos.add(pickedImage);
+                    }
                 }
             default:
                 break;

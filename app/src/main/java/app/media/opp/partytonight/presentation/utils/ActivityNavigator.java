@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
+import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
+import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
 import app.media.opp.partytonight.presentation.activities.MainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
@@ -88,5 +90,23 @@ public class ActivityNavigator {
     public void startPromoterEventsActivity(Context context) {
         Intent intent = new Intent(context, PromoterEventsActivity.class);
         context.startActivity(intent);
+    }
+
+    public void startBottleScreen(Activity activity) {
+        Intent intent = EventDetailsContainerActivity.launchIntent(activity,
+                EventDetailsContainerActivity.BOTTLES);
+        activity.startActivity(intent);
+    }
+
+    public void startTableScreen(Activity activity) {
+        Intent intent = EventDetailsContainerActivity.launchIntent(activity,
+                EventDetailsContainerActivity.TABLES);
+        activity.startActivity(intent);
+    }
+
+    public void startStatementTotalScreen(Activity activity) {
+        Intent intent = EventDetailsContainerActivity.launchIntent(activity,
+                EventDetailsContainerActivity.STATEMENT);
+        activity.startActivity(intent);
     }
 }

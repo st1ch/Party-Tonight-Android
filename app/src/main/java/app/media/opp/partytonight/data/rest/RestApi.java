@@ -3,6 +3,7 @@ package app.media.opp.partytonight.data.rest;
 import android.content.Context;
 import android.util.Base64;
 
+import java.io.File;
 import java.util.Collections;
 import java.util.List;
 
@@ -11,6 +12,10 @@ import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import retrofit2.Call;
 import rx.Observable;
 
 /**
@@ -46,5 +51,13 @@ public class RestApi {
 
     public Observable<List<EventEntity>> getEvents() {
         return api.getEvents(account.user().getToken());
+    }
+
+    public Call<String> uploadFile(String localFile) {
+        File file = new File(localFile);
+        RequestBody requestFile =
+                RequestBody.create(MediaType.parse("multipart/form-data"), file);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        return api.uploadFile(account.user().getToken(), part);
     }
 }
