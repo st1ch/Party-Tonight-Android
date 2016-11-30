@@ -99,25 +99,21 @@ public class PickMediaActivity extends Activity {
 
     @OnClick(R.id.btnPickPhoto)
     public void onClickPickPhoto() {
-        if (canPickCamera) {
+        if (canPickCamera || checkPermission(true)) {
             mediaAdapter.forbidRemoving();
             cameraImagePicker.pickImage();
-        } else {
-            checkPermission(true);
         }
     }
 
     @OnClick(R.id.btnPickGallery)
     public void onClickPickGallery() {
-        if (canPickGallery) {
+        if (canPickGallery || checkPermission(false)) {
             mediaAdapter.forbidRemoving();
             imagePicker.pickImage();
-        } else {
-            checkPermission(false);
         }
     }
 
-    public void checkPermission(boolean toCamera) {
+    public boolean checkPermission(boolean toCamera) {
         if (toCamera) {
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
@@ -131,6 +127,9 @@ public class PickMediaActivity extends Activity {
                             new String[]{Manifest.permission.CAMERA},
                             PERMISSION_CAMERA);
                 }
+            } else {
+                canPickCamera = true;
+                return true;
             }
         } else {
             if (ContextCompat.checkSelfPermission(this,
@@ -145,22 +144,27 @@ public class PickMediaActivity extends Activity {
                             new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
                             PERMISSION_READ_EXTERNAL_STORAGE);
                 }
-            }
+            } else {
 
-            if (ContextCompat.checkSelfPermission(this,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
-                        Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                if (ContextCompat.checkSelfPermission(this,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                            Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                    // TODO: 11/30/16 need to add another asking to grant permissions
+                        // TODO: 11/30/16 need to add another asking to grant permissions
 
+                    } else {
+                        ActivityCompat.requestPermissions(this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                PERMISSION_WRITE_EXTERNAL_STORAGE);
+                    }
                 } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                            PERMISSION_WRITE_EXTERNAL_STORAGE);
+                    canPickGallery = true;
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     @Override
