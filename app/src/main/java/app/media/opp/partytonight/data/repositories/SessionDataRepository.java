@@ -15,6 +15,7 @@ import java.util.List;
 import app.media.opp.partytonight.data.AbstractMapperFactory;
 import app.media.opp.partytonight.data.Constants;
 import app.media.opp.partytonight.data.EventEntity;
+import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.Mapper;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
@@ -110,10 +111,10 @@ public class SessionDataRepository implements SessionRepository {
                 try {
                     File uploadableImageFile = fileUtils.createUploadableImageFile(localPhoto, Constants.IMAGE_SIZES.IMAGE_SIZE);
                     String absolutePath = uploadableImageFile.getAbsolutePath();
-                    Response<String> execute = restApi.uploadFile(absolutePath).execute();
+                    Response<FileEntity> execute = restApi.uploadFile(absolutePath).execute();
                     FileUtils.removeFile(absolutePath);
                     if (execute.isSuccessful()) {
-                        photos.add(execute.body());
+                        photos.add(execute.body().getPath());
                     }
                 } catch (IOException e) {
                     Log.e("SessionRepository", String.valueOf(e));

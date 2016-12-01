@@ -8,10 +8,12 @@ import java.util.Collections;
 import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
+import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.presentation.utils.FileUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -53,11 +55,11 @@ public class RestApi {
         return api.getEvents(account.user().getToken());
     }
 
-    public Call<String> uploadFile(String localFile) {
+    public Call<FileEntity> uploadFile(String localFile) {
         File file = new File(localFile);
         RequestBody requestFile =
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
-        MultipartBody.Part part = MultipartBody.Part.createFormData("image", file.getName(), requestFile);
+        MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         return api.uploadFile(account.user().getToken(), part);
     }
 }

@@ -3,6 +3,7 @@ package app.media.opp.partytonight.data.rest;
 import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
+import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import okhttp3.MultipartBody;
@@ -40,6 +41,6 @@ public interface PartyTonightApi {
 
     @Multipart
     @POST("maker/event/image")
-    Call<String> uploadFile(@Header("x-auth-token") String token, @Part MultipartBody.Part part);
+    Call<FileEntity> uploadFile(@Header("x-auth-token") String token, @Part MultipartBody.Part part);
 }
 
