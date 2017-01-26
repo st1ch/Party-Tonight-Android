@@ -327,7 +327,6 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bCreate:
-                //TODO set fields of event
                 setFields();
                 if (isValid(event))
                 presenter.onAddButtonClick(event);

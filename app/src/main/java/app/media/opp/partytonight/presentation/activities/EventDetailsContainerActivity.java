@@ -9,6 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.presentation.fragments.BottleScreenFragment;
+import app.media.opp.partytonight.presentation.fragments.StatementTotalFragment;
+import app.media.opp.partytonight.presentation.fragments.TableScreenFragment;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 
@@ -17,10 +21,12 @@ public class EventDetailsContainerActivity extends AppCompatActivity {
     public static final int TABLES = 2;
     public static final int STATEMENT = 3;
     public static final String WHAT = "what";
+    public static final String EVENT = "event";
 
-    public static Intent launchIntent(Context context, int what) {
+    public static Intent launchIntent(Context context, int what, Event event) {
         Intent intent = new Intent(context, EventDetailsContainerActivity.class);
         intent.putExtra(WHAT, what);
+        intent.putExtra(EVENT, event);
         return intent;
     }
 
@@ -36,15 +42,19 @@ public class EventDetailsContainerActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
 
-        int what = getIntent().getIntExtra(WHAT, 0);
+        Intent intent = getIntent();
+        int what = intent.getIntExtra(WHAT, 0);
+        Event event = (Event) intent.getSerializableExtra(EVENT);
         Fragment fragment = null;
         switch (what) {
             case BOTTLES:
-
+                fragment = BottleScreenFragment.newInstance(event);
                 break;
             case TABLES:
+                fragment = TableScreenFragment.newInstance(event);
                 break;
             case STATEMENT:
+                fragment = StatementTotalFragment.newInstance(event);
                 break;
         }
         if (fragment != null) {

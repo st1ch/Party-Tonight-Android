@@ -13,6 +13,7 @@ import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -61,5 +62,9 @@ public class RestApi {
                 RequestBody.create(MediaType.parse("multipart/form-data"), file);
         MultipartBody.Part part = MultipartBody.Part.createFormData("file", file.getName(), requestFile);
         return api.uploadFile(account.user().getToken(), part);
+    }
+
+    public Observable<Revenue> getEventRevenue(String partyName, String token) {
+        return api.getEventRevenue(partyName, token);
     }
 }

@@ -6,6 +6,7 @@ import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
+import app.media.opp.partytonight.domain.Revenue;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -42,5 +43,9 @@ public interface PartyTonightApi {
     @Multipart
     @POST("maker/event/image")
     Call<FileEntity> uploadFile(@Header("x-auth-token") String token, @Part MultipartBody.Part part);
+
+    @Headers({"Content-Type: application/json", "Content-Length: 0"})
+    @GET("maker/event/revenue")
+    Observable<Revenue> getEventRevenue(@Header("partyName") String partyName, @Header("x-auth-token") String token);
 }
 

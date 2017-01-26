@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -19,6 +18,7 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.adapters.EventsAdapter;
 import app.media.opp.partytonight.presentation.presenters.PromoterEventsPresenter;
+import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import app.media.opp.partytonight.presentation.views.IEventListView;
 import butterknife.BindView;
@@ -35,6 +35,7 @@ public class PromoterEventsActivity extends AppCompatActivity implements IEventL
     @Inject
     PromoterEventsPresenter presenter;
     private EventsAdapter adapter;
+    private ActivityNavigator navigator = new ActivityNavigator();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +46,9 @@ public class PromoterEventsActivity extends AppCompatActivity implements IEventL
         configureViews();
         rvEvents.setLayoutManager(new LinearLayoutManager(this));
         adapter = new EventsAdapter(this);
+        adapter.setListener((position, event) ->
+                navigator.startEventScreenActivity(PromoterEventsActivity.this, event)
+        );
         rvEvents.setAdapter(adapter);
         presenter.onCreate(this);
     }

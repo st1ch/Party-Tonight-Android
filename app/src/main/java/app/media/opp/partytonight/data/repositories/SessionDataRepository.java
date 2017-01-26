@@ -23,6 +23,7 @@ import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Pair;
+import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
@@ -99,6 +100,11 @@ public class SessionDataRepository implements SessionRepository {
                 }
             }
         });
+    }
+
+    @Override
+    public Observable<Revenue> getEventRevenue(Event event) {
+        return restApi.getEventRevenue(event.getPartyName(), account.user().getToken());
     }
 
     @Override

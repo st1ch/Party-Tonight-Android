@@ -3,7 +3,9 @@ package app.media.opp.partytonight.presentation.utils;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
+import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
@@ -82,6 +84,10 @@ public class ActivityNavigator {
         mActivityContext.finish();
     }
 
+    public void startEventScreenActivity(Activity activity, Event event) {
+        activity.startActivity(EventScreenActivity.launchIntent(activity, event));
+    }
+
     public void startPromoterCreateEventActivity(Context context) {
         Intent intent = new Intent(context, CreateEventActivity.class);
         context.startActivity(intent);
@@ -92,21 +98,22 @@ public class ActivityNavigator {
         context.startActivity(intent);
     }
 
-    public void startBottleScreen(Activity activity) {
+    public void startBottleScreen(Activity activity, Event event) {
+        Log.e("ActivityNavigator", "startBottle");
         Intent intent = EventDetailsContainerActivity.launchIntent(activity,
-                EventDetailsContainerActivity.BOTTLES);
+                EventDetailsContainerActivity.BOTTLES, event);
         activity.startActivity(intent);
     }
 
-    public void startTableScreen(Activity activity) {
+    public void startTableScreen(Activity activity, Event event) {
         Intent intent = EventDetailsContainerActivity.launchIntent(activity,
-                EventDetailsContainerActivity.TABLES);
+                EventDetailsContainerActivity.TABLES, event);
         activity.startActivity(intent);
     }
 
-    public void startStatementTotalScreen(Activity activity) {
+    public void startStatementTotalScreen(Activity activity, Event event) {
         Intent intent = EventDetailsContainerActivity.launchIntent(activity,
-                EventDetailsContainerActivity.STATEMENT);
+                EventDetailsContainerActivity.STATEMENT, event);
         activity.startActivity(intent);
     }
 }

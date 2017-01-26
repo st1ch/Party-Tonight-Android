@@ -8,10 +8,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.zip.Inflater;
 
 import app.media.opp.partytonight.R;
-import app.media.opp.partytonight.domain.Bottle;
+import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.app.view.EventDetailsItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -20,15 +19,15 @@ import butterknife.ButterKnife;
  * Created by arkadii on 11/27/16.
  */
 
-public class BottlesAdapter extends RecyclerView.Adapter<BottlesAdapter.ViewHolder> {
+public class TablesAdapter extends RecyclerView.Adapter<TablesAdapter.ViewHolder> {
 
-    private List<Bottle> bottles = new ArrayList<>();
+    private List<Table> tables = new ArrayList<>();
 
 
-    public void setBottles(List<Bottle> bottles) {
-        this.bottles.clear();
-        this.bottles.addAll(bottles);
-        notifyItemRangeInserted(0, bottles.size());
+    public void setTables(List<Table> tables) {
+        this.tables.clear();
+        this.tables.addAll(tables);
+        notifyItemRangeInserted(0, tables.size());
     }
 
     @Override
@@ -40,15 +39,15 @@ public class BottlesAdapter extends RecyclerView.Adapter<BottlesAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        Bottle bottle = bottles.get(position);
-        holder.containerAvailable.setAdditionalLabel(String.valueOf(bottle.getAvailable()));
-        holder.containerPurchased.setAdditionalLabel(String.valueOf(bottle.getBooked()));
-        holder.tvLabel.setText(String.format("%s (Price: $%s)", bottle.getType(), bottle.getPrice()));
+        Table table = tables.get(position);
+        holder.containerAvailable.setAdditionalLabel(String.valueOf(table.getAvailable()));
+        holder.containerPurchased.setAdditionalLabel(String.valueOf(table.getBooked()));
+        holder.tvLabel.setText(String.format("%s (Price: $%s)", table.getType(), table.getPrice()));
     }
 
     @Override
     public int getItemCount() {
-        return bottles.size();
+        return tables.size();
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
