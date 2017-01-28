@@ -85,6 +85,10 @@ public class EventDetailsItem extends LinearLayout {
         tvTitle.setText(label);
     }
 
+    public String getLabel() {
+        return mLabel;
+    }
+
     public void setAdditionalLabel(String label) {
         mAdditionalLabel = label;
         tvAdditional.setText(label);
@@ -136,9 +140,7 @@ public class EventDetailsItem extends LinearLayout {
                     default:
                         break;
                 }
-
-                // TODO: 11/16/16  do we need return true?
-                return true;
+                return false;
             });
         }
 

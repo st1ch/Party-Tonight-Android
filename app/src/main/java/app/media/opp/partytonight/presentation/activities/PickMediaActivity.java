@@ -39,8 +39,9 @@ public class PickMediaActivity extends Activity {
     @BindView(R.id.rvMedia)
     RecyclerView rvMedia;
     PickMediaAdapter mediaAdapter;
-    boolean canPickCamera = false;
-    boolean canPickGallery = false;
+    //TODO set permission flags to false
+    boolean canPickCamera = true;
+    boolean canPickGallery = true;
     private ImagePicker imagePicker;
     private CameraImagePicker cameraImagePicker;
     private ImagePickerCallback imagePickerCallback = new ImagePickerCallback() {

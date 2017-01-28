@@ -10,14 +10,24 @@ public class Bottle implements Serializable {
     private String type;
     private String price;
     private String available;
+    private String booked;
 
     public Bottle() {
     }
 
-    public Bottle(String type, String price, String available) {
+    public Bottle(String type, String price, String available, String booked) {
         this.type = type;
         this.price = price;
         this.available = available;
+        this.booked = booked;
+    }
+
+    public String getBooked() {
+        return booked;
+    }
+
+    public void setBooked(String booked) {
+        this.booked = booked;
     }
 
     public void setPrice(String price) {

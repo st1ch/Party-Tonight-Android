@@ -10,13 +10,23 @@ public class Table implements Serializable {
     private String type;
     private String price;
     private String available;
+    private String booked;
 
     public Table() {}
 
-    public Table(String type, String price, String available) {
+    public Table(String type, String price, String available, String booked) {
         this.type = type;
         this.price = price;
         this.available = available;
+        this.booked = booked;
+    }
+
+    public String getBooked() {
+        return booked;
+    }
+
+    public void setBooked(String booked) {
+        this.booked = booked;
     }
 
     public void setType(String type) {

@@ -1,59 +1,45 @@
-[
-
-  {
-    "id_event": 59,
-    "club_name": "Debug",
-    "date": "1480240808",
-    "location": "?????? ????????? ??????, 5, ????, ???????",
-    "club_capacity": "80",
-    "party_name": "Asus",
-    "zip_code": null,
-    "bottles": [
-      {
-        "id_bottle": 33,
-        "name": null,
-        "price": "15",
-        "type": "Icy",
-        "available": "10",
-        "booked": null,
-        "createdDate": null
-      },
-      {
-        "id_bottle": 34,
-        "name": null,
-        "price": "5",
-        "type": "Such",
-        "available": "1",
-        "booked": null,
-        "createdDate": null
-      }
-    ],
-    "tickets": [
-      {
-        "idTicket": 32,
-        "price": "10.50",
-        "available": null,
-        "booked": null,
-        "created_date": null
-      }
-    ],
-    "tables": [
-      {
-        "id_table": 33,
-        "price": "9",
-        "type": "Univ",
-        "available": "25",
-        "booked": null
-      },
-      {
-        "id_table": 34,
-        "price": "52",
-        "type": "Cunning",
-        "available": "95",
-        "booked": null
-      }
-    ],
-    "photos": null,
-    "images": null
-  }
-]
+{
+  "id_event": 88,
+  "club_name": "Frigid",
+  "date": "1480845641",
+  "location": "?????? ????????? ??????, 5, ????, ???????",
+  "club_capacity": "6",
+  "party_name": "FL",
+  "zip_code": null,
+  "bottles": [
+    {
+      "id_bottle": 45,
+      "name": null,
+      "price": "5",
+      "type": "Duffy",
+      "available": "3",
+      "booked": null,
+      "createdDate": null
+    }
+  ],
+  "tickets": [
+    {
+      "idTicket": 61,
+      "price": "6",
+      "available": null,
+      "booked": null,
+      "created_date": null
+    }
+  ],
+  "tables": [
+    {
+      "id_table": 49,
+      "price": "5",
+      "type": "Duro",
+      "available": "8",
+      "booked": null
+    }
+  ],
+  "photos": [
+    {
+      "idPhoto": 21,
+      "photo": "http://45.55.226.134:8080/static/images"
+    }
+  ],
+  "images": null
+}

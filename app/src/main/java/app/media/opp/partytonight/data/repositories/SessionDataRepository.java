@@ -15,6 +15,7 @@ import java.util.List;
 import app.media.opp.partytonight.data.AbstractMapperFactory;
 import app.media.opp.partytonight.data.Constants;
 import app.media.opp.partytonight.data.EventEntity;
+import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.Mapper;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
@@ -22,6 +23,7 @@ import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Pair;
+import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
@@ -101,6 +103,11 @@ public class SessionDataRepository implements SessionRepository {
     }
 
     @Override
+    public Observable<Revenue> getEventRevenue(Event event) {
+        return restApi.getEventRevenue(event.getPartyName(), account.user().getToken());
+    }
+
+    @Override
     public Observable<Event> createEvent(Event event) {
         return Observable.create((Observable.OnSubscribe<Event>) subscriber -> {
             List<String> localPhotos = event.getLocalPhotos();
@@ -110,10 +117,10 @@ public class SessionDataRepository implements SessionRepository {
                 try {
                     File uploadableImageFile = fileUtils.createUploadableImageFile(localPhoto, Constants.IMAGE_SIZES.IMAGE_SIZE);
                     String absolutePath = uploadableImageFile.getAbsolutePath();
-                    Response<String> execute = restApi.uploadFile(absolutePath).execute();
+                    Response<FileEntity> execute = restApi.uploadFile(absolutePath).execute();
                     FileUtils.removeFile(absolutePath);
                     if (execute.isSuccessful()) {
-                        photos.add(execute.body());
+                        photos.add(execute.body().getPath());
                     }
                 } catch (IOException e) {
                     Log.e("SessionRepository", String.valueOf(e));

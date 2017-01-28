@@ -12,9 +12,9 @@ import android.view.ViewGroup;
 import java.util.List;
 
 import app.media.opp.partytonight.R;
-import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.Event;
-import app.media.opp.partytonight.presentation.adapters.BottlesAdapter;
+import app.media.opp.partytonight.domain.Table;
+import app.media.opp.partytonight.presentation.adapters.TablesAdapter;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -22,18 +22,18 @@ import butterknife.ButterKnife;
  * Created by arkadii on 11/27/16.
  */
 
-public class BottleScreenFragment extends Fragment {
+public class TableScreenFragment extends Fragment {
     public static final String EVENT = "event";
 
     @BindView(R.id.rvItems)
     RecyclerView rvItems;
-    private BottlesAdapter adapter;
+    private TablesAdapter adapter;
 
-    public static BottleScreenFragment newInstance(Event event) {
+    public static TableScreenFragment newInstance(Event event) {
 
         Bundle args = new Bundle();
         args.putSerializable(EVENT, event);
-        BottleScreenFragment fragment = new BottleScreenFragment();
+        TableScreenFragment fragment = new TableScreenFragment();
         fragment.setArguments(args);
         return fragment;
     }
@@ -45,10 +45,10 @@ public class BottleScreenFragment extends Fragment {
         ButterKnife.bind(this, view);
         rvItems.setLayoutManager(new LinearLayoutManager(getActivity()));
         Event event = (Event) getArguments().getSerializable(EVENT);
-        adapter = new BottlesAdapter();
+        adapter = new TablesAdapter();
         rvItems.setAdapter(adapter);
-        List<Bottle> bottles = event.getBottles();
-        adapter.setBottles(bottles);
+        List<Table> tables = event.getTables();
+        adapter.setTables(tables);
         return view;
     }
 }

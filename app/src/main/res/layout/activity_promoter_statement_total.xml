@@ -4,12 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include layout="@layout/background_blur" />
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_centered_sugar_plums" />
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -32,11 +26,57 @@
                 app:label="Statement total:"
                 app:textSize="19sp" />
 
-            <LinearLayout
-                android:id="@+id/llContainer"
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediTicketSales"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:background="@color/colorButtonGraySemiTransparent"
+                android:clickable="false"
+                android:padding="12dp"
+                app:additionalLabel="23"
+                app:label="Tickets sales"
+                app:textSize="18sp" />
+
+            <include layout="@layout/divider_horizontal" />
+
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediBottleSales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButtonGraySemiTransparent"
+                android:clickable="false"
+                android:padding="12dp"
+                app:additionalLabel="23"
+                app:label="Bottle sales"
+                app:textSize="18sp" />
+
+            <include layout="@layout/divider_horizontal" />
+
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediTableSales"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButtonGraySemiTransparent"
+                android:clickable="false"
+                android:padding="12dp"
+                app:additionalLabel="23"
+                app:label="Table sales"
+                app:textSize="18sp" />
+
+            <include layout="@layout/divider_horizontal" />
+
+            <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
+                android:id="@+id/ediRefunds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorButtonGraySemiTransparent"
+                android:clickable="false"
+                android:padding="12dp"
+                app:additionalLabel="23"
+                app:label="Refunds"
+                app:textSize="18sp" />
+
+            <include layout="@layout/divider_horizontal" />
 
             <app.media.opp.partytonight.presentation.app.view.EventDetailsItem
                 android:id="@+id/ediWithdraw"
