@@ -48,6 +48,12 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
         useCase.execute(getSubscriber());
     }
 
+    @Override
+    public void onSignUpButtonClick(String name, String email, String password) {
+        useCase.setUser(new User(name, email, password));
+        useCase.execute(getSubscriber());
+    }
+
     @NonNull
     private BaseProgressSubscriber<User> getSubscriber() {
         return new BaseProgressSubscriber<User>(this) {

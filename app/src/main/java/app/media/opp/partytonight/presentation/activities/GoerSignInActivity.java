@@ -16,7 +16,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PromoterSignInActivity extends ProgressActivity implements ICredentialView {
+public class GoerSignInActivity extends ProgressActivity implements ICredentialView {
 
     @BindView(R.id.etEmail)
     EditText etEmail;
@@ -29,7 +29,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promoter_sign_in);
+        setContentView(R.layout.activity_goer_sign_in);
         ButterKnife.bind(this);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         activityNavigator = new ActivityNavigator();
@@ -53,7 +53,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
                 }
                 break;
             case R.id.bSignUp:
-                activityNavigator.startPromoterSignUpActivity(this);
+                activityNavigator.startGoerSignUpActivity(this);
                 break;
         }
     }
@@ -95,5 +95,4 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     public void navigateToProfile() {
         activityNavigator.startPromoterMainActivity(this, true);
     }
-
 }

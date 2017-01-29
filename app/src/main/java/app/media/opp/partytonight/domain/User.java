@@ -1,7 +1,5 @@
 package app.media.opp.partytonight.domain;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by arkadii on 10/29/16.
  */
@@ -16,6 +14,10 @@ public class User {
 
     public User(String email, String password) {
         this(null, email, null, null, null, password);
+    }
+
+    public User(String userName, String email, String password) {
+        this(userName, email, null, null, null, password);
     }
 
     public User(String userName, String email, String phoneNumber, Billing billingInfo, String emergencyContact, String password) {

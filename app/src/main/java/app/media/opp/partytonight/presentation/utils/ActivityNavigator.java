@@ -9,8 +9,11 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
-import app.media.opp.partytonight.presentation.activities.MainActivity;
+import app.media.opp.partytonight.presentation.activities.GoerMainActivity;
+import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
+import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
+import app.media.opp.partytonight.presentation.activities.PromoterMainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity;
@@ -36,23 +39,18 @@ public class ActivityNavigator {
         mActivityContext.startActivity(intent);
     }
 
-    public void startPromoterSignUpActivity(Context mActivityContext) {
-        Intent intent = new Intent(mActivityContext, PromoterSignUpActivity.class);
+    public void startGoerSignInActivity(Context mActivityContext) {
+        Intent intent = new Intent(mActivityContext, GoerSignInActivity.class);
         mActivityContext.startActivity(intent);
     }
 
-    public void startPromoterSignUpActivity(Context mActivityContext, int animationFrame) {
-        final String extraTag = "AnimationFrame";
-
-        Intent intent = new Intent(mActivityContext, PromoterSignUpActivity.class);
-
-        intent.putExtra(extraTag, animationFrame);
-
+    public void startGoerSignUpActivity(Context mActivityContext) {
+        Intent intent = new Intent(mActivityContext, GoerSignUpActivity.class);
         mActivityContext.startActivity(intent);
     }
 
-    public void startMainActivity(Activity mActivityContext, boolean inNewTask) {
-        Intent intent = new Intent(mActivityContext, MainActivity.class);
+    public void startGoerMainActivity(Activity mActivityContext, boolean inNewTask) {
+        Intent intent = new Intent(mActivityContext, GoerMainActivity.class);
         if (inNewTask) {
             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         }
@@ -62,26 +60,20 @@ public class ActivityNavigator {
         }
     }
 
-
-    public void startPromoterSignInActivity(Context mActivityContext, int animationFrame) {
-        final String extraTag = "AnimationFrame";
-
-        Intent intent = new Intent(mActivityContext, PromoterSignInActivity.class);
-
-        intent.putExtra(extraTag, animationFrame);
-
+    public void startPromoterSignUpActivity(Context mActivityContext) {
+        Intent intent = new Intent(mActivityContext, PromoterSignUpActivity.class);
         mActivityContext.startActivity(intent);
     }
 
-    public void startWelcomeScreenActivity(Activity mActivityContext, int animationFrame) {
-        final String extraTag = "AnimationFrame";
-
-        Intent intent = new Intent(mActivityContext, WelcomeScreenActivity.class);
-
-        intent.putExtra(extraTag, animationFrame);
-
+    public void startPromoterMainActivity(Activity mActivityContext, boolean inNewTask) {
+        Intent intent = new Intent(mActivityContext, PromoterMainActivity.class);
+        if (inNewTask) {
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
         mActivityContext.startActivity(intent);
-        mActivityContext.finish();
+        if (!inNewTask) {
+            mActivityContext.finish();
+        }
     }
 
     public void startEventScreenActivity(Activity activity, Event event) {

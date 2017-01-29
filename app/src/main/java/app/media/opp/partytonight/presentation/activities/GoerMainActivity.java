@@ -9,14 +9,19 @@ import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+/**
+ * Created by piekie (Artem Vasylenko)
+ * on 1/28/17
+ */
+
+public class GoerMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityNavigator activityNavigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_promoter_main);
+        setContentView(R.layout.activity_goer_main);
         findViewById(R.id.bPromoterAddEvent).setOnClickListener(this);
         findViewById(R.id.bPromoterMyEvents).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();

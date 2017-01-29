@@ -5,12 +5,12 @@ apply plugin: 'me.tatarka.retrolambda'
 //apply plugin: "net.ltgt.apt"
 
 android {
-    compileSdkVersion 24
-    buildToolsVersion "23.0.3"
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "app.media.opp.partytonight"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 25
         versionCode 2
         versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -32,14 +32,14 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:24.2.1'
-    compile 'com.android.support:support-v4:24.2.1'
+    compile 'com.android.support:appcompat-v7:25.1.0'
+    compile 'com.android.support:support-v4:25.1.0'
 
     // RecyclerView
-    compile 'com.android.support:recyclerview-v7:24.2.1'
+    compile 'com.android.support:recyclerview-v7:25.1.0'
 
     // RoundedImageView (https://github.com/vinc3m1/RoundedImageView)
-    compile 'com.makeramen:roundedimageview:2.2.1'
+    compile 'com.makeramen:roundedimageview:2.3.0'
 
     // Picasso (https://github.com/square/picasso)
     compile 'com.squareup.picasso:picasso:2.5.2'
@@ -53,8 +53,8 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.4.3'
     compile 'com.google.android.gms:play-services-places:9.4.0'
 
-    // MediaPicker
-    compile 'com.kbeanie:multipicker:1.1.2@aar'
+    // MediaPicker (https://github.com/coomar2841/android-multipicker-library)
+    compile 'com.kbeanie:multipicker:1.1.31@aar'
 
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     compile 'com.google.dagger:dagger:2.0.2'

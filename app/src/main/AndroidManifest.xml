@@ -27,22 +27,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".presentation.activities.WelcomeScreenActivity" />
         <activity android:name=".presentation.activities.PromoterSignInActivity" />
+        <activity android:name=".presentation.activities.PromoterMainActivity" />
+        <activity android:name=".presentation.activities.EventScreenActivity" />
+        <activity android:name=".presentation.activities.EventDetailsContainerActivity" />
+
         <activity
             android:name=".presentation.activities.PromoterSignUpActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".presentation.activities.MainActivity">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-            <!--<intent-filter>-->
-            <!--<action android:name="android.intent.action.MAIN" />-->
-            <!--<category android:name="android.intent.category.LAUNCHER" />-->
-            <!--</intent-filter>-->
         <activity
             android:name=".presentation.activities.PromoterEventsActivity"
             android:label="Events" />
@@ -50,28 +45,24 @@
         <activity
             android:name=".presentation.activities.CreateEventActivity"
             android:label="Create Event"
-            android:windowSoftInputMode="adjustPan" />
-        <!-- <activity android:name=".presentation.activities.TempActivity"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.MAIN" /> -->
+            android:windowSoftInputMode="adjustPan">
 
-
-        <activity
-            android:name=".presentation.activities.PickMediaActivity"
-            android:screenOrientation="fullUser"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-        <!-- </intent-filter> -->
-        <!-- </activity> -->
+        <activity
+            android:name=".presentation.activities.PickMediaActivity"
+            android:screenOrientation="fullUser"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name=".presentation.activities.GoerMainActivity" />
+        <activity android:name=".presentation.activities.GoerSignInActivity" />
+        <activity
+            android:name=".presentation.activities.GoerSignUpActivity"
+            android:windowSoftInputMode="adjustPan" />
 
-        <activity android:name=".presentation.activities.EventScreenActivity" />
-        <activity android:name=".presentation.activities.EventDetailsContainerActivity"></activity>
     </application>
 
 </manifest>

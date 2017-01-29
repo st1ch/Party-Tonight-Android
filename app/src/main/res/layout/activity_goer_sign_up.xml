@@ -48,18 +48,6 @@
                     android:textSize="@dimen/edittext_curved_text_size" />
 
                 <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                    android:id="@+id/etPhoneNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
-                    android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
-                    android:hint="@string/phoneNumber"
-                    android:inputType="phone"
-                    android:padding="@dimen/edittext_curved_padding"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/edittext_curved_text_size" />
-
-                <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                     android:id="@+id/etEmail"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -67,30 +55,6 @@
                     android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                     android:hint="@string/eMail"
                     android:inputType="textEmailAddress"
-                    android:padding="@dimen/edittext_curved_padding"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/edittext_curved_text_size" />
-
-                <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                    android:id="@+id/etBillingInfo"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
-                    android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
-                    android:hint="@string/billingInfo"
-                    android:inputType="textCapWords"
-                    android:padding="@dimen/edittext_curved_padding"
-                    android:textCursorDrawable="@null"
-                    android:textSize="@dimen/edittext_curved_text_size" />
-
-                <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
-                    android:id="@+id/etEmergencyContact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
-                    android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
-                    android:hint="@string/emergencyContact"
-                    android:inputType="textCapSentences"
                     android:padding="@dimen/edittext_curved_padding"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/edittext_curved_text_size" />

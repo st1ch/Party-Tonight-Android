@@ -9,9 +9,6 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.subscriptions.Subscriptions;
 
-/**
- * Created by Arkadiy on 05.06.2016.
- */
 public abstract class UseCase<T> {
     private SubscribeOn subscribeOn;
     private ObserveOn observeOn;

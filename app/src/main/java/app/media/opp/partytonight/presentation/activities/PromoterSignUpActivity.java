@@ -141,6 +141,6 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
 
     @Override
     public void navigateToProfile() {
-        activityNavigator.startMainActivity(this, true);
+        activityNavigator.startPromoterMainActivity(this, true);
     }
 }
