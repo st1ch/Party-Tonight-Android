@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Base64;
 
 import java.io.File;
-import java.util.Collections;
 import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
@@ -12,18 +11,13 @@ import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
-import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Revenue;
-import app.media.opp.partytonight.presentation.utils.FileUtils;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import rx.Observable;
 
-/**
- * Created by Arkadiy on 05.06.2016.
- */
 public class RestApi {
 
     private final PartyTonightApi api;
@@ -40,6 +34,11 @@ public class RestApi {
     public Observable<TokenEntity> signUp(UserEntity userEntity) {
         return api.makerSignUp(userEntity).flatMap(response -> logIn(userEntity));
     }
+
+    public Observable<TokenEntity> goerSignUp(UserEntity userEntity) {
+        return api.makerSignUp(userEntity).flatMap(response -> logIn(userEntity));
+    }
+
 
     public Observable<TokenEntity> logIn(UserEntity userEntity) {
         String credentials = userEntity.getEmail() + ":" + userEntity.getPassword();

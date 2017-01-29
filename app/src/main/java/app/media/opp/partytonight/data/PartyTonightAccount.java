@@ -18,6 +18,8 @@ public class PartyTonightAccount implements Account {
     private static final String PHONE = "phone";
     private static final String BILLING_INFO = "billing_info";
     private static final String EMERGENCY_CONTACT = "emergency_contact";
+    private static final String IS_GOER = "is_goer";
+
     private Context context;
     private User user;
 
@@ -43,7 +45,7 @@ public class PartyTonightAccount implements Account {
     }
 
     @Override
-    public void saveUser(User user) {
+    public void saveUser(User user, boolean isGoer) {
         this.user = user;
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE).edit()
                 .putString(USERNAME, user.getUserName())
@@ -52,6 +54,7 @@ public class PartyTonightAccount implements Account {
                 .putString(PHONE, user.getPhoneNumber())
                 .putString(BILLING_INFO, user.getBillingInfo() == null ? null : user.getBillingInfo().getCardNumber())
                 .putString(EMERGENCY_CONTACT, user.getEmergencyContact())
+                .putBoolean(IS_GOER, isGoer)
                 .apply();
     }
 
@@ -59,6 +62,12 @@ public class PartyTonightAccount implements Account {
     public boolean isAuthorized() {
         User user = user();
         return user.getToken() != null;
+    }
+
+    @Override
+    public boolean isAuthorizedAsGoer() {
+        SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        return prefs.getBoolean(IS_GOER, true);
     }
 
     @Override

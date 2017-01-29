@@ -21,9 +21,8 @@ public class GoerMainActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goer_main);
-        findViewById(R.id.bPromoterAddEvent).setOnClickListener(this);
-        findViewById(R.id.bPromoterMyEvents).setOnClickListener(this);
+        setContentView(R.layout.activity_goer_main_cut);
+        findViewById(R.id.bGoerMyEvents).setOnClickListener(this);
         activityNavigator = new ActivityNavigator();
 
         ToolbarUtils.configureToolbarAsActionBar(this,
@@ -33,11 +32,8 @@ public class GoerMainActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.bPromoterAddEvent:
-                activityNavigator.startPromoterCreateEventActivity(this);
-                break;
-            case R.id.bPromoterMyEvents:
-                activityNavigator.startPromoterEventsActivity(this);
+            case R.id.bGoerMyEvents:
+//                activityNavigator.startPromoterCreateEventActivity(this);
                 break;
         }
     }

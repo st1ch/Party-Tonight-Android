@@ -5,7 +5,6 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
-import retrofit2.Call;
 import rx.Observable;
 
 /**
@@ -16,7 +15,11 @@ public interface SessionRepository {
 
     Observable<User> signUp(User user);
 
+    Observable<User> goerSignUp(User user);
+
     Observable<User> logIn(User user);
+
+    Observable<User> goerLogIn(User user);
 
     Observable<Event> createEvent(Event event);
 

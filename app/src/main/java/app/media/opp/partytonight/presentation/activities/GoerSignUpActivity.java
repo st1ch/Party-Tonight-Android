@@ -7,7 +7,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
-import app.media.opp.partytonight.presentation.presenters.SignUpPresenter;
+import app.media.opp.partytonight.presentation.presenters.GoerSignUpPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
@@ -25,7 +25,7 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
     EditText etPassword;
 
     @Inject
-    SignUpPresenter presenter;
+    GoerSignUpPresenter presenter;
     private ActivityNavigator activityNavigator;
 
     @Override
@@ -106,6 +106,6 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
 
     @Override
     public void navigateToProfile() {
-        activityNavigator.startPromoterMainActivity(this, true);
+        activityNavigator.startGoerMainActivity(this, true);
     }
 }

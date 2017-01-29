@@ -93,6 +93,6 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
 
     @Override
     public void navigateToProfile() {
-        activityNavigator.startPromoterMainActivity(this, true);
+        activityNavigator.startGoerMainActivity(this, true);
     }
 }

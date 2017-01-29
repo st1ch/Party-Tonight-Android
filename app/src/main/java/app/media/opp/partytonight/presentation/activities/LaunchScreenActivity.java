@@ -29,7 +29,11 @@ public class LaunchScreenActivity extends AppCompatActivity implements View.OnCl
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
 
         if (account.isAuthorized()) {
-            activityNavigator.startPromoterMainActivity(this, false);
+            if (account.isAuthorizedAsGoer()) {
+                activityNavigator.startGoerMainActivity(this, false);
+            } else {
+                activityNavigator.startPromoterMainActivity(this, false);
+            }
         }
     }
 

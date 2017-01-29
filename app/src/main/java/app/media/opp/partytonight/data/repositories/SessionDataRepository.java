@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import app.media.opp.partytonight.data.AbstractMapperFactory;
@@ -22,13 +21,11 @@ import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
-import app.media.opp.partytonight.domain.Pair;
 import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
-import retrofit2.Call;
 import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
@@ -52,6 +49,18 @@ public class SessionDataRepository implements SessionRepository {
         this.fileUtils = fileUtils;
     }
 
+    @Override
+    public Observable<User> goerSignUp(User user) {
+        Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
+        return restApi.goerSignUp(userEntityMapper.transform(user)).map(tokenEntity -> saveUserAsGoer(user, tokenEntity));
+    }
+
+    @Override
+    public Observable<User> goerLogIn(User user) {
+        Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
+        return restApi.logIn(userEntityMapper.transform(user)).map(tokenEntity -> saveUserAsGoer(user, tokenEntity));
+    }
+
 
     @Override
     public Observable<User> signUp(User user) {
@@ -73,12 +82,7 @@ public class SessionDataRepository implements SessionRepository {
             for (EventEntity eventEntity : eventEntities) {
                 events.add(eventMapper.transform(eventEntity));
             }
-            Collections.sort(events, new Comparator<Event>() {
-                @Override
-                public int compare(Event o1, Event o2) {
-                    return (int) (o1.getTime() - o2.getTime());
-                }
-            });
+            Collections.sort(events, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
             return events;
         });
     }
@@ -138,7 +142,13 @@ public class SessionDataRepository implements SessionRepository {
 
     private User saveUser(User user, TokenEntity tokenEntity) {
         user.setToken(tokenEntity.getToken());
-        account.saveUser(user);
+        account.saveUser(user, false);
+        return user;
+    }
+
+    private User saveUserAsGoer(User user, TokenEntity tokenEntity) {
+        user.setToken(tokenEntity.getToken());
+        account.saveUser(user, true);
         return user;
     }
 }
