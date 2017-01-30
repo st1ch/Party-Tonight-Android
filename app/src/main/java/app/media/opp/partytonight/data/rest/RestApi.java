@@ -36,7 +36,7 @@ public class RestApi {
     }
 
     public Observable<TokenEntity> goerSignUp(UserEntity userEntity) {
-        return api.makerSignUp(userEntity).flatMap(response -> logIn(userEntity));
+        return api.goerSignUp(userEntity).flatMap(response -> logIn(userEntity));
     }
 
 

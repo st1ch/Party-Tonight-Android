@@ -47,6 +47,10 @@ dependencies {
     // Date and Time pickers
     compile 'com.github.k0shk0sh:RetainedDateTimePickers:1.0.1'
 
+    //Android Image Slider (https://github.com/daimajia/AndroidImageSlider)
+    compile 'com.nineoldandroids:library:2.4.0'
+    compile 'com.daimajia.slider:library:1.1.5@aar'
+
     // Google Maps (todo: need to figure out which one of these we don't need)
     compile 'com.google.android.gms:play-services-maps:9.4.0'
     compile 'com.google.android.gms:play-services-location:9.4.0'

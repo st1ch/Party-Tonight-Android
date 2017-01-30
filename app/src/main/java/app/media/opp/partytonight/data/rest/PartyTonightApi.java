@@ -29,7 +29,8 @@ public interface PartyTonightApi {
     @POST("maker/signup")
     Observable<ResponseBody> makerSignUp(@Body UserEntity userEntity);
 
-    @POST("goer/signup")
+    @Headers({"Content-Type: application/json", "Content-Length: 0"})
+    @POST("dancer/signup")
     Observable<ResponseBody> goerSignUp(@Body UserEntity userEntity);
 
     @GET("signin")
