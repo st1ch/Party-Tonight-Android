@@ -55,7 +55,7 @@ public class StatementItem extends LinearLayout {
     }
 
     public void configureView(Context context) {
-        inflate(context, R.layout.item_statement, this);
+        inflate(context, R.layout.item_promoter_statement, this);
 
         ButterKnife.bind(this);
 

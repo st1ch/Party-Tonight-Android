@@ -3,6 +3,7 @@ package app.media.opp.partytonight.data.di;
 import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
+import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.LaunchScreenActivity;
@@ -37,4 +38,6 @@ public interface UserComponent {
         void inject(GoerSignInActivity goerSignInActivity);
 
         void inject(GoerSignUpActivity goerSignUpActivity);
+
+    void inject(GoerFindVenueActivity goerFindVenueActivity);
 }

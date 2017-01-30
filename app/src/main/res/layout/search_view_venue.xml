@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/edittext_curved_translucent_height"
+    android:orientation="horizontal">
+
+    <app.media.opp.partytonight.presentation.app.view.EditTextAguda
+        android:id="@+id/etContent"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:layout_weight="1"
+        android:background="@drawable/bg_goer_search_view_edit_text_left"
+        android:drawableLeft="@mipmap/ic_search"
+        android:inputType="numberDecimal"
+        android:textColorHint="@color/colorTextHeader2"
+        android:textSize="@dimen/edittext_curved_text_size" />
+
+    <app.media.opp.partytonight.presentation.app.view.ButtonAguda
+        android:id="@+id/btnFind"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:background="@drawable/bg_goer_search_view_button_right"
+        android:padding="0dp"
+        android:text="Find"
+        android:textAllCaps="false"
+        android:textColor="@color/colorTextHeader2"
+        android:textSize="18sp" />
+
+</LinearLayout>

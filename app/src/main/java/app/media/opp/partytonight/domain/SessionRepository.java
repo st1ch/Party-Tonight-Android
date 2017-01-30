@@ -28,4 +28,6 @@ public interface SessionRepository {
     Observable<String> getPostalAddress(LatLng latLng);
 
     Observable<Revenue> getEventRevenue(Event event);
+
+    Observable<List<Event>> getEventsByZipCode(String zipCode);
 }

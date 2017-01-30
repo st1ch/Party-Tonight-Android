@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape>
+            <solid android:color="@color/colorEditTextSignBackground" />
+            <corners android:bottomLeftRadius="@dimen/edittext_curved_radius" android:topLeftRadius="@dimen/edittext_curved_radius" />
+        </shape>
+    </item>
+
+    <item>
+        <shape>
+            <solid android:color="@color/colorEditTextSign" />
+            <corners android:bottomLeftRadius="@dimen/edittext_curved_radius" android:topLeftRadius="@dimen/edittext_curved_radius" />
+        </shape>
+    </item>
+</selector>

@@ -35,4 +35,8 @@
     <string name="promoter_pick_media_gallery">Gallery</string>
     <string name="promoter_pick_media_camera">Camera</string>
     <string name="promoter_pick_media_submit">Okay</string>
+    <string name="search_view_zip_code">Zip code</string>
+    <string name="search_view_btn_find">Find</string>
+    <string name="goer_venue_show_details">Show details</string>
+    <string name="goer_main_search">Find a venue</string>
 </resources>

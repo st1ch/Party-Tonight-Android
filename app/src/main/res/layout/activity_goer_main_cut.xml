@@ -21,7 +21,7 @@
         android:paddingTop="16dp">
 
         <ImageButton
-            android:id="@+id/bGoerMyEvents"
+            android:id="@+id/bFindVenue"
             android:layout_width="@dimen/promoter_main_circle_button_width"
             android:layout_height="@dimen/promoter_main_circle_button_height"
             android:layout_gravity="center_horizontal"
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="16dp"
-            android:text="@string/my_events"
+            android:text="@string/goer_main_search"
             android:textColor="@color/colorTextViewTitle"
             android:textSize="@dimen/textview_promoter_main_text_size" />
 

@@ -112,6 +112,11 @@ public class SessionDataRepository implements SessionRepository {
     }
 
     @Override
+    public Observable<List<Event>> getEventsByZipCode(String zipCode) {
+        return restApi.getEventsByZipCode(zipCode);
+    }
+
+    @Override
     public Observable<Event> createEvent(Event event) {
         return Observable.create((Observable.OnSubscribe<Event>) subscriber -> {
             List<String> localPhotos = event.getLocalPhotos();

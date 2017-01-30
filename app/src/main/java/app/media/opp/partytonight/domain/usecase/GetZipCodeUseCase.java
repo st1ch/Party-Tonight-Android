@@ -2,18 +2,13 @@ package app.media.opp.partytonight.domain.usecase;
 
 import com.google.android.gms.maps.model.LatLng;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
-import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
-import app.media.opp.partytonight.presentation.utils.MapUtils;
 import rx.Observable;
-import rx.Subscriber;
 
 /**
  * Created by arkadii on 10/30/16.
