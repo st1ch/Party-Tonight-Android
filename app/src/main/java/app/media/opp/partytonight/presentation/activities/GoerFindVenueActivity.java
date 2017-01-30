@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 
 import java.util.List;
 
@@ -30,8 +31,10 @@ import butterknife.ButterKnife;
 public class GoerFindVenueActivity extends ProgressActivity implements IGoerFindVenueView {
 
     public static final String EVENT = "event";
+
     @BindView(R.id.svVenue)
     SearchView svVenue;
+
     @Inject
     GoerFindVenuePresenter presenter;
     private ActivityNavigator activityNavigator;
@@ -58,7 +61,7 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
         ToolbarUtils.configureToolbarAsActionBar(this,
                 (Toolbar) findViewById(R.id.toolbar), true);
 
-
+        svVenue.setFindOnClickListener(view -> presenter.onFindButtonClick(svVenue.getText()));
     }
 
     @Override
@@ -69,6 +72,14 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
 
     @Override
     public void renderList(List<Event> response) {
+        Log.w("Places list", "############# BEGIN ##########");
+        Log.w("Places list", "endl");
 
+        for (Event e : response) {
+            Log.w("Places list", "     " + e.getClubName());
+        }
+
+        Log.w("Places list", "endl");
+        Log.w("Places list", "############# END ##########");
     }
 }

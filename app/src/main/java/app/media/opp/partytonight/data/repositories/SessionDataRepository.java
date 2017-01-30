@@ -88,6 +88,19 @@ public class SessionDataRepository implements SessionRepository {
     }
 
     @Override
+    public Observable<List<Event>> getEventsByZipCode(String zipCode) {
+        Mapper<EventEntity, Event> eventMapper = abstractMapperFactory.getEventMapper();
+        return restApi.getEventsByZipCode(zipCode).map(eventEntities -> {
+            List<Event> events = new ArrayList<>();
+            for (EventEntity eventEntity : eventEntities) {
+                events.add(eventMapper.transform(eventEntity));
+            }
+            Collections.sort(events, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
+            return events;
+        });
+    }
+
+    @Override
     public Observable<String> getPostalAddress(LatLng latLng) {
         return Observable.create(new Observable.OnSubscribe<String>() {
             @Override
@@ -109,11 +122,6 @@ public class SessionDataRepository implements SessionRepository {
     @Override
     public Observable<Revenue> getEventRevenue(Event event) {
         return restApi.getEventRevenue(event.getPartyName(), account.user().getToken());
-    }
-
-    @Override
-    public Observable<List<Event>> getEventsByZipCode(String zipCode) {
-        return restApi.getEventsByZipCode(zipCode);
     }
 
     @Override

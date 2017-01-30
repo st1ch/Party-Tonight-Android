@@ -66,7 +66,7 @@ public class SearchView extends LinearLayout {
         etContent.setText(value);
     }
 
-    private void setFindOnClickListener(OnClickListener l) {
+    public void setFindOnClickListener(OnClickListener l) {
         btnFind.setOnClickListener(l);
     }
 

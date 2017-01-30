@@ -11,7 +11,6 @@ import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
-import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Revenue;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -68,8 +67,7 @@ public class RestApi {
         return api.getEventRevenue(partyName, token);
     }
 
-    public Observable<List<Event>> getEventsByZipCode(String zipCode) {
-        // TODO: 1/30/17 get know what to do :)
-        return null;
+    public Observable<List<EventEntity>> getEventsByZipCode(String zipCode) {
+        return api.getEventsByZipCode(zipCode, account.user().getToken());
     }
 }
