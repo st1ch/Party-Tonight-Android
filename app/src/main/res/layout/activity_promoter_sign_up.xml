@@ -26,7 +26,7 @@
                 android:gravity="center"
                 android:padding="@dimen/textview_sign_title_padding"
                 android:text="@string/promoter"
-                android:textSize="@dimen/text_size_sign_part" />
+                android:textSize="32sp" />
 
             <LinearLayout
                 android:layout_width="match_parent"

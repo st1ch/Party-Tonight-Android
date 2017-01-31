@@ -42,7 +42,6 @@
             <app.media.opp.partytonight.presentation.app.view.ButtonGray
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:="@mipmap/ic_back"
                 android:text="Pay with PayPal" />
 
         </LinearLayout>

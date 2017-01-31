@@ -17,7 +17,7 @@
         tools:context="app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity">
 
         <app.media.opp.partytonight.presentation.app.view.TextViewTitle
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="@dimen/textview_app_title_height"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/textview_app_title_margin_top"
