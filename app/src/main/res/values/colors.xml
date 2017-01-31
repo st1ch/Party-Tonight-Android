@@ -54,8 +54,9 @@
     <color name="colorBackgroundGray">#a3212121</color>
 
 
-    <color name="bg_goer_event_details_description">#99e2e2e2</color>
+    <color name="goer_event_details_description_bg">#99e2e2e2</color>
     <color name="goer_event_details_font">#fff</color>
+    <color name="goer_cart_font">#fff</color>
 
 
 </resources>
