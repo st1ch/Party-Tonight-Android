@@ -23,6 +23,9 @@ public class Bottle implements Serializable {
     }
 
     public String getBooked() {
+        if (booked == null) {
+            booked = "0";
+        }
         return booked;
     }
 
@@ -30,28 +33,28 @@ public class Bottle implements Serializable {
         this.booked = booked;
     }
 
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
+    public String getType() {
+        return type;
     }
 
     public void setType(String type) {
         this.type = type;
     }
 
-    public String getType() {
-        return type;
-    }
-
     public String getPrice() {
         return price;
     }
 
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
     public String getAvailable() {
         return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     @Override

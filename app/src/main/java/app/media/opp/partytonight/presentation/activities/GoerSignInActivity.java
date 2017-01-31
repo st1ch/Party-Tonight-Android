@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
-import app.media.opp.partytonight.presentation.presenters.SignInPresenter;
+import app.media.opp.partytonight.presentation.presenters.GoerSignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
@@ -23,7 +23,7 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
     @BindView(R.id.etPassword)
     EditText etPassword;
     @Inject
-    SignInPresenter presenter;
+    GoerSignInPresenter presenter;
     private ActivityNavigator activityNavigator;
 
     @Override

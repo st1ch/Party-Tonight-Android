@@ -67,7 +67,10 @@ public class PartyTonightAccount implements Account {
     @Override
     public boolean isAuthorizedAsGoer() {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        return prefs.getBoolean(IS_GOER, true);
+
+        boolean is = prefs.getBoolean(IS_GOER, true);
+
+        return is;
     }
 
     @Override

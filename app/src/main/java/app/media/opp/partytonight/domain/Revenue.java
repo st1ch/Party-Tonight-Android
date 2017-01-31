@@ -11,9 +11,19 @@ public class Revenue implements Serializable {
 
     public Revenue(String revenue) {
         this.revenue = revenue;
+
+        validate();
+    }
+
+    private void validate() {
+        if (revenue == null || revenue.equals("null")) {
+            this.revenue = "0";
+        }
     }
 
     public String getRevenue() {
+        validate();
+
         return revenue;
     }
 }

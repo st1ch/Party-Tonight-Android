@@ -13,7 +13,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -22,31 +23,42 @@
             android:orientation="vertical"
             android:paddingBottom="16dp"
             android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingTop="16dp">
+            android:paddingRight="8dp">
 
             <com.daimajia.slider.library.SliderLayout
                 android:id="@+id/slThumbnail"
                 android:layout_width="match_parent"
-                android:layout_height="250dp" />
+                android:layout_height="250dp"
+                android:visibility="gone" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
                 android:background="@color/bg_goer_event_details_description"
                 android:orientation="vertical">
 
                 <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="6dp"
-                    android:text="@string/goer_event_details_about" />
+                    android:paddingLeft="8dp"
+                    android:paddingTop="8dp"
+                    android:text="@string/goer_event_details_about"
+                    android:textColor="@color/goer_event_details_font"
+                    android:textSize="20sp" />
 
                 <TextView
                     android:id="@+id/tvAbout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="8dp" />
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginTop="8dp"
+                    android:lineSpacingMultiplier="1.2"
+                    android:paddingLeft="8dp"
+                    android:paddingRight="8dp"
+                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                    android:textColor="@color/goer_event_details_font"
+                    android:textSize="16sp" />
 
             </LinearLayout>
 
@@ -54,7 +66,7 @@
                 android:id="@+id/tvTime"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="8dp"
                 android:background="@drawable/bg_goer_event_details_description"
                 android:drawableLeft="@mipmap/ic_tickets"
                 android:drawablePadding="20dp"

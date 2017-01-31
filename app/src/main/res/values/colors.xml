@@ -55,6 +55,7 @@
 
 
     <color name="bg_goer_event_details_description">#99e2e2e2</color>
+    <color name="goer_event_details_font">#fff</color>
 
 
 </resources>

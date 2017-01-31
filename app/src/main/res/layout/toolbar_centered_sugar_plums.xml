@@ -38,7 +38,7 @@
             android:layout_alignParentRight="true"
             android:background="@null"
             android:src="@mipmap/ic_cart"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
     </RelativeLayout>
 

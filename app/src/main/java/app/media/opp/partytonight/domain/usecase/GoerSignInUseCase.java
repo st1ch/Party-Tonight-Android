@@ -8,19 +8,19 @@ import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
 import rx.Observable;
 
-public class SignInUseCase extends UseCase<User> {
+public class GoerSignInUseCase extends UseCase<User> {
     private SessionRepository repository;
     private User user;
 
     @Inject
-    public SignInUseCase(SubscribeOn subscribeOn, ObserveOn observeOn, SessionRepository repository) {
+    public GoerSignInUseCase(SubscribeOn subscribeOn, ObserveOn observeOn, SessionRepository repository) {
         super(subscribeOn, observeOn);
         this.repository = repository;
     }
 
     @Override
     protected Observable<User> getUseCaseObservable() {
-        return repository.logIn(user);
+        return repository.goerLogIn(user);
     }
 
     public void setCredentials(User user) {
