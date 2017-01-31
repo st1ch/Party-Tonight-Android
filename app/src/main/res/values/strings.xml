@@ -39,4 +39,10 @@
     <string name="search_view_btn_find">Find</string>
     <string name="goer_venue_show_details">Show details</string>
     <string name="goer_main_search">Find a venue</string>
+    <string name="goer_event_details_about">About venue</string>
+    <string name="goer_event_details_share">Share</string>
+    <string name="goer_event_details_reviews">Reviews</string>
+    <string name="goer_event_details_rsvp">RSVP</string>
+    <string name="goer_event_details_buy_liquor">Buy liquor</string>
+    <string name="goer_event_details_tables">Tables</string>
 </resources>

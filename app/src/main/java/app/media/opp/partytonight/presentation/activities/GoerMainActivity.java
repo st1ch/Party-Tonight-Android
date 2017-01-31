@@ -26,7 +26,7 @@ public class GoerMainActivity extends AppCompatActivity implements View.OnClickL
         activityNavigator = new ActivityNavigator();
 
         ToolbarUtils.configureToolbarAsActionBar(this,
-                (Toolbar) findViewById(R.id.toolbar), false);
+                (Toolbar) findViewById(R.id.toolbar), false, true);
     }
 
     @Override

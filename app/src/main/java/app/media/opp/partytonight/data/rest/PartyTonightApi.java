@@ -52,6 +52,7 @@ public interface PartyTonightApi {
     @GET("maker/event/revenue")
     Observable<Revenue> getEventRevenue(@Header("party_name") String partyName, @Header("x-auth-token") String token);
 
+    @Headers({"Content-Type: application/json", "Content-Length: 0"})
     @GET("dancer/event/get")
     Observable<List<EventEntity>> getEventsByZipCode(@Header("zip_code") String zipCode, @Header("x-auth-token") String token);
 }

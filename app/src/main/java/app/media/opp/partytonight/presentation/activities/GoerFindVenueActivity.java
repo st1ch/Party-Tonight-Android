@@ -7,6 +7,8 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -35,6 +37,9 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
     @BindView(R.id.svVenue)
     SearchView svVenue;
 
+    @BindView(R.id.tvEmptyList)
+    TextView tvEmptyList;
+
     @Inject
     GoerFindVenuePresenter presenter;
     private ActivityNavigator activityNavigator;
@@ -59,7 +64,7 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
 
     private void configureViews() {
         ToolbarUtils.configureToolbarAsActionBar(this,
-                (Toolbar) findViewById(R.id.toolbar), true);
+                (Toolbar) findViewById(R.id.toolbar), true, true);
 
         svVenue.setFindOnClickListener(view -> presenter.onFindButtonClick(svVenue.getText()));
     }
@@ -72,6 +77,16 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
 
     @Override
     public void renderList(List<Event> response) {
+        if (response == null || response.isEmpty()) {
+            if (tvEmptyList.getVisibility() == View.GONE || tvEmptyList.getVisibility() == View.INVISIBLE) {
+                tvEmptyList.setVisibility(View.VISIBLE);
+            }
+        } else {
+            if (tvEmptyList.getVisibility() == View.VISIBLE) {
+                tvEmptyList.setVisibility(View.GONE);
+            }
+        }
+
         Log.w("Places list", "############# BEGIN ##########");
         Log.w("Places list", "endl");
 
