@@ -10,14 +10,14 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.GoerFindVenueUseCase;
 import app.media.opp.partytonight.presentation.utils.Messages;
-import app.media.opp.partytonight.presentation.views.IGoerFindVenueView;
+import app.media.opp.partytonight.presentation.views.IGoerFindVenueVIew;
 
 /**
  * Created by piekie (binnonnorie@gmail.com)
  * on 1/30/17
  */
 
-public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueView> implements IGoerFindVenuePresenter {
+public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueVIew> implements IGoerFindVenuePresenter {
 
     private GoerFindVenueUseCase findVenueUseCase;
 
@@ -28,7 +28,7 @@ public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueView
     }
 
     @Override
-    public void onCreate(IGoerFindVenueView view) {
+    public void onCreate(IGoerFindVenueVIew view) {
         super.onCreate(view);
     }
 
@@ -44,7 +44,7 @@ public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueView
             @Override
             public void onNext(List<Event> response) {
                 super.onNext(response);
-                IGoerFindVenueView view = getView();
+                IGoerFindVenueVIew view = getView();
 
                 if (view != null) {
                     view.renderList(response);

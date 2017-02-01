@@ -9,7 +9,7 @@ import app.media.opp.partytonight.domain.Event;
  * on 1/30/17
  */
 
-public interface IGoerFindVenueView extends IProgressView {
+public interface IGoerFindVenueVIew extends IProgressView {
 
     void renderList(List<Event> response);
 }
