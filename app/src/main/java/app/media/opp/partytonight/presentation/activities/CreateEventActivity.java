@@ -319,6 +319,12 @@ public class CreateEventActivity extends ProgressActivity implements DatePickerC
 
     @Override
     public void saveZipCode(String response) {
+        // TODO: 2/1/17 what to do with no postal code places?
+
+        if (response == null || response.isEmpty()) {
+            response = "00000";
+        }
+
         event.setZipCode(response);
     }
 

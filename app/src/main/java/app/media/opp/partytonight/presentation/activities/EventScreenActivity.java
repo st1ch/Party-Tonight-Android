@@ -1,11 +1,9 @@
 package app.media.opp.partytonight.presentation.activities;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
@@ -27,6 +25,7 @@ import butterknife.OnClick;
 public class EventScreenActivity extends ProgressActivity implements IEventScreenView {
     public static final String EVENT = "event";
     public static final String REVENUE = "revenue";
+    private final ActivityNavigator navigator = new ActivityNavigator();
     @BindView(R.id.ediDoorRevenue)
     EventDetailsItem ediDoorRevenue;
     @BindView(R.id.ediBottles)
@@ -39,7 +38,6 @@ public class EventScreenActivity extends ProgressActivity implements IEventScree
     Toolbar toolbar;
     @Inject
     EventScreenPresenter presenter;
-    private final ActivityNavigator navigator = new ActivityNavigator();
     private Event event;
     private Revenue revenue;
 
@@ -99,6 +97,10 @@ public class EventScreenActivity extends ProgressActivity implements IEventScree
 
     @Override
     public void renderRevenue(Revenue revenue) {
+        if (revenue == null) {
+            revenue = new Revenue("0");
+        }
+
         this.revenue = revenue;
         ediDoorRevenue.setLabel(ediDoorRevenue.getLabel() + "$" + revenue.getRevenue());
     }
