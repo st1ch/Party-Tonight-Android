@@ -5,6 +5,7 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.List;
 
+import app.media.opp.partytonight.data.Statement;
 import rx.Observable;
 
 /**
@@ -26,6 +27,8 @@ public interface SessionRepository {
     Observable<List<Event>> getEvents();
 
     Observable<String> getPostalAddress(LatLng latLng);
+
+    Observable<Statement> getStatement(String partyName);
 
     Observable<Revenue> getEventRevenue(Event event);
 

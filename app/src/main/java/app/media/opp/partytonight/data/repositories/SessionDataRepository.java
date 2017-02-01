@@ -16,6 +16,7 @@ import app.media.opp.partytonight.data.Constants;
 import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.Mapper;
+import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.data.rest.RestApi;
@@ -98,6 +99,11 @@ public class SessionDataRepository implements SessionRepository {
             Collections.sort(events, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
             return events;
         });
+    }
+
+    @Override
+    public Observable<Statement> getStatement(String partyName) {
+        return restApi.getStatement(partyName);
     }
 
     @Override

@@ -10,8 +10,9 @@ import app.media.opp.partytonight.domain.User;
 public interface AbstractMapperFactory {
     Mapper<User, UserEntity> getUserEntityMapper();
 
-
     Mapper<Event, EventEntity> getEventEntityMapper();
+
+    Mapper<StatementEntity, Statement> getStatementMapper();
 
     Mapper<EventEntity, Event> getEventMapper();
 }

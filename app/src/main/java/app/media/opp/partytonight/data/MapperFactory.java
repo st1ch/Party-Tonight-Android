@@ -48,6 +48,23 @@ public class MapperFactory implements AbstractMapperFactory {
     }
 
     @Override
+    public Mapper<StatementEntity, Statement> getStatementMapper() {
+        return obj -> {
+            Statement statement = new Statement();
+
+            statement.setBottleSales(obj.getBottleSales());
+            statement.setRefunds(obj.getRefunds());
+            statement.setTableSales(obj.getTableSales());
+            statement.setTicketsSales(obj.getTicketsSales());
+            statement.setWithdrawn(obj.getWithdrawn());
+
+            statement.total();
+
+            return statement;
+        };
+    }
+
+    @Override
     public Mapper<EventEntity, Event> getEventMapper() {
         return obj -> {
             Event event = new Event();

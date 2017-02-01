@@ -10,6 +10,7 @@ import app.media.opp.partytonight.presentation.activities.LaunchScreenActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
+import app.media.opp.partytonight.presentation.fragments.StatementTotalFragment;
 import dagger.Subcomponent;
 
 /**
@@ -39,5 +40,7 @@ public interface UserComponent {
 
         void inject(GoerSignUpActivity goerSignUpActivity);
 
-    void inject(GoerFindVenueActivity goerFindVenueActivity);
+        void inject(GoerFindVenueActivity goerFindVenueActivity);
+
+        void inject(StatementTotalFragment statementTotalFragment);
 }

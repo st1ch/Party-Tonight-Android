@@ -8,6 +8,7 @@ import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.FileEntity;
+import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
@@ -69,5 +70,9 @@ public class RestApi {
 
     public Observable<List<EventEntity>> getEventsByZipCode(String zipCode) {
         return api.getEventsByZipCode(zipCode, account.user().getToken());
+    }
+
+    public Observable<Statement> getStatement(String partyName) {
+        return api.getStatement(account.user().getToken(), partyName);
     }
 }

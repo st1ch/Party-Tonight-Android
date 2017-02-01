@@ -4,6 +4,7 @@ import java.util.List;
 
 import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.FileEntity;
+import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Revenue;
@@ -55,5 +56,8 @@ public interface PartyTonightApi {
     @Headers({"Content-Type: application/json", "Content-Length: 0"})
     @GET("dancer/event/get")
     Observable<List<EventEntity>> getEventsByZipCode(@Header("zip_code") String zipCode, @Header("x-auth-token") String token);
+
+    @GET("maker/event/total")
+    Observable<Statement> getStatement(@Header("x-auth-token") String token, @Header("party_name") String partyName);
 }
 
