@@ -12,4 +12,8 @@ import app.media.opp.partytonight.domain.Event;
 public interface IGoerFindVenueView extends IProgressView {
 
     void renderList(List<Event> response);
+
+    void cleanList();
+
+    void emptyResponse();
 }

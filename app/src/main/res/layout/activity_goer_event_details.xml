@@ -32,11 +32,13 @@
                 android:visibility="gone" />
 
             <LinearLayout
+                android:id="@+id/llAbout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@color/goer_event_details_description_bg"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                     android:layout_width="wrap_content"
@@ -111,7 +113,7 @@
                     app:layout_gravity="fill">
 
                     <ImageButton
-                        android:id="@+id/bTables"
+                        android:id="@+id/btnTables"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center_horizontal"
@@ -139,7 +141,7 @@
                     app:layout_columnWeight="1">
 
                     <ImageButton
-                        android:id="@+id/bBuyLiquor"
+                        android:id="@+id/btnBuyLiquor"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center_horizontal"
@@ -167,7 +169,7 @@
                     app:layout_columnWeight="1">
 
                     <ImageButton
-                        android:id="@+id/bRsvp"
+                        android:id="@+id/btnRsvp"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center_horizontal"
@@ -195,7 +197,7 @@
                     app:layout_columnWeight="1">
 
                     <ImageButton
-                        android:id="@+id/bReviews"
+                        android:id="@+id/btnReviews"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:layout_gravity="center_horizontal"
@@ -222,7 +224,7 @@
                     app:layout_columnWeight="1">
 
                     <ImageButton
-                        android:id="@+id/bShare"
+                        android:id="@+id/btnShare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"

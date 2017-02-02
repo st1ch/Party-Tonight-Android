@@ -85,6 +85,15 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
         this.listener = listener;
     }
 
+    public void clear() {
+        events.clear();
+        notifyDataSetChanged();
+    }
+
+    public interface OnClickListener {
+        void onClick(int position, Event event);
+    }
+
     static class EventViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.ivThumbnail)
@@ -100,9 +109,5 @@ public class EventsAdapter extends RecyclerView.Adapter<EventsAdapter.EventViewH
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
-    }
-
-    public interface OnClickListener {
-        void onClick(int position, Event event);
     }
 }

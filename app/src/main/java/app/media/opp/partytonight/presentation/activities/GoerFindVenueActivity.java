@@ -5,8 +5,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import javax.inject.Inject;
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.adapters.EventsAdapter;
 import app.media.opp.partytonight.presentation.app.view.SearchView;
 import app.media.opp.partytonight.presentation.presenters.GoerFindVenuePresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
@@ -40,9 +42,13 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
     @BindView(R.id.tvEmptyList)
     TextView tvEmptyList;
 
+    @BindView(R.id.rvEvents)
+    RecyclerView rvEvents;
+
     @Inject
     GoerFindVenuePresenter presenter;
-    private ActivityNavigator activityNavigator;
+    EventsAdapter adapter;
+    private ActivityNavigator navigator = new ActivityNavigator();
 
     public static Intent launchIntent(Context context, @NonNull Event event) {
         Intent intent = new Intent(context, EventScreenActivity.class);
@@ -56,8 +62,8 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
         setContentView(R.layout.activity_goer_find_venue);
         ButterKnife.bind(this);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
+
         configureViews();
-        activityNavigator = new ActivityNavigator();
 
         presenter.onCreate(this);
     }
@@ -65,6 +71,13 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
     private void configureViews() {
         ToolbarUtils.configureToolbarAsActionBar(this,
                 (Toolbar) findViewById(R.id.toolbar), true, true);
+
+        rvEvents.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new EventsAdapter(this);
+        adapter.setListener((position, event) ->
+                navigator.startEventScreenActivity(this, event)
+        );
+        rvEvents.setAdapter(adapter);
 
         svVenue.setFindOnClickListener(view -> presenter.onFindButtonClick(svVenue.getText()));
     }
@@ -77,24 +90,18 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
 
     @Override
     public void renderList(List<Event> response) {
-        if (response == null || response.isEmpty()) {
-            if (tvEmptyList.getVisibility() == View.GONE || tvEmptyList.getVisibility() == View.INVISIBLE) {
-                tvEmptyList.setVisibility(View.VISIBLE);
-            }
-        } else {
-            if (tvEmptyList.getVisibility() == View.VISIBLE) {
-                tvEmptyList.setVisibility(View.GONE);
-            }
-        }
+        tvEmptyList.setVisibility(View.GONE);
+        adapter.setData(response);
+    }
 
-        Log.w("Places list", "############# BEGIN ##########");
-        Log.w("Places list", "endl");
+    @Override
+    public void cleanList() {
+        adapter.clear();
+    }
 
-        for (Event e : response) {
-            Log.w("Places list", "     " + e.getClubName());
-        }
-
-        Log.w("Places list", "endl");
-        Log.w("Places list", "############# END ##########");
+    @Override
+    public void emptyResponse() {
+        tvEmptyList.setVisibility(View.VISIBLE);
     }
 }
+

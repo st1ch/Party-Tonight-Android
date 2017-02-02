@@ -28,12 +28,13 @@ public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueView
     }
 
     @Override
-    public void onCreate(IGoerFindVenueView view) {
-        super.onCreate(view);
-    }
-
-    @Override
     public void onFindButtonClick(String zipCode) {
+        IGoerFindVenueView view = getView();
+
+        if (view != null) {
+            view.cleanList();
+        }
+
         findVenueUseCase.setZipCode(zipCode);
         findVenueUseCase.execute(getSubscriber());
     }
@@ -47,7 +48,11 @@ public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueView
                 IGoerFindVenueView view = getView();
 
                 if (view != null) {
-                    view.renderList(response);
+                    if (response != null && response.isEmpty()) {
+                        view.emptyResponse();
+                    } else {
+                        view.renderList(response);
+                    }
                 }
             }
         };

@@ -66,6 +66,10 @@ public class ActivityNavigator {
         }
     }
 
+    public void startEventActivityAsGoer(Activity activity, Event event) {
+        activity.startActivity(EventScreenActivity.launchIntent(activity, event));
+    }
+
     public void startPromoterSignUpActivity(Context mActivityContext) {
         Intent intent = new Intent(mActivityContext, PromoterSignUpActivity.class);
         mActivityContext.startActivity(intent);

@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import javax.inject.Inject;
+
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.domain.Event;
@@ -31,10 +33,9 @@ public class StatementTotalFragment extends ProgressFragment implements IStateme
     EventDetailsItem ediTableSales;
     @BindView(R.id.ediRefunds)
     EventDetailsItem ediRefunds;
-
+    @Inject
+    StatementPresenter presenter;
     private Event event;
-
-    private StatementPresenter presenter;
 
     public static StatementTotalFragment newInstance(Event event) {
 
@@ -43,6 +44,12 @@ public class StatementTotalFragment extends ProgressFragment implements IStateme
         StatementTotalFragment fragment = new StatementTotalFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onDestroy() {
+        presenter.onRelease();
+        super.onDestroy();
     }
 
     @Override
@@ -70,5 +77,10 @@ public class StatementTotalFragment extends ProgressFragment implements IStateme
         ediTicketSales.setAdditionalLabel(statement.getTicketsSales());
         ediRefunds.setAdditionalLabel(statement.getRefunds());
         ediWithdraw.setAdditionalLabel(statement.getWithdrawn());
+    }
+
+    @Override
+    public String getPartyName() {
+        return event.getPartyName();
     }
 }

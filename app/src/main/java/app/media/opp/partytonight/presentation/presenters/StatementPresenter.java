@@ -27,6 +27,14 @@ public class StatementPresenter extends ProgressPresenter<IStatementTotal> {
         super.onRelease();
     }
 
+    @Override
+    public void onCreate(IStatementTotal view) {
+        super.onCreate(view);
+
+        getStatementUseCase.setPartyName(view.getPartyName());
+        getStatementUseCase.execute(getSubscriber());
+    }
+
     @NonNull
     private BaseProgressSubscriber<Statement> getSubscriber() {
         return new BaseProgressSubscriber<Statement>(this) {

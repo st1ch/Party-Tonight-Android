@@ -57,6 +57,8 @@
     <color name="goer_event_details_description_bg">#99e2e2e2</color>
     <color name="goer_event_details_font">#fff</color>
     <color name="goer_cart_font">#fff</color>
+    <color name="goer_tables_font">#fff</color>
+    <color name="goer_tables_bg">#dcdcdc</color>
 
 
 </resources>

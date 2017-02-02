@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="36dp"
+    android:orientation="vertical">
+
+    <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:text="Table #1 (VIP - $500)"
+        android:textColor="@color/goer_tables_font" />
+
+    <ImageView
+        android:id="@+id/ivTick"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="6dp"
+        android:src="@mipmap/ic_close" />
+
+    <app.media.opp.partytonight.presentation.app.view.DividerThin
+        android:id="@+id/vDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="1dp"
+        android:layout_marginLeft="16dp" />
+</RelativeLayout>
