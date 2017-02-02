@@ -71,12 +71,14 @@ public class StatementTotalFragment extends ProgressFragment implements IStateme
 
     @Override
     public void showStatement(Statement statement) {
-        ediStatement.setAdditionalLabel(statement.getTotal());
-        ediBottleSales.setAdditionalLabel(statement.getBottleSales());
-        ediTableSales.setAdditionalLabel(statement.getTableSales());
-        ediTicketSales.setAdditionalLabel(statement.getTicketsSales());
-        ediRefunds.setAdditionalLabel(statement.getRefunds());
-        ediWithdraw.setAdditionalLabel(statement.getWithdrawn());
+        if (statement != null) {
+            ediStatement.setAdditionalLabel(statement.getTotal());
+            ediBottleSales.setAdditionalLabel(statement.getBottleSales());
+            ediTableSales.setAdditionalLabel(statement.getTableSales());
+            ediTicketSales.setAdditionalLabel(statement.getTicketsSales());
+            ediRefunds.setAdditionalLabel(statement.getRefunds());
+            ediWithdraw.setAdditionalLabel(statement.getWithdrawn());
+        }
     }
 
     @Override

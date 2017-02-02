@@ -26,10 +26,10 @@ public final class StringUtils {
     }
 
     public static String getDate(long milliSeconds) {
-        return getDate(milliSeconds, "hh:mm dd.MM.yy");
+        return getDate(milliSeconds * 1000, "hh:mm dd.MM.yy");
     }
 
     public static String getDate(String milliSeconds) {
-        return getDate(Long.parseLong(milliSeconds), "hh:mm dd.MM.yy");
+        return getDate(Long.parseLong(milliSeconds) * 1000, "hh:mm a dd.MM.yy");
     }
 }

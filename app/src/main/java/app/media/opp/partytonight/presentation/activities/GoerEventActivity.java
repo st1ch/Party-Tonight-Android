@@ -39,7 +39,7 @@ public class GoerEventActivity extends AppCompatActivity {
     private Event event;
 
     public static Intent launchIntent(Context context, @NonNull Event event) {
-        Intent intent = new Intent(context, app.media.opp.partytonight.presentation.activities.EventScreenActivity.class);
+        Intent intent = new Intent(context, GoerEventActivity.class);
         intent.putExtra(EVENT, event);
         return intent;
     }
@@ -50,14 +50,17 @@ public class GoerEventActivity extends AppCompatActivity {
         setContentView(R.layout.activity_goer_event_details);
         ButterKnife.bind(this);
 
-        configureViews();
         event = (Event) getIntent().getSerializableExtra(EVENT);
+
+        configureViews();
     }
 
     public void configureViews() {
         ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true, true);
 
         tvAddress.setText(event.getLocation());
+        tvAddress.setSelected(true);
+        tvAddress.setHorizontallyScrolling(true);
         tvTime.setText(StringUtils.getDate(event.getTime()));
     }
 

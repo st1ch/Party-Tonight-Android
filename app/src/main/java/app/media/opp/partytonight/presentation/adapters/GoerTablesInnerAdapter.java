@@ -7,14 +7,14 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Table;
 
-public class GoerTablesAdapter extends RecyclerView.Adapter<GoerTablesAdapter.ViewHolder> {
+public class GoerTablesInnerAdapter extends RecyclerView.Adapter<GoerTablesInnerAdapter.ViewHolder> {
 
-    private ArrayList<Table> data;
+    private List<Table> data;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -26,6 +26,11 @@ public class GoerTablesAdapter extends RecyclerView.Adapter<GoerTablesAdapter.Vi
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         holder.compileContent(data.get(position), position);
+    }
+
+    public void setData(List<Table> data) {
+        this.data = data;
+        notifyDataSetChanged();
     }
 
     @Override

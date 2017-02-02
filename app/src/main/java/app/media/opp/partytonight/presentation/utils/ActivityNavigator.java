@@ -9,6 +9,7 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
+import app.media.opp.partytonight.presentation.activities.GoerEventActivity;
 import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerMainActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
@@ -88,6 +89,10 @@ public class ActivityNavigator {
 
     public void startEventScreenActivity(Activity activity, Event event) {
         activity.startActivity(EventScreenActivity.launchIntent(activity, event));
+    }
+
+    public void startGoerEventActivity(Activity activity, Event event) {
+        activity.startActivity(GoerEventActivity.launchIntent(activity, event));
     }
 
     public void startPromoterCreateEventActivity(Context context) {

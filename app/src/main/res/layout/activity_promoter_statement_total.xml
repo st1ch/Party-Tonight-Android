@@ -23,6 +23,7 @@
                 android:paddingBottom="6dp"
                 android:paddingLeft="12dp"
                 android:paddingRight="12dp"
+                app:additionalLabel="$0"
                 app:label="Statement total:"
                 app:textSize="19sp" />
 
@@ -33,7 +34,7 @@
                 android:background="@color/colorButtonGraySemiTransparent"
                 android:clickable="false"
                 android:padding="12dp"
-                app:additionalLabel="23"
+                app:additionalLabel="$0"
                 app:label="Tickets sales"
                 app:textSize="18sp" />
 
@@ -46,7 +47,7 @@
                 android:background="@color/colorButtonGraySemiTransparent"
                 android:clickable="false"
                 android:padding="12dp"
-                app:additionalLabel="23"
+                app:additionalLabel="$0"
                 app:label="Bottle sales"
                 app:textSize="18sp" />
 
@@ -59,7 +60,7 @@
                 android:background="@color/colorButtonGraySemiTransparent"
                 android:clickable="false"
                 android:padding="12dp"
-                app:additionalLabel="23"
+                app:additionalLabel="$0"
                 app:label="Table sales"
                 app:textSize="18sp" />
 
@@ -72,7 +73,7 @@
                 android:background="@color/colorButtonGraySemiTransparent"
                 android:clickable="false"
                 android:padding="12dp"
-                app:additionalLabel="23"
+                app:additionalLabel="$0"
                 app:label="Refunds"
                 app:textSize="18sp" />
 
@@ -85,7 +86,7 @@
                 android:layout_marginTop="12dp"
                 android:paddingRight="12dp"
                 android:textColor="#ffffff"
-                app:additionalLabel="1234"
+                app:additionalLabel="$0"
                 app:label="Withdraw"
                 app:label_gravity="right"
                 app:textSize="19sp" />

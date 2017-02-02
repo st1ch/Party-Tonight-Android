@@ -59,6 +59,7 @@
             android:name=".presentation.activities.GoerFindVenueActivity"
             android:label="Find a venue"
             android:windowSoftInputMode="adjustPan" />
+        <activity android:name=".presentation.activities.GoerEventActivity" />
 
     </application>
 

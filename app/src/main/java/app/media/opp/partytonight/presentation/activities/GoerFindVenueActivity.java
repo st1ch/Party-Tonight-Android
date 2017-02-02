@@ -18,7 +18,7 @@ import javax.inject.Inject;
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
-import app.media.opp.partytonight.presentation.adapters.EventsAdapter;
+import app.media.opp.partytonight.presentation.adapters.GoerEventsAdapter;
 import app.media.opp.partytonight.presentation.app.view.SearchView;
 import app.media.opp.partytonight.presentation.presenters.GoerFindVenuePresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
@@ -47,7 +47,7 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
 
     @Inject
     GoerFindVenuePresenter presenter;
-    EventsAdapter adapter;
+    GoerEventsAdapter adapter;
     private ActivityNavigator navigator = new ActivityNavigator();
 
     public static Intent launchIntent(Context context, @NonNull Event event) {
@@ -73,9 +73,9 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
                 (Toolbar) findViewById(R.id.toolbar), true, true);
 
         rvEvents.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new EventsAdapter(this);
+        adapter = new GoerEventsAdapter(this);
         adapter.setListener((position, event) ->
-                navigator.startEventScreenActivity(this, event)
+                navigator.startGoerEventActivity(this, event)
         );
         rvEvents.setAdapter(adapter);
 

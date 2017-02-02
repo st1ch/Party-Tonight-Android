@@ -5,7 +5,7 @@ package app.media.opp.partytonight.data;
  */
 
 public class PhotoEntity {
-    private String photo;
+    public String photo;
 
     public PhotoEntity(String photo) {
         this.photo = photo;

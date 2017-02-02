@@ -83,6 +83,13 @@ public class MapperFactory implements AbstractMapperFactory {
             event.setTicketPrice(obj.getTickets());
             event.setZipCode(obj.getZipCode());
 
+            List<String> photos = new ArrayList<>(obj.getPhotos().size());
+            for (PhotoEntity entity : obj.getPhotos()) {
+                photos.add(entity.photo);
+            }
+
+            event.setPhotos(photos);
+
             return event;
         };
     }
