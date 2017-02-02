@@ -9,6 +9,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.daimajia.slider.library.SliderLayout;
+import com.daimajia.slider.library.SliderTypes.BaseSliderView;
+import com.daimajia.slider.library.SliderTypes.TextSliderView;
+
+import java.util.HashMap;
+
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
@@ -29,6 +35,9 @@ public class GoerEventActivity extends AppCompatActivity {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
+    @BindView(R.id.slThumbnail)
+    SliderLayout slThumbnail;
 
     @BindView(R.id.tvAddress)
     TextView tvAddress;
@@ -62,6 +71,31 @@ public class GoerEventActivity extends AppCompatActivity {
         tvAddress.setSelected(true);
         tvAddress.setHorizontallyScrolling(true);
         tvTime.setText(StringUtils.getDate(event.getTime()));
+
+        if (event.getPhotos() != null && !event.getPhotos().isEmpty()) {
+            slThumbnail.setVisibility(View.VISIBLE);
+
+            HashMap<String, String> url_maps = new HashMap<>();
+            for (int i = 0; i < event.getPhotos().size(); i++) {
+                url_maps.put(i + "", event.getPhotos().get(i));
+            }
+
+            for (String name : url_maps.keySet()) {
+                TextSliderView textSliderView = new TextSliderView(this);
+
+                textSliderView
+                        .description(name)
+                        .image(url_maps.get(name))
+                        .setScaleType(BaseSliderView.ScaleType.Fit);
+
+                slThumbnail.addSlider(textSliderView);
+            }
+
+            slThumbnail.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
+            slThumbnail.setPresetTransformer(SliderLayout.Transformer.Default);
+
+            slThumbnail.setDuration(4000);
+        }
     }
 
     @OnClick({R.id.btnTables, R.id.btnBuyLiquor, R.id.btnRsvp, R.id.btnReviews, R.id.btnShare})
