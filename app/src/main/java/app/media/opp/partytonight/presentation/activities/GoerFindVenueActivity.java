@@ -24,7 +24,7 @@ import app.media.opp.partytonight.presentation.app.view.SearchView;
 import app.media.opp.partytonight.presentation.presenters.GoerFindVenuePresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
-import app.media.opp.partytonight.presentation.views.IGoerFindVenueView;
+import app.media.opp.partytonight.presentation.views.IGoerFindVenueVIew;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -34,7 +34,7 @@ import butterknife.OnClick;
  * on 1/30/17
  */
 
-public class GoerFindVenueActivity extends ProgressActivity implements IGoerFindVenueView {
+public class GoerFindVenueActivity extends ProgressActivity implements IGoerFindVenueVIew {
 
     public static final String EVENT = "event";
 
