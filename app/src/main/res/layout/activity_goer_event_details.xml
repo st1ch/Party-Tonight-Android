@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_goer_event_details_description"
-                android:drawableLeft="@mipmap/ic_tickets"
+                android:drawableLeft="@mipmap/ic_clock"
                 android:drawablePadding="20dp"
                 android:ellipsize="marquee"
                 android:gravity="center"
@@ -88,7 +88,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
                 android:background="@drawable/bg_goer_event_details_description"
-                android:drawableLeft="@mipmap/ic_tickets"
+                android:drawableLeft="@mipmap/ic_placeholder"
                 android:drawablePadding="15dp"
                 android:ellipsize="end"
                 android:gravity="center"
@@ -150,7 +150,7 @@
                         android:background="@drawable/button_circular_transparent"
                         android:padding="6dp"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_cart" />
+                        android:src="@mipmap/ic_liquor" />
 
                     <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                         android:layout_width="wrap_content"
@@ -178,7 +178,7 @@
                         android:background="@drawable/button_circular_transparent"
                         android:padding="6dp"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_money" />
+                        android:src="@mipmap/ic_rsvp" />
 
                     <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                         android:layout_width="wrap_content"
@@ -206,7 +206,7 @@
                         android:background="@drawable/button_circular_transparent"
                         android:padding="6dp"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_table" />
+                        android:src="@mipmap/ic_reviews" />
 
                     <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                         android:layout_width="wrap_content"
@@ -233,7 +233,7 @@
                         android:background="@drawable/button_circular_transparent"
                         android:padding="6dp"
                         android:scaleType="fitCenter"
-                        android:src="@mipmap/ic_table" />
+                        android:src="@mipmap/ic_share" />
 
                     <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                         android:layout_width="wrap_content"

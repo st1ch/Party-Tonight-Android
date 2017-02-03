@@ -39,11 +39,18 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
     public void onBindViewHolder(ViewHolder holder, int position) {
         CartItemExtended item = data.get(position);
 
-        String title = item.getTypeOfItem().toString() + item.getTitle();
+        String title;
 
-        if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
-            title += "x" + item.getAmount();
+        if (item.getTypeOfItem() == CartItemExtended.Type.Bottle) {
+            title = item.getTitle() + " " + item.getTypeOfItem().toString() + " ";
+
+            if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
+                title += "x" + item.getAmount();
+            }
+        } else {
+            title = "Table #" + item.getAmount() + " (" + item.getTitle() + ")";
         }
+
 
         holder.content.setLabel(title);
         holder.content.setAdditionalLabel("$" + item.getFullPrice());

@@ -61,6 +61,8 @@ public class GoerEventActivity extends AppCompatActivity {
 
         event = (Event) getIntent().getSerializableExtra(EVENT);
 
+        setTitle(event.getPartyName());
+
         configureViews();
     }
 
@@ -117,6 +119,11 @@ public class GoerEventActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    @OnClick(R.id.btnCart)
+    public void onCartClick() {
+        navigator.startGoerCartActivity(this);
     }
 
 }

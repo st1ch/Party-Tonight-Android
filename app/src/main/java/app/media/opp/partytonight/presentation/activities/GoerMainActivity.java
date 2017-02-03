@@ -8,6 +8,9 @@ import android.view.View;
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
+import app.media.opp.partytonight.presentation.utils.Uber;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by piekie (Artem Vasylenko)
@@ -21,19 +24,24 @@ public class GoerMainActivity extends AppCompatActivity implements View.OnClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goer_main_cut);
-        findViewById(R.id.bFindVenue).setOnClickListener(this);
+        setContentView(R.layout.activity_goer_main);
+
+        ButterKnife.bind(this);
+
         activityNavigator = new ActivityNavigator();
 
         ToolbarUtils.configureToolbarAsActionBar(this,
                 (Toolbar) findViewById(R.id.toolbar), false, true);
     }
 
-    @Override
+    @OnClick({R.id.bFindVenue, R.id.bGoerCallACab})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bFindVenue:
                 activityNavigator.startGoerFindVenueActivity(this);
+                break;
+            case R.id.bGoerCallACab:
+                Uber.startUber(this);
                 break;
         }
     }

@@ -35,7 +35,8 @@
                 android:id="@+id/btnAddToCart"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Add to cart" />
+                android:text="Add to cart"
+                android:textSize="@dimen/button_curved_gray_text_size" />
 
         </LinearLayout>
 

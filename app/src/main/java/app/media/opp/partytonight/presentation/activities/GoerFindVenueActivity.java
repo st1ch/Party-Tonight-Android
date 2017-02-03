@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 
 import java.util.List;
@@ -80,9 +81,19 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
         );
         rvEvents.setAdapter(adapter);
 
-        svVenue.setFindOnClickListener(view -> presenter.onFindButtonClick(svVenue.getText()));
+        svVenue.setFindOnClickListener(view -> {
+            hideKeyboard();
+            presenter.onFindButtonClick(svVenue.getText());
+        });
     }
 
+    private void hideKeyboard() {
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+    }
 
     @OnClick(R.id.btnCart)
     public void onClick(View view) {

@@ -25,19 +25,27 @@ import butterknife.OnClick;
 public class EventScreenActivity extends ProgressActivity implements IEventScreenView {
     public static final String EVENT = "event";
     public static final String REVENUE = "revenue";
+
     private final ActivityNavigator navigator = new ActivityNavigator();
+
     @BindView(R.id.ediDoorRevenue)
     EventDetailsItem ediDoorRevenue;
+
     @BindView(R.id.ediBottles)
     EventDetailsItem ediBottles;
+
     @BindView(R.id.ediTables)
     EventDetailsItem ediTables;
+
     @BindView(R.id.ediStatementTotal)
     EventDetailsItem ediStatementTotal;
+
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     @Inject
     EventScreenPresenter presenter;
+
     private Event event;
     private Revenue revenue;
 
@@ -54,7 +62,7 @@ public class EventScreenActivity extends ProgressActivity implements IEventScree
         ButterKnife.bind(this);
         PartyTonightApplication.getApp(this).getUserComponent().inject(this);
         configureViews();
-        event = (Event)getIntent().getSerializableExtra(EVENT);
+        event = (Event) getIntent().getSerializableExtra(EVENT);
         if (savedInstanceState != null) {
             revenue = (Revenue) savedInstanceState.getSerializable(REVENUE);
         }
@@ -76,7 +84,7 @@ public class EventScreenActivity extends ProgressActivity implements IEventScree
     @OnClick({R.id.ediBottles, R.id.ediTables, R.id.ediStatementTotal})
     public void onClick(View view) {
 
-        switch (view.getId()){
+        switch (view.getId()) {
             case R.id.ediBottles:
                 navigator.startBottleScreen(this, event);
                 break;

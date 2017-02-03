@@ -94,6 +94,10 @@ public class GoerTablesActivity extends AppCompatActivity {
                 });
 
                 amount += 1;
+
+                if (j == amountOfTables - 1) {
+                    dividerThin.setVisibility(View.INVISIBLE);
+                }
             }
         }
     }
@@ -118,7 +122,7 @@ public class GoerTablesActivity extends AppCompatActivity {
 
                 if (visibility == View.VISIBLE) {
                     GoerCartActivity.putToCart(null, CartItemExtended.Type.Table,
-                            event.getTables().get(i).getType(), Integer.parseInt(event.getTables().get(i).getPrice()), 1);
+                            event.getTables().get(i).getType(), Integer.parseInt(event.getTables().get(i).getPrice()), j);
 
                     finish();
                 }

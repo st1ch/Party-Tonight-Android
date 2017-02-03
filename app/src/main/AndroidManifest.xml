@@ -60,7 +60,9 @@
             android:label="Find a venue"
             android:windowSoftInputMode="adjustPan" />
         <activity android:name=".presentation.activities.GoerEventActivity" />
-        <activity android:name=".presentation.activities.GoerCartActivity" />
+        <activity
+            android:name=".presentation.activities.GoerCartActivity"
+            android:label="Cart" />
         <activity
             android:name=".presentation.activities.GoerBottlesActivity"
             android:label="Liquors" />
