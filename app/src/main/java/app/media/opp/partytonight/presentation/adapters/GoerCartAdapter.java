@@ -10,6 +10,7 @@ import java.util.List;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.CartItemExtended;
+import app.media.opp.partytonight.presentation.app.view.DividerThin;
 import app.media.opp.partytonight.presentation.app.view.EventDetailsItem;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,6 +53,10 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
         }
 
 
+        if (position == data.size() - 1) {
+            holder.divider.setVisibility(View.GONE);
+        }
+
         holder.content.setLabel(title);
         holder.content.setAdditionalLabel("$" + item.getFullPrice());
     }
@@ -73,6 +78,9 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
     public static class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.tvContent)
         EventDetailsItem content;
+
+        @BindView(R.id.vDivider)
+        DividerThin divider;
 
         public ViewHolder(View itemView) {
             super(itemView);

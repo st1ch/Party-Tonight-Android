@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="16dp"
-            android:text="@string/my_events"
+            android:text="Find a venue"
             android:textColor="@color/colorTextViewTitle"
             android:textSize="@dimen/textview_promoter_main_text_size" />
 

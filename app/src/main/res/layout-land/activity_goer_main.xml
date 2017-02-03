@@ -42,7 +42,7 @@
                 android:layout_below="@id/bGoerMyEvents"
                 android:gravity="center"
                 android:padding="8dp"
-                android:text="@string/my_events"
+                android:text="Find a venue"
                 android:textColor="@color/colorTextViewTitle"
                 android:textSize="@dimen/textview_promoter_main_text_size" />
 
