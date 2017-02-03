@@ -45,4 +45,9 @@ public class GoerMainActivity extends AppCompatActivity implements View.OnClickL
                 break;
         }
     }
+
+    @OnClick(R.id.btnCart)
+    public void onCartClick() {
+        activityNavigator.startGoerCartActivity(this);
+    }
 }

@@ -44,6 +44,8 @@ public class StatementPresenter extends ProgressPresenter<IStatementTotal> {
 
                 IStatementTotal screenView = getView();
                 if (screenView != null) {
+                    response.total();
+
                     screenView.showStatement(response);
                 }
             }

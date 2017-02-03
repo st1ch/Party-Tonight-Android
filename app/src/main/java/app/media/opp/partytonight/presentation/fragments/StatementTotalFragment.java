@@ -69,14 +69,26 @@ public class StatementTotalFragment extends ProgressFragment implements IStateme
         return view;
     }
 
+    public String validateSum(String sum) {
+        String title;
+        double refund = Double.parseDouble(sum);
+
+        if (refund < 0) {
+            title = "-$" + (-refund);
+        } else {
+            title = "$" + refund;
+        }
+        return title;
+    }
+
     @Override
     public void showStatement(Statement statement) {
         if (statement != null) {
-            ediStatement.setAdditionalLabel(statement.getTotal());
-            ediBottleSales.setAdditionalLabel(statement.getBottleSales());
-            ediTableSales.setAdditionalLabel(statement.getTableSales());
-            ediTicketSales.setAdditionalLabel(statement.getTicketsSales());
-            ediRefunds.setAdditionalLabel(statement.getRefunds());
+            ediStatement.setAdditionalLabel(validateSum(statement.getTotal()));
+            ediBottleSales.setAdditionalLabel("$" + statement.getBottleSales());
+            ediTableSales.setAdditionalLabel("$" + statement.getTableSales());
+            ediTicketSales.setAdditionalLabel("$" + statement.getTicketsSales());
+            ediRefunds.setAdditionalLabel(validateSum(statement.getRefunds()));
             ediWithdraw.setAdditionalLabel(statement.getWithdrawn());
         }
     }

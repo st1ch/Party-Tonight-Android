@@ -8,9 +8,18 @@ import java.io.Serializable;
 
 public class Ticket implements Serializable {
     private String price;
+    private String available;
 
     public Ticket(String price) {
         this.price = price;
+    }
+
+    public String getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(String available) {
+        this.available = available;
     }
 
     public String getPrice() {

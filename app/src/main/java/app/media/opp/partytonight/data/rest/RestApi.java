@@ -9,6 +9,7 @@ import java.util.List;
 import app.media.opp.partytonight.data.EventEntity;
 import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.Statement;
+import app.media.opp.partytonight.data.Ticket;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
@@ -49,6 +50,10 @@ public class RestApi {
 
 
     public Observable<EventEntity> createEvent(EventEntity event) {
+        for (Ticket t : event.getTickets()) {
+            t.setAvailable(event.getClubCapacity());
+        }
+        
         return api.createEvent(account.user().getToken(), event).map(responseBody -> event);
     }
 

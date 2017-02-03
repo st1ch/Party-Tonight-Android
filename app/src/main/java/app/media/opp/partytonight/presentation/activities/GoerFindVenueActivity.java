@@ -41,6 +41,9 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
     @BindView(R.id.svVenue)
     SearchView svVenue;
 
+    @BindView(R.id.tvStartSearching)
+    TextView tvStartSearching;
+
     @BindView(R.id.tvEmptyList)
     TextView tvEmptyList;
 
@@ -84,6 +87,9 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
         svVenue.setFindOnClickListener(view -> {
             hideKeyboard();
             presenter.onFindButtonClick(svVenue.getText());
+
+            tvStartSearching.setVisibility(View.GONE);
+            tvEmptyList.setVisibility(View.VISIBLE);
         });
     }
 
