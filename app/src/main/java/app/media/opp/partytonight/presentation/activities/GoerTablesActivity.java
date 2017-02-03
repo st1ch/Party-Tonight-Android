@@ -1,17 +1,26 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.domain.Table;
+import app.media.opp.partytonight.presentation.app.view.DividerThin;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by piekie (binnonnorie@gmail.com)
@@ -21,40 +30,104 @@ import butterknife.ButterKnife;
 public class GoerTablesActivity extends AppCompatActivity {
 
     public static final String EVENT = "event";
+
     private final ActivityNavigator navigator = new ActivityNavigator();
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
-    @BindView(R.id.rvTables)
-    RecyclerView rvTables;
-
-    @BindView(R.id.tvTime)
-    TextView tvTime;
+    @BindView(R.id.llAllTables)
+    LinearLayout llAllTables;
 
     private Event event;
 
+    public static Intent launchIntent(Context context, Event event) {
+        Intent intent = new Intent(context, GoerTablesActivity.class);
+        intent.putExtra(EVENT, event);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goer_event_details);
+        setContentView(R.layout.activity_goer_event_tables);
         ButterKnife.bind(this);
 
-        configureViews();
         event = (Event) getIntent().getSerializableExtra(EVENT);
 
-//        rvEvents.setLayoutManager(new LinearLayoutManager(this));
-//        adapter = new EventsAdapter(this);
-//        adapter.setListener((position, event) ->
-//                navigator.startEventScreenActivity(PromoterEventsActivity.this, event)
-//        );
-//        rvEvents.setAdapter(adapter);
-//        presenter.onCreate(this);
+        configureViews();
     }
 
     public void configureViews() {
-        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true, true);
+        ToolbarUtils.configureToolbarAsActionBar(this, toolbar, true);
 
+        int amount = 0;
+
+        for (int i = 0; i < event.getTables().size(); i++) {
+            ViewGroup t_inflate = (ViewGroup) getLayoutInflater().inflate(R.layout.item_goer_tables, llAllTables);
+
+            String t_tag = "tt" + i;
+
+            ViewGroup t_root = (ViewGroup) t_inflate.getChildAt(i);
+            t_root.setTag(t_tag);
+
+            int amountOfTables = Integer.parseInt(event.getTables().get(i).getAvailable());
+
+            for (int j = 0; j < amountOfTables; j++) {
+                ViewGroup inflate = (ViewGroup) getLayoutInflater().inflate(R.layout.item_goer_tables_item, t_root);
+
+                String tag = "t" + j;
+
+                ViewGroup root = (ViewGroup) inflate.getChildAt(j);
+                root.setTag(tag);
+
+                TextView tvContent = (TextView) root.findViewById(R.id.tvContent);
+                ImageView ivTick = (ImageView) root.findViewById(R.id.ivTick);
+                DividerThin dividerThin = (DividerThin) root.findViewById(R.id.vDivider);
+
+                tvContent.setText(compileContent(event.getTables().get(i), amount + 1));
+
+                root.setOnClickListener(l -> {
+                    clearTicks();
+
+                    ivTick.setVisibility(View.VISIBLE);
+                });
+
+                amount += 1;
+            }
+        }
+    }
+
+    private void clearTicks() {
+        for (int i = 0; i < llAllTables.getChildCount(); i++) {
+            ViewGroup root = (ViewGroup) llAllTables.getChildAt(i);
+
+            for (int j = 0; j < root.getChildCount(); j++) {
+                root.getChildAt(j).findViewById(R.id.ivTick).setVisibility(View.GONE);
+            }
+        }
+    }
+
+    @OnClick(R.id.btnAddToCart)
+    public void onClick() {
+        for (int i = 0; i < llAllTables.getChildCount(); i++) {
+            ViewGroup root = (ViewGroup) llAllTables.getChildAt(i);
+
+            for (int j = 0; j < root.getChildCount(); j++) {
+                int visibility = root.getChildAt(j).findViewById(R.id.ivTick).getVisibility();
+
+                if (visibility == View.VISIBLE) {
+                    GoerCartActivity.putToCart(null, CartItemExtended.Type.Table,
+                            event.getTables().get(i).getType(), Integer.parseInt(event.getTables().get(i).getPrice()), 1);
+
+                    finish();
+                }
+            }
+        }
+    }
+
+    String compileContent(Table table, int position) {
+        return "Table #" + position + "(" +
+                table.getType() + " - $" + table.getPrice() + ")";
     }
 }

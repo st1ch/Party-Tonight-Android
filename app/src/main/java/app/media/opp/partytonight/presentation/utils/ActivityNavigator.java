@@ -9,11 +9,14 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
+import app.media.opp.partytonight.presentation.activities.GoerBottlesActivity;
+import app.media.opp.partytonight.presentation.activities.GoerCartActivity;
 import app.media.opp.partytonight.presentation.activities.GoerEventActivity;
 import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerMainActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
+import app.media.opp.partytonight.presentation.activities.GoerTablesActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterMainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
@@ -76,6 +79,7 @@ public class ActivityNavigator {
         mActivityContext.startActivity(intent);
     }
 
+
     public void startPromoterMainActivity(Activity mActivityContext, boolean inNewTask) {
         Intent intent = new Intent(mActivityContext, PromoterMainActivity.class);
         if (inNewTask) {
@@ -89,6 +93,10 @@ public class ActivityNavigator {
 
     public void startEventScreenActivity(Activity activity, Event event) {
         activity.startActivity(EventScreenActivity.launchIntent(activity, event));
+    }
+
+    public void startGoerBottlesActivity(Activity activity, Event event) {
+        activity.startActivity(GoerBottlesActivity.launchIntent(activity, event));
     }
 
     public void startGoerEventActivity(Activity activity, Event event) {
@@ -122,5 +130,15 @@ public class ActivityNavigator {
         Intent intent = EventDetailsContainerActivity.launchIntent(activity,
                 EventDetailsContainerActivity.STATEMENT, event);
         activity.startActivity(intent);
+    }
+
+    public void startGoerCartActivity(Context context) {
+        Intent intent = new Intent(context, GoerCartActivity.class);
+        context.startActivity(intent);
+
+    }
+
+    public void startGoerTablesActivity(Activity activity, Event event) {
+        activity.startActivity(GoerTablesActivity.launchIntent(activity, event));
     }
 }

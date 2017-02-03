@@ -102,10 +102,10 @@ public class GoerEventActivity extends AppCompatActivity {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnTables:
-
+                navigator.startGoerTablesActivity(this, event);
                 break;
             case R.id.btnBuyLiquor:
-
+                navigator.startGoerBottlesActivity(this, event);
                 break;
             case R.id.btnRsvp:
 

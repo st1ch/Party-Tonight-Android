@@ -6,63 +6,14 @@ import java.io.Serializable;
  * Created by arkadii on 11/6/16.
  */
 
-public class Bottle implements Serializable {
-    private String type;
-    private String price;
-    private String available;
-    private String booked;
-
-    public Bottle() {
-    }
-
-    public Bottle(String type, String price, String available, String booked) {
-        this.type = type;
-        this.price = price;
-        this.available = available;
-        this.booked = booked;
-    }
-
-    public String getBooked() {
-        if (booked == null) {
-            booked = "0";
-        }
-        return booked;
-    }
-
-    public void setBooked(String booked) {
-        this.booked = booked;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
-    public String getAvailable() {
-        return available;
-    }
-
-    public void setAvailable(String available) {
-        this.available = available;
-    }
+public class Bottle extends CartItem implements Serializable {
 
     @Override
     public String toString() {
         return "Bottle{" +
-                "type='" + type + '\'' +
-                ", price=" + price +
-                ", available=" + available +
+                "type='" + getType() + '\'' +
+                ", price=" + getPrice() +
+                ", available=" + getAvailable() +
                 '}';
     }
 }

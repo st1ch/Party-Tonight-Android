@@ -1,0 +1,75 @@
+package app.media.opp.partytonight.presentation.adapters;
+
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.domain.CartItemExtended;
+import app.media.opp.partytonight.presentation.app.view.EventDetailsItem;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHolder> {
+
+    private List<CartItemExtended> data = new ArrayList<>();
+
+    public GoerCartAdapter(List<CartItemExtended> data) {
+        this.data = data;
+    }
+
+    public void setData(List<CartItemExtended> data) {
+        this.data.clear();
+        this.data.addAll(data);
+        notifyItemRangeInserted(0, data.size());
+    }
+
+    @Override
+    public GoerCartAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item_goer_cart, parent, false);
+        return new GoerCartAdapter.ViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        CartItemExtended item = data.get(position);
+
+        String title = item.getTypeOfItem().toString() + item.getTitle();
+
+        if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
+            title += "x" + item.getAmount();
+        }
+
+        holder.content.setLabel(title);
+        holder.content.setAdditionalLabel("$" + item.getFullPrice());
+    }
+
+    public int getTotal() {
+        int sum = 0;
+        for (CartItemExtended c : data) {
+            sum += c.getFullPrice();
+        }
+
+        return sum;
+    }
+
+    @Override
+    public int getItemCount() {
+        return data.size();
+    }
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.tvContent)
+        EventDetailsItem content;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            ButterKnife.bind(this, itemView);
+        }
+    }
+}

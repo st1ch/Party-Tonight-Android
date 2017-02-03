@@ -26,6 +26,7 @@ import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import app.media.opp.partytonight.presentation.views.IGoerFindVenueView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by piekie (binnonnorie@gmail.com)
@@ -80,6 +81,16 @@ public class GoerFindVenueActivity extends ProgressActivity implements IGoerFind
         rvEvents.setAdapter(adapter);
 
         svVenue.setFindOnClickListener(view -> presenter.onFindButtonClick(svVenue.getText()));
+    }
+
+
+    @OnClick(R.id.btnCart)
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btnCart:
+                navigator.startGoerCartActivity(this);
+                break;
+        }
     }
 
     @Override

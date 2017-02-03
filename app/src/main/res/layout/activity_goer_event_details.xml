@@ -78,7 +78,7 @@
                 android:maxLines="1"
                 android:padding="4dp"
                 android:scrollHorizontally="true"
-                android:text="10:00 PM 25.07.16"
+                android:text="10:00 PM 25.07.16y"
                 android:textColor="@color/colorTextHeader2"
                 android:textSize="20sp" />
 

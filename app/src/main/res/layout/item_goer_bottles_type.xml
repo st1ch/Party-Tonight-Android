@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginBottom="@dimen/bottle_section_margin_vertical"
+    android:layout_marginTop="@dimen/bottle_section_margin_vertical"
+    android:orientation="vertical">
+
+    <Spinner
+        android:id="@+id/spnTypes"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin_less"
+        android:background="@null"
+        android:spinnerMode="dropdown" />
+
+    <app.media.opp.partytonight.presentation.app.view.TextViewCurvedTranslucentWithIcon
+        android:id="@+id/tvBottlePrice"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin_less"
+        android:drawableLeft="@mipmap/ic_bottles"
+        android:drawablePadding="@dimen/edittext_curved_icon_drawable_padding"
+        android:drawableStart="@mipmap/ic_account"
+        android:gravity="start|center_vertical"
+        android:maxLines="1"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="Bottle Price"
+        android:textSize="@dimen/edittext_curved_text_size" />
+
+    <app.media.opp.partytonight.presentation.app.view.ButtonCurvedTranslucentWithIcon
+        android:id="@+id/btnQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/edittext_curved_translucent_height"
+        android:layout_marginBottom="@dimen/activity_vertical_margin_less"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:layout_marginTop="@dimen/activity_vertical_margin_less"
+        android:drawableLeft="@mipmap/ic_bottles"
+        android:drawablePadding="@dimen/edittext_curved_icon_drawable_padding"
+        android:drawableStart="@mipmap/ic_account"
+        android:gravity="start|center_vertical"
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp"
+        android:text="0"
+        android:textAllCaps="false"
+        android:textSize="@dimen/edittext_curved_text_size" />
+
+</LinearLayout>
