@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.fragments.TermsFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerSignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
@@ -46,15 +47,31 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogIn:
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                if (isValid(email, password)) {
-                    presenter.onSignInButtonClick(email, password);
-                }
+                checkTerms();
                 break;
             case R.id.bSignUp:
                 activityNavigator.startGoerSignUpActivity(this);
                 break;
+            case R.id.bTerms:
+                activityNavigator.startTermsAndConditions(this);
+                break;
+        }
+    }
+
+    private void checkTerms() {
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (isValid(email, password)) {
+            TermsFragment fragment
+                    = TermsFragment.newInstance();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("email", email);
+            bundle.putString("password", password);
+            fragment.setArguments(bundle);
+
+            fragment.show(getFragmentManager(), "terms");
         }
     }
 
@@ -94,5 +111,9 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
     @Override
     public void navigateToProfile() {
         activityNavigator.startGoerMainActivity(this, true);
+    }
+
+    public GoerSignInPresenter getPresenter() {
+        return presenter;
     }
 }

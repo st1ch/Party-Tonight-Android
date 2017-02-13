@@ -69,6 +69,7 @@
         <activity
             android:name=".presentation.activities.GoerTablesActivity"
             android:label="Tables" />
+        <activity android:name=".presentation.activities.TermsAndConditionsActivity" />
 
     </application>
 

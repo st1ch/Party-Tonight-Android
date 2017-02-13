@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions_title" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_conditions_updated" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_intro" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_subscriptions"
+                app:title="Subscriptions" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_fee"
+                app:title="Fee changes" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_refunds"
+                app:title="Refunds" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_accounts"
+                app:title="Accounts" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_links"
+                app:title="Links To Other Web Sites" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_termination"
+                app:title="Termination" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_indemnification"
+                app:title="Indemnification" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_termination"
+                app:title="Indemnification" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_limitation"
+                app:title="Limitation Of Liability" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_disclaimer"
+                app:title="Disclaimer" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_exclusions"
+                app:title="Exclusions" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_governing"
+                app:title="Governing Law" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_changes"
+                app:title="Changes" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextSection
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:content="@string/terms_and_conditions_contact_us"
+                app:title="Contact Us" />
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

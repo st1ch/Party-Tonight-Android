@@ -21,6 +21,7 @@ import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity
 import app.media.opp.partytonight.presentation.activities.PromoterMainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
+import app.media.opp.partytonight.presentation.activities.TermsAndConditionsActivity;
 import app.media.opp.partytonight.presentation.activities.WelcomeScreenActivity;
 
 /**
@@ -140,5 +141,11 @@ public class ActivityNavigator {
 
     public void startGoerTablesActivity(Activity activity, Event event) {
         activity.startActivity(GoerTablesActivity.launchIntent(activity, event));
+    }
+
+    public void startTermsAndConditions(Context context) {
+        Intent intent = new Intent(context, TermsAndConditionsActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        context.startActivity(intent);
     }
 }
