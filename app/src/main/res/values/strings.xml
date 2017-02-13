@@ -252,4 +252,14 @@
     <string name="terms_and_conditions_i_agree">
         I agree to the\u0020
     </string>
+
+    <string name="liquors_age">
+        By checking this box you are verifying you are of legal age to purchase liquor in your area.
+    </string>
+
+    <string name="contact_us">
+        9350 Wilshire Blvd #203, Beverly Hills, CA 90212\n
+        EMAIL US: INFO@EXECUTIVEMETHODS.COM\n
+        CALL US: (310) 564-1375
+    </string>
 </resources>

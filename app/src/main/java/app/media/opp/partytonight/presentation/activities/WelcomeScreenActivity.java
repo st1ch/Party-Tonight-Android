@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import app.media.opp.partytonight.R;
+import app.media.opp.partytonight.presentation.fragments.ContactUsFragment;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 
 public class WelcomeScreenActivity extends Activity implements View.OnClickListener {
@@ -18,6 +19,7 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
 
         findViewById(R.id.bPromoter).setOnClickListener(this);
         findViewById(R.id.bPartyGoer).setOnClickListener(this);
+        findViewById(R.id.bContactUs).setOnClickListener(this);
 
         activityNavigator = new ActivityNavigator();
     }
@@ -30,6 +32,10 @@ public class WelcomeScreenActivity extends Activity implements View.OnClickListe
                 break;
             case R.id.bPromoter:
                 activityNavigator.startPromoterSignInActivity(this);
+                break;
+            case R.id.bContactUs:
+                ContactUsFragment fragment = ContactUsFragment.newInstance();
+                fragment.show(getFragmentManager(), "contact us");
                 break;
         }
     }

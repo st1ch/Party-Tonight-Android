@@ -92,4 +92,15 @@
         </LinearLayout>
 
     </RelativeLayout>
+
+    <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
+        android:id="@+id/bContactUs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@null"
+        android:text="Contact Us"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
 </RelativeLayout>
