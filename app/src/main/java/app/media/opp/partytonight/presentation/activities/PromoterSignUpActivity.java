@@ -1,7 +1,14 @@
 package app.media.opp.partytonight.presentation.activities;
 
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+
+import com.fastaccess.datetimepicker.DatePickerFragmentDialog;
+import com.fastaccess.datetimepicker.DateTimeBuilder;
+import com.fastaccess.datetimepicker.callback.DatePickerCallback;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -15,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class PromoterSignUpActivity extends ProgressActivity implements ICredentialView {
+public class PromoterSignUpActivity extends ProgressActivity implements ICredentialView, DatePickerCallback {
 
     @BindView(R.id.etName)
     EditText etName;
@@ -29,9 +36,13 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     EditText etEmergencyContact;
     @BindView(R.id.etPassword)
     EditText etPassword;
+    @BindView(R.id.bBirthday)
+    Button bBirthday;
+
     @Inject
     SignUpPresenter presenter;
     private ActivityNavigator activityNavigator;
+    private String birthday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +70,7 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         String emergencyContact = etEmergencyContact.getText().toString();
 
         if (isValid(name, email, phone, password, billingInfo, emergencyContact)) {
-            presenter.onSignUpButtonClick(name, email, phone, password, billingInfo, emergencyContact);
+            presenter.onSignUpButtonClick(name, email, phone, password, billingInfo, emergencyContact, birthday);
         }
     }
 
@@ -131,9 +142,22 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         } else {
             isValidPassword = true;
         }
-        return isValidBilling && isValidEmail && isValidEmergencyContact && isValidName && isValidPassword && isValidPhone;
+        return isValidBilling && isValidEmail && isValidEmergencyContact && isValidName && isValidPassword && isValidPhone && birthday != null;
     }
 
+    @OnClick(R.id.bBirthday)
+    public void getBirthdayDate() {
+        Calendar today = Calendar.getInstance();
+
+        long todayInMillis = today.getTimeInMillis();
+
+        DatePickerFragmentDialog dg = DatePickerFragmentDialog.newInstance(
+                DateTimeBuilder.get()
+                        .withSelectedDate(todayInMillis)
+                        .withMaxDate(todayInMillis));
+
+        dg.show(getSupportFragmentManager(), "DatePickerFragmentDialog");
+    }
 
     private void showFieldError(EditText editText, String error) {
         editText.setError(error);
@@ -142,5 +166,26 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
     @Override
     public void navigateToProfile() {
         activityNavigator.startPromoterMainActivity(this, true);
+    }
+
+    @Override
+    public void onDateSet(long date) {
+        birthday = Long.toString(date);
+        renderFormattedDate(date);
+    }
+
+    private void renderFormattedDate(long date) {
+        String dateAsString = "";
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(date);
+
+        dateAsString += cal.get(Calendar.MONTH);
+        dateAsString += ".";
+        dateAsString += cal.get(Calendar.DAY_OF_MONTH);
+        dateAsString += ".";
+        dateAsString += cal.get(Calendar.YEAR);
+
+        bBirthday.setText(dateAsString);
     }
 }

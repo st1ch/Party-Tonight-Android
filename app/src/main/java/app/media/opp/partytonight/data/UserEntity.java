@@ -13,15 +13,22 @@ public class UserEntity {
     String emergencyContact;
     String email;
     String password;
+    String birthday;
+    String address;
 
 
-    public UserEntity(String userName, String email, String phoneNumber, BillingEntity billingInfo, String emergencyContact, String password) {
+    public UserEntity(String userName, String email, String phoneNumber, BillingEntity billingInfo, String emergencyContact, String password,
+                      String birthday, String address) {
         this.userName = userName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.billingInfo = billingInfo;
         this.emergencyContact = emergencyContact;
         this.password = password;
+
+        // FIXME: 2/14/17 uncomment next lines to send all the data to backend
+//        this.address = address;
+//        this.birthday = birthday;
     }
 
     public String getEmail() {
@@ -46,5 +53,13 @@ public class UserEntity {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public String getAddress() {
+        return address;
     }
 }

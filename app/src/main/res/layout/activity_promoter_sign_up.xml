@@ -71,6 +71,17 @@
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/edittext_curved_text_size" />
 
+                <app.media.opp.partytonight.presentation.app.view.ButtonCurvedBlack
+                    android:id="@+id/bBirthday"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/activity_create_event_vertical_margin"
+                    android:layout_marginTop="@dimen/activity_create_event_vertical_margin"
+                    android:drawableEnd="@mipmap/ic_forward"
+                    android:drawableRight="@mipmap/ic_forward"
+                    android:text="Birthday"
+                    android:textSize="@dimen/edittext_curved_text_size" />
+
                 <app.media.opp.partytonight.presentation.app.view.EditTextCurvedTranslucent
                     android:id="@+id/etBillingInfo"
                     android:layout_width="match_parent"

@@ -44,7 +44,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 //public class CreateEventActivity extends ProgressActivity implements IAddEventView, View.OnClickListener {
-public class CreateEventActivity extends ProgressActivity implements DatePickerCallback,
+public class PromoterCreateEventActivity extends ProgressActivity implements DatePickerCallback,
         TimePickerCallback,
         IAddEventView,
         View.OnClickListener {

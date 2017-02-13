@@ -11,4 +11,8 @@ public interface ISignUpPresenter extends IPresenter<ICredentialView> {
     void onSignUpButtonClick(String name, String email, String phone, String password, String billingInfo, String emergencyContact);
 
     void onSignUpButtonClick(String name, String email, String password);
+
+    void onSignUpButtonClick(String name, String email, String password, String birthday, String address);
+
+    void onSignUpButtonClick(String name, String email, String phone, String password, String billingInfo, String emergencyContact, String birthday);
 }

@@ -43,7 +43,7 @@
             android:label="Events" />
 
         <activity
-            android:name=".presentation.activities.CreateEventActivity"
+            android:name=".presentation.activities.PromoterCreateEventActivity"
             android:label="Create Event"
             android:windowSoftInputMode="adjustPan" />
         <activity

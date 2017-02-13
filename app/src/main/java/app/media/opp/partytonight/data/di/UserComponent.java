@@ -1,12 +1,12 @@
 package app.media.opp.partytonight.data.di;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
-import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
 import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.LaunchScreenActivity;
+import app.media.opp.partytonight.presentation.activities.PromoterCreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignUpActivity;
@@ -30,7 +30,7 @@ public interface UserComponent {
 
         void inject(LaunchScreenActivity launchScreenActivity);
 
-        void inject(CreateEventActivity createEventActivity);
+        void inject(PromoterCreateEventActivity promoterCreateEventActivity);
 
         void inject(PromoterEventsActivity promoterEventsActivity);
 

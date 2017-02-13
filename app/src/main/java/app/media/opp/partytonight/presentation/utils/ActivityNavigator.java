@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.util.Log;
 
 import app.media.opp.partytonight.domain.Event;
-import app.media.opp.partytonight.presentation.activities.CreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.EventDetailsContainerActivity;
 import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
 import app.media.opp.partytonight.presentation.activities.GoerBottlesActivity;
@@ -17,6 +16,7 @@ import app.media.opp.partytonight.presentation.activities.GoerMainActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
 import app.media.opp.partytonight.presentation.activities.GoerTablesActivity;
+import app.media.opp.partytonight.presentation.activities.PromoterCreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterMainActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
@@ -105,7 +105,7 @@ public class ActivityNavigator {
     }
 
     public void startPromoterCreateEventActivity(Context context) {
-        Intent intent = new Intent(context, CreateEventActivity.class);
+        Intent intent = new Intent(context, PromoterCreateEventActivity.class);
         context.startActivity(intent);
     }
 

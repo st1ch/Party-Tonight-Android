@@ -1,7 +1,20 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.EditText;
+
+import com.fastaccess.datetimepicker.DatePickerFragmentDialog;
+import com.fastaccess.datetimepicker.DateTimeBuilder;
+import com.fastaccess.datetimepicker.callback.DatePickerCallback;
+import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+import com.google.android.gms.location.places.Place;
+import com.google.android.gms.location.places.ui.PlacePicker;
+
+import java.util.Calendar;
 
 import javax.inject.Inject;
 
@@ -15,7 +28,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GoerSignUpActivity extends ProgressActivity implements ICredentialView {
+public class GoerSignUpActivity extends ProgressActivity implements DatePickerCallback, ICredentialView {
+
+    public static final int PLACE_PICKER = 1;
 
     @BindView(R.id.etName)
     EditText etName;
@@ -23,6 +38,13 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
     EditText etEmail;
     @BindView(R.id.etPassword)
     EditText etPassword;
+    @BindView(R.id.bBirthday)
+    Button bBirthday;
+    @BindView(R.id.bAddress)
+    Button bAddress;
+
+    String birthday;
+    String address;
 
     @Inject
     GoerSignUpPresenter presenter;
@@ -44,6 +66,51 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
         super.onDestroy();
     }
 
+    @OnClick(R.id.bBirthday)
+    public void getBirthdayDate() {
+        Calendar today = Calendar.getInstance();
+
+        long todayInMillis = today.getTimeInMillis();
+
+        DatePickerFragmentDialog dg = DatePickerFragmentDialog.newInstance(
+                DateTimeBuilder.get()
+                        .withSelectedDate(todayInMillis)
+                        .withMaxDate(todayInMillis));
+
+        dg.show(getSupportFragmentManager(), "DatePickerFragmentDialog");
+    }
+
+    @OnClick(R.id.bAddress)
+    public void getAddress() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            Intent i = builder.build(this);
+
+            startActivityForResult(i, PLACE_PICKER);
+        } catch (GooglePlayServicesRepairableException | GooglePlayServicesNotAvailableException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (requestCode) {
+            case PLACE_PICKER:
+                if (resultCode == Activity.RESULT_OK) {
+                    Place place = PlacePicker.getPlace(this, data);
+
+                    address = place.getAddress().toString();
+                    bAddress.setText(address);
+                }
+                break;
+            default:
+                break;
+        }
+
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
     @OnClick(R.id.bSignUp)
     public void onClick() {
         String name = etName.getText().toString().trim().replace("  ", " ");
@@ -51,7 +118,7 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
         String password = etPassword.getText().toString();
 
         if (isValid(name, email, password)) {
-            presenter.onSignUpButtonClick(name, email, password);
+            presenter.onSignUpButtonClick(name, email, password, birthday, address);
         }
     }
 
@@ -96,7 +163,8 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
         } else {
             isValidPassword = true;
         }
-        return isValidEmail && isValidName && isValidPassword;
+
+        return isValidEmail && isValidName && isValidPassword && birthday != null && address != null;
     }
 
 
@@ -108,4 +176,26 @@ public class GoerSignUpActivity extends ProgressActivity implements ICredentialV
     public void navigateToProfile() {
         activityNavigator.startGoerMainActivity(this, true);
     }
+
+    @Override
+    public void onDateSet(long date) {
+        birthday = Long.toString(date);
+        renderFormattedDate(date);
+    }
+
+    private void renderFormattedDate(long date) {
+        String dateAsString = "";
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTimeInMillis(date);
+
+        dateAsString += cal.get(Calendar.MONTH);
+        dateAsString += ".";
+        dateAsString += cal.get(Calendar.DAY_OF_MONTH);
+        dateAsString += ".";
+        dateAsString += cal.get(Calendar.YEAR);
+
+        bBirthday.setText(dateAsString);
+    }
+
 }

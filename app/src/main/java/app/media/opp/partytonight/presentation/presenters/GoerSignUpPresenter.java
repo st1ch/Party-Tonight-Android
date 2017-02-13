@@ -50,6 +50,19 @@ public class GoerSignUpPresenter extends ProgressPresenter<ICredentialView> impl
         useCase.execute(getSubscriber());
     }
 
+    @Override
+    public void onSignUpButtonClick(String name, String email, String password, String birthday, String address) {
+        useCase.setUser(new User(name, email, password, birthday, address));
+        useCase.execute(getSubscriber());
+    }
+
+    @Override
+    public void onSignUpButtonClick(String name, String email, String phone,
+                                    String password, String billingInfo, String emergencyContact, String birthday) {
+        useCase.setUser(new User(name, email, phone, new Billing(billingInfo), emergencyContact, password, birthday));
+        useCase.execute(getSubscriber());
+    }
+
     @NonNull
     private BaseProgressSubscriber<User> getSubscriber() {
         return new BaseProgressSubscriber<User>(this) {
