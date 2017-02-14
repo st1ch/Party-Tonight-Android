@@ -15,7 +15,8 @@ import app.media.opp.partytonight.R;
 
 public class TextViewHeader2 extends TextView {
 
-    private static final String FONT = "fonts/aguda.ttf";
+    private static final String FONT = "fonts/sumptuos.otf";
+    ;
     private static final int RID_COLOR_TEXT_COLOR = R.color.colorTextHeader2;
 
     public TextViewHeader2(Context context) {

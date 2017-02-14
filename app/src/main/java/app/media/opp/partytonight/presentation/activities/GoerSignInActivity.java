@@ -8,7 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
-import app.media.opp.partytonight.presentation.fragments.TermsFragment;
+import app.media.opp.partytonight.presentation.fragments.CheckTermsFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerSignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
@@ -63,8 +63,8 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
         String password = etPassword.getText().toString();
 
         if (isValid(email, password)) {
-            TermsFragment fragment
-                    = TermsFragment.newInstance();
+            CheckTermsFragment fragment
+                    = CheckTermsFragment.newInstance();
 
             Bundle bundle = new Bundle();
             bundle.putString("email", email);

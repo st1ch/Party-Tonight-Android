@@ -12,7 +12,8 @@ import android.widget.TextView;
 
 public class TextViewTitle extends TextView {
 
-    private static final String FONT = "fonts/sugar_plums.ttf";
+    private static final String FONT = "fonts/sumptuos.otf";
+    ;
 
     public TextViewTitle(Context context) {
         super(context);

@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
             android:padding="16dp"
-            android:text="@string/call_a_cab"
+            android:text="UBER"
             android:textColor="@color/colorTextViewTitle"
             android:textSize="@dimen/textview_promoter_main_text_size" />
 

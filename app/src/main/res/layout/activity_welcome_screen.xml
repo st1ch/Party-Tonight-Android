@@ -22,6 +22,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/textview_app_title_margin_top"
             android:gravity="center"
+            android:padding="8dp"
             android:text="@string/app_name"
             android:textColor="@color/colorTextViewTitle"
             android:textSize="@dimen/textview_app_title_text_size" />

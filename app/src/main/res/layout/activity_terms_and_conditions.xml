@@ -15,15 +15,21 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
+            <app.media.opp.partytonight.presentation.app.view.TextViewAgudaBold
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/terms_and_conditions_title" />
+                android:padding="12dp"
+                android:text="@string/terms_and_conditions_title"
+                android:textColor="@android:color/white"
+                android:textSize="16sp" />
 
-            <TextView
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/terms_and_conditions_updated" />
+                android:padding="6dp"
+                android:text="@string/terms_and_conditions_updated"
+                android:textColor="@android:color/white"
+                android:textSize="12sp" />
 
             <app.media.opp.partytonight.presentation.app.view.TextSection
                 android:layout_width="match_parent"
@@ -113,6 +119,22 @@
                 android:layout_height="wrap_content"
                 app:content="@string/terms_and_conditions_contact_us"
                 app:title="Contact Us" />
+
+
+            <View
+                android:layout_width="wrap_content"
+                android:layout_height="64dp" />
+
+            <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
+                android:id="@+id/bContactUs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@null"
+                android:text="Contact Us"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
         </LinearLayout>
 
     </ScrollView>

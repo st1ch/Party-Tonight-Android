@@ -24,7 +24,7 @@ public class ContactUsFragment extends BlurDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View root = getActivity().getLayoutInflater().inflate(R.layout.activity_contact_us, null);
+        View root = getActivity().getLayoutInflater().inflate(R.layout.dialog_contact_us, null);
 
         builder.setView(root);
         return builder.create();

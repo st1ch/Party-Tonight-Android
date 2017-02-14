@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class TextViewSugarPlums extends TextView {
 
-    private static final String FONT = "fonts/sugar_plums.ttf";
+    private static final String FONT = "fonts/sumptuos.otf";
 
     public TextViewSugarPlums(Context context) {
         super(context);

@@ -4,14 +4,22 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
+    <app.media.opp.partytonight.presentation.app.view.TextViewAgudaBold
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        android:textSize="14sp" />
 
-    <TextView
+    <app.media.opp.partytonight.presentation.app.view.TextViewAguda
         android:id="@+id/tvContent"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.5"
+        android:padding="6dp"
+        android:textColor="@android:color/white"
+        android:textSize="12sp" />
 
 </LinearLayout>

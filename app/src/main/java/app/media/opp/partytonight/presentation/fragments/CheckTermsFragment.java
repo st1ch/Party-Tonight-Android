@@ -10,13 +10,14 @@ import android.widget.CheckBox;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
+import app.media.opp.partytonight.presentation.activities.PromoterSignInActivity;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import fr.tvbarthel.lib.blurdialogfragment.BlurDialogFragment;
 
-public class TermsFragment extends BlurDialogFragment {
+public class CheckTermsFragment extends BlurDialogFragment {
 
     @BindView(R.id.cbAgreedWithTerms)
     CheckBox agreedWithTerms;
@@ -26,8 +27,8 @@ public class TermsFragment extends BlurDialogFragment {
 
     private ActivityNavigator activityNavigator;
 
-    public static TermsFragment newInstance() {
-        return new TermsFragment();
+    public static CheckTermsFragment newInstance() {
+        return new CheckTermsFragment();
     }
 
     @Override
@@ -47,7 +48,7 @@ public class TermsFragment extends BlurDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View root = getActivity().getLayoutInflater().inflate(R.layout.activity_check_terms, null);
+        View root = getActivity().getLayoutInflater().inflate(R.layout.dialog_check_terms, null);
 
         ButterKnife.bind(this, root);
 
@@ -67,6 +68,10 @@ public class TermsFragment extends BlurDialogFragment {
                     Activity activity = getActivity();
                     if (activity instanceof GoerSignInActivity) {
                         GoerSignInActivity parent = (GoerSignInActivity) activity;
+
+                        parent.getPresenter().onSignInButtonClick(email, password);
+                    } else if (activity instanceof PromoterSignInActivity) {
+                        PromoterSignInActivity parent = (PromoterSignInActivity) activity;
 
                         parent.getPresenter().onSignInButtonClick(email, password);
                     }

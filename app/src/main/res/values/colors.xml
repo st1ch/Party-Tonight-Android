@@ -32,18 +32,18 @@
     <color name="colorTextSignIn">#c0c0c0</color>
     <color name="colorTextHeader2">#ffffff</color>
 
-    <color name="colorButtonGrayTransparent">#46c4c4c4</color>
-    <color name="colorButtonGrayTransparentLight">#3cffffff</color>
+    <color name="colorButtonGrayTransparent">#715c5c5c</color>
+    <color name="colorButtonGrayTransparentLight">#77808080</color>
 
     <color name="colorProgressDialog">#3b3b3b</color>
 
     <color name="colorToolbarBackground">#212121</color>
 
-    <color name="colorButtonCurvedGray">#8d8e8e8e</color>
-    <color name="colorButtonCurvedGrayPressed">#78d4d4d4</color>
+    <color name="colorButtonCurvedGray">#715c5c5c</color>
+    <color name="colorButtonCurvedGrayPressed">#77808080</color>
 
-    <color name="colorButtonGraySemiTransparent">#646e6e6e</color>
-    <color name="colorButtonGraySemiTransparentPressed">#64cecece</color>
+    <color name="colorButtonGraySemiTransparent">#715c5c5c</color>
+    <color name="colorButtonGraySemiTransparentPressed">#77808080</color>
 
 
     <color name="colorButtonCurvedBlackNotPressed">#3c4e4e4e</color>

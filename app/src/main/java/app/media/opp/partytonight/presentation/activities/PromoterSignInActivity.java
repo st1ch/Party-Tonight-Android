@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.fragments.CheckTermsFragment;
 import app.media.opp.partytonight.presentation.presenters.SignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
@@ -46,15 +47,28 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.bLogIn:
-                String email = etEmail.getText().toString();
-                String password = etPassword.getText().toString();
-                if (isValid(email, password)) {
-                    presenter.onSignInButtonClick(email, password);
-                }
+                checkTerms();
                 break;
             case R.id.bSignUp:
                 activityNavigator.startPromoterSignUpActivity(this);
                 break;
+        }
+    }
+
+    private void checkTerms() {
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if (isValid(email, password)) {
+            CheckTermsFragment fragment
+                    = CheckTermsFragment.newInstance();
+
+            Bundle bundle = new Bundle();
+            bundle.putString("email", email);
+            bundle.putString("password", password);
+            fragment.setArguments(bundle);
+
+            fragment.show(getFragmentManager(), "terms");
         }
     }
 
@@ -96,4 +110,7 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         activityNavigator.startPromoterMainActivity(this, true);
     }
 
+    public SignInPresenter getPresenter() {
+        return presenter;
+    }
 }

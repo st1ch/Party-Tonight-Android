@@ -17,17 +17,13 @@ import java.util.HashMap;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.presentation.fragments.CheckAgeFragment;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-
-/**
- * Created by piekie (binnonnorie@gmail.com)
- * on 2/2/17
- */
 
 public class GoerEventActivity extends AppCompatActivity {
     public static final String EVENT = "event";
@@ -107,7 +103,7 @@ public class GoerEventActivity extends AppCompatActivity {
                 navigator.startGoerTablesActivity(this, event);
                 break;
             case R.id.btnBuyLiquor:
-                navigator.startGoerBottlesActivity(this, event);
+                checkAge();
                 break;
             case R.id.btnRsvp:
 
@@ -119,6 +115,16 @@ public class GoerEventActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    private void checkAge() {
+        CheckAgeFragment fragment = CheckAgeFragment.newInstance();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("event", event);
+
+        fragment.setArguments(bundle);
+        fragment.show(getFragmentManager(), "can_buy_liquors");
     }
 
     @OnClick(R.id.btnCart)

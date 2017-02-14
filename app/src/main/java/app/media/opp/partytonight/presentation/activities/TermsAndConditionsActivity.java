@@ -4,11 +4,9 @@ import android.app.Activity;
 import android.os.Bundle;
 
 import app.media.opp.partytonight.R;
-
-/**
- * Created by piekie (binnonnorie@gmail.com)
- * on 2/13/17
- */
+import app.media.opp.partytonight.presentation.fragments.ContactUsFragment;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class TermsAndConditionsActivity extends Activity {
 
@@ -17,5 +15,13 @@ public class TermsAndConditionsActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_terms_and_conditions);
+
+        ButterKnife.bind(this);
+    }
+
+    @OnClick(R.id.bContactUs)
+    public void contactUs() {
+        ContactUsFragment fragment = ContactUsFragment.newInstance();
+        fragment.show(getFragmentManager(), "contact us");
     }
 }
