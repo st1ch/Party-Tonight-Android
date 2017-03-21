@@ -64,6 +64,9 @@ dependencies {
     // Blurred dialog fragment (https://github.com/tvbarthel/BlurDialogFragment)
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
 
+    // PayPal MPL (used for payments)
+    compile files('libs/paypal.jar')
+
     apt 'com.google.dagger:dagger-compiler:2.0.2'
     compile 'com.google.dagger:dagger:2.0.2'
 

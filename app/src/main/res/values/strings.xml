@@ -11,7 +11,7 @@
     <string name="networkError">Please, check network connection</string>
     <string name="name">Name</string>
     <string name="phoneNumber">Phone number</string>
-    <string name="billingInfo">Billing info</string>
+    <string name="billingInfo">Billing email</string>
     <string name="emergencyContact">Emergency contact</string>
     <string name="pleaseWait">Please, wait...</string>
     <string name="wrongLoginOrPassword">Wrong login or password</string>

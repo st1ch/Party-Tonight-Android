@@ -7,15 +7,15 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class BillingEntity {
-    @SerializedName("card_number")
-    private String cardNumber;
+    @SerializedName("billing_email")
+    private String billingEmail;
 
 
-    public BillingEntity(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public BillingEntity(String billingEmail) {
+        this.billingEmail = billingEmail;
     }
 
     public String getCardNumber() {
-        return cardNumber;
+        return billingEmail;
     }
 }

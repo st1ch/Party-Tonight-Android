@@ -1,19 +1,17 @@
 package app.media.opp.partytonight.domain;
 
-import com.google.gson.annotations.SerializedName;
-
 /**
  * Created by arkadii on 11/3/16.
  */
 
 public class Billing {
-    private String cardNumber;
+    private String billingEmail;
 
-    public Billing(String cardNumber) {
-        this.cardNumber = cardNumber;
+    public Billing(String billingEmail) {
+        this.billingEmail = billingEmail;
     }
 
-    public String getCardNumber() {
-        return cardNumber;
+    public String getBillingEmail() {
+        return billingEmail;
     }
 }
