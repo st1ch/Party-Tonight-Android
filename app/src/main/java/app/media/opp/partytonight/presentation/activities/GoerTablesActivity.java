@@ -121,7 +121,7 @@ public class GoerTablesActivity extends AppCompatActivity {
                 int visibility = root.getChildAt(j).findViewById(R.id.ivTick).getVisibility();
 
                 if (visibility == View.VISIBLE) {
-                    GoerCartActivity.putToCart(null, CartItemExtended.Type.Table,
+                    GoerCartActivity.putToCart(event.getPartyName(), CartItemExtended.Type.Table,
                             event.getTables().get(i).getType(), Integer.parseInt(event.getTables().get(i).getPrice()), j);
 
                     finish();

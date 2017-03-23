@@ -52,7 +52,7 @@ public class PartyTonightAccount implements Account {
                 .putString(TOKEN, user.getToken())
                 .putString(EMAIL, user.getEmail())
                 .putString(PHONE, user.getPhoneNumber())
-                .putString(BILLING_INFO, user.getBillingInfo() == null ? null : user.getBillingInfo().getCardNumber())
+                .putString(BILLING_INFO, user.getBillingInfo() == null ? null : user.getBillingInfo().getBillingEmail())
                 .putString(EMERGENCY_CONTACT, user.getEmergencyContact())
                 .putBoolean(IS_GOER, isGoer)
                 .apply();

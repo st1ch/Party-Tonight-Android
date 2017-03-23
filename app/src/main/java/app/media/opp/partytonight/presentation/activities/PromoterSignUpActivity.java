@@ -102,8 +102,14 @@ public class PromoterSignUpActivity extends ProgressActivity implements ICredent
         boolean isValidBilling = false;
         if (billingInfo.isEmpty()) {
             showFieldError(etBillingInfo, getString(R.string.fieldShoudNotBeEmpty));
-        } else if (!FieldsUtils.isValidString(FieldsUtils.BILLING_VALID_SYMBOLS, billingInfo)) {
+        } else if (!FieldsUtils.hasProperLength(billingInfo)) {
+            showFieldError(etBillingInfo, getString(R.string.minimumLengthIs) + " " + FieldsUtils.MIN_LENGTH);
+        } else if (!FieldsUtils.isValidString(FieldsUtils.EMAIL_VALID_SYMBOLS, billingInfo)) {
             showFieldError(etBillingInfo, getString(R.string.fieldContainsInvalidCharacters));
+        } else if (!billingInfo.contains("@")) {
+            showFieldError(etBillingInfo, getString(R.string.fieldDoesNotContainEt));
+        } else if (!billingInfo.contains(".")) {
+            showFieldError(etBillingInfo, getString(R.string.fieldDoesNotContainDot));
         } else {
             isValidBilling = true;
         }

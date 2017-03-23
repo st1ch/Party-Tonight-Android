@@ -23,6 +23,10 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
         this.data = data;
     }
 
+    public List<CartItemExtended> getData() {
+        return data;
+    }
+
     public void setData(List<CartItemExtended> data) {
         this.data.clear();
         this.data.addAll(data);

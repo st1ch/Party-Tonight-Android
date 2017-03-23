@@ -6,6 +6,7 @@ package app.media.opp.partytonight.domain;
  */
 
 public class CartItemExtended extends CartItem {
+    String partyName;
     Type typeOfItem;
     String title;
     int amount;
@@ -41,6 +42,14 @@ public class CartItemExtended extends CartItem {
 
     public void setFullPrice(int fullPrice) {
         this.fullPrice = fullPrice;
+    }
+
+    public String getPartyName() {
+        return partyName;
+    }
+
+    public void setPartyName(String partyName) {
+        this.partyName = partyName;
     }
 
     public enum Type {

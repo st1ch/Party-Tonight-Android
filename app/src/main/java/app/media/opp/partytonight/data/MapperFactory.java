@@ -18,7 +18,7 @@ public class MapperFactory implements AbstractMapperFactory {
                 obj.getUserName(),
                 obj.getEmail(),
                 obj.getPhoneNumber(),
-                obj.getBillingInfo() != null ? new BillingEntity(obj.getBillingInfo().getCardNumber()) : null,
+                obj.getBillingInfo() != null ? new BillingEntity(obj.getBillingInfo().getBillingEmail()) : null,
                 obj.getEmergencyContact(),
                 obj.getPassword(),
                 obj.getBirthday(),

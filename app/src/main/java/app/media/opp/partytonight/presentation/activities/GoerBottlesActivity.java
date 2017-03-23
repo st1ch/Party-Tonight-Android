@@ -137,7 +137,7 @@ public class GoerBottlesActivity extends AppCompatActivity {
 
             int price = Integer.parseInt(b.getPrice());
 
-            GoerCartActivity.putToCart(null, CartItemExtended.Type.Bottle, b.getType(), amount * price, amount);
+            GoerCartActivity.putToCart(event.getPartyName(), CartItemExtended.Type.Bottle, b.getType(), amount * price, amount);
         }
 
         finish();
