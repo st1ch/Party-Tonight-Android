@@ -13,7 +13,9 @@ import java.util.List;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Booking;
+import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.CartItemExtended;
+import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.adapters.GoerCartAdapter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -34,7 +36,7 @@ public class GoerCartActivity extends AppCompatActivity {
     TextView tvTotal;
     private GoerCartAdapter adapter;
 
-    public static void putToCart(String partyName, CartItemExtended.Type type, String title, int fullPrice, int amount) {
+    public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount) {
         CartItemExtended ci = new CartItemExtended();
 
         ci.setPartyName(partyName);
@@ -87,7 +89,21 @@ public class GoerCartActivity extends AppCompatActivity {
                             booking.getBottles().get(i).setBooked(String.valueOf(booked));
 
                             break;
+                        } else if (i == booking.getBottles().size() - 1) {
+                            Bottle bottle = new Bottle();
+                            bottle.setBooked(String.valueOf(item.getAmount()));
+                            bottle.setType(item.getTitle());
+
+                            booking.getBottles().add(bottle);
                         }
+                    }
+
+                    if (booking.getBottles().size() == 0) {
+                        Bottle bottle = new Bottle();
+                        bottle.setBooked(String.valueOf(item.getAmount()));
+                        bottle.setType(item.getTitle());
+
+                        booking.getBottles().add(bottle);
                     }
                 } else {
                     for (int i = 0; i < booking.getTables().size(); i++) {
@@ -101,17 +117,53 @@ public class GoerCartActivity extends AppCompatActivity {
                             booking.getTables().get(i).setBooked(String.valueOf(booked));
 
                             break;
+                        } else if (i == booking.getTables().size() - 1) {
+                            Table table = new Table();
+                            table.setBooked(String.valueOf(item.getAmount()));
+                            table.setType(item.getTitle());
+
+                            booking.getTables().add(table);
                         }
+                    }
+
+                    if (booking.getTables().size() == 0) {
+                        Table table = new Table();
+                        table.setBooked(String.valueOf(item.getAmount()));
+                        table.setType(item.getTitle());
+
+                        booking.getTables().add(table);
                     }
                 }
 
                 order.put(booking.getPartyName(), booking);
             } else {
+                if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
+                    Booking booking = new Booking();
+                    booking.setPartyName(item.getPartyName());
 
+                    Bottle bottle = new Bottle();
+                    bottle.setBooked(String.valueOf(item.getAmount()));
+                    bottle.setType(item.getTitle());
+
+                    booking.getBottles().add(bottle);
+
+                    order.put(item.getPartyName(), booking);
+                } else {
+                    Booking booking = new Booking();
+                    booking.setPartyName(item.getPartyName());
+
+                    Table table = new Table();
+                    table.setBooked(String.valueOf(item.getAmount()));
+                    table.setType(item.getTitle());
+
+                    booking.getTables().add(table);
+
+                    order.put(item.getPartyName(), booking);
+                }
             }
         }
 
-        return (List<Booking>) order.values();
+        return new ArrayList<>(order.values());
     }
 
     @OnClick(R.id.btnPay)

@@ -122,7 +122,7 @@ public class GoerTablesActivity extends AppCompatActivity {
 
                 if (visibility == View.VISIBLE) {
                     GoerCartActivity.putToCart(event.getPartyName(), CartItemExtended.Type.Table,
-                            event.getTables().get(i).getType(), Integer.parseInt(event.getTables().get(i).getPrice()), j);
+                            event.getTables().get(i).getType(), Double.parseDouble(event.getTables().get(i).getPrice()), j);
 
                     finish();
                 }

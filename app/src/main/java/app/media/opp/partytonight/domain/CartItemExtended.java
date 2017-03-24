@@ -10,7 +10,7 @@ public class CartItemExtended extends CartItem {
     Type typeOfItem;
     String title;
     int amount;
-    private int fullPrice;
+    private double fullPrice;
 
     public int getAmount() {
         return amount;
@@ -36,11 +36,11 @@ public class CartItemExtended extends CartItem {
         this.typeOfItem = typeOfItem;
     }
 
-    public int getFullPrice() {
+    public double getFullPrice() {
         return fullPrice;
     }
 
-    public void setFullPrice(int fullPrice) {
+    public void setFullPrice(double fullPrice) {
         this.fullPrice = fullPrice;
     }
 
