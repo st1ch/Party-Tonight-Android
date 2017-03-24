@@ -3,6 +3,7 @@ package app.media.opp.partytonight.presentation.presenters;
 import java.util.List;
 
 import app.media.opp.partytonight.domain.Booking;
+import app.media.opp.partytonight.domain.Transaction;
 
 /**
  * Created by piekie (binnonnorie@gmail.com)
@@ -11,4 +12,6 @@ import app.media.opp.partytonight.domain.Booking;
 public interface IGoerCartPresenter {
 
     void onOrderSent(List<Booking> order);
+
+    void compilePaymentsForPayPal(List<Transaction> order);
 }

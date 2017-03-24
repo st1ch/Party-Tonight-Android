@@ -193,23 +193,11 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
     @OnClick(R.id.btnPay)
     public void onClickPay() {
-
         // compile the order
         List<Booking> order = compileOrder(adapter.getData());
 
         // send order to the server.
         presenter.onOrderSent(order);
-
-
-        // receive transactions and take them to PayPal
     }
 
-//    @OnClick(R.id.btnCart)
-//    public void onClick(View view) {
-//        switch (view.getId()) {
-//            case R.id.btnCart:
-//                navigator.startGoerCartActivity(this);
-//                break;
-//        }
-//    }
 }

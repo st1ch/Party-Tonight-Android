@@ -1,8 +1,12 @@
 package app.media.opp.partytonight.presentation.presenters;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
+import com.paypal.android.MEP.PayPalAdvancedPayment;
+import com.paypal.android.MEP.PayPalReceiverDetails;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -54,9 +58,27 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
                 super.onNext(response);
                 IGoerCartView view = getView();
 
-                // handle transactions here
-                Log.i("response is ", " " + response.size());
+                compilePaymentsForPayPal(response);
             }
         };
+    }
+
+    @Override
+    public void compilePaymentsForPayPal(List<Transaction> order) {
+        ArrayList<PayPalReceiverDetails> receivers = new ArrayList<>(order.size());
+
+        for (Transaction t : order) {
+            PayPalReceiverDetails receiverDetails = new PayPalReceiverDetails();
+
+            receiverDetails.setRecipient(t.getBillingEmail());
+            receiverDetails.setSubtotal(new BigDecimal(t.getSubtotal()));
+
+            receivers.add(receiverDetails);
+        }
+
+        PayPalAdvancedPayment payment = new PayPalAdvancedPayment();
+
+        payment.setReceivers(receivers);
+
     }
 }
