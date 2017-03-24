@@ -33,4 +33,6 @@ public interface SessionRepository {
     Observable<Revenue> getEventRevenue(Event event);
 
     Observable<List<Event>> getEventsByZipCode(String zipCode);
+
+    Observable<List<Transaction>> getTransactions(List<Booking> order);
 }

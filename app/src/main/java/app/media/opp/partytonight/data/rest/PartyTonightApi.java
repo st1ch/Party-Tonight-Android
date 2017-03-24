@@ -7,7 +7,9 @@ import app.media.opp.partytonight.data.FileEntity;
 import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
+import app.media.opp.partytonight.domain.Booking;
 import app.media.opp.partytonight.domain.Revenue;
+import app.media.opp.partytonight.domain.Transaction;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
@@ -59,5 +61,8 @@ public interface PartyTonightApi {
 
     @GET("maker/event/total")
     Observable<Statement> getStatement(@Header("x-auth-token") String token, @Header("party_name") String partyName);
+
+    @POST("dancer/event/get_transactions")
+    Observable<List<Transaction>> getTransactions(@Header("x-auth-token") String token, @Body List<Booking> order);
 }
 

@@ -21,9 +21,11 @@ import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
+import app.media.opp.partytonight.domain.Booking;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.SessionRepository;
+import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
@@ -99,6 +101,11 @@ public class SessionDataRepository implements SessionRepository {
             Collections.sort(events, (o1, o2) -> (int) (o1.getTime() - o2.getTime()));
             return events;
         });
+    }
+
+    @Override
+    public Observable<List<Transaction>> getTransactions(List<Booking> order) {
+        return restApi.getTransactions(order);
     }
 
     @Override

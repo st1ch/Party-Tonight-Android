@@ -13,7 +13,9 @@ import app.media.opp.partytonight.data.Ticket;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
+import app.media.opp.partytonight.domain.Booking;
 import app.media.opp.partytonight.domain.Revenue;
+import app.media.opp.partytonight.domain.Transaction;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -79,5 +81,9 @@ public class RestApi {
 
     public Observable<Statement> getStatement(String partyName) {
         return api.getStatement(account.user().getToken(), partyName);
+    }
+
+    public Observable<List<Transaction>> getTransactions(List<Booking> order) {
+        return api.getTransactions(account.user().getToken(), order);
     }
 }

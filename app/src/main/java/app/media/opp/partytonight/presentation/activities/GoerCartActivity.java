@@ -1,7 +1,6 @@
 package app.media.opp.partytonight.presentation.activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -11,19 +10,24 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Booking;
 import app.media.opp.partytonight.domain.Bottle;
 import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Table;
+import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.adapters.GoerCartAdapter;
+import app.media.opp.partytonight.presentation.presenters.GoerCartPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
+import app.media.opp.partytonight.presentation.views.IGoerCartView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class GoerCartActivity extends AppCompatActivity {
+public class GoerCartActivity extends ProgressActivity implements IGoerCartView {
 
     private static List<CartItemExtended> cart = new ArrayList<>();
     private final ActivityNavigator navigator = new ActivityNavigator();
@@ -34,14 +38,26 @@ public class GoerCartActivity extends AppCompatActivity {
     RecyclerView rvCart;
     @BindView(R.id.tvTotal)
     TextView tvTotal;
+
+    @Inject
+    GoerCartPresenter presenter;
+
     private GoerCartAdapter adapter;
 
-    public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount) {
+    public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount, String price) {
         CartItemExtended ci = new CartItemExtended();
 
         ci.setPartyName(partyName);
+        ci.setPrice(price);
         ci.setFullPrice(fullPrice);
-        ci.setAmount(amount);
+
+        if (type.equals(CartItemExtended.Type.Bottle)) {
+            ci.setAmount(amount);
+        } else {
+            ci.setAmount(1);
+            ci.setNumber(amount);
+        }
+
         ci.setTypeOfItem(type);
         ci.setTitle(title);
 
@@ -53,8 +69,11 @@ public class GoerCartActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_goer_cart);
         ButterKnife.bind(this);
+        PartyTonightApplication.getApp(this).getUserComponent().inject(this);
 
         configureViews();
+
+        presenter.onCreate(this);
     }
 
     private void configureViews() {
@@ -93,6 +112,7 @@ public class GoerCartActivity extends AppCompatActivity {
                             Bottle bottle = new Bottle();
                             bottle.setBooked(String.valueOf(item.getAmount()));
                             bottle.setType(item.getTitle());
+                            bottle.setPrice(item.getPrice());
 
                             booking.getBottles().add(bottle);
                         }
@@ -102,6 +122,7 @@ public class GoerCartActivity extends AppCompatActivity {
                         Bottle bottle = new Bottle();
                         bottle.setBooked(String.valueOf(item.getAmount()));
                         bottle.setType(item.getTitle());
+                        bottle.setPrice(item.getPrice());
 
                         booking.getBottles().add(bottle);
                     }
@@ -121,6 +142,7 @@ public class GoerCartActivity extends AppCompatActivity {
                             Table table = new Table();
                             table.setBooked(String.valueOf(item.getAmount()));
                             table.setType(item.getTitle());
+                            table.setPrice(item.getPrice());
 
                             booking.getTables().add(table);
                         }
@@ -130,6 +152,7 @@ public class GoerCartActivity extends AppCompatActivity {
                         Table table = new Table();
                         table.setBooked(String.valueOf(item.getAmount()));
                         table.setType(item.getTitle());
+                        table.setPrice(item.getPrice());
 
                         booking.getTables().add(table);
                     }
@@ -144,6 +167,7 @@ public class GoerCartActivity extends AppCompatActivity {
                     Bottle bottle = new Bottle();
                     bottle.setBooked(String.valueOf(item.getAmount()));
                     bottle.setType(item.getTitle());
+                    bottle.setPrice(item.getPrice());
 
                     booking.getBottles().add(bottle);
 
@@ -155,6 +179,7 @@ public class GoerCartActivity extends AppCompatActivity {
                     Table table = new Table();
                     table.setBooked(String.valueOf(item.getAmount()));
                     table.setType(item.getTitle());
+                    table.setPrice(item.getPrice());
 
                     booking.getTables().add(table);
 
@@ -173,6 +198,7 @@ public class GoerCartActivity extends AppCompatActivity {
         List<Booking> order = compileOrder(adapter.getData());
 
         // send order to the server.
+        presenter.onOrderSent(order);
 
 
         // receive transactions and take them to PayPal
