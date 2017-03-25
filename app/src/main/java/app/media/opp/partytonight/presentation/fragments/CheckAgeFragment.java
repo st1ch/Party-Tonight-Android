@@ -57,8 +57,9 @@ public class CheckAgeFragment extends BlurDialogFragment {
             case R.id.bProceed:
                 if (cbCanBuy.isChecked()) {
                     navigator.startGoerBottlesActivity(getActivity(), event);
+                    onDismiss(getDialog());
                 } else {
-                    finish();
+                    onDismiss(getDialog());
                 }
                 break;
         }
