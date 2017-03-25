@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import app.media.opp.partytonight.data.Statement;
+import okhttp3.ResponseBody;
 import rx.Observable;
 
 /**
@@ -35,4 +36,6 @@ public interface SessionRepository {
     Observable<List<Event>> getEventsByZipCode(String zipCode);
 
     Observable<List<Transaction>> getTransactions(List<Booking> order);
+
+    Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions);
 }

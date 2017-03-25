@@ -1,10 +1,18 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.widget.TextView;
+
+import com.paypal.android.MEP.PayPal;
+import com.paypal.android.MEP.PayPalActivity;
+import com.paypal.android.MEP.PayPalAdvancedPayment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -41,7 +49,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
     @Inject
     GoerCartPresenter presenter;
-
+    int ACITIVTY_CODE_HANDLE_PAYMENT = 1;
     private GoerCartAdapter adapter;
 
     public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount, String price) {
@@ -103,18 +111,22 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
                             int booked = Integer.parseInt(bookedAsStored);
 
-                            booked += Integer.parseInt(item.getBooked());
+                            booked += item.getAmount();
 
                             booking.getBottles().get(i).setBooked(String.valueOf(booked));
 
                             break;
-                        } else if (i == booking.getBottles().size() - 1) {
+                        }
+
+                        if (i == booking.getBottles().size() - 1) {
                             Bottle bottle = new Bottle();
                             bottle.setBooked(String.valueOf(item.getAmount()));
                             bottle.setType(item.getTitle());
                             bottle.setPrice(item.getPrice());
 
                             booking.getBottles().add(bottle);
+
+                            break;
                         }
                     }
 
@@ -133,18 +145,22 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
                             int booked = Integer.parseInt(bookedAsStored);
 
-                            booked += Integer.parseInt(item.getBooked());
+                            booked += item.getAmount();
 
                             booking.getTables().get(i).setBooked(String.valueOf(booked));
 
                             break;
-                        } else if (i == booking.getTables().size() - 1) {
+                        }
+
+                        if (i == booking.getTables().size() - 1) {
                             Table table = new Table();
                             table.setBooked(String.valueOf(item.getAmount()));
                             table.setType(item.getTitle());
                             table.setPrice(item.getPrice());
 
                             booking.getTables().add(table);
+
+                            break;
                         }
                     }
 
@@ -200,4 +216,42 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         presenter.onOrderSent(order);
     }
 
+    @Override
+    public Context getContext() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public void handlePayment(PayPalAdvancedPayment payment) {
+        Intent paymentIntent = new Intent(PayPal.getInstance().checkout(payment, this));
+
+        startActivityForResult(paymentIntent, ACITIVTY_CODE_HANDLE_PAYMENT);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == ACITIVTY_CODE_HANDLE_PAYMENT) {
+            switch (resultCode) {
+                case Activity.RESULT_OK:
+                    String payKey = data.getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
+                    Log.i("PAYMENT", "OK " + payKey);
+
+                    presenter.sendConfirmation();
+
+                    break;
+                case Activity.RESULT_CANCELED:
+                    Log.i("PAYMENT", "CANCELED");
+                    break;
+                case PayPalActivity.RESULT_FAILURE:
+                    String errorID = data.getStringExtra(PayPalActivity.EXTRA_ERROR_ID);
+                    String errorMessage = data.getStringExtra(PayPalActivity.EXTRA_ERROR_MESSAGE);
+
+                    Log.i("PAYMENT", "ERROR " + errorMessage);
+                    break;
+            }
+        }
+
+    }
 }

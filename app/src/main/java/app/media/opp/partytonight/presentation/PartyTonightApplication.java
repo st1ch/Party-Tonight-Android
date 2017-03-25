@@ -20,7 +20,6 @@ public class PartyTonightApplication extends Application {
     private static PayPal payPalClient;
     private ApplicationComponent component;
     private UserComponent userComponent;
-    private boolean payPalClientLoaded = false;
 
     public static PartyTonightApplication getApp(Context context) {
         return (PartyTonightApplication) context.getApplicationContext();
@@ -60,12 +59,8 @@ public class PartyTonightApplication extends Application {
             payPalClient = PayPal.initWithAppID(this, getString(R.string.paypal_client_id), PayPal.ENV_SANDBOX);
 
             payPalClient.setLanguage("en_US");
-
             payPalClient.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER);
-
-            payPalClient.setShippingEnabled(true);
-
-            payPalClientLoaded = true;
+            payPalClient.setShippingEnabled(false);
         }
     }
 

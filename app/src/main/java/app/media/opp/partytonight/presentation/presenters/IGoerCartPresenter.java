@@ -1,5 +1,7 @@
 package app.media.opp.partytonight.presentation.presenters;
 
+import com.paypal.android.MEP.PayPalAdvancedPayment;
+
 import java.util.List;
 
 import app.media.opp.partytonight.domain.Booking;
@@ -14,4 +16,8 @@ public interface IGoerCartPresenter {
     void onOrderSent(List<Booking> order);
 
     void compilePaymentsForPayPal(List<Transaction> order);
+
+    void handlePayment(PayPalAdvancedPayment payment);
+
+    void sendConfirmation();
 }

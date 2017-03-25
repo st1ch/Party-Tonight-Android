@@ -19,6 +19,7 @@ import app.media.opp.partytonight.domain.Transaction;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import rx.Observable;
 
@@ -85,5 +86,9 @@ public class RestApi {
 
     public Observable<List<Transaction>> getTransactions(List<Booking> order) {
         return api.getTransactions(account.user().getToken(), order);
+    }
+
+    public Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions) {
+        return api.confirmPayments(account.user().getToken(), bookings.toArray(new Booking[bookings.size()]), transactions.toArray(new Transaction[transactions.size()]));
     }
 }

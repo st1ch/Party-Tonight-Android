@@ -29,6 +29,7 @@ import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
+import okhttp3.ResponseBody;
 import retrofit2.Response;
 import rx.Observable;
 import rx.Subscriber;
@@ -106,6 +107,11 @@ public class SessionDataRepository implements SessionRepository {
     @Override
     public Observable<List<Transaction>> getTransactions(List<Booking> order) {
         return restApi.getTransactions(order);
+    }
+
+    @Override
+    public Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions) {
+        return restApi.confirmPayments(bookings, transactions);
     }
 
     @Override
