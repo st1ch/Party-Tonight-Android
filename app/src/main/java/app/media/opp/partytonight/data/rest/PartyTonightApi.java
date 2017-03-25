@@ -69,6 +69,6 @@ public interface PartyTonightApi {
 
     @FormUrlEncoded
     @POST("dancer/event/confirm_payments")
-    Observable<ResponseBody> confirmPayments(@Header("x-auth-token") String token, @Field("bookings[]") Booking[] bookings, @Field("transactions[]") Transaction[] transactions);
+    Observable<ResponseBody> confirmPayments(@Header("x-auth-token") String token, @Field("bookings[]") String bookings, @Field("transactions[]") String transactions);
 }
 

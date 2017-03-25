@@ -3,6 +3,8 @@ package app.media.opp.partytonight.data.rest;
 import android.content.Context;
 import android.util.Base64;
 
+import com.google.gson.Gson;
+
 import java.io.File;
 import java.util.List;
 
@@ -89,6 +91,12 @@ public class RestApi {
     }
 
     public Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions) {
-        return api.confirmPayments(account.user().getToken(), bookings.toArray(new Booking[bookings.size()]), transactions.toArray(new Transaction[transactions.size()]));
+        Gson gson = new Gson();
+
+        String bookingsJson = gson.toJson(bookings.toArray(new Booking[bookings.size()]));
+        String transactionsJson = gson.toJson(transactions.toArray(new Transaction[transactions.size()]));
+
+
+        return api.confirmPayments(account.user().getToken(), bookingsJson, transactionsJson);
     }
 }
