@@ -96,6 +96,7 @@ public class SessionDataRepository implements SessionRepository {
         Mapper<EventEntity, Event> eventMapper = abstractMapperFactory.getEventMapper();
         return restApi.getEventsByZipCode(zipCode).map(eventEntities -> {
             List<Event> events = new ArrayList<>();
+
             for (EventEntity eventEntity : eventEntities) {
                 events.add(eventMapper.transform(eventEntity));
             }

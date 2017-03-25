@@ -117,7 +117,16 @@ public class GoerBottlesActivity extends AppCompatActivity {
 
         spnTypes.setAdapter(adapter);
 
-        btnQuantity.setOnClickListener(l -> btnQuantity.setText(Integer.parseInt(btnQuantity.getText().toString()) + 1 + ""));
+        btnQuantity.setOnClickListener(l -> {
+            Bottle tmp = event.getBottles().get(spnTypes.getSelectedItemPosition());
+
+            int available = Integer.parseInt(tmp.getAvailable());
+            int booked = Integer.parseInt(tmp.getBooked());
+
+            if (Integer.parseInt(btnQuantity.getText().toString()) + 1 <= available - booked) {
+                btnQuantity.setText(Integer.parseInt(btnQuantity.getText().toString()) + 1 + "");
+            }
+        });
     }
 
     @OnClick(R.id.btnAddToCart)

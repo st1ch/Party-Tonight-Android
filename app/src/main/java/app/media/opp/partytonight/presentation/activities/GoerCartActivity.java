@@ -97,6 +97,10 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         tvTotal.setText(total);
     }
 
+    public void nullizeTotal() {
+        tvTotal.setText("Total: $0");
+    }
+
     private List<Booking> compileOrder(List<CartItemExtended> cart) {
         HashMap<String, Booking> order = new HashMap<>();
 
@@ -239,6 +243,11 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
                     Log.i("PAYMENT", "OK " + payKey);
 
                     presenter.sendConfirmation();
+                    cart.clear();
+                    adapter.getData().clear();
+                    adapter.notifyDataSetChanged();
+
+                    nullizeTotal();
 
                     break;
                 case Activity.RESULT_CANCELED:

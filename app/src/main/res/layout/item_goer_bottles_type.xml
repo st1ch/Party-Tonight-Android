@@ -14,7 +14,8 @@
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
         android:layout_marginTop="@dimen/activity_vertical_margin_less"
-        android:background="@null"
+        android:background="@android:color/transparent"
+        android:popupBackground="#3C4E4E4E"
         android:spinnerMode="dropdown" />
 
     <app.media.opp.partytonight.presentation.app.view.TextViewCurvedTranslucentWithIcon
