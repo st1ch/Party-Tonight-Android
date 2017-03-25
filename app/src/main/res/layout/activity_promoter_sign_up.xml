@@ -89,7 +89,7 @@
                     android:layout_marginBottom="@dimen/activity_sign_list_margin_vertical"
                     android:layout_marginTop="@dimen/activity_sign_list_margin_vertical"
                     android:hint="@string/billingInfo"
-                    android:inputType="textCapWords"
+                    android:inputType="textEmailAddress"
                     android:padding="@dimen/edittext_curved_padding"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/edittext_curved_text_size" />

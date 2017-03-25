@@ -9,6 +9,7 @@ import com.paypal.android.MEP.PayPalReceiverDetails;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -98,22 +99,30 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
 
     @Override
     public void compilePaymentsForPayPal(List<Transaction> order) {
-        lastTransactions = order;
 
-        ArrayList<PayPalReceiverDetails> receivers = new ArrayList<>(order.size());
 
+        HashMap<String, PayPalReceiverDetails> receivers = new HashMap<>();
         for (Transaction t : order) {
             PayPalReceiverDetails receiverDetails = new PayPalReceiverDetails();
 
             receiverDetails.setRecipient(t.getBillingEmail());
             receiverDetails.setSubtotal(new BigDecimal(t.getSubtotal()));
 
-            receivers.add(receiverDetails);
+            if (receivers.containsKey(t.getBillingEmail())) {
+                PayPalReceiverDetails detailsTemp = receivers.get(t.getBillingEmail());
+
+                receivers.get(t.getBillingEmail()).setSubtotal(new BigDecimal(
+                        detailsTemp.getSubtotal().doubleValue() + t.getSubtotal()));
+            } else {
+                receivers.put(t.getBillingEmail(), receiverDetails);
+            }
         }
+
+        lastTransactions = order;
 
         PayPalAdvancedPayment payment = new PayPalAdvancedPayment();
 
-        payment.setReceivers(receivers);
+        payment.setReceivers(new ArrayList<>(receivers.values()));
         payment.setCurrencyType("USD");
         handlePayment(payment);
     }
