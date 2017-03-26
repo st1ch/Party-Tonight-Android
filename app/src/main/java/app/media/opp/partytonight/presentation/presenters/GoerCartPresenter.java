@@ -141,7 +141,10 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
                 super.onNext(response);
                 IGoerCartView view = getView();
 
-                view.handleValidatedCart(handleValidatedOrder(response));
+                view.showAskingPermissions(() -> {
+                    view.askForPermission();
+                    view.handleValidatedCart(handleValidatedOrder(response));
+                });
             }
         };
     }

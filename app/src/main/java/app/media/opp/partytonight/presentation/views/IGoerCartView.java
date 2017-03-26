@@ -7,6 +7,7 @@ import com.paypal.android.MEP.PayPalAdvancedPayment;
 import java.util.HashMap;
 
 import app.media.opp.partytonight.domain.booking.Booking;
+import app.media.opp.partytonight.presentation.fragments.GoerCartAskingPermission;
 
 public interface IGoerCartView extends IProgressView {
     Context getContext();
@@ -14,4 +15,8 @@ public interface IGoerCartView extends IProgressView {
     void handlePayment(PayPalAdvancedPayment payment);
 
     void handleValidatedCart(HashMap<Integer, Booking> cart);
+
+    void askForPermission();
+
+    void showAskingPermissions(GoerCartAskingPermission.IGoerCartPrepared callback);
 }

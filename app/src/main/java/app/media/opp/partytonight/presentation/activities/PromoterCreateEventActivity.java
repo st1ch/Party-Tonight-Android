@@ -53,6 +53,9 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
     public static final int MEDIA_PICKER = 2;
 
     public static final String EVENT = "event";
+    private static final int PERMISSION_CAMERA = 1;
+    private static final int PERMISSION_WRITE_EXTERNAL = 3;
+    private static final int PERMISSION_READ_EXTERNAL = 4;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -319,8 +322,6 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
 
     @Override
     public void saveZipCode(String response) {
-        // TODO: 2/1/17 what to do with no postal code places?
-
         if (response == null || response.isEmpty()) {
             response = "00000";
         }
@@ -335,7 +336,7 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
             case R.id.bCreate:
                 setFields();
                 if (isValid(event))
-                presenter.onAddButtonClick(event);
+                    presenter.onAddButtonClick(event);
                 break;
         }
     }
@@ -379,15 +380,15 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
             EditText priceView = (EditText) bottleView.getChildAt(1);
             EditText availableView = (EditText) bottleView.getChildAt(2);
 
-            if (TextUtils.isEmpty(bottle.getType())){
+            if (TextUtils.isEmpty(bottle.getType())) {
                 showFieldError(typeView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
-            if (TextUtils.isEmpty(bottle.getPrice())){
+            if (TextUtils.isEmpty(bottle.getPrice())) {
                 showFieldError(priceView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
-            if (TextUtils.isEmpty(bottle.getAvailable())){
+            if (TextUtils.isEmpty(bottle.getAvailable())) {
                 showFieldError(availableView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
@@ -401,15 +402,15 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
             EditText priceView = (EditText) tableView.getChildAt(1);
             EditText availableView = (EditText) tableView.getChildAt(2);
 
-            if (TextUtils.isEmpty(table.getType())){
+            if (TextUtils.isEmpty(table.getType())) {
                 showFieldError(typeView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
-            if (TextUtils.isEmpty(table.getPrice())){
+            if (TextUtils.isEmpty(table.getPrice())) {
                 showFieldError(priceView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
-            if (TextUtils.isEmpty(table.getAvailable())){
+            if (TextUtils.isEmpty(table.getAvailable())) {
                 showFieldError(availableView, getString(R.string.fieldShoudNotBeEmpty));
                 return false;
             }
@@ -417,7 +418,6 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
 
         return true;
     }
-
 
 
     private void setFields() {
@@ -435,7 +435,6 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
 
         Log.e("Event", event.toString());
     }
-
 
     private void showFieldError(EditText editText, String error) {
         editText.setError(error);

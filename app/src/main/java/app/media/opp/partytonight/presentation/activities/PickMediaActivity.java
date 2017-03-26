@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
@@ -120,13 +121,13 @@ public class PickMediaActivity extends Activity {
                     Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.CAMERA)) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Permission to Camera allows you to capture nice places of your venue")
+                            .setTitle("Permission required");
 
-                    // TODO: 11/30/16 need to add another asking to grant permissions
-
+                    builder.setPositiveButton("OK", (dialog, id) -> makeRequestForCamera());
                 } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.CAMERA},
-                            PERMISSION_CAMERA);
+                    makeRequestForCamera();
                 }
             } else {
                 canPickCamera = true;
@@ -138,12 +139,13 @@ public class PickMediaActivity extends Activity {
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                         Manifest.permission.READ_EXTERNAL_STORAGE)) {
 
-                    // TODO: 11/30/16 need to add another asking to grant permissions
+                    AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                    builder.setMessage("Permission to read photos of venue you make")
+                            .setTitle("Permission required");
 
+                    builder.setPositiveButton("OK", (dialog, id) -> makeRequestForReading());
                 } else {
-                    ActivityCompat.requestPermissions(this,
-                            new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
-                            PERMISSION_READ_EXTERNAL_STORAGE);
+                    makeRequestForReading();
                 }
             } else {
 
@@ -152,12 +154,13 @@ public class PickMediaActivity extends Activity {
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this,
                             Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 
-                        // TODO: 11/30/16 need to add another asking to grant permissions
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        builder.setMessage("Permission to Camera allows you to capture nice places of your venue")
+                                .setTitle("Permission required");
 
+                        builder.setPositiveButton("OK", (dialog, id) -> makeRequestForWriting());
                     } else {
-                        ActivityCompat.requestPermissions(this,
-                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
-                                PERMISSION_WRITE_EXTERNAL_STORAGE);
+                        makeRequestForWriting();
                     }
                 } else {
                     canPickGallery = true;
@@ -166,6 +169,24 @@ public class PickMediaActivity extends Activity {
             }
         }
         return false;
+    }
+
+    protected void makeRequestForWriting() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                PERMISSION_WRITE_EXTERNAL_STORAGE);
+    }
+
+    protected void makeRequestForReading() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                PERMISSION_READ_EXTERNAL_STORAGE);
+    }
+
+    protected void makeRequestForCamera() {
+        ActivityCompat.requestPermissions(this,
+                new String[]{Manifest.permission.CAMERA},
+                PERMISSION_CAMERA);
     }
 
     @Override

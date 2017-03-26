@@ -25,13 +25,25 @@ public class PartyTonightApplication extends Application {
         return (PartyTonightApplication) context.getApplicationContext();
     }
 
+    public static PayPal buildPayPalClient(Context context) {
+        PayPal payPalClient = PayPal.getInstance();
+
+        if (payPalClient == null) {
+            payPalClient = PayPal.initWithAppID(context, context.getString(R.string.PAYPAL_APP_ID), PayPal.ENV_SANDBOX);
+
+            payPalClient.setLanguage("en_US");
+            payPalClient.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER);
+            payPalClient.setShippingEnabled(false);
+        }
+
+        return payPalClient;
+    }
+
     @Override
     public void onCreate() {
         super.onCreate();
         buildAppComponent();
         buildUserComponent();
-
-        buildPayPalClient(payPalClient);
     }
 
     private void buildAppComponent() {
@@ -50,18 +62,6 @@ public class PartyTonightApplication extends Application {
 
     public void logout() {
         //TODO логаут здесь
-    }
-
-    private void buildPayPalClient(PayPal payPalClient) {
-        payPalClient = PayPal.getInstance();
-
-        if (payPalClient == null) {
-            payPalClient = PayPal.initWithAppID(this, getString(R.string.PAYPAL_APP_ID), PayPal.ENV_SANDBOX);
-
-            payPalClient.setLanguage("en_US");
-            payPalClient.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER);
-            payPalClient.setShippingEnabled(false);
-        }
     }
 
     private void buildUserComponent() {

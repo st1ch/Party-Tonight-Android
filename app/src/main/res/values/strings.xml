@@ -252,4 +252,5 @@
     <string name="PAYPAL_APP_ID">APP-80W284485P519543T</string>
     <string name="goer_cart_payed">Congratulations :) You payed for your order. Now wait for confirmation.</string>
     <string name="goer_cart_prepare">In next window you will pay our promoters for your order except 5% that will go to Go Party Tonight (You are not paying any extra money)</string>
+    <string name="goer_cart_permission">Soon we will ask you for permit us reading your device state. It necessary for PayPal payments.</string>
 </resources>

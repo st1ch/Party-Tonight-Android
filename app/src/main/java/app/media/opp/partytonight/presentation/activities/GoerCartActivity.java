@@ -1,9 +1,14 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -25,6 +30,7 @@ import app.media.opp.partytonight.domain.booking.BookedBottle;
 import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.adapters.GoerCartAdapter;
+import app.media.opp.partytonight.presentation.fragments.GoerCartAskingPermission;
 import app.media.opp.partytonight.presentation.fragments.GoerCartPayedFragment;
 import app.media.opp.partytonight.presentation.fragments.GoerCartPrepareFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerCartPresenter;
@@ -37,21 +43,16 @@ import butterknife.OnClick;
 public class GoerCartActivity extends ProgressActivity implements IGoerCartView {
 
     private static HashMap<Integer, Booking> cart = new HashMap<>();
-
+    private final int PERMISSION_READ_PHONE_STATE = 1;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
-
     @BindView(R.id.rvCartItems)
     RecyclerView rvCart;
-
     @BindView(R.id.tvTotal)
     TextView tvTotal;
-
     @Inject
     GoerCartPresenter presenter;
-
     int ACTIVITY_CODE_HANDLE_PAYMENT = 1;
-
     private GoerCartAdapter adapter;
 
     public static void putToCart(int idEvent, Booking booking) {
@@ -146,6 +147,23 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         actualizeTotal();
     }
 
+    @Override
+    public void askForPermission() {
+
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.READ_PHONE_STATE)) {
+            } else {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_PHONE_STATE}, PERMISSION_READ_PHONE_STATE);
+            }
+        } else {
+            PartyTonightApplication.buildPayPalClient(this);
+        }
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -181,6 +199,21 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         }
     }
 
+    @Override
+    public void showAskingPermissions(GoerCartAskingPermission.IGoerCartPrepared callback) {
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                GoerCartAskingPermission fragment = GoerCartAskingPermission.newInstance();
+                fragment.setCallback(callback);
+
+                fragment.show(getFragmentManager(), "goer_cart_prepare");
+            } else {
+                PartyTonightApplication.buildPayPalClient(this);
+            }
+        }
+    }
+
     private void showPrepareMessage(GoerCartPrepareFragment.IGoerCartPrepared callback) {
         GoerCartPrepareFragment fragment = GoerCartPrepareFragment.newInstance();
         fragment.setCallback(callback);
@@ -192,5 +225,21 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         GoerCartPayedFragment fragment = GoerCartPayedFragment.newInstance();
 
         fragment.show(getFragmentManager(), "goer_cart_payed");
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,
+                                           String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSION_READ_PHONE_STATE: {
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                    PartyTonightApplication.buildPayPalClient(this);
+                } else {
+                    finish();
+                }
+            }
+        }
     }
 }
