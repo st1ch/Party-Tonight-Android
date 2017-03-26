@@ -64,6 +64,9 @@ public interface PartyTonightApi {
     @GET("maker/event/total")
     Observable<Statement> getStatement(@Header("x-auth-token") String token, @Header("party_name") String partyName);
 
+    @POST("dancer/event/validate_order")
+    Observable<List<Booking>> validateBookings(@Header("x-auth-token") String token, @Body List<Booking> order);
+
     @POST("dancer/event/get_transactions")
     Observable<List<Transaction>> getTransactions(@Header("x-auth-token") String token, @Body List<Booking> order);
 

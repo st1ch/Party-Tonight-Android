@@ -86,6 +86,10 @@ public class RestApi {
         return api.getStatement(account.user().getToken(), partyName);
     }
 
+    public Observable<List<Booking>> validateBookings(List<Booking> order) {
+        return api.validateBookings(account.user().getToken(), order);
+    }
+
     public Observable<List<Transaction>> getTransactions(List<Booking> order) {
         return api.getTransactions(account.user().getToken(), order);
     }

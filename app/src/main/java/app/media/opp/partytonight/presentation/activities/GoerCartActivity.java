@@ -49,7 +49,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
     @Inject
     GoerCartPresenter presenter;
-    int ACITIVTY_CODE_HANDLE_PAYMENT = 1;
+    int ACTIVITY_CODE_HANDLE_PAYMENT = 1;
     private GoerCartAdapter adapter;
 
     public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount, String price) {
@@ -82,6 +82,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         configureViews();
 
         presenter.onCreate(this);
+        presenter.validateOrder(compileOrder(cart));
     }
 
     private void configureViews() {
@@ -92,13 +93,13 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         adapter = new GoerCartAdapter(cart);
         rvCart.setAdapter(adapter);
 
+        actualizeTotal();
+    }
+
+    public void actualizeTotal() {
         String total = "Total: $" + adapter.getTotal();
 
         tvTotal.setText(total);
-    }
-
-    public void nullizeTotal() {
-        tvTotal.setText("Total: $0");
     }
 
     private List<Booking> compileOrder(List<CartItemExtended> cart) {
@@ -229,14 +230,25 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
     public void handlePayment(PayPalAdvancedPayment payment) {
         Intent paymentIntent = new Intent(PayPal.getInstance().checkout(payment, this));
 
-        startActivityForResult(paymentIntent, ACITIVTY_CODE_HANDLE_PAYMENT);
+        startActivityForResult(paymentIntent, ACTIVITY_CODE_HANDLE_PAYMENT);
     }
+
+    @Override
+    public void handleValidatedCart(List<CartItemExtended> cart) {
+        GoerCartActivity.cart = cart;
+
+        adapter.setData(GoerCartActivity.cart);
+        adapter.notifyDataSetChanged();
+
+        actualizeTotal();
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == ACITIVTY_CODE_HANDLE_PAYMENT) {
+        if (requestCode == ACTIVITY_CODE_HANDLE_PAYMENT) {
             switch (resultCode) {
                 case Activity.RESULT_OK:
                     String payKey = data.getStringExtra(PayPalActivity.EXTRA_PAY_KEY);
@@ -247,7 +259,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
                     adapter.getData().clear();
                     adapter.notifyDataSetChanged();
 
-                    nullizeTotal();
+                    actualizeTotal();
 
                     break;
                 case Activity.RESULT_CANCELED:

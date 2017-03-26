@@ -5,6 +5,7 @@ import com.paypal.android.MEP.PayPalAdvancedPayment;
 import java.util.List;
 
 import app.media.opp.partytonight.domain.Booking;
+import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Transaction;
 
 /**
@@ -19,5 +20,9 @@ public interface IGoerCartPresenter {
 
     void handlePayment(PayPalAdvancedPayment payment);
 
+    List<CartItemExtended> handleValidatedOrder(List<Booking> order);
+
     void sendConfirmation();
+
+    void validateOrder(List<Booking> order);
 }

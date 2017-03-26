@@ -106,6 +106,11 @@ public class SessionDataRepository implements SessionRepository {
     }
 
     @Override
+    public Observable<List<Booking>> validateBookings(List<Booking> order) {
+        return restApi.validateBookings(order);
+    }
+
+    @Override
     public Observable<List<Transaction>> getTransactions(List<Booking> order) {
         return restApi.getTransactions(order);
     }

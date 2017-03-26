@@ -16,26 +16,35 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Booking;
+import app.media.opp.partytonight.domain.Bottle;
+import app.media.opp.partytonight.domain.CartItemExtended;
+import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.GoerCartConfirmUseCase;
 import app.media.opp.partytonight.domain.usecase.GoerCartUseCase;
+import app.media.opp.partytonight.domain.usecase.GoerCartValidateUseCase;
 import app.media.opp.partytonight.presentation.utils.Messages;
 import app.media.opp.partytonight.presentation.views.IGoerCartView;
 import okhttp3.ResponseBody;
 
 @UserScope
 public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implements IGoerCartPresenter {
-    List<Transaction> lastTransactions = new ArrayList<>();
-    List<Booking> lastBookings = new ArrayList<>();
+    private List<Transaction> lastTransactions = new ArrayList<>();
+    private List<Booking> lastBookings = new ArrayList<>();
+
     private GoerCartUseCase useCase;
     private GoerCartConfirmUseCase confirmationUseCase;
+    private GoerCartValidateUseCase validationUseCase;
 
     @Inject
-    public GoerCartPresenter(Messages messages, GoerCartUseCase useCase, GoerCartConfirmUseCase confirmationUseCase) {
+    public GoerCartPresenter(Messages messages, GoerCartUseCase useCase,
+                             GoerCartConfirmUseCase confirmationUseCase,
+                             GoerCartValidateUseCase validationUseCase) {
         super(messages);
         this.useCase = useCase;
         this.confirmationUseCase = confirmationUseCase;
+        this.validationUseCase = validationUseCase;
     }
 
     @Override
@@ -47,6 +56,15 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
         if (confirmationUseCase.isWorking()) {
             confirmationUseCase.execute(getConfirmationSubscriber());
         }
+        if (validationUseCase.isWorking()) {
+            validationUseCase.execute(getValidationSubscriber());
+        }
+    }
+
+    @Override
+    public void validateOrder(List<Booking> order) {
+        validationUseCase.setBookings(order);
+        validationUseCase.execute(getValidationSubscriber());
     }
 
     @Override
@@ -97,10 +115,61 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
         };
     }
 
+    @NonNull
+    private BaseProgressSubscriber<List<Booking>> getValidationSubscriber() {
+        return new BaseProgressSubscriber<List<Booking>>(this) {
+
+            @Override
+            public void onNext(List<Booking> response) {
+                super.onNext(response);
+                IGoerCartView view = getView();
+
+                view.handleValidatedCart(handleValidatedOrder(response));
+            }
+        };
+    }
+
+    @Override
+    public List<CartItemExtended> handleValidatedOrder(List<Booking> order) {
+        List<CartItemExtended> cartNew = new ArrayList<>();
+
+        for (Booking booking : order) {
+            for (Table table : booking.getTables()) {
+                if (!table.getBooked().isEmpty()) {
+                    CartItemExtended cartItem = new CartItemExtended();
+
+                    cartItem.setAmount(Integer.parseInt(table.getBooked()));
+                    cartItem.setPartyName(booking.getPartyName());
+                    cartItem.setTypeOfItem(CartItemExtended.Type.Table);
+                    cartItem.setPrice(table.getPrice());
+                    cartItem.setFullPrice(Double.parseDouble(cartItem.getPrice()) * cartItem.getAmount());
+                    cartItem.setTitle(table.getType());
+
+                    cartNew.add(cartItem);
+                }
+            }
+
+            for (Bottle bottle : booking.getBottles()) {
+                if (!bottle.getBooked().isEmpty()) {
+                    CartItemExtended cartItem = new CartItemExtended();
+
+                    cartItem.setAmount(Integer.parseInt(bottle.getBooked()));
+                    cartItem.setPartyName(booking.getPartyName());
+                    cartItem.setTypeOfItem(CartItemExtended.Type.Bottle);
+                    cartItem.setPrice(bottle.getPrice());
+                    cartItem.setFullPrice(Double.parseDouble(cartItem.getPrice()) * cartItem.getAmount());
+                    cartItem.setTitle(bottle.getType());
+
+                    cartNew.add(cartItem);
+                }
+            }
+        }
+
+        return cartNew;
+    }
+
     @Override
     public void compilePaymentsForPayPal(List<Transaction> order) {
-
-
         HashMap<String, PayPalReceiverDetails> receivers = new HashMap<>();
         for (Transaction t : order) {
             PayPalReceiverDetails receiverDetails = new PayPalReceiverDetails();
@@ -139,5 +208,5 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
         confirmationUseCase.execute(getConfirmationSubscriber());
     }
 
-
 }
+

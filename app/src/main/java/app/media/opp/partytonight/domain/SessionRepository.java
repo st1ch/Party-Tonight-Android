@@ -35,6 +35,8 @@ public interface SessionRepository {
 
     Observable<List<Event>> getEventsByZipCode(String zipCode);
 
+    Observable<List<Booking>> validateBookings(List<Booking> bookings);
+
     Observable<List<Transaction>> getTransactions(List<Booking> order);
 
     Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions);
