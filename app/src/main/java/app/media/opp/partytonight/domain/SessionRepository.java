@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import app.media.opp.partytonight.data.Statement;
+import app.media.opp.partytonight.domain.booking.Booking;
 import okhttp3.ResponseBody;
 import rx.Observable;
 

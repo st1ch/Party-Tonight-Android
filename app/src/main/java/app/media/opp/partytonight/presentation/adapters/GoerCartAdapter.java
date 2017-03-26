@@ -6,10 +6,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.CartItemExtended;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.app.view.DividerThin;
 import app.media.opp.partytonight.presentation.app.view.EventDetailsItem;
 import butterknife.BindView;
@@ -19,17 +21,23 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
 
     private List<CartItemExtended> data = new ArrayList<>();
 
-    public GoerCartAdapter(List<CartItemExtended> data) {
-        this.data = data;
+    public GoerCartAdapter(Collection<Booking> data) {
+        for (Booking b : data) {
+            this.data.addAll(b.toCartItems());
+        }
     }
 
     public List<CartItemExtended> getData() {
         return data;
     }
 
-    public void setData(List<CartItemExtended> data) {
+    public void setData(Collection<Booking> data) {
         this.data.clear();
-        this.data.addAll(data);
+
+        for (Booking b : data) {
+            this.data.addAll(b.toCartItems());
+        }
+
         notifyItemRangeInserted(0, data.size());
     }
 

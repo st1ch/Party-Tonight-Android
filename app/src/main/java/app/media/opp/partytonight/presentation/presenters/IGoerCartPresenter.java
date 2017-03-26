@@ -2,11 +2,11 @@ package app.media.opp.partytonight.presentation.presenters;
 
 import com.paypal.android.MEP.PayPalAdvancedPayment;
 
+import java.util.HashMap;
 import java.util.List;
 
-import app.media.opp.partytonight.domain.Booking;
-import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Transaction;
+import app.media.opp.partytonight.domain.booking.Booking;
 
 /**
  * Created by piekie (binnonnorie@gmail.com)
@@ -20,7 +20,7 @@ public interface IGoerCartPresenter {
 
     void handlePayment(PayPalAdvancedPayment payment);
 
-    List<CartItemExtended> handleValidatedOrder(List<Booking> order);
+    HashMap<Integer, Booking> handleValidatedOrder(List<Booking> order);
 
     void sendConfirmation();
 

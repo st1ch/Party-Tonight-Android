@@ -17,8 +17,9 @@ import android.widget.TextView;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Bottle;
-import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.domain.booking.BookedBottle;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -146,8 +147,12 @@ public class GoerBottlesActivity extends AppCompatActivity {
 
             double price = Double.parseDouble(b.getPrice());
 
-            GoerCartActivity.putToCart(event.getPartyName(), CartItemExtended.Type.Bottle, b.getType(), amount * price, amount,
-                    String.valueOf(price));
+            BookedBottle bottle = new BookedBottle();
+            bottle.setAmount(amount);
+            bottle.setPrice(price);
+            bottle.setTitle(b.getType());
+
+            GoerCartActivity.putToCart(event.getIdEvent(), new Booking());
         }
 
         finish();

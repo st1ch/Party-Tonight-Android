@@ -1,5 +1,7 @@
 package app.media.opp.partytonight.domain;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,6 +13,9 @@ import app.media.opp.partytonight.data.Ticket;
  */
 
 public class Event implements Serializable {
+    @SerializedName("id_event")
+    private int idEvent;
+
     private String clubName;
     private String partyName;
     private long time;
@@ -105,6 +110,14 @@ public class Event implements Serializable {
 
     public void setTables(List<Table> tables) {
         this.tables = tables;
+    }
+
+    public int getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(int idEvent) {
+        this.idEvent = idEvent;
     }
 
     @Override

@@ -12,9 +12,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import app.media.opp.partytonight.R;
-import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Table;
+import app.media.opp.partytonight.domain.booking.BookedTable;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.app.view.DividerThin;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -121,9 +122,13 @@ public class GoerTablesActivity extends AppCompatActivity {
                 int visibility = root.getChildAt(j).findViewById(R.id.ivTick).getVisibility();
 
                 if (visibility == View.VISIBLE) {
-                    GoerCartActivity.putToCart(event.getPartyName(), CartItemExtended.Type.Table,
-                            event.getTables().get(i).getType(), Double.parseDouble(event.getTables().get(i).getPrice()), j,
-                            event.getTables().get(i).getPrice());
+                    BookedTable table = new BookedTable();
+
+                    table.setPrice(Double.parseDouble(event.getTables().get(j).getPrice()));
+                    table.setNumber(i * llAllTables.getChildCount() + (j + 1));
+                    table.setType(event.getTables().get(j).getType());
+
+                    GoerCartActivity.putToCart(event.getIdEvent(), new Booking(table));
 
                     finish();
                 }

@@ -4,8 +4,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import app.media.opp.partytonight.domain.Booking;
 import app.media.opp.partytonight.domain.SessionRepository;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
 import rx.Observable;

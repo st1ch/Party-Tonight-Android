@@ -15,11 +15,8 @@ import java.util.List;
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
-import app.media.opp.partytonight.domain.Booking;
-import app.media.opp.partytonight.domain.Bottle;
-import app.media.opp.partytonight.domain.CartItemExtended;
-import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.domain.Transaction;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.GoerCartConfirmUseCase;
 import app.media.opp.partytonight.domain.usecase.GoerCartUseCase;
@@ -162,39 +159,11 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
     }
 
     @Override
-    public List<CartItemExtended> handleValidatedOrder(List<Booking> order) {
-        List<CartItemExtended> cartNew = new ArrayList<>();
+    public HashMap<Integer, Booking> handleValidatedOrder(List<Booking> order) {
+        HashMap<Integer, Booking> cartNew = new HashMap<>();
 
         for (Booking booking : order) {
-            for (Table table : booking.getTables()) {
-                if (!table.getBooked().isEmpty()) {
-                    CartItemExtended cartItem = new CartItemExtended();
-
-                    cartItem.setAmount(Integer.parseInt(table.getBooked()));
-                    cartItem.setPartyName(booking.getPartyName());
-                    cartItem.setTypeOfItem(CartItemExtended.Type.Table);
-                    cartItem.setPrice(table.getPrice());
-                    cartItem.setFullPrice(Double.parseDouble(cartItem.getPrice()) * cartItem.getAmount());
-                    cartItem.setTitle(table.getType());
-
-                    cartNew.add(cartItem);
-                }
-            }
-
-            for (Bottle bottle : booking.getBottles()) {
-                if (!bottle.getBooked().isEmpty()) {
-                    CartItemExtended cartItem = new CartItemExtended();
-
-                    cartItem.setAmount(Integer.parseInt(bottle.getBooked()));
-                    cartItem.setPartyName(booking.getPartyName());
-                    cartItem.setTypeOfItem(CartItemExtended.Type.Bottle);
-                    cartItem.setPrice(bottle.getPrice());
-                    cartItem.setFullPrice(Double.parseDouble(cartItem.getPrice()) * cartItem.getAmount());
-                    cartItem.setTitle(bottle.getType());
-
-                    cartNew.add(cartItem);
-                }
-            }
+            cartNew.put(booking.getIdEvent(), booking);
         }
 
         return cartNew;

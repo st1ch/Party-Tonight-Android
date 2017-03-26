@@ -17,21 +17,17 @@ import com.paypal.android.MEP.PayPalAdvancedPayment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
-import app.media.opp.partytonight.domain.Booking;
-import app.media.opp.partytonight.domain.Bottle;
-import app.media.opp.partytonight.domain.CartItemExtended;
-import app.media.opp.partytonight.domain.Table;
+import app.media.opp.partytonight.domain.booking.BookedBottle;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.adapters.GoerCartAdapter;
 import app.media.opp.partytonight.presentation.fragments.GoerCartPayedFragment;
 import app.media.opp.partytonight.presentation.fragments.GoerCartPrepareFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerCartPresenter;
-import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import app.media.opp.partytonight.presentation.views.IGoerCartView;
 import butterknife.BindView;
@@ -40,39 +36,56 @@ import butterknife.OnClick;
 
 public class GoerCartActivity extends ProgressActivity implements IGoerCartView {
 
-    private static List<CartItemExtended> cart = new ArrayList<>();
-    private final ActivityNavigator navigator = new ActivityNavigator();
+    private static HashMap<Integer, Booking> cart = new HashMap<>();
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
+
     @BindView(R.id.rvCartItems)
     RecyclerView rvCart;
+
     @BindView(R.id.tvTotal)
     TextView tvTotal;
 
     @Inject
     GoerCartPresenter presenter;
+
     int ACTIVITY_CODE_HANDLE_PAYMENT = 1;
+
     private GoerCartAdapter adapter;
 
-    public static void putToCart(String partyName, CartItemExtended.Type type, String title, double fullPrice, int amount, String price) {
-        CartItemExtended ci = new CartItemExtended();
+    public static void putToCart(int idEvent, Booking booking) {
+        if (cart.containsKey(idEvent)) {
+            Booking stored = cart.get(idEvent);
 
-        ci.setPartyName(partyName);
-        ci.setPrice(price);
-        ci.setFullPrice(fullPrice);
+            // bottles
+            for (BookedBottle bottle : booking.getBottles()) {
+                if (stored.getBottlesAsMap().containsKey(bottle.getTitle())) {
+                    int storedAmount = stored.getBottlesAsMap().get(bottle.getTitle()).getAmount();
+                    int bookedAmount = bottle.getAmount();
 
-        if (type.equals(CartItemExtended.Type.Bottle)) {
-            ci.setAmount(amount);
+                    stored.getBottlesAsMap().get(bottle.getTitle()).setAmount(bookedAmount + storedAmount);
+                } else {
+                    stored.getBottlesAsMap().put(bottle.getTitle(), bottle);
+                }
+            }
+
+            booking.setBottles(new ArrayList<>(booking.getBottlesAsMap().values()));
+
+            // single table
+            if (booking.getTable() != null) {
+                stored.setTable(booking.getTable());
+            }
+
+            // single ticket
+            if (booking.getTicket() != null) {
+                stored.setTicket(booking.getTicket());
+            }
+
+            cart.put(idEvent, stored);
         } else {
-            ci.setAmount(1);
-            ci.setNumber(amount);
+            cart.put(idEvent, booking);
         }
-
-        ci.setTypeOfItem(type);
-        ci.setTitle(title);
-
-        cart.add(ci);
     }
 
     @Override
@@ -85,7 +98,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         configureViews();
 
         presenter.onCreate(this);
-        presenter.validateOrder(compileOrder(cart));
+        presenter.validateOrder(new ArrayList<>(cart.values()));
     }
 
     private void configureViews() {
@@ -93,7 +106,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
         rvCart.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new GoerCartAdapter(cart);
+        adapter = new GoerCartAdapter(cart.values());
         rvCart.setAdapter(adapter);
 
         actualizeTotal();
@@ -105,122 +118,9 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         tvTotal.setText(total);
     }
 
-    private List<Booking> compileOrder(List<CartItemExtended> cart) {
-        HashMap<String, Booking> order = new HashMap<>();
-
-        for (CartItemExtended item : cart) {
-            if (order.containsKey(item.getPartyName())) {
-                Booking booking = order.get(item.getPartyName());
-
-                if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
-                    for (int i = 0; i < booking.getBottles().size(); i++) {
-                        if (booking.getBottles().get(i).getType().equals(item.getTitle())) {
-                            String bookedAsStored = booking.getBottles().get(i).getBooked();
-
-                            int booked = Integer.parseInt(bookedAsStored);
-
-                            booked += item.getAmount();
-
-                            booking.getBottles().get(i).setBooked(String.valueOf(booked));
-
-                            break;
-                        }
-
-                        if (i == booking.getBottles().size() - 1) {
-                            Bottle bottle = new Bottle();
-                            bottle.setBooked(String.valueOf(item.getAmount()));
-                            bottle.setType(item.getTitle());
-                            bottle.setPrice(item.getPrice());
-
-                            booking.getBottles().add(bottle);
-
-                            break;
-                        }
-                    }
-
-                    if (booking.getBottles().size() == 0) {
-                        Bottle bottle = new Bottle();
-                        bottle.setBooked(String.valueOf(item.getAmount()));
-                        bottle.setType(item.getTitle());
-                        bottle.setPrice(item.getPrice());
-
-                        booking.getBottles().add(bottle);
-                    }
-                } else {
-                    for (int i = 0; i < booking.getTables().size(); i++) {
-                        if (booking.getTables().get(i).getType().equals(item.getTitle())) {
-                            String bookedAsStored = booking.getTables().get(i).getBooked();
-
-                            int booked = Integer.parseInt(bookedAsStored);
-
-                            booked += item.getAmount();
-
-                            booking.getTables().get(i).setBooked(String.valueOf(booked));
-
-                            break;
-                        }
-
-                        if (i == booking.getTables().size() - 1) {
-                            Table table = new Table();
-                            table.setBooked(String.valueOf(item.getAmount()));
-                            table.setType(item.getTitle());
-                            table.setPrice(item.getPrice());
-
-                            booking.getTables().add(table);
-
-                            break;
-                        }
-                    }
-
-                    if (booking.getTables().size() == 0) {
-                        Table table = new Table();
-                        table.setBooked(String.valueOf(item.getAmount()));
-                        table.setType(item.getTitle());
-                        table.setPrice(item.getPrice());
-
-                        booking.getTables().add(table);
-                    }
-                }
-
-                order.put(booking.getPartyName(), booking);
-            } else {
-                if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
-                    Booking booking = new Booking();
-                    booking.setPartyName(item.getPartyName());
-
-                    Bottle bottle = new Bottle();
-                    bottle.setBooked(String.valueOf(item.getAmount()));
-                    bottle.setType(item.getTitle());
-                    bottle.setPrice(item.getPrice());
-
-                    booking.getBottles().add(bottle);
-
-                    order.put(item.getPartyName(), booking);
-                } else {
-                    Booking booking = new Booking();
-                    booking.setPartyName(item.getPartyName());
-
-                    Table table = new Table();
-                    table.setBooked(String.valueOf(item.getAmount()));
-                    table.setType(item.getTitle());
-                    table.setPrice(item.getPrice());
-
-                    booking.getTables().add(table);
-
-                    order.put(item.getPartyName(), booking);
-                }
-            }
-        }
-
-        return new ArrayList<>(order.values());
-    }
-
     @OnClick(R.id.btnPay)
     public void onClickPay() {
-        // compile the order
-        List<Booking> order = compileOrder(adapter.getData());
-
-        showPrepareMessage(() -> presenter.onOrderSent(order));
+        showPrepareMessage(() -> presenter.onOrderSent(new ArrayList<>(cart.values())));
     }
 
     @Override
@@ -236,13 +136,13 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
     }
 
     @Override
-    public void handleValidatedCart(List<CartItemExtended> cart) {
+    public void handleValidatedCart(HashMap<Integer, Booking> cart) {
         if (GoerCartActivity.cart.size() != cart.size()) {
             Toast.makeText(this, "Your cart was validated", Toast.LENGTH_SHORT).show();
         }
         GoerCartActivity.cart = cart;
 
-        adapter.setData(GoerCartActivity.cart);
+        adapter.setData(GoerCartActivity.cart.values());
         adapter.notifyDataSetChanged();
 
         actualizeTotal();
