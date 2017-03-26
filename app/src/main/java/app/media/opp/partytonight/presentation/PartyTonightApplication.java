@@ -56,7 +56,7 @@ public class PartyTonightApplication extends Application {
         payPalClient = PayPal.getInstance();
 
         if (payPalClient == null) {
-            payPalClient = PayPal.initWithAppID(this, getString(R.string.paypal_client_id), PayPal.ENV_SANDBOX);
+            payPalClient = PayPal.initWithAppID(this, getString(R.string.PAYPAL_APP_ID), PayPal.ENV_SANDBOX);
 
             payPalClient.setLanguage("en_US");
             payPalClient.setFeesPayer(PayPal.FEEPAYER_EACHRECEIVER);
