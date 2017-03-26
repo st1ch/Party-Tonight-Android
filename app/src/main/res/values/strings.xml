@@ -250,4 +250,6 @@
         CALL US: (310) 564-1375
     </string>
     <string name="paypal_client_id">APP-80W284485P519543T</string>
+    <string name="goer_cart_payed">Congratulations :) You payed for your order. Now wait for confirmation.</string>
+    <string name="goer_cart_prepare">In next window you will pay our promoters for your order except 5% that will go to Go Party Tonight (You are not paying any extra money)</string>
 </resources>

@@ -43,7 +43,7 @@ public class CheckAgeFragment extends BlurDialogFragment {
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        View root = getActivity().getLayoutInflater().inflate(R.layout.dialog_can_liquor, null);
+        View root = getActivity().getLayoutInflater().inflate(R.layout.dialog_goer_can_liquor, null);
 
         ButterKnife.bind(this, root);
 

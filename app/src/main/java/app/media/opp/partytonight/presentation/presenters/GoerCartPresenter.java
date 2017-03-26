@@ -67,12 +67,26 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
         validationUseCase.execute(getValidationSubscriber());
     }
 
-    @Override
-    public void onOrderSent(List<Booking> order) {
+    private void validateOrderForPaying(List<Booking> order) {
+        validationUseCase.setBookings(order);
+        validationUseCase.execute(getValidationForPayingSubscriber());
+    }
+
+    private void onOrderSent(List<Booking> order, boolean validated) {
+        if (validated) {
+            validateOrderForPaying(order);
+            return;
+        }
+
         lastBookings = order;
 
         useCase.setOrder(order);
         useCase.execute(getTransactionsSubscriber());
+    }
+
+    @Override
+    public void onOrderSent(List<Booking> order) {
+        onOrderSent(order, false);
     }
 
     @Override
@@ -125,6 +139,24 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
                 IGoerCartView view = getView();
 
                 view.handleValidatedCart(handleValidatedOrder(response));
+            }
+        };
+    }
+
+    @NonNull
+    private BaseProgressSubscriber<List<Booking>> getValidationForPayingSubscriber() {
+        return new BaseProgressSubscriber<List<Booking>>(this) {
+
+            @Override
+            public void onNext(List<Booking> response) {
+                super.onNext(response);
+                IGoerCartView view = getView();
+
+                if (view != null) {
+                    view.showMessage("Your cart was validated");
+                }
+
+                onOrderSent(response, true);
             }
         };
     }

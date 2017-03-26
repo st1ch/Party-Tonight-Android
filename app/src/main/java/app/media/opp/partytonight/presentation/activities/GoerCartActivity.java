@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.paypal.android.MEP.PayPal;
 import com.paypal.android.MEP.PayPalActivity;
@@ -27,6 +28,8 @@ import app.media.opp.partytonight.domain.CartItemExtended;
 import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.adapters.GoerCartAdapter;
+import app.media.opp.partytonight.presentation.fragments.GoerCartPayedFragment;
+import app.media.opp.partytonight.presentation.fragments.GoerCartPrepareFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerCartPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -217,8 +220,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
         // compile the order
         List<Booking> order = compileOrder(adapter.getData());
 
-        // send order to the server.
-        presenter.onOrderSent(order);
+        showPrepareMessage(() -> presenter.onOrderSent(order));
     }
 
     @Override
@@ -235,6 +237,9 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
     @Override
     public void handleValidatedCart(List<CartItemExtended> cart) {
+        if (GoerCartActivity.cart.size() != cart.size()) {
+            Toast.makeText(this, "Your cart was validated", Toast.LENGTH_SHORT).show();
+        }
         GoerCartActivity.cart = cart;
 
         adapter.setData(GoerCartActivity.cart);
@@ -255,6 +260,9 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
                     Log.i("PAYMENT", "OK " + payKey);
 
                     presenter.sendConfirmation();
+
+                    showOkayMessage();
+
                     cart.clear();
                     adapter.getData().clear();
                     adapter.notifyDataSetChanged();
@@ -273,6 +281,18 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
                     break;
             }
         }
+    }
 
+    private void showPrepareMessage(GoerCartPrepareFragment.IGoerCartPrepared callback) {
+        GoerCartPrepareFragment fragment = GoerCartPrepareFragment.newInstance();
+        fragment.setCallback(callback);
+
+        fragment.show(getFragmentManager(), "goer_cart_prepare");
+    }
+
+    private void showOkayMessage() {
+        GoerCartPayedFragment fragment = GoerCartPayedFragment.newInstance();
+
+        fragment.show(getFragmentManager(), "goer_cart_payed");
     }
 }
