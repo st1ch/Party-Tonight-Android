@@ -26,6 +26,7 @@ import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.User;
+import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.MapUtils;
@@ -118,6 +119,11 @@ public class SessionDataRepository implements SessionRepository {
     @Override
     public Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions) {
         return restApi.confirmPayments(bookings, transactions);
+    }
+
+    @Override
+    public Observable<List<BookedTable>> getFreeTables(int idEvent) {
+        return restApi.getFreeTables(idEvent);
     }
 
     @Override

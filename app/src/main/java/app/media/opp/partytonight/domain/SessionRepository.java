@@ -6,6 +6,7 @@ import com.google.android.gms.maps.model.LatLng;
 import java.util.List;
 
 import app.media.opp.partytonight.data.Statement;
+import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
 import okhttp3.ResponseBody;
 import rx.Observable;
@@ -41,4 +42,6 @@ public interface SessionRepository {
     Observable<List<Transaction>> getTransactions(List<Booking> order);
 
     Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions);
+
+    Observable<List<BookedTable>> getFreeTables(int idEvent);
 }

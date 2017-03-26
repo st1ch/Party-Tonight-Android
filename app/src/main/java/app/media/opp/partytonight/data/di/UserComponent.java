@@ -6,6 +6,7 @@ import app.media.opp.partytonight.presentation.activities.GoerCartActivity;
 import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignUpActivity;
+import app.media.opp.partytonight.presentation.activities.GoerTablesActivity;
 import app.media.opp.partytonight.presentation.activities.LaunchScreenActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterCreateEventActivity;
 import app.media.opp.partytonight.presentation.activities.PromoterEventsActivity;
@@ -46,4 +47,6 @@ public interface UserComponent {
         void inject(StatementTotalFragment statementTotalFragment);
 
         void inject(GoerCartActivity goerCartActivity);
+
+        void inject(GoerTablesActivity goerTablesActivity);
 }

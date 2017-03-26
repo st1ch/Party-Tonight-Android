@@ -17,6 +17,7 @@ import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.Transaction;
+import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
@@ -101,5 +102,9 @@ public class RestApi {
         String transactionsJson = gson.toJson(transactions.toArray(new Transaction[transactions.size()]));
 
         return api.confirmPayments(account.user().getToken(), bookingsJson, transactionsJson);
+    }
+
+    public Observable<List<BookedTable>> getFreeTables(int idEvent) {
+        return api.getFreeTables(account.user().getToken(), idEvent);
     }
 }

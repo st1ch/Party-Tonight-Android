@@ -12,11 +12,6 @@ import app.media.opp.partytonight.domain.usecase.GoerFindVenueUseCase;
 import app.media.opp.partytonight.presentation.utils.Messages;
 import app.media.opp.partytonight.presentation.views.IGoerFindVenueVIew;
 
-/**
- * Created by piekie (binnonnorie@gmail.com)
- * on 1/30/17
- */
-
 public class GoerFindVenuePresenter extends ProgressPresenter<IGoerFindVenueVIew> implements IGoerFindVenuePresenter {
 
     private GoerFindVenueUseCase findVenueUseCase;

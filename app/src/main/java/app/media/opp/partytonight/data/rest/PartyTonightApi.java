@@ -9,6 +9,7 @@ import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Revenue;
 import app.media.opp.partytonight.domain.Transaction;
+import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
@@ -73,5 +74,8 @@ public interface PartyTonightApi {
     @FormUrlEncoded
     @POST("dancer/event/confirm_invoices")
     Observable<ResponseBody> confirmPayments(@Header("x-auth-token") String token, @Field("bookings[]") String bookings, @Field("transactions[]") String transactions);
+
+    @POST("dancer/event/get_free_tables")
+    Observable<List<BookedTable>> getFreeTables(@Header("x-auth-token") String token, @Body int idEvent);
 }
 
