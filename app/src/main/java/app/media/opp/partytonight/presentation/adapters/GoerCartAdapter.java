@@ -61,7 +61,7 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
                 title += "x" + item.getAmount();
             }
         } else {
-            title = "Table #" + item.getAmount() + " (" + item.getTitle() + ")";
+            title = "Table #" + item.getNumber() + " (" + item.getTitle() + ")";
         }
 
 

@@ -12,6 +12,8 @@ import app.media.opp.partytonight.domain.Table;
  */
 
 public class EventEntity {
+    @SerializedName("id_event")
+    private int idEvent;
     @SerializedName("club_name")
     private String clubName;
     @SerializedName("party_name")
@@ -28,6 +30,13 @@ public class EventEntity {
     private List<Ticket> tickets;
     private List<PhotoEntity> photos;
 
+    public int getIdEvent() {
+        return idEvent;
+    }
+
+    public void setIdEvent(int idEvent) {
+        this.idEvent = idEvent;
+    }
 
     public List<PhotoEntity> getPhotos() {
         return photos;

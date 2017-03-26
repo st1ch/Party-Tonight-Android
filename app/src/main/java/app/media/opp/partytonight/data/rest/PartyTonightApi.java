@@ -64,14 +64,14 @@ public interface PartyTonightApi {
     @GET("maker/event/total")
     Observable<Statement> getStatement(@Header("x-auth-token") String token, @Header("party_name") String partyName);
 
-    @POST("dancer/event/validate_order")
+    @POST("dancer/event/validate_booking")
     Observable<List<Booking>> validateBookings(@Header("x-auth-token") String token, @Body List<Booking> order);
 
-    @POST("dancer/event/get_transactions")
+    @POST("dancer/event/get_invoices")
     Observable<List<Transaction>> getTransactions(@Header("x-auth-token") String token, @Body List<Booking> order);
 
     @FormUrlEncoded
-    @POST("dancer/event/confirm_payments")
+    @POST("dancer/event/confirm_invoices")
     Observable<ResponseBody> confirmPayments(@Header("x-auth-token") String token, @Field("bookings[]") String bookings, @Field("transactions[]") String transactions);
 }
 

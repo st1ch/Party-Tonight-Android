@@ -70,8 +70,6 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
                 }
             }
 
-            booking.setBottles(new ArrayList<>(booking.getBottlesAsMap().values()));
-
             // single table
             if (booking.getTable() != null) {
                 stored.setTable(booking.getTable());

@@ -124,11 +124,11 @@ public class GoerTablesActivity extends AppCompatActivity {
                 if (visibility == View.VISIBLE) {
                     BookedTable table = new BookedTable();
 
-                    table.setPrice(Double.parseDouble(event.getTables().get(j).getPrice()));
+                    table.setPrice(Double.parseDouble(event.getTables().get(i).getPrice()));
                     table.setNumber(i * llAllTables.getChildCount() + (j + 1));
-                    table.setType(event.getTables().get(j).getType());
+                    table.setType(event.getTables().get(i).getType());
 
-                    GoerCartActivity.putToCart(event.getIdEvent(), new Booking(table));
+                    GoerCartActivity.putToCart(event.getIdEvent(), new Booking(event.getIdEvent(), table));
 
                     finish();
                 }

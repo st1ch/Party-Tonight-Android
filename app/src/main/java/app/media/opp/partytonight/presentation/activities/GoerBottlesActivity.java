@@ -152,7 +152,7 @@ public class GoerBottlesActivity extends AppCompatActivity {
             bottle.setPrice(price);
             bottle.setTitle(b.getType());
 
-            GoerCartActivity.putToCart(event.getIdEvent(), new Booking());
+            GoerCartActivity.putToCart(event.getIdEvent(), new Booking(event.getIdEvent(), bottle));
         }
 
         finish();

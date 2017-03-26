@@ -71,6 +71,7 @@ public class MapperFactory implements AbstractMapperFactory {
         return obj -> {
             Event event = new Event();
 
+            event.setIdEvent(obj.getIdEvent());
             event.setBottles(obj.getBottles());
             event.setClubCapacity(obj.getClubCapacity());
             event.setClubName(obj.getClubName());

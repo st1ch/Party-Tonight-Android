@@ -10,13 +10,13 @@ import com.google.gson.annotations.SerializedName;
 public class BookedTable {
 
     @SerializedName("type")
-    String type;
+    private String type;
 
     @SerializedName("number")
-    int number;
+    private int number;
 
     @SerializedName("price")
-    double price;
+    private double price;
 
     public String getType() {
         return type;

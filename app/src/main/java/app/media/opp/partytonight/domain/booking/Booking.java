@@ -1,6 +1,5 @@
 package app.media.opp.partytonight.domain.booking;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -28,10 +27,11 @@ public class Booking {
     @SerializedName("ticket")
     private BookedTicket ticket;
 
-    @Expose
-    private HashMap<String, BookedBottle> bottlesAsMap = new HashMap<>();
+    private transient HashMap<String, BookedBottle> bottlesAsMap = new HashMap<>();
 
-    public Booking(BookedBottle bottle) {
+    public Booking(int idEvent, BookedBottle bottle) {
+        this.idEvent = idEvent;
+
         if (bottlesAsMap.containsKey(bottle.getTitle())) {
             int stored = bottlesAsMap.get(bottle.getTitle()).getAmount();
 
@@ -40,10 +40,11 @@ public class Booking {
             bottlesAsMap.put(bottle.getTitle(), bottle);
         }
 
-        bottles = new ArrayList<>(bottlesAsMap.values());
+        bottles.addAll(bottlesAsMap.values());
     }
 
-    public Booking(BookedTable bookedTable) {
+    public Booking(int idEvent, BookedTable bookedTable) {
+        this.idEvent = idEvent;
         this.table = bookedTable;
     }
 
@@ -97,6 +98,7 @@ public class Booking {
         for (BookedBottle bottle : bottles) {
             CartItemExtended item = new CartItemExtended();
 
+            item.setAmount(bottle.getAmount());
             item.setFullPrice(bottle.getPrice() * bottle.getAmount());
             item.setTypeOfItem(CartItemExtended.Type.Bottle);
             item.setTitle(bottle.getTitle());
@@ -108,7 +110,10 @@ public class Booking {
             CartItemExtended tableItem = new CartItemExtended();
             tableItem.setFullPrice(table.getPrice());
             tableItem.setTitle(table.getType());
+            tableItem.setNumber(table.getNumber());
             tableItem.setTypeOfItem(CartItemExtended.Type.Table);
+
+            cartItems.add(tableItem);
         }
 
         // TODO: 3/26/17 add ticket

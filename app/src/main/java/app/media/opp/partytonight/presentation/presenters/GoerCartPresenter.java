@@ -60,6 +60,10 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
 
     @Override
     public void validateOrder(List<Booking> order) {
+        for (Booking b : order) {
+            b.getBottles().addAll(b.getBottlesAsMap().values());
+        }
+
         validationUseCase.setBookings(order);
         validationUseCase.execute(getValidationSubscriber());
     }
@@ -70,7 +74,7 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
     }
 
     private void onOrderSent(List<Booking> order, boolean validated) {
-        if (validated) {
+        if (!validated) {
             validateOrderForPaying(order);
             return;
         }

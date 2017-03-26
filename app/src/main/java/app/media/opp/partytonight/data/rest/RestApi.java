@@ -100,7 +100,6 @@ public class RestApi {
         String bookingsJson = gson.toJson(bookings.toArray(new Booking[bookings.size()]));
         String transactionsJson = gson.toJson(transactions.toArray(new Transaction[transactions.size()]));
 
-
         return api.confirmPayments(account.user().getToken(), bookingsJson, transactionsJson);
     }
 }
