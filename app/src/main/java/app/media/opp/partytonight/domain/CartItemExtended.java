@@ -59,7 +59,7 @@ public class CartItemExtended extends CartItem {
     }
 
     public enum Type {
-        Bottle("Bottle"), Table("Table");
+        Bottle("Bottle"), Table("Table"), Ticket("Ticket");
 
         private String title;
 

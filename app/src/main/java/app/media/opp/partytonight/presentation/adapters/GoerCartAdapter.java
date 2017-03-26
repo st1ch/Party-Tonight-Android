@@ -60,8 +60,10 @@ public class GoerCartAdapter extends RecyclerView.Adapter<GoerCartAdapter.ViewHo
             if (item.getTypeOfItem().equals(CartItemExtended.Type.Bottle)) {
                 title += "x" + item.getAmount();
             }
-        } else {
+        } else if (item.getTypeOfItem() == CartItemExtended.Type.Table) {
             title = "Table #" + item.getNumber() + " (" + item.getTitle() + ")";
+        } else {
+            title = "Ticket " + item.getTitle();
         }
 
 

@@ -10,10 +10,18 @@ import com.google.gson.annotations.SerializedName;
 public class BookedTicket {
 
     @SerializedName("type")
-    String type;
-
+    private String type;
     @SerializedName("price")
-    double price;
+    private double price;
+
+    public BookedTicket() {
+    }
+
+    public BookedTicket(String type, double price) {
+
+        this.type = type;
+        this.price = price;
+    }
 
     public String getType() {
         return type;

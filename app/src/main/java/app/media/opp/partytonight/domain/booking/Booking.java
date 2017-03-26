@@ -48,6 +48,11 @@ public class Booking {
         this.table = bookedTable;
     }
 
+
+    public Booking(int idEvent, BookedTicket ticket) {
+        this.idEvent = idEvent;
+        this.ticket = ticket;
+    }
     public Booking() {
 
     }
@@ -116,7 +121,14 @@ public class Booking {
             cartItems.add(tableItem);
         }
 
-        // TODO: 3/26/17 add ticket
+        if (ticket != null) {
+            CartItemExtended ticketItem = new CartItemExtended();
+            ticketItem.setFullPrice(ticket.getPrice());
+            ticketItem.setTitle(ticket.getType());
+            ticketItem.setTypeOfItem(CartItemExtended.Type.Ticket);
+
+            cartItems.add(ticketItem);
+        }
 
         return cartItems;
 

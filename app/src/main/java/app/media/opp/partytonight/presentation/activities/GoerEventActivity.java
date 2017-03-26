@@ -17,6 +17,8 @@ import java.util.HashMap;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
+import app.media.opp.partytonight.domain.booking.BookedTicket;
+import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.fragments.CheckAgeFragment;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
@@ -106,7 +108,7 @@ public class GoerEventActivity extends AppCompatActivity {
                 checkAge();
                 break;
             case R.id.btnRsvp:
-
+                orderTicket();
                 break;
             case R.id.btnReviews:
 
@@ -115,6 +117,11 @@ public class GoerEventActivity extends AppCompatActivity {
 
                 break;
         }
+    }
+
+    private void orderTicket() {
+        GoerCartActivity.putToCart(event.getIdEvent(), new Booking(event.getIdEvent(),
+                new BookedTicket("", Integer.parseInt(event.getTicketPrice().get(0).getPrice()))));
     }
 
     private void checkAge() {
