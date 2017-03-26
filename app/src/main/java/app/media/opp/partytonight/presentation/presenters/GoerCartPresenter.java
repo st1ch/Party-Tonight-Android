@@ -16,6 +16,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Transaction;
+import app.media.opp.partytonight.domain.booking.BookedBottle;
 import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.GoerCartConfirmUseCase;
@@ -61,6 +62,7 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
     @Override
     public void validateOrder(List<Booking> order) {
         for (Booking b : order) {
+            b.setBottles(new ArrayList<>());
             b.getBottles().addAll(b.getBottlesAsMap().values());
         }
 
@@ -167,6 +169,10 @@ public class GoerCartPresenter extends ProgressPresenter<IGoerCartView> implemen
         HashMap<Integer, Booking> cartNew = new HashMap<>();
 
         for (Booking booking : order) {
+            for (BookedBottle bottle : booking.getBottles()) {
+                booking.getBottlesAsMap().put(bottle.getTitle(), bottle);
+            }
+
             cartNew.put(booking.getIdEvent(), booking);
         }
 

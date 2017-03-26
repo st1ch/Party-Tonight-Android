@@ -59,7 +59,7 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
             Booking stored = cart.get(idEvent);
 
             // bottles
-            for (BookedBottle bottle : booking.getBottles()) {
+            for (BookedBottle bottle : booking.getBottlesAsMap().values()) {
                 if (stored.getBottlesAsMap().containsKey(bottle.getTitle())) {
                     int storedAmount = stored.getBottlesAsMap().get(bottle.getTitle()).getAmount();
                     int bookedAmount = bottle.getAmount();

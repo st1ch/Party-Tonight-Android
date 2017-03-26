@@ -32,15 +32,7 @@ public class Booking {
     public Booking(int idEvent, BookedBottle bottle) {
         this.idEvent = idEvent;
 
-        if (bottlesAsMap.containsKey(bottle.getTitle())) {
-            int stored = bottlesAsMap.get(bottle.getTitle()).getAmount();
-
-            bottlesAsMap.get(bottle.getTitle()).setAmount(stored + bottle.getAmount());
-        } else {
-            bottlesAsMap.put(bottle.getTitle(), bottle);
-        }
-
-        bottles.addAll(bottlesAsMap.values());
+        bottlesAsMap.put(bottle.getTitle(), bottle);
     }
 
     public Booking(int idEvent, BookedTable bookedTable) {
