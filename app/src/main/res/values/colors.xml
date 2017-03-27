@@ -3,6 +3,7 @@
     <color name="colorPrimary">#d2000000</color>
     <color name="colorPrimaryDark">#d2000000</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="transparent">#00000000</color>
 
     <!-- Animation of background -->
     <color name="colorAnimationGradientBase">#3b3131</color>

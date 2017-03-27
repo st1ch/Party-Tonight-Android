@@ -50,7 +50,7 @@
         <activity
             android:name=".presentation.activities.PickMediaActivity"
             android:screenOrientation="fullUser"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
         <activity android:name=".presentation.activities.GoerMainActivity" />
         <activity android:name=".presentation.activities.GoerSignInActivity" />
         <activity

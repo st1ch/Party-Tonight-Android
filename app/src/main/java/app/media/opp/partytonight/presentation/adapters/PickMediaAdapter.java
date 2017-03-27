@@ -17,11 +17,6 @@ import app.media.opp.partytonight.presentation.utils.FileUtils;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-/**
- * Created by piekie (Artem Vasylenko)
- * on 11/29/16
- */
-
 public class PickMediaAdapter extends RecyclerView.Adapter<PickMediaAdapter.ViewHolder> {
 
     private ArrayList<ChosenImage> data;

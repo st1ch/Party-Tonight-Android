@@ -58,8 +58,8 @@ dependencies {
     compile 'com.google.maps.android:android-maps-utils:0.4.3'
     compile 'com.google.android.gms:play-services-places:9.4.0'
 
-    // MediaPicker (https://github.com/coomar2841/android-multipicker-library)
-    compile 'com.kbeanie:multipicker:1.1.31@aar'
+    // Media Picker (https://github.com/NoelChew/MultiPickerWrapper)
+    compile 'com.github.noelchew:MultiPickerWrapper:0.1.2'
 
     // Blurred dialog fragment (https://github.com/tvbarthel/BlurDialogFragment)
     compile 'fr.tvbarthel.blurdialogfragment:lib:2.2.0'
@@ -77,8 +77,7 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.1.0'
-    compile 'com.squareup.okhttp3:okhttp:3.3.1'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
+    compile 'com.squareup.okhttp3:okhttp:3.6.0'
 
     compile 'com.jakewharton:butterknife:8.4.0'
     apt 'com.jakewharton:butterknife-compiler:8.4.0'
