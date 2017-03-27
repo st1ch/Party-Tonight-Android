@@ -98,6 +98,10 @@ public class GoerCartActivity extends ProgressActivity implements IGoerCartView 
 
         presenter.onCreate(this);
         presenter.validateOrder(new ArrayList<>(cart.values()));
+
+        if (android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            PartyTonightApplication.buildPayPalClient(this);
+        }
     }
 
     private void configureViews() {

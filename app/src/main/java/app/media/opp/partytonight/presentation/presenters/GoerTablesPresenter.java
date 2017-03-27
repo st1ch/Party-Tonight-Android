@@ -61,7 +61,7 @@ public class GoerTablesPresenter extends ProgressPresenter<IGoerTablesView> impl
             result.put(type, new ArrayList<>());
             result.get(type).add(response.get(i));
 
-            for (int j = i; j < response.size(); j++, i++) {
+            for (int j = i + 1; j < response.size(); j++, i++) {
                 if (response.get(j).getType().equals(type)) {
                     result.get(type).add(response.get(j));
                 } else break;
