@@ -17,9 +17,8 @@ import java.util.HashMap;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
-import app.media.opp.partytonight.domain.booking.BookedTicket;
-import app.media.opp.partytonight.domain.booking.Booking;
 import app.media.opp.partytonight.presentation.fragments.CheckAgeFragment;
+import app.media.opp.partytonight.presentation.fragments.GoerRVSPFragment;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
@@ -114,9 +113,21 @@ public class GoerEventActivity extends AppCompatActivity {
                 openReviews();
                 break;
             case R.id.btnShare:
-
+                shareEvent();
                 break;
         }
+    }
+
+    private void shareEvent() {
+        String shareBody = event.getPartyName() + " in " + event.getClubName() + " " +
+                " at " + StringUtils.getDate(event.getTime());
+
+
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+
+        startActivity(Intent.createChooser(sharingIntent, "Sharing event"));
     }
 
     private void openReviews() {
@@ -124,8 +135,13 @@ public class GoerEventActivity extends AppCompatActivity {
     }
 
     private void orderTicket() {
-        GoerCartActivity.putToCart(event.getIdEvent(), new Booking(event.getIdEvent(),
-                new BookedTicket("", Integer.parseInt(event.getTicketPrice().get(0).getPrice()))));
+        GoerRVSPFragment fragment = GoerRVSPFragment.newInstance();
+
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("event", event);
+
+        fragment.setArguments(bundle);
+        fragment.show(getFragmentManager(), "rvsp");
     }
 
     private void checkAge() {

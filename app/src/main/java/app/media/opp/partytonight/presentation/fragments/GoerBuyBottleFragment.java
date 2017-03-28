@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.domain.Event;
-import app.media.opp.partytonight.presentation.adapters.BottlesAdapter;
 import butterknife.BindView;
 
 
@@ -19,10 +18,8 @@ public class GoerBuyBottleFragment extends Fragment {
 
     @BindView(R.id.rvItems)
     RecyclerView rvItems;
-    private BottlesAdapter adapter;
 
     public static GoerBuyBottleFragment newInstance(Event event) {
-
         Bundle args = new Bundle();
         args.putSerializable(EVENT, event);
         GoerBuyBottleFragment fragment = new GoerBuyBottleFragment();
