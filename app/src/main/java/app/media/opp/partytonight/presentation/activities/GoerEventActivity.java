@@ -111,12 +111,16 @@ public class GoerEventActivity extends AppCompatActivity {
                 orderTicket();
                 break;
             case R.id.btnReviews:
-
+                openReviews();
                 break;
             case R.id.btnShare:
 
                 break;
         }
+    }
+
+    private void openReviews() {
+        navigator.startGoerReviewActivity(this, event);
     }
 
     private void orderTicket() {

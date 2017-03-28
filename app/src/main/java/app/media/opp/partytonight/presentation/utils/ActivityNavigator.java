@@ -11,6 +11,7 @@ import app.media.opp.partytonight.presentation.activities.EventScreenActivity;
 import app.media.opp.partytonight.presentation.activities.GoerBottlesActivity;
 import app.media.opp.partytonight.presentation.activities.GoerCartActivity;
 import app.media.opp.partytonight.presentation.activities.GoerEventActivity;
+import app.media.opp.partytonight.presentation.activities.GoerEventReviewActivity;
 import app.media.opp.partytonight.presentation.activities.GoerFindVenueActivity;
 import app.media.opp.partytonight.presentation.activities.GoerMainActivity;
 import app.media.opp.partytonight.presentation.activities.GoerSignInActivity;
@@ -147,5 +148,10 @@ public class ActivityNavigator {
         Intent intent = new Intent(context, TermsAndConditionsActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         context.startActivity(intent);
+    }
+
+    public void startGoerReviewActivity(GoerEventActivity goerEventActivity, Event event) {
+        Intent intent = GoerEventReviewActivity.launchIntent(goerEventActivity, event);
+        goerEventActivity.startActivity(intent);
     }
 }

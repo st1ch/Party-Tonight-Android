@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/background_blur" />
+
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar_centered_sugar_plums" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/toolbar"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:text="Select your rating"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <RatingBar
+                android:id="@+id/rbRating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:numStars="5"
+                android:rating="0"
+                android:stepSize="1"
+                android:theme="@style/RatingBar" />
+
+            <app.media.opp.partytonight.presentation.app.view.TextViewAguda
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="8dp"
+                android:text="Write review"
+                android:textColor="#fff"
+                android:textSize="22sp" />
+
+            <app.media.opp.partytonight.presentation.app.view.EditTextAgudaMultiline
+                android:id="@+id/etContent"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/edittext_curved_translucent"
+                android:gravity="top"
+                android:hint="Review text"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="6"
+                android:minLines="6"
+                android:textColor="#fff"
+                android:textColorHint="#969696" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <app.media.opp.partytonight.presentation.app.view.ButtonGray
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Submit"
+                    android:textSize="@dimen/button_curved_gray_text_size" />
+
+
+                <app.media.opp.partytonight.presentation.app.view.ButtonTransparent
+                    android:id="@+id/btnCancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Cancel"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/button_curved_gray_text_size" />
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -23,6 +23,7 @@ import app.media.opp.partytonight.data.rest.RestApi;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Revenue;
+import app.media.opp.partytonight.domain.Review;
 import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.User;
@@ -124,6 +125,11 @@ public class SessionDataRepository implements SessionRepository {
     @Override
     public Observable<List<BookedTable>> getFreeTables(int idEvent) {
         return restApi.getFreeTables(idEvent);
+    }
+
+    @Override
+    public Observable<ResponseBody> postReview(Review review) {
+        return restApi.postReview(review);
     }
 
     @Override

@@ -8,6 +8,7 @@ import app.media.opp.partytonight.data.Statement;
 import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Revenue;
+import app.media.opp.partytonight.domain.Review;
 import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
@@ -77,5 +78,8 @@ public interface PartyTonightApi {
 
     @POST("dancer/event/get_free_tables")
     Observable<List<BookedTable>> getFreeTables(@Header("x-auth-token") String token, @Body int idEvent);
+
+    @POST("dancer/event/review_post")
+    Observable<ResponseBody> postReview(@Header("x-auth-token") String token, @Body Review review);
 }
 

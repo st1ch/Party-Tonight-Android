@@ -21,7 +21,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBDKujpmEX2DWKTOZjeU66lI2EAEcEg1Ng" />
 
-        <activity android:name=".presentation.activities.LaunchScreenActivity">
+        <activity
+            android:name=".presentation.activities.LaunchScreenActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,53 +31,86 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".presentation.activities.WelcomeScreenActivity" />
-        <activity android:name=".presentation.activities.PromoterSignInActivity" />
-        <activity android:name=".presentation.activities.PromoterMainActivity" />
-        <activity android:name=".presentation.activities.EventScreenActivity" />
-        <activity android:name=".presentation.activities.EventDetailsContainerActivity" />
+        <activity
+            android:name=".presentation.activities.WelcomeScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.PromoterSignInActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.PromoterMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.EventScreenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.EventDetailsContainerActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".presentation.activities.PromoterSignUpActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
 
         <activity
             android:name=".presentation.activities.PromoterEventsActivity"
-            android:label="Events" />
+            android:label="Events"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name=".presentation.activities.PromoterCreateEventActivity"
             android:label="Create Event"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.activities.PickMediaActivity"
-            android:screenOrientation="fullUser"
+            android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen" />
-        <activity android:name=".presentation.activities.GoerMainActivity" />
-        <activity android:name=".presentation.activities.GoerSignInActivity" />
+
+        <activity
+            android:name=".presentation.activities.GoerMainActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.GoerSignInActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.activities.GoerSignUpActivity"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".presentation.activities.GoerFindVenueActivity"
             android:label="Find a venue"
+            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".presentation.activities.GoerEventActivity" />
+        <activity
+            android:name=".presentation.activities.GoerEventActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.activities.GoerCartActivity"
-            android:label="Cart" />
+            android:label="Cart"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.activities.GoerBottlesActivity"
-            android:label="Liquors" />
+            android:label="Liquors"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".presentation.activities.GoerTablesActivity"
-            android:label="Tables" />
-        <activity android:name=".presentation.activities.TermsAndConditionsActivity" />
+            android:label="Tables"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".presentation.activities.TermsAndConditionsActivity"
+            android:screenOrientation="portrait" />
 
         <activity
             android:name="com.paypal.android.MEP.PayPalActivity"
             android:configChanges="keyboardHidden|orientation"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name=".presentation.activities.GoerEventReviewActivity"
+            android:label="Find a venue"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan" />
 
     </application>
 

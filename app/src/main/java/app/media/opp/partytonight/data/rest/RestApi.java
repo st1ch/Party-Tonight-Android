@@ -16,6 +16,7 @@ import app.media.opp.partytonight.data.TokenEntity;
 import app.media.opp.partytonight.data.UserEntity;
 import app.media.opp.partytonight.domain.Account;
 import app.media.opp.partytonight.domain.Revenue;
+import app.media.opp.partytonight.domain.Review;
 import app.media.opp.partytonight.domain.Transaction;
 import app.media.opp.partytonight.domain.booking.BookedTable;
 import app.media.opp.partytonight.domain.booking.Booking;
@@ -106,5 +107,9 @@ public class RestApi {
 
     public Observable<List<BookedTable>> getFreeTables(int idEvent) {
         return api.getFreeTables(account.user().getToken(), idEvent);
+    }
+
+    public Observable<ResponseBody> postReview(Review review) {
+        return api.postReview(account.user().getToken(), review);
     }
 }

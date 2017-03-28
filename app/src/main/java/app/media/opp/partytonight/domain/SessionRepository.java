@@ -44,4 +44,6 @@ public interface SessionRepository {
     Observable<ResponseBody> confirmPayments(List<Booking> bookings, List<Transaction> transactions);
 
     Observable<List<BookedTable>> getFreeTables(int idEvent);
+
+    Observable<ResponseBody> postReview(Review review);
 }

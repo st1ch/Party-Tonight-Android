@@ -34,4 +34,9 @@
         <item name="android:padding">8dp</item>
     </style>
 
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">#e6d40c</item>
+        <item name="colorControlActivated">#e6d40c</item>
+    </style>
+
 </resources>
