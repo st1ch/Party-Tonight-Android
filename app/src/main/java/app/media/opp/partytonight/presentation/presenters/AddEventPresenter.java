@@ -1,22 +1,18 @@
 package app.media.opp.partytonight.presentation.presenters;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.maps.model.LatLng;
 
 import javax.inject.Inject;
-import javax.inject.Singleton;
 
 import app.media.opp.partytonight.data.di.scope.UserScope;
 import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.AddEventUseCase;
-import app.media.opp.partytonight.domain.usecase.GetEventsUseCase;
 import app.media.opp.partytonight.domain.usecase.GetZipCodeUseCase;
 import app.media.opp.partytonight.presentation.utils.Messages;
 import app.media.opp.partytonight.presentation.views.IAddEventView;
-import app.media.opp.partytonight.presentation.views.IProgressView;
 
 /**
  * Created by arkadii on 11/6/16.
@@ -86,6 +82,7 @@ public class AddEventPresenter extends ProgressPresenter<IAddEventView> implemen
                 super.onNext(response);
                 IAddEventView view = getView();
                 if (view != null) {
+                    view.deletePhotos();
                     view.navigateBack();
                 }
             }

@@ -12,7 +12,6 @@ public class User {
     String email;
     String token;
     String birthday;
-    String address;
 
     public User(String email, String password) {
         this(null, email, null, null, null, password);
@@ -54,7 +53,6 @@ public class User {
         this.emergencyContact = emergencyContact;
         this.password = password;
         this.birthday = birthday;
-        this.address = address;
     }
 
     public String getToken() {
@@ -91,9 +89,5 @@ public class User {
 
     public String getBirthday() {
         return birthday;
-    }
-
-    public String getAddress() {
-        return address;
     }
 }

@@ -8,8 +8,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import javax.inject.Singleton;
-
 /**
  * Created by piekie (Artem Vasylenko)
  * on 11/29/16
@@ -25,11 +23,13 @@ public final class FileUtils {
     public static Bitmap getBitmapFromFile(String path) {
         File imgFile = new File(path);
 
+        Bitmap result = null;
+
         if (imgFile.exists()) {
 
-            return BitmapFactory.decodeFile(imgFile.getAbsolutePath());
+            result = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
         }
-        return null;
+        return result;
     }
 
     public static boolean removeFile(String path) {
@@ -46,11 +46,6 @@ public final class FileUtils {
         }
     }
 
-    public File createUploadableImageFile(String originalFile, int preferredSize) throws IOException {
-        double max = 0.8 * Math.sqrt(Runtime.getRuntime().freeMemory() / 4);
-        return saveTempFile(c, originalFile, Math.min((int) max, preferredSize));
-    }
-
     public static File saveTempFile(Context c, String fileName, int size) throws IOException {
         Bitmap bitmap = ImageUtils.decodeSampledBitmapFromResource(fileName, size);
 
@@ -63,5 +58,10 @@ public final class FileUtils {
         bitmap.compress(Bitmap.CompressFormat.PNG, 90, fos);
         fos.close();
         return result;
+    }
+
+    public File createUploadableImageFile(String originalFile, int preferredSize) throws IOException {
+        double max = 0.8 * Math.sqrt(Runtime.getRuntime().freeMemory() / 4);
+        return saveTempFile(c, originalFile, Math.min((int) max, preferredSize));
     }
 }

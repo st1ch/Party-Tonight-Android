@@ -7,4 +7,9 @@ public interface IAddEventView extends IProgressView {
     void navigateBack();
 
     void saveZipCode(String response);
+
+    void deletePhotos();
 }
+
+
+

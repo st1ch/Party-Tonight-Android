@@ -36,6 +36,7 @@ import app.media.opp.partytonight.domain.Event;
 import app.media.opp.partytonight.domain.Table;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
 import app.media.opp.partytonight.presentation.presenters.AddEventPresenter;
+import app.media.opp.partytonight.presentation.utils.FileUtils;
 import app.media.opp.partytonight.presentation.utils.StringUtils;
 import app.media.opp.partytonight.presentation.utils.ToolbarUtils;
 import app.media.opp.partytonight.presentation.views.IAddEventView;
@@ -327,6 +328,11 @@ public class PromoterCreateEventActivity extends ProgressActivity implements Dat
         }
 
         event.setZipCode(response);
+    }
+
+    @Override
+    public void deletePhotos() {
+        FileUtils.removeFiles(pickedImages);
     }
 
 
