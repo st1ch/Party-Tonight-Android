@@ -23,7 +23,7 @@ public class ProgressPresenter<V extends IProgressView> extends BasePresenter<V>
         if (view != null) {
             view.hideProgress();
             String error = getMessages().getError(t);
-            view.showMessage(error);
+//            view.showMessage(error);
         }
     }
 

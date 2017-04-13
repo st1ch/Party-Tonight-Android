@@ -29,8 +29,8 @@ public abstract class UseCase<T> {
                     .cache()
                     .doOnUnsubscribe(() -> Log.e("useCase", "onUnsubscribe()"))
                     .doOnError((t) -> {
-                        observable = null;
                         subscriber.onError(t);
+                        observable = null;
                     })
                     .doOnCompleted(() -> observable = null);
         subscription = observable.subscribe(subscriber);

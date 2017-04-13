@@ -1,5 +1,6 @@
 package app.media.opp.partytonight.presentation.activities;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -116,8 +117,19 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
 
     @Override
     public void showMessageAboutVerification() {
-        SignInMessageFragment fragment = SignInMessageFragment.newInstance();
-        fragment.show(getFragmentManager(), "sign_message");
+        SignInMessageFragment fragmentSupport = (SignInMessageFragment) getFragmentManager().findFragmentByTag("sign_message");
+
+        if (fragmentSupport == null) {
+            SignInMessageFragment fragment = SignInMessageFragment.newInstance();
+
+            FragmentTransaction ft = getFragmentManager().beginTransaction();
+
+            ft.add(fragment, "sign_message");
+
+            ft.commit();
+
+            getFragmentManager().executePendingTransactions();
+        }
     }
 
     public GoerSignInPresenter getPresenter() {

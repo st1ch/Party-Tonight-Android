@@ -38,7 +38,7 @@ public class SignInMessageFragment extends BlurDialogFragment {
     public void proceed(View v) {
         switch (v.getId()) {
             case R.id.bProceed:
-                getDialog().dismiss();
+                dismiss();
                 break;
         }
     }
