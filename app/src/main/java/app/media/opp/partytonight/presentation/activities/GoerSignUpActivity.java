@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.dialogs.SignUpVerificationFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerSignUpPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
 import app.media.opp.partytonight.presentation.utils.FieldsUtils;
@@ -134,6 +135,12 @@ public class GoerSignUpActivity extends ProgressActivity implements DatePickerCa
     @Override
     public void navigateToProfile() {
         activityNavigator.startGoerMainActivity(this, true);
+    }
+
+    @Override
+    public void showMessageAboutVerification() {
+        SignUpVerificationFragment fragment = SignUpVerificationFragment.newInstance();
+        fragment.show(getFragmentManager(), "sign_up_verification");
     }
 
     @Override

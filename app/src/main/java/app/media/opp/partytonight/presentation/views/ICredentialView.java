@@ -6,4 +6,6 @@ package app.media.opp.partytonight.presentation.views;
 
 public interface ICredentialView extends IProgressView {
     void navigateToProfile();
+
+    void showMessageAboutVerification();
 }

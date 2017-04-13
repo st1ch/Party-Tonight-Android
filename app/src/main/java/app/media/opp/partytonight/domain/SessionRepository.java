@@ -17,9 +17,9 @@ import rx.Observable;
 public interface SessionRepository {
 
 
-    Observable<User> signUp(User user);
+    Observable<ResponseBody> signUp(User user);
 
-    Observable<User> goerSignUp(User user);
+    Observable<ResponseBody> goerSignUp(User user);
 
     Observable<User> logIn(User user);
 

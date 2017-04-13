@@ -113,6 +113,10 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
         activityNavigator.startGoerMainActivity(this, true);
     }
 
+    @Override
+    public void showMessageAboutVerification() {
+    }
+
     public GoerSignInPresenter getPresenter() {
         return presenter;
     }

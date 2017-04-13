@@ -40,12 +40,12 @@ public class RestApi {
         this.account = account;
     }
 
-    public Observable<TokenEntity> signUp(UserEntity userEntity) {
-        return api.makerSignUp(userEntity).flatMap(response -> logIn(userEntity));
+    public Observable<ResponseBody> signUp(UserEntity userEntity) {
+        return api.makerSignUp(userEntity);
     }
 
-    public Observable<TokenEntity> goerSignUp(UserEntity userEntity) {
-        return api.goerSignUp(userEntity).flatMap(response -> logIn(userEntity));
+    public Observable<ResponseBody> goerSignUp(UserEntity userEntity) {
+        return api.goerSignUp(userEntity);
     }
 
 

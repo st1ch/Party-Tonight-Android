@@ -11,6 +11,7 @@ import app.media.opp.partytonight.domain.subscribers.BaseProgressSubscriber;
 import app.media.opp.partytonight.domain.usecase.SignUpUseCase;
 import app.media.opp.partytonight.presentation.utils.Messages;
 import app.media.opp.partytonight.presentation.views.ICredentialView;
+import okhttp3.ResponseBody;
 
 /**
  * Created by arkadii on 10/29/16.
@@ -68,10 +69,10 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
     }
 
     @NonNull
-    private BaseProgressSubscriber<User> getSubscriber() {
-        return new BaseProgressSubscriber<User>(this) {
+    private BaseProgressSubscriber<ResponseBody> getSubscriber() {
+        return new BaseProgressSubscriber<ResponseBody>(this) {
             @Override
-            public void onNext(User response) {
+            public void onNext(ResponseBody response) {
                 super.onNext(response);
                 ICredentialView view = getView();
                 if (view != null) {

@@ -110,6 +110,11 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
         activityNavigator.startPromoterMainActivity(this, true);
     }
 
+    @Override
+    public void showMessageAboutVerification() {
+
+    }
+
     public SignInPresenter getPresenter() {
         return presenter;
     }

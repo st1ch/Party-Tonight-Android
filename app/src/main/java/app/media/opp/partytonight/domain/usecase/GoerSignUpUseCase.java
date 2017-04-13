@@ -6,9 +6,10 @@ import app.media.opp.partytonight.domain.SessionRepository;
 import app.media.opp.partytonight.domain.User;
 import app.media.opp.partytonight.domain.schedulers.ObserveOn;
 import app.media.opp.partytonight.domain.schedulers.SubscribeOn;
+import okhttp3.ResponseBody;
 import rx.Observable;
 
-public class GoerSignUpUseCase extends UseCase<User> {
+public class GoerSignUpUseCase extends UseCase<ResponseBody> {
     private SessionRepository repository;
     private User user;
 
@@ -19,7 +20,7 @@ public class GoerSignUpUseCase extends UseCase<User> {
     }
 
     @Override
-    protected Observable<User> getUseCaseObservable() {
+    protected Observable<ResponseBody> getUseCaseObservable() {
         return repository.goerSignUp(user);
     }
 

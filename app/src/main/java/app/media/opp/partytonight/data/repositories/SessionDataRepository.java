@@ -56,9 +56,9 @@ public class SessionDataRepository implements SessionRepository {
     }
 
     @Override
-    public Observable<User> goerSignUp(User user) {
+    public Observable<ResponseBody> goerSignUp(User user) {
         Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
-        return restApi.goerSignUp(userEntityMapper.transform(user)).map(tokenEntity -> saveUserAsGoer(user, tokenEntity));
+        return restApi.goerSignUp(userEntityMapper.transform(user));
     }
 
     @Override
@@ -69,9 +69,9 @@ public class SessionDataRepository implements SessionRepository {
 
 
     @Override
-    public Observable<User> signUp(User user) {
+    public Observable<ResponseBody> signUp(User user) {
         Mapper<User, UserEntity> userEntityMapper = abstractMapperFactory.getUserEntityMapper();
-        return restApi.signUp(userEntityMapper.transform(user)).map(tokenEntity -> saveUser(user, tokenEntity));
+        return restApi.signUp(userEntityMapper.transform(user));
     }
 
     @Override
