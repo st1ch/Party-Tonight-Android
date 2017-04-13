@@ -76,7 +76,7 @@ public class SignUpPresenter extends ProgressPresenter<ICredentialView> implemen
                 super.onNext(response);
                 ICredentialView view = getView();
                 if (view != null) {
-                    view.navigateToProfile();
+                    view.showMessageAboutVerification();
                 }
             }
         };
