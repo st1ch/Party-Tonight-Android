@@ -52,8 +52,20 @@ public class GoerSignInPresenter extends ProgressPresenter<ICredentialView> impl
             public void onNext(User response) {
                 super.onNext(response);
                 ICredentialView view = getView();
+
                 if (view != null) {
                     view.navigateToProfile();
+                }
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+
+                ICredentialView view = getView();
+
+                if (view != null) {
+                    view.showMessageAboutVerification();
                 }
             }
         };

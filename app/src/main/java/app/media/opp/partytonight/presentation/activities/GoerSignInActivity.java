@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.dialogs.SignInMessageFragment;
 import app.media.opp.partytonight.presentation.fragments.CheckTermsFragment;
 import app.media.opp.partytonight.presentation.presenters.GoerSignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
@@ -115,6 +116,8 @@ public class GoerSignInActivity extends ProgressActivity implements ICredentialV
 
     @Override
     public void showMessageAboutVerification() {
+        SignInMessageFragment fragment = SignInMessageFragment.newInstance();
+        fragment.show(getFragmentManager(), "sign_message");
     }
 
     public GoerSignInPresenter getPresenter() {

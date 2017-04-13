@@ -255,4 +255,5 @@
     <string name="goer_cart_permission">Soon we will ask you for permit us reading your device state. It necessary for PayPal payments.</string>
     <string name="goer_rvsp">Will you visit event?</string>
     <string name="email_verification">You need to verificate your email address to sign in</string>
+    <string name="sign_credentials">Check your credentials and make sure you have verified account</string>
 </resources>

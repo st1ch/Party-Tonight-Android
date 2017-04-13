@@ -8,6 +8,7 @@ import javax.inject.Inject;
 
 import app.media.opp.partytonight.R;
 import app.media.opp.partytonight.presentation.PartyTonightApplication;
+import app.media.opp.partytonight.presentation.dialogs.SignInMessageFragment;
 import app.media.opp.partytonight.presentation.fragments.CheckTermsFragment;
 import app.media.opp.partytonight.presentation.presenters.SignInPresenter;
 import app.media.opp.partytonight.presentation.utils.ActivityNavigator;
@@ -112,7 +113,8 @@ public class PromoterSignInActivity extends ProgressActivity implements ICredent
 
     @Override
     public void showMessageAboutVerification() {
-
+        SignInMessageFragment fragment = SignInMessageFragment.newInstance();
+        fragment.show(getFragmentManager(), "sign_message");
     }
 
     public SignInPresenter getPresenter() {

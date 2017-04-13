@@ -64,8 +64,9 @@ public class CheckTermsFragment extends BlurDialogFragment {
                 break;
             case R.id.bLogIn:
                 if (agreedWithTerms.isChecked()) {
-
                     Activity activity = getActivity();
+                    getDialog().dismiss();
+
                     if (activity instanceof GoerSignInActivity) {
                         GoerSignInActivity parent = (GoerSignInActivity) activity;
 
@@ -75,6 +76,7 @@ public class CheckTermsFragment extends BlurDialogFragment {
 
                         parent.getPresenter().onSignInButtonClick(email, password);
                     }
+
                 }
                 break;
         }

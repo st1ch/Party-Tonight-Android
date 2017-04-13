@@ -56,6 +56,13 @@ public class SignInPresenter extends ProgressPresenter<ICredentialView> implemen
                     view.navigateToProfile();
                 }
             }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
+
+                e.printStackTrace();
+            }
         };
     }
 }
